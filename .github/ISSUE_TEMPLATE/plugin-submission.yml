@@ -1,50 +1,138 @@
-name: Plugin listing request
-description: Propose a released plugin for maintainer review. Pull Requests are not accepted.
+name: Plugin listing or update / 插件收录或更新
+description: Submit a released plugin or update catalog metadata. Pull Requests are not accepted. / 提交已发布插件或更新目录信息；不接受 Pull Request。
 title: "[Plugin] "
 body:
   - type: markdown
     attributes:
       value: |
-        This form proposes a listing only. The maintainer decides whether and when to update the official registry.
+        Submit only released, immutable packages. The maintainer reviews and edits the official catalog directly; opening this Issue does not guarantee acceptance.
+
+        只提交已经发布且不可变的安装包。正式目录由维护者审核并直接修改；提交 Issue 不代表一定收录。
+  - type: dropdown
+    id: request_type
+    attributes:
+      label: Request type / 申请类型
+      options:
+        - New listing / 首次收录
+        - Version update / 版本更新
+        - Metadata-only update / 仅更新展示信息
+    validations:
+      required: true
   - type: input
     id: plugin_id
     attributes:
-      label: Plugin ID
-      description: Must match the id in plugin.json.
+      label: Plugin ID / 插件 ID
+      description: Must match plugin.json and remain stable across releases. / 必须与 plugin.json 一致，后续版本不得更换。
+      placeholder: com.example.my-plugin
+    validations:
+      required: true
+  - type: input
+    id: display_name
+    attributes:
+      label: Display name / 展示名称
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Marketplace description / 市场描述
+      description: Provide a concise factual description without unverified claims. / 请提供简洁、客观且没有未验证承诺的描述。
+    validations:
+      required: true
+  - type: input
+    id: author
+    attributes:
+      label: Author or organization / 作者或组织
     validations:
       required: true
   - type: input
     id: repository
     attributes:
-      label: Source repository
+      label: Source repository / 源码仓库
+      placeholder: https://github.com/example/my-plugin
+    validations:
+      required: true
+  - type: input
+    id: homepage
+    attributes:
+      label: Homepage / 主页
+      description: Optional HTTPS page shown in the marketplace. / 可选，将在市场中展示的 HTTPS 页面。
+  - type: input
+    id: license
+    attributes:
+      label: License / 许可证
+      placeholder: GPL-3.0-only, MIT, Apache-2.0
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Submitted version / 提交版本
+      description: Use the existing version for a metadata-only update. / 仅更新展示信息时填写现有版本。
+      placeholder: 1.2.0
+    validations:
+      required: true
+  - type: input
+    id: minimum_version
+    attributes:
+      label: Minimum OxideTerm version / 最低 OxideTerm 版本
+      placeholder: 2.0.21
     validations:
       required: true
   - type: input
     id: release
     attributes:
-      label: Immutable release URL
-    validations:
-      required: true
+      label: Immutable release page / 不可变发布页面
+      description: Required for new listings and package updates; metadata-only updates may reuse the existing release. / 首次收录和安装包更新必填；仅更新展示信息时可沿用现有发布。
   - type: textarea
     id: packages
     attributes:
-      label: Packages and SHA-256 values
-      description: List every target, download URL, byte size, and SHA-256.
+      label: Packages, targets, sizes, and SHA-256 / 安装包、目标、大小和 SHA-256
+      description: List one line per target. Metadata-only updates may state that package data is unchanged. / 每个目标一行；仅更新展示信息时可注明安装包未变化。
+      placeholder: x86_64-unknown-linux-gnu | https://.../plugin.zip | 123456 bytes | sha256:...
     validations:
       required: true
   - type: textarea
     id: permissions
     attributes:
-      label: Requested capabilities
-      description: List every capability requested by plugin.json.
+      label: Requested capabilities / 申请的能力
+      description: List every capability requested by plugin.json and note any difference from the published version. / 列出 plugin.json 申请的全部能力，并说明与已发布版本的差异。
     validations:
       required: true
+  - type: textarea
+    id: changes
+    attributes:
+      label: Changes in this request / 本次变化
+      description: For metadata-only updates, name every field to change. / 仅更新展示信息时，请列出每个需要修改的字段。
+    validations:
+      required: true
+  - type: textarea
+    id: tested_platforms
+    attributes:
+      label: Tested platforms / 已测试平台
+      description: State what was actually tested; do not list assumed compatibility. / 只填写实际验证过的平台，不要填写推测兼容的平台。
+    validations:
+      required: true
+  - type: input
+    id: tags
+    attributes:
+      label: Search tags / 搜索标签
+      description: Comma-separated, concise tags. / 使用逗号分隔的简短标签。
+  - type: textarea
+    id: capability_summary
+    attributes:
+      label: Capability summary / 能力摘要
+      description: Short user-facing summaries for the marketplace card. / 用于市场卡片展示的简短用户可见摘要。
   - type: checkboxes
     id: declarations
     attributes:
-      label: Declarations
+      label: Declarations / 声明
       options:
-        - label: I confirm that the submitted release URL is immutable and the checksums match its assets.
+        - label: The plugin ID is stable and matches plugin.json. / 插件 ID 稳定且与 plugin.json 一致。
           required: true
-        - label: I confirm that I am authorized to distribute this plugin and its bundled dependencies.
+        - label: For package changes, the release assets are immutable and the submitted digests match them. / 如包含安装包变化，发布资产不可变且提交的摘要与资产一致。
+          required: true
+        - label: I am authorized to distribute the plugin and its bundled dependencies. / 我有权分发该插件及其捆绑依赖。
+          required: true
+        - label: The package and catalog text do not contain credentials or other secrets. / 安装包和目录文案不包含凭据或其他秘密。
           required: true

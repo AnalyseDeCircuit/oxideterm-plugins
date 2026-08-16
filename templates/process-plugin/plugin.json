@@ -1,0 +1,25 @@
+{
+  "id": "com.example.oxideterm-starter",
+  "name": "OxideTerm Starter Plugin",
+  "version": "0.1.0",
+  "description": "A minimal process plugin with a host-rendered interactive tab.",
+  "author": "Your Name",
+  "runtime": {
+    "kind": "process",
+    "entry": "bin/plugin"
+  },
+  "permissions": {
+    "capabilities": [
+      "ui.write"
+    ]
+  },
+  "contributes": {
+    "tabs": [
+      {
+        "id": "starter",
+        "title": "Starter Plugin",
+        "icon": "puzzle"
+      }
+    ]
+  }
+}

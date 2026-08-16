@@ -1,25 +1,32 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import { spawnSync } from "node:child_process";
 
 // Source validation is intentionally independent from the marketplace index:
 // a plugin may be prepared here before its immutable release package exists.
 const repositoryRoot = path.resolve(import.meta.dirname, "..");
-const pluginsRoot = path.join(repositoryRoot, "plugins");
-const pluginDirectories = fs
-  .readdirSync(pluginsRoot, { withFileTypes: true })
-  .filter((entry) => entry.isDirectory())
-  .map((entry) => path.join(pluginsRoot, entry.name));
+const sourceGroups = [
+  { label: "first-party plugin", root: path.join(repositoryRoot, "plugins") },
+  { label: "plugin template", root: path.join(repositoryRoot, "templates") },
+];
+const pluginDirectories = sourceGroups.flatMap(({ label, root }) =>
+  fs
+    .readdirSync(root, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => ({ label, path: path.join(root, entry.name) })),
+);
 const pluginIds = new Set();
 
-for (const pluginDirectory of pluginDirectories) {
+for (const source of pluginDirectories) {
+  const pluginDirectory = source.path;
   const manifestPath = path.join(pluginDirectory, "plugin.json");
   const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
   requireText(manifest.id, `${manifestPath}: id`);
   requireText(manifest.name, `${manifest.id}: name`);
   requireVersion(manifest.version, `${manifest.id}: version`);
   if (pluginIds.has(manifest.id)) {
-    throw new Error(`${manifest.id}: duplicate source plugin id`);
+    throw new Error(`${manifest.id}: duplicate ${source.label} id`);
   }
   pluginIds.add(manifest.id);
 
@@ -39,6 +46,15 @@ for (const pluginDirectory of pluginDirectories) {
     if (runtime.kind === "process" && process.platform !== "win32" && (entryStat.mode & 0o111) === 0) {
       throw new Error(`${manifest.id}: process runtime entry must be executable`);
     }
+    if (runtime.kind === "process" && entryPath.endsWith(".js")) {
+      // Syntax-check JavaScript entries without executing plugin code.
+      const syntaxCheck = spawnSync(process.execPath, ["--check", entryPath], {
+        encoding: "utf8",
+      });
+      if (syntaxCheck.status !== 0) {
+        throw new Error(`${manifest.id}: invalid JavaScript runtime entry\n${syntaxCheck.stderr}`);
+      }
+    }
   }
 
   const capabilities = manifest.permissions?.capabilities ?? [];
@@ -50,7 +66,7 @@ for (const pluginDirectory of pluginDirectories) {
   }
 }
 
-process.stdout.write(`Validated ${pluginDirectories.length} OxideTerm plugin source directories.\n`);
+process.stdout.write(`Validated ${pluginDirectories.length} OxideTerm plugin and template directories.\n`);
 
 function requireText(value, field) {
   if (typeof value !== "string" || value.trim().length === 0) {

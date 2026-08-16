@@ -11,7 +11,13 @@ permissions:
 
 jobs:
   registry:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,3 +25,17 @@ jobs:
           node-version: "22"
       - run: node scripts/validate-registry.mjs
       - run: node scripts/validate-plugins.mjs
+      - name: Create and validate a standalone plugin
+        run: >-
+          node scripts/create-plugin.mjs generated-plugin
+          --id com.example.generated
+          --name "Generated Plugin"
+          --author "OxideTerm CI"
+      - run: node generated-plugin/scripts/check.mjs
+      - name: Package Unix template
+        if: runner.os != 'Windows'
+        run: generated-plugin/scripts/package.sh
+      - name: Package Windows template
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./generated-plugin/scripts/package.ps1

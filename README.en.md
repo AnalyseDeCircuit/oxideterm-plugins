@@ -1,0 +1,120 @@
+# OxideTerm Plugins
+
+[简体中文](README.md) | **English**
+
+[![Validate plugin registry](https://github.com/AnalyseDeCircuit/oxideterm-plugins/actions/workflows/validate.yml/badge.svg)](https://github.com/AnalyseDeCircuit/oxideterm-plugins/actions/workflows/validate.yml)
+[![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE)
+
+Build, publish, and discover native plugins for OxideTerm.
+
+Plugins can add host-rendered tabs and sidebars, work with approved session state, and extend terminal, SFTP, Host Tools, IDE, AI, and sync workflows. OxideTerm owns themes, focus, permissions, and sensitive-data boundaries; plugins declare their capabilities through a manifest and a typed protocol.
+
+[Start building](#create-a-plugin-in-five-minutes) · [Browse the catalog](registry/v1/index.json) · [Developer guide](https://github.com/AnalyseDeCircuit/oxideterm/blob/main/docs/user-guide/en/plugin-development.md) · [Request a listing](https://github.com/AnalyseDeCircuit/oxideterm-plugins/issues/new?template=plugin-submission.yml)
+
+## What you can build
+
+| Area | Examples |
+| --- | --- |
+| Native UI | Tabs, sidebars, activity actions, settings, and status panels |
+| Connection workflows | Read connection and session summaries, control lifecycle through the host |
+| Terminal and files | Approved terminal interaction, SFTP, transfers, and IDE operations |
+| Host operations | Typed Host Tools data, controlled actions, and custom monitors |
+| Product extensions | Quick commands, notifications, themes, AI, sync, and plugin-scoped storage |
+
+OxideTerm supports three native plugin shapes:
+
+- **Manifest-only** declares settings, tool metadata, or static contributions without executing code.
+- **Process** exchanges JSON Lines over standard input and output, making it suitable for complete plugins and local debugging.
+- **WASM** runs portable, constrained logic in a host-managed WASM runtime.
+
+## Create a plugin in five minutes
+
+Git and Node.js 18 or later are required.
+
+```bash
+git clone https://github.com/AnalyseDeCircuit/oxideterm-plugins.git
+cd oxideterm-plugins
+node scripts/create-plugin.mjs ../my-oxideterm-plugin \
+  --id com.example.my-plugin \
+  --name "My Plugin" \
+  --author "Your Name"
+cd ../my-oxideterm-plugin
+npm run check
+```
+
+The generated plugin registers an interactive native tab. Edit [`plugin.json`](templates/process-plugin/plugin.json) to change capabilities and contributions, then implement behavior in [`bin/plugin.js`](templates/process-plugin/bin/plugin.js).
+
+On macOS or Linux:
+
+```bash
+npm run check
+npm run package:unix
+```
+
+On Windows:
+
+```powershell
+npm run check
+npm run package:windows
+```
+
+The template includes:
+
+- a runnable process-protocol implementation;
+- Unix and Windows launchers;
+- manifest and JavaScript validation;
+- packaging scripts that produce ZIPs, SHA-256 digests, and exact byte sizes;
+- a GitHub Actions workflow that builds and publishes packages from `v<version>` tags;
+- bilingual development instructions and an MIT license.
+
+You can also copy [`templates/process-plugin`](templates/process-plugin) directly. Its [English guide](templates/process-plugin/README.en.md) covers local installation, debugging, and release steps.
+
+## Install a marketplace plugin
+
+Open **Plugin Manager → Plugin Marketplace** in OxideTerm. The application selects a package for the current platform and OxideTerm version, verifies its SHA-256 digest and plugin identity, and then displays the permissions requested by the plugin.
+
+A marketplace listing is not a comprehensive security audit. Process plugins run as the current operating-system user, so verify the publisher and requested permissions before enabling one.
+
+## Publish to the marketplace
+
+Plugin source and Release assets stay in the author's own repository. This repository does not accept Pull Requests; the maintainer reviews Issues and updates the official catalog directly.
+
+To publish:
+
+1. increase the version in `plugin.json` and create a `v<version>` tag;
+2. let the template workflow create immutable GitHub Release packages;
+3. install and verify every platform you intend to claim;
+4. open a [Plugin listing request](https://github.com/AnalyseDeCircuit/oxideterm-plugins/issues/new?template=plugin-submission.yml) with versions, targets, digests, permissions, and release notes;
+5. repeat the same flow for later versions without replacing old Release assets.
+
+Name, description, homepage, or tag changes do not require an invented plugin version. Choose “Metadata-only update” instead. See the [publishing and update guide](docs/PUBLISHING.en.md) for the complete rules.
+
+## Example plugin
+
+| Plugin | Demonstrates | Source |
+| --- | --- | --- |
+| Host Tools Dashboard | Native tab, activity bar, settings, controlled remote monitor | [`plugins/host-tools-dashboard`](plugins/host-tools-dashboard) |
+
+Examples demonstrate real host capabilities and protocol boundaries. They are packaged and listed in the marketplace like other plugins.
+
+## Repository layout
+
+```text
+registry/v1/index.json       marketplace catalog consumed by OxideTerm
+schema/                      marketplace catalog format
+plugins/                     first-party plugins maintained by OxideTerm
+templates/process-plugin/    standalone process plugin starter
+scripts/                     creation, validation, and release helpers
+docs/                        publishing and catalog-maintenance guides
+```
+
+Maintainers validate catalog or first-party changes with:
+
+```bash
+node scripts/validate-registry.mjs
+node scripts/validate-plugins.mjs
+```
+
+## License
+
+First-party source under `plugins/` is licensed under [GNU GPL v3](LICENSE). `templates/process-plugin` uses the [MIT License](templates/process-plugin/LICENSE). Third-party plugins retain the license declared by their authors.
