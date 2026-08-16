@@ -18,4 +18,4 @@ jobs:
         with:
           node-version: "22"
       - run: node scripts/validate-registry.mjs
-
+      - run: node scripts/validate-plugins.mjs

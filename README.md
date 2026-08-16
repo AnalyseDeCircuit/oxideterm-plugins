@@ -8,6 +8,10 @@ OxideTerm 官方插件目录与一方插件发布仓库。
 - 目录格式：[`schema/registry-v1.schema.json`](schema/registry-v1.schema.json)
 - 条目示例：[`examples/plugin-entry.json`](examples/plugin-entry.json)
 
+## 一方示例插件
+
+- [`Host Tools Dashboard`](plugins/host-tools-dashboard)：展示标签页、活动栏、设置和受控 Host Tools 监控。
+
 ## 发布约定
 
 1. 插件包必须是包含 `plugin.json` 的 ZIP 文件。
@@ -23,9 +27,11 @@ OxideTerm 官方插件目录与一方插件发布仓库。
 
 本项目不接受 Pull Request。插件作者可以通过 Issue 提交候选插件信息；目录修改、校验和发布由仓库维护者完成。
 
+本仓库中的一方插件源码使用 [GNU GPL v3](LICENSE) 许可。
+
 ## 本地校验
 
 ```bash
 node scripts/validate-registry.mjs
+node scripts/validate-plugins.mjs
 ```
-
