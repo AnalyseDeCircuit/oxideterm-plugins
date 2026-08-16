@@ -1,5 +1,32 @@
 {
   "version": 1,
-  "plugins": []
+  "plugins": [
+    {
+      "id": "com.oxideterm.examples.host-tools-dashboard",
+      "name": "Host Tools Dashboard",
+      "description": "A reference plugin with a native tab, activity-bar panel, settings, and a controlled Host Tools monitor.",
+      "author": "AnalyseDeCircuit",
+      "version": "0.3.0",
+      "minOxideTermVersion": "2.0.20",
+      "tags": [
+        "host-tools",
+        "dashboard",
+        "example"
+      ],
+      "capabilitiesSummary": [
+        "Host Tools custom monitor",
+        "Host-rendered interface"
+      ],
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/host-tools-dashboard",
+      "updatedAt": "2026-08-16T13:09:18Z",
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/host-tools-dashboard-v0.3.0/host-tools-dashboard-0.3.0.zip",
+          "checksum": "sha256:7a56f88a0685ca8be7fc82ee00f9727b1cdd22a6c0a2fd010a53e80e0367682a",
+          "size": 5846
+        }
+      ]
+    }
+  ]
 }
-
