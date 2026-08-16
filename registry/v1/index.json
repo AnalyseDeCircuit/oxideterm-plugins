@@ -18,10 +18,28 @@
         "Host-rendered interface"
       ],
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/host-tools-dashboard",
-      "updatedAt": "2026-08-16T13:09:18Z",
+      "updatedAt": "2026-08-16T13:24:37Z",
       "packages": [
         {
-          "target": "any",
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/host-tools-dashboard-v0.3.0/host-tools-dashboard-0.3.0.zip",
+          "checksum": "sha256:7a56f88a0685ca8be7fc82ee00f9727b1cdd22a6c0a2fd010a53e80e0367682a",
+          "size": 5846
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/host-tools-dashboard-v0.3.0/host-tools-dashboard-0.3.0.zip",
+          "checksum": "sha256:7a56f88a0685ca8be7fc82ee00f9727b1cdd22a6c0a2fd010a53e80e0367682a",
+          "size": 5846
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/host-tools-dashboard-v0.3.0/host-tools-dashboard-0.3.0.zip",
+          "checksum": "sha256:7a56f88a0685ca8be7fc82ee00f9727b1cdd22a6c0a2fd010a53e80e0367682a",
+          "size": 5846
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
           "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/host-tools-dashboard-v0.3.0/host-tools-dashboard-0.3.0.zip",
           "checksum": "sha256:7a56f88a0685ca8be7fc82ee00f9727b1cdd22a6c0a2fd010a53e80e0367682a",
           "size": 5846
