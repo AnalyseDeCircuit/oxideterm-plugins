@@ -5,18 +5,24 @@ import { fileURLToPath } from "node:url";
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.resolve(scriptDirectory, "..");
-const sourceTemplateDirectory = path.join(repositoryRoot, "templates", "process-plugin");
-const sourceDistDirectory = path.join(sourceTemplateDirectory, "dist");
+const templatesRoot = path.join(repositoryRoot, "templates");
+const templateDirectoryByType = new Map([
+  ["manifest", "manifest-plugin"],
+  ["process", "process-plugin"],
+  ["wasm", "wasm-plugin"],
+]);
 const pluginIdPattern = /^[a-z0-9][a-z0-9.-]*$/;
 
 const usage = `Usage:
   node scripts/create-plugin.mjs <target-directory> \\
+    --type <manifest|process|wasm> \\
     --id <reverse-domain-id> \\
     --name <display-name> \\
     --author <author-name>
 
 Example:
   node scripts/create-plugin.mjs ../my-plugin \\
+    --type process \\
     --id com.example.my-plugin \\
     --name "My Plugin" \\
     --author "Your Name"
@@ -31,6 +37,7 @@ const { targetArgument, options } = parseArguments(process.argv.slice(2));
 const pluginId = requireOption(options, "id");
 const pluginName = requireOption(options, "name");
 const pluginAuthor = requireOption(options, "author");
+const pluginType = options.get("type") ?? "process";
 
 if (!targetArgument) {
   fail("A target directory is required.");
@@ -38,22 +45,32 @@ if (!targetArgument) {
 if (!pluginIdPattern.test(pluginId)) {
   fail("Plugin id must use lowercase reverse-domain characters.");
 }
+const templateDirectoryName = templateDirectoryByType.get(pluginType);
+if (!templateDirectoryName) {
+  fail(`Unsupported plugin type: ${pluginType}`);
+}
 
 const targetDirectory = path.resolve(targetArgument);
 if (fs.existsSync(targetDirectory)) {
   fail(`Target already exists: ${targetDirectory}`);
 }
-const targetWithinTemplate = path.relative(sourceTemplateDirectory, targetDirectory);
-if (!targetWithinTemplate.startsWith("..") && !path.isAbsolute(targetWithinTemplate)) {
-  fail("Target directory cannot be created inside the source template.");
+const targetWithinTemplates = path.relative(templatesRoot, targetDirectory);
+if (!targetWithinTemplates.startsWith("..") && !path.isAbsolute(targetWithinTemplates)) {
+  fail("Target directory cannot be created inside the templates directory.");
 }
 
 // Copy the distributable template without carrying local build artifacts.
+const sourceTemplateDirectory = path.join(templatesRoot, templateDirectoryName);
+const generatedSourcePaths = [
+  path.join(sourceTemplateDirectory, "dist"),
+  path.join(sourceTemplateDirectory, "plugin.wasm"),
+  path.join(sourceTemplateDirectory, "target"),
+];
 fs.cpSync(sourceTemplateDirectory, targetDirectory, {
   recursive: true,
   filter(sourcePath) {
-    return sourcePath !== sourceDistDirectory
-      && !sourcePath.startsWith(`${sourceDistDirectory}${path.sep}`);
+    return !generatedSourcePaths.some((generatedPath) =>
+      sourcePath === generatedPath || sourcePath.startsWith(`${generatedPath}${path.sep}`));
   },
 });
 
@@ -68,7 +85,7 @@ if (manifest.contributes?.tabs?.[0]) {
 }
 fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 
-process.stdout.write(`Created ${pluginName} in ${targetDirectory}\n\n`);
+process.stdout.write(`Created ${pluginName} (${pluginType}) in ${targetDirectory}\n\n`);
 process.stdout.write("Next steps:\n");
 process.stdout.write(`  cd ${JSON.stringify(targetDirectory)}\n`);
 process.stdout.write("  npm run check\n");
@@ -89,7 +106,7 @@ function parseArguments(argumentsList) {
     }
 
     const optionName = argument.slice(2);
-    if (!["id", "name", "author"].includes(optionName)) {
+    if (!["type", "id", "name", "author"].includes(optionName)) {
       fail(`Unknown option: ${argument}`);
     }
     const optionValue = argumentsList[index + 1];

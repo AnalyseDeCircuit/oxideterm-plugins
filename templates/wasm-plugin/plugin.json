@@ -1,0 +1,25 @@
+{
+  "id": "com.example.oxideterm-wasm-starter",
+  "name": "OxideTerm WASM Plugin",
+  "version": "0.1.0",
+  "description": "A portable WASM plugin with a host-rendered interactive tab.",
+  "author": "Your Name",
+  "runtime": {
+    "kind": "wasm",
+    "entry": "plugin.wasm"
+  },
+  "permissions": {
+    "capabilities": [
+      "ui.write"
+    ]
+  },
+  "contributes": {
+    "tabs": [
+      {
+        "id": "starter",
+        "title": "WASM Starter",
+        "icon": "blocks"
+      }
+    ]
+  }
+}

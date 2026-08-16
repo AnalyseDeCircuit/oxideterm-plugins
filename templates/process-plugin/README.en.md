@@ -8,13 +8,23 @@ The starter requires Node.js 18 or later. Generated plugin source is MIT-license
 
 ## Run it now
 
-If the root repository's `create-plugin.mjs` generated this plugin, its identity and name are already written to `plugin.json`. Run:
+From the catalog repository root, run:
+
+```bash
+node scripts/create-plugin.mjs ../my-process-plugin \
+  --type process \
+  --id com.example.my-process-plugin \
+  --name "My Process Plugin" \
+  --author "Your Name"
+```
+
+Then enter the generated plugin directory and run:
 
 ```bash
 npm run check
 ```
 
-If you copied this directory manually, first edit:
+If you copied this starter manually, first edit:
 
 - the `id`, name, version, description, and author in `plugin.json`;
 - the capabilities under `permissions.capabilities`;

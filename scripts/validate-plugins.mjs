@@ -39,20 +39,26 @@ for (const source of pluginDirectories) {
       throw new Error(`${manifest.id}: runtime entry escapes the plugin directory`);
     }
     const entryPath = path.join(pluginDirectory, normalizedEntry);
-    const entryStat = fs.statSync(entryPath);
-    if (!entryStat.isFile()) {
-      throw new Error(`${manifest.id}: runtime entry is not a file`);
+    const generatedWasmEntry = source.label === "plugin template" && runtime.kind === "wasm";
+    if (!fs.existsSync(entryPath) && !generatedWasmEntry) {
+      throw new Error(`${manifest.id}: runtime entry does not exist`);
     }
-    if (runtime.kind === "process" && process.platform !== "win32" && (entryStat.mode & 0o111) === 0) {
-      throw new Error(`${manifest.id}: process runtime entry must be executable`);
-    }
-    if (runtime.kind === "process" && entryPath.endsWith(".js")) {
-      // Syntax-check JavaScript entries without executing plugin code.
-      const syntaxCheck = spawnSync(process.execPath, ["--check", entryPath], {
-        encoding: "utf8",
-      });
-      if (syntaxCheck.status !== 0) {
-        throw new Error(`${manifest.id}: invalid JavaScript runtime entry\n${syntaxCheck.stderr}`);
+    if (fs.existsSync(entryPath)) {
+      const entryStat = fs.statSync(entryPath);
+      if (!entryStat.isFile()) {
+        throw new Error(`${manifest.id}: runtime entry is not a file`);
+      }
+      if (runtime.kind === "process" && process.platform !== "win32" && (entryStat.mode & 0o111) === 0) {
+        throw new Error(`${manifest.id}: process runtime entry must be executable`);
+      }
+      if (runtime.kind === "process" && entryPath.endsWith(".js")) {
+        // Syntax-check JavaScript entries without executing plugin code.
+        const syntaxCheck = spawnSync(process.execPath, ["--check", entryPath], {
+          encoding: "utf8",
+        });
+        if (syntaxCheck.status !== 0) {
+          throw new Error(`${manifest.id}: invalid JavaScript runtime entry\n${syntaxCheck.stderr}`);
+        }
       }
     }
   }

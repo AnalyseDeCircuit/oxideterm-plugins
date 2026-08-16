@@ -1,0 +1,28 @@
+{
+  "id": "com.example.oxideterm-manifest-starter",
+  "name": "OxideTerm Manifest Plugin",
+  "version": "0.1.0",
+  "description": "A manifest-only plugin with host-managed settings.",
+  "author": "Your Name",
+  "permissions": {
+    "capabilities": []
+  },
+  "contributes": {
+    "settings": [
+      {
+        "id": "displayLabel",
+        "type": "string",
+        "default": "My OxideTerm plugin",
+        "title": "Display label",
+        "description": "Example setting stored and rendered by OxideTerm."
+      },
+      {
+        "id": "showDetails",
+        "type": "boolean",
+        "default": true,
+        "title": "Show details",
+        "description": "Example boolean setting for a manifest-only plugin."
+      }
+    ]
+  }
+}

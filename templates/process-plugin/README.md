@@ -8,13 +8,23 @@
 
 ## 立即运行
 
-如果插件由仓库根目录的 `create-plugin.mjs` 生成，身份和名称已经写入 `plugin.json`。直接运行：
+从插件目录仓库根目录运行：
+
+```bash
+node scripts/create-plugin.mjs ../my-process-plugin \
+  --type process \
+  --id com.example.my-process-plugin \
+  --name "My Process Plugin" \
+  --author "Your Name"
+```
+
+生成后进入插件目录并运行：
 
 ```bash
 npm run check
 ```
 
-如果手工复制了这个目录，先修改：
+如果手工复制这个模板，先修改：
 
 - `plugin.json` 中的 `id`、名称、版本、描述和作者；
 - `permissions.capabilities` 中的能力；

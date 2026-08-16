@@ -1,0 +1,13 @@
+{
+  "name": "oxideterm-wasm-plugin-starter",
+  "version": "0.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "check": "node scripts/check.mjs && cargo fmt --all -- --check && cargo check --target wasm32-wasip1",
+    "package:unix": "sh scripts/package.sh",
+    "package:windows": "pwsh -NoProfile -File scripts/package.ps1"
+  }
+}

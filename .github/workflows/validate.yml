@@ -25,17 +25,28 @@ jobs:
           node-version: "22"
       - run: node scripts/validate-registry.mjs
       - run: node scripts/validate-plugins.mjs
-      - name: Create and validate a standalone plugin
-        run: >-
-          node scripts/create-plugin.mjs generated-plugin
-          --id com.example.generated
-          --name "Generated Plugin"
-          --author "OxideTerm CI"
-      - run: node generated-plugin/scripts/check.mjs
-      - name: Package Unix template
+      - name: Install WASM target
+        run: rustup target add wasm32-wasip1
+      - name: Create standalone plugins
+        run: |
+          node scripts/create-plugin.mjs generated-manifest --type manifest --id com.example.generated-manifest --name "Generated Manifest Plugin" --author "OxideTerm CI"
+          node scripts/create-plugin.mjs generated-process --type process --id com.example.generated-process --name "Generated Process Plugin" --author "OxideTerm CI"
+          node scripts/create-plugin.mjs generated-wasm --type wasm --id com.example.generated-wasm --name "Generated WASM Plugin" --author "OxideTerm CI"
+      - name: Validate standalone plugins
+        run: |
+          npm --prefix generated-manifest run check
+          npm --prefix generated-process run check
+          npm --prefix generated-wasm run check
+      - name: Package Unix plugins
         if: runner.os != 'Windows'
-        run: generated-plugin/scripts/package.sh
-      - name: Package Windows template
+        run: |
+          generated-manifest/scripts/package.sh
+          generated-process/scripts/package.sh
+          generated-wasm/scripts/package.sh
+      - name: Package Windows plugins
         if: runner.os == 'Windows'
         shell: pwsh
-        run: ./generated-plugin/scripts/package.ps1
+        run: |
+          ./generated-manifest/scripts/package.ps1
+          ./generated-process/scripts/package.ps1
+          ./generated-wasm/scripts/package.ps1

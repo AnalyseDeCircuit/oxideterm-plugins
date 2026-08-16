@@ -21,11 +21,13 @@
 | 主机运维 | 类型化 Host Tools 数据、受控操作和自定义监控 |
 | 产品扩展 | 快速命令、通知、主题、AI、同步与插件私有存储 |
 
-OxideTerm 支持三种原生插件形态：
+OxideTerm 为三种原生插件形态分别提供可打包和发布的模板：
 
-- **Manifest-only**：只声明设置、工具元数据或静态贡献，不运行代码。
-- **Process**：通过标准输入输出交换 JSON Lines，适合完整插件和本地调试。
-- **WASM**：在宿主管理的 WASM 运行时中执行，适合可移植的受限逻辑。
+| 形态 | 适用场景 | 模板 |
+| --- | --- | --- |
+| Manifest-only | 设置、工具元数据或其他不运行代码的静态贡献 | [`templates/manifest-plugin`](templates/manifest-plugin) |
+| Process | 通过 JSON Lines 完成宿主调用、动态界面和完整工作流 | [`templates/process-plugin`](templates/process-plugin) |
+| WASM | 在宿主管理的 WASI 运行时中执行可移植逻辑 | [`templates/wasm-plugin`](templates/wasm-plugin) |
 
 ## 五分钟创建插件
 
@@ -35,6 +37,7 @@ OxideTerm 支持三种原生插件形态：
 git clone https://github.com/AnalyseDeCircuit/oxideterm-plugins.git
 cd oxideterm-plugins
 node scripts/create-plugin.mjs ../my-oxideterm-plugin \
+  --type process \
   --id com.example.my-plugin \
   --name "My Plugin" \
   --author "Your Name"
@@ -42,7 +45,9 @@ cd ../my-oxideterm-plugin
 npm run check
 ```
 
-生成的插件会注册一个可交互的原生标签页。打开 [`plugin.json`](templates/process-plugin/plugin.json) 修改能力和贡献，在 [`bin/plugin.js`](templates/process-plugin/bin/plugin.js) 中实现行为。
+生成的 Process 插件会注册一个可交互的原生标签页。打开 [`plugin.json`](templates/process-plugin/plugin.json) 修改能力和贡献，在 [`bin/plugin.js`](templates/process-plugin/bin/plugin.js) 中实现行为。
+
+将 `--type process` 改成 `manifest` 或 `wasm` 即可生成另外两种模板。WASM 模板还需要 Rust 和 `wasm32-wasip1` target。
 
 开发时运行：
 
@@ -58,16 +63,9 @@ npm run check
 npm run package:windows
 ```
 
-模板包含：
+三套模板都包含双语说明、独立校验、安装包脚本、MIT 许可证和基于版本标签的 GitHub Release 工作流。Process 模板额外提供双平台启动器；WASM 模板提供完整 Guest ABI v1 Rust 实现；Manifest-only 模板会生成可作为 `any` target 发布的纯清单包。
 
-- 可直接运行的进程协议实现；
-- Unix 与 Windows 启动入口；
-- 清单和 JavaScript 校验；
-- 生成 ZIP、SHA-256 和准确字节数的打包脚本；
-- 按 `v<version>` 标签构建并发布安装包的 GitHub Actions 工作流；
-- 双语开发说明和 MIT 许可证。
-
-也可以直接复制 [`templates/process-plugin`](templates/process-plugin)。模板的 [中文说明](templates/process-plugin/README.md) 包含本地安装、调试和发布步骤。
+也可以直接复制任一模板目录。每个模板的 README 都包含对应的本地安装、调试和发布步骤。
 
 ## 安装市场插件
 
@@ -104,6 +102,8 @@ registry/v1/index.json       应用读取的正式市场目录
 schema/                      市场目录格式
 plugins/                     OxideTerm 维护的一方插件
 templates/process-plugin/    可独立使用的进程插件模板
+templates/manifest-plugin/   不运行代码的清单插件模板
+templates/wasm-plugin/       Rust WASM 插件模板
 scripts/                     创建、校验和发布辅助脚本
 docs/                        插件发布与目录维护说明
 ```
@@ -117,4 +117,4 @@ node scripts/validate-plugins.mjs
 
 ## 许可证
 
-`plugins/` 中的一方插件源码使用 [GNU GPL v3](LICENSE)；`templates/process-plugin` 使用 [MIT 许可证](templates/process-plugin/LICENSE)。第三方插件使用作者仓库声明的许可证。
+`plugins/` 中的一方插件源码使用 [GNU GPL v3](LICENSE)；`templates/` 中的三套模板使用各自附带的 MIT 许可证。第三方插件使用作者仓库声明的许可证。
