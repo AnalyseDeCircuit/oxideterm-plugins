@@ -93,7 +93,7 @@ npm run package:windows
 | --- | --- | --- |
 | Host Tools Dashboard | 原生标签页、活动栏、设置、受控远端监控 | [`plugins/host-tools-dashboard`](plugins/host-tools-dashboard) |
 
-示例用于展示真实的宿主能力和协议边界，也会像普通插件一样打包并出现在市场中。
+示例用于展示真实的宿主能力和协议边界。第一方插件也必须先生成不可变发布包并完成平台验证，才能加入正式市场目录。
 
 ## 仓库结构
 

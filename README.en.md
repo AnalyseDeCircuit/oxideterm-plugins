@@ -93,7 +93,7 @@ Name, description, homepage, or tag changes do not require an invented plugin ve
 | --- | --- | --- |
 | Host Tools Dashboard | Native tab, activity bar, settings, controlled remote monitor | [`plugins/host-tools-dashboard`](plugins/host-tools-dashboard) |
 
-Examples demonstrate real host capabilities and protocol boundaries. They are packaged and listed in the marketplace like other plugins.
+Examples demonstrate real host capabilities and protocol boundaries. First-party plugins must still produce immutable release packages and pass platform verification before entering the official catalog.
 
 ## Repository layout
 
