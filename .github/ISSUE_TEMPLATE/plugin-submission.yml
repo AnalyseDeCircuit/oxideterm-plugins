@@ -1,0 +1,50 @@
+name: Plugin listing request
+description: Propose a released plugin for maintainer review. Pull Requests are not accepted.
+title: "[Plugin] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This form proposes a listing only. The maintainer decides whether and when to update the official registry.
+  - type: input
+    id: plugin_id
+    attributes:
+      label: Plugin ID
+      description: Must match the id in plugin.json.
+    validations:
+      required: true
+  - type: input
+    id: repository
+    attributes:
+      label: Source repository
+    validations:
+      required: true
+  - type: input
+    id: release
+    attributes:
+      label: Immutable release URL
+    validations:
+      required: true
+  - type: textarea
+    id: packages
+    attributes:
+      label: Packages and SHA-256 values
+      description: List every target, download URL, byte size, and SHA-256.
+    validations:
+      required: true
+  - type: textarea
+    id: permissions
+    attributes:
+      label: Requested capabilities
+      description: List every capability requested by plugin.json.
+    validations:
+      required: true
+  - type: checkboxes
+    id: declarations
+    attributes:
+      label: Declarations
+      options:
+        - label: I confirm that the submitted release URL is immutable and the checksums match its assets.
+          required: true
+        - label: I confirm that I am authorized to distribute this plugin and its bundled dependencies.
+          required: true

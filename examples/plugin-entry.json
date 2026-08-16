@@ -1,0 +1,21 @@
+{
+  "id": "com.example.sample",
+  "name": "Sample Plugin",
+  "description": "Example metadata only. This entry is not published in the official catalog.",
+  "author": "Example Author",
+  "version": "1.0.0",
+  "minOxideTermVersion": "2.0.21",
+  "tags": ["sample"],
+  "capabilitiesSummary": ["terminal.content.read"],
+  "homepage": "https://github.com/example/sample-plugin",
+  "updatedAt": "2026-08-16T00:00:00Z",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/example/sample-plugin/releases/download/v1.0.0/sample-plugin.zip",
+      "checksum": "0000000000000000000000000000000000000000000000000000000000000000",
+      "size": 1024
+    }
+  ]
+}
+
