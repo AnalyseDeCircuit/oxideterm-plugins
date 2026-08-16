@@ -4,13 +4,14 @@
 .vscode/
 
 # JavaScript dependencies and logs
-/node_modules/
+node_modules/
 *.log
 
-# Rust and plugin build artifacts
-/target/
-/plugin.wasm
-/dist/
+# Plugin build and package artifacts
+dist/
+target/
+plugin.wasm
+*.zip
 
 # Local environment files
 .env
