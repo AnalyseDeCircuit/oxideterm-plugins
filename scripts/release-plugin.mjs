@@ -125,7 +125,7 @@ export function recordRelease(catalog, manifest, releaseUrl, packageArguments) {
       author: manifest.author, homepage: manifest.repository,
       version: manifest.version, engines: manifest.engines, packages,
       // Older native clients read this historical spelling. Do not emit both aliases.
-      [manifest.runtime?.kind === "language" ? "minOxidetermVersion" : "minOxideTermVersion"]:
+      minOxidetermVersion:
         semver.minVersion(manifest.engines.oxideterm.replaceAll(",", " "))?.version,
       releases: [],
     };

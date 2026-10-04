@@ -55,6 +55,8 @@ test("recording reads the actual archive and corrections preserve assets and the
   fs.writeFileSync(zip, bytes);
   const published = recordRelease(empty, manifest, "https://example.com/releases/v1.0.0", ["any=" + zip]);
   const release = published.plugins[0].releases[0];
+  assert.equal(published.plugins[0].minOxidetermVersion, "2.0.0");
+  assert.equal(published.plugins[0].minOxideTermVersion, undefined);
   assert.deepEqual(release.packages, [{
     target: "any", downloadUrl: "https://example.com/releases/v1.0.0/plugin.zip",
     checksum: "sha256:" + createHash("sha256").update(bytes).digest("hex"), size: bytes.length,
