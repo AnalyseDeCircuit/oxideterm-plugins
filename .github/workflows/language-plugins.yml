@@ -1,16 +1,16 @@
-name: Build language plugins
+name: Build language plugin
 
 on:
   workflow_dispatch:
     inputs:
+      language:
+        description: Language ID under plugins/language-<id>
+        required: true
+        default: elixir
       host_ref:
-        description: OxideTerm ref to build against; publishing requires a published host release tag
+        description: OxideTerm ref with the language loader and package verifier
         required: true
         default: main
-      plugin_version:
-        description: Version shared by these language plugin packages
-        required: true
-        default: 0.1.0
       publish:
         description: Publish immutable plugin assets after validation
         type: boolean
@@ -25,8 +25,7 @@ jobs:
     permissions:
       contents: write
     env:
-      HOST_REF: ${{ inputs.host_ref }}
-      PLUGIN_VERSION: ${{ inputs.plugin_version }}
+      LANGUAGE: ${{ inputs.language }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -38,43 +37,39 @@ jobs:
         with:
           node-version: "22"
       - run: npm ci --ignore-scripts
+      - run: npm run check
       - run: npm install --prefix .language-tools --no-save tree-sitter-cli@0.27.0
       - name: Prepare host toolchain
         working-directory: host
         run: rustup show active-toolchain
-      - name: Build pinned grammars and prepare manifests
-        run: node scripts/build-language-plugins.mjs all --host-repo host --version "$PLUGIN_VERSION" --tree-sitter "$PWD/.language-tools/node_modules/.bin/tree-sitter"
+      - name: Build the selected plugin
+        run: node scripts/build-language-plugins.mjs "$LANGUAGE" --host-repo host --tree-sitter "$PWD/.language-tools/node_modules/.bin/tree-sitter"
       - name: Validate grammar ABI and highlighting in the target host
         working-directory: host
+        run: cargo run --locked -p oxideterm-editor-syntax --example check_language_plugin -- "../dist/languages/$LANGUAGE"
+      - name: Read plugin release identity
         run: |
-          for language in $(node -p "Object.keys(require('../language-plugins/grammars.json')).join(' ')"); do
-            cargo run --locked -p oxideterm-editor-syntax --example check_language_plugin -- "../dist/languages/$language"
-          done
-      - name: Generate marketplace records
+          node --input-type=module <<'JS'
+          import fs from "node:fs";
+          const m = JSON.parse(fs.readFileSync(`dist/languages/${process.env.LANGUAGE}/plugin.json`));
+          fs.appendFileSync(process.env.GITHUB_ENV, `PLUGIN_ID=${m.id}\nPLUGIN_VERSION=${m.version}\nRELEASE_TAG=language-${process.env.LANGUAGE}-v${m.version}\n`);
+          JS
+      - name: Generate marketplace record
         env:
           GH_REPO: ${{ github.repository }}
         run: |
-          for language in $(node -p "Object.keys(require('./language-plugins/grammars.json')).join(' ')"); do
-            node scripts/release-plugin.mjs record "dist/languages/$language" --release-url "https://github.com/$GH_REPO/releases/download/languages-v$PLUGIN_VERSION" --package "any=dist/languages/com.oxideterm.language.$language-$PLUGIN_VERSION.zip"
-          done
-          node --input-type=module -e 'import fs from "node:fs"; const index = JSON.parse(fs.readFileSync("registry/v1/index.json")); fs.writeFileSync("dist/languages/catalog-entries.json", JSON.stringify(index.plugins.filter(p => p.id.startsWith("com.oxideterm.language.")), null, 2));'
+          node scripts/release-plugin.mjs record "dist/languages/$LANGUAGE" --release-url "https://github.com/$GH_REPO/releases/download/$RELEASE_TAG" --package "any=dist/languages/$PLUGIN_ID-$PLUGIN_VERSION.zip"
+          node --input-type=module -e 'import fs from "node:fs"; const index = JSON.parse(fs.readFileSync("registry/v1/index.json")); fs.writeFileSync("dist/languages/catalog-entry.json", JSON.stringify(index.plugins.find(p => p.id === process.env.PLUGIN_ID), null, 2));'
           npm run check
       - uses: actions/upload-artifact@v4
         with:
-          name: language-plugins
+          name: language-${{ inputs.language }}
           path: |
-            dist/languages/*.zip
-            dist/languages/catalog-entries.json
-      - name: Verify the host is already released
-        if: inputs.publish
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          test "$(git -C host describe --tags --exact-match)" = "$HOST_REF"
-          test "$(gh release view "$HOST_REF" --repo AnalyseDeCircuit/oxideterm --json isDraft --jq .isDraft)" = false
+            dist/languages/${{ env.PLUGIN_ID }}-${{ env.PLUGIN_VERSION }}.zip
+            dist/languages/catalog-entry.json
       - name: Publish plugin assets
         if: inputs.publish
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-        run: gh release create "languages-v$PLUGIN_VERSION" dist/languages/*.zip dist/languages/catalog-entries.json --target "$GITHUB_SHA" --title "Language plugins $PLUGIN_VERSION" --generate-notes
+        run: gh release create "$RELEASE_TAG" "dist/languages/$PLUGIN_ID-$PLUGIN_VERSION.zip" --target "$GITHUB_SHA" --title "$LANGUAGE language support $PLUGIN_VERSION" --generate-notes --latest=false

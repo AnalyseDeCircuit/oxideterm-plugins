@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.language.commonlisp",
+  "name": "Common Lisp Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting and folding for Common Lisp.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-commonlisp",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "commonlisp",
+      "highlights": "highlights.scm",
+      "parserSha256": "39299c669a760431de577df08839c1a6b3cf0e627385624e60183eaaea33727a",
+      "highlightsSha256": "f10993d641dfa653a8c25c7fabeb35f647877f30a9624bacdce8e89a96a4ab00"
+    }
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "license": "Apache-2.0"
+}

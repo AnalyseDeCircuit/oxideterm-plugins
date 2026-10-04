@@ -95,6 +95,7 @@ Name, description, homepage, or tag changes do not require an invented plugin ve
 | Plugin | Demonstrates | Source |
 | --- | --- | --- |
 | Host Tools Dashboard | Native tab, activity bar, settings, controlled remote monitor | [`plugins/host-tools-dashboard`](plugins/host-tools-dashboard) |
+| 21 language plugins | On-demand Tree-sitter parsing, highlighting, and folding | [`plugins/language-*`](plugins), [build and release guide](docs/language-plugins.en.md) |
 
 Examples demonstrate real host capabilities and protocol boundaries. First-party plugins must still produce immutable release packages and pass platform verification before entering the official catalog.
 
@@ -121,4 +122,4 @@ npm run check
 
 ## License
 
-First-party source under `plugins/` is licensed under [GNU GPL v3](LICENSE). Each starter under `templates/` includes its own MIT License. Third-party plugins retain the license declared by their authors.
+Language plugin files under `plugins/language-*/` use the Apache-2.0 license included in each directory, with upstream grammar licenses and copyright notices retained separately. Other first-party source uses [GNU GPL v3](LICENSE). Each starter under `templates/` includes its own MIT License. Third-party plugins retain the license declared by their authors.

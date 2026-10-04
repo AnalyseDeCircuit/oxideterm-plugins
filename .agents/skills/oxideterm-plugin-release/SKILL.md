@@ -13,10 +13,15 @@ calculating compatibility, checksums, sizes, or release records.
 
 ## Choose the operation
 
-For editor language plugins, follow [language-plugins/README.md](../../../language-plugins/README.md).
+For editor language plugins, follow [language-plugins.md](../../../docs/language-plugins.md).
 Use the pinned grammar builder and the target host's `check_language_plugin`
 verifier; these packages use the language runtime, not the general WASI template.
-The language workflow requires a published supporting host tag before publication.
+Each language belongs in `plugins/language-<id>/` with its own manifest, recipe,
+license, and notices. Publish one ZIP per `language-<id>-v<version>` Release;
+languages advance independently. Language plugin files use Apache-2.0 while
+upstream grammar licenses and attribution remain intact. Assets may precede a
+host release when explicitly requested, after validation against the loader and
+with compatibility excluding unsupported hosts (`>2.2.0` for this capability).
 
 - **Create:** use `scripts/create-plugin.mjs`. It defaults to the latest stable
   host version. For work requiring an unreleased host capability, use

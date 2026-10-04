@@ -1,0 +1,13 @@
+{
+  "crate": "tree-sitter-objc",
+  "version": "3.0.2",
+  "sha256": "9ca8bb556423fc176f0535e79d525f783a6684d3c9da81bf9d905303c129e1d2",
+  "repository": "https://github.com/tree-sitter-grammars/tree-sitter-objc",
+  "revision": "18802acf31d0b5c1c1d50bdbc9eb0e1636cab9ed",
+  "license": "MIT",
+  "sample": "@interface Demo : NSObject\n@end\n",
+  "highlight": {
+    "text": "@interface",
+    "scope": "Keyword"
+  }
+}

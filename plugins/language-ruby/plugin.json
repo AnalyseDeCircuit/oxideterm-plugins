@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.language.ruby",
+  "name": "Ruby Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting and folding for Ruby.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-ruby",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "ruby",
+      "highlights": "highlights.scm",
+      "parserSha256": "2a06cd2fa165a2913f6598b92c9d3d3132ecfbf3fa7ffa8ca93b31efb2bfb58d",
+      "highlightsSha256": "0858de9feece6dcd3408a541f995a34918d587ac2c552096026b0e47e2b332e6"
+    }
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "license": "Apache-2.0"
+}

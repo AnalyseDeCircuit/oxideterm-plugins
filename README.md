@@ -95,6 +95,7 @@ npm run package:windows
 | 插件 | 展示内容 | 源码 |
 | --- | --- | --- |
 | Host Tools Dashboard | 原生标签页、活动栏、设置、受控远端监控 | [`plugins/host-tools-dashboard`](plugins/host-tools-dashboard) |
+| 21 个语言插件 | 按需安装 Tree-sitter 语法、高亮与折叠支持 | [`plugins/language-*`](plugins)，[构建与发布](docs/language-plugins.md) |
 
 示例用于展示真实的宿主能力和协议边界。第一方插件也必须先生成不可变发布包并完成平台验证，才能加入正式市场目录。
 
@@ -121,4 +122,4 @@ npm run check
 
 ## 许可证
 
-`plugins/` 中的一方插件源码使用 [GNU GPL v3](LICENSE)；`templates/` 中的三套模板使用各自附带的 MIT 许可证。第三方插件使用作者仓库声明的许可证。
+`plugins/language-*/` 中的语言插件自身采用各目录附带的 Apache-2.0 许可证，上游语法的许可证和版权声明单独保留。其他一方插件源码使用 [GNU GPL v3](LICENSE)；`templates/` 中的三套模板使用各自附带的 MIT 许可证。第三方插件使用作者仓库声明的许可证。

@@ -1,0 +1,13 @@
+{
+  "crate": "tree-sitter-ruby",
+  "version": "0.23.1",
+  "sha256": "be0484ea4ef6bb9c575b4fdabde7e31340a8d2dbc7d52b321ac83da703249f95",
+  "repository": "https://github.com/tree-sitter/tree-sitter-ruby",
+  "revision": "71bd32fb7607035768799732addba884a37a6210",
+  "license": "MIT",
+  "sample": "class Demo\n  def hello\n    puts \"hi\"\n  end\nend\n",
+  "highlight": {
+    "text": "class",
+    "scope": "Keyword"
+  }
+}

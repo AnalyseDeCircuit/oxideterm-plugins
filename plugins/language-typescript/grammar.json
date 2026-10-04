@@ -1,0 +1,14 @@
+{
+  "crate": "tree-sitter-typescript",
+  "version": "0.23.2",
+  "sha256": "6c5f76ed8d947a75cc446d5fccd8b602ebf0cde64ccf2ffa434d873d7a575eff",
+  "repository": "https://github.com/tree-sitter/tree-sitter-typescript",
+  "revision": "f975a621f4e7f532fe322e13c4f79495e0a7b2e7",
+  "license": "MIT",
+  "grammarPath": "typescript",
+  "sample": "type User = { name: string };\n",
+  "highlight": {
+    "text": "type",
+    "scope": "Keyword"
+  }
+}

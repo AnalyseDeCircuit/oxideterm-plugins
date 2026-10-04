@@ -1,0 +1,9 @@
+Ruby Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The parser and upstream queries are derived from tree-sitter-ruby 0.23.1.
+Source: https://github.com/tree-sitter/tree-sitter-ruby
+Revision: 71bd32fb7607035768799732addba884a37a6210
+Upstream license: MIT (retained in LICENSE-grammar in the package).

@@ -1,0 +1,9 @@
+Zig Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The parser and upstream queries are derived from tree-sitter-zig 1.1.2.
+Source: https://github.com/tree-sitter-grammars/tree-sitter-zig
+Revision: b670c8df85a1568f498aa5c8cae42f51a90473c0
+Upstream license: MIT (retained in LICENSE-grammar in the package).

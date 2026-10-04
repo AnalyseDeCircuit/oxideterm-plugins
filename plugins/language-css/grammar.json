@@ -1,0 +1,13 @@
+{
+  "crate": "tree-sitter-css",
+  "version": "0.23.2",
+  "sha256": "5ad6489794d41350d12a7fbe520e5199f688618f43aace5443980d1ddcf1b29e",
+  "repository": "https://github.com/tree-sitter/tree-sitter-css",
+  "revision": "c0d581e32d183a536731ed6c3a72758b27e20411",
+  "license": "MIT",
+  "sample": ".root { color: #fff; }\n",
+  "highlight": {
+    "text": "color",
+    "scope": "Property"
+  }
+}

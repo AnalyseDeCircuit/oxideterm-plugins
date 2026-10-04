@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.language.elixir",
+  "name": "Elixir Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting and folding for Elixir.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-elixir",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "elixir",
+      "highlights": "highlights.scm",
+      "parserSha256": "33f71c86131d02eab80841e4142005ccaa54bcc06bcc3a7e8dc6a9a8a0ca5e94",
+      "highlightsSha256": "5ee9952a99ce2f0c3dcdf4478daf38f259dd8df4e7f9a892e9f1c03ccdf61ea6"
+    }
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "license": "Apache-2.0"
+}

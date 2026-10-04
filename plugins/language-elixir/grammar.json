@@ -1,0 +1,13 @@
+{
+  "crate": "tree-sitter-elixir",
+  "version": "0.3.5",
+  "sha256": "66dd064a762ed95bfc29857fa3cb7403bb1e5cb88112de0f6341b7e47284ba40",
+  "repository": "https://github.com/elixir-lang/tree-sitter-elixir",
+  "revision": "e2d9e6e0e76b0c436fa48a0b8c32a031d0cbdf49",
+  "license": "Apache-2.0",
+  "sample": "defmodule Demo do\n  def hello(name), do: \"hi #{name}\"\nend\n",
+  "highlight": {
+    "text": "defmodule",
+    "scope": "Keyword"
+  }
+}

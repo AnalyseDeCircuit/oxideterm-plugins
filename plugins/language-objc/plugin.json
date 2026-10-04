@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.language.objc",
+  "name": "Objective-C Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting and folding for Objective-C.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-objc",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "objc",
+      "highlights": "highlights.scm",
+      "parserSha256": "80f741c54fe628a3a5166b1095e127537228ce699f100ad18883e5d48f855eb1",
+      "highlightsSha256": "ce7e30b5aab3d659a096812d8c227e83cd9bbb60470eb44def45bd5cb7737386"
+    }
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "license": "Apache-2.0"
+}

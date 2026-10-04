@@ -1,0 +1,13 @@
+{
+  "crate": "tree-sitter-swift",
+  "version": "0.7.2",
+  "sha256": "f3b98fb6bc8e6a6a10023f401aa6a1858115e849dfaf7de57dd8b8ea0f257bd9",
+  "repository": "https://github.com/alex-pinkus/tree-sitter-swift",
+  "revision": "78521a22771afcc0ed007e79aa94ad788027c91a",
+  "license": "MIT",
+  "sample": "struct Demo { let value: Int }\n",
+  "highlight": {
+    "text": "struct",
+    "scope": "Keyword"
+  }
+}

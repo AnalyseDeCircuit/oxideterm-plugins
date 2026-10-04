@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.language.php",
+  "name": "PHP Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting and folding for PHP.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-php",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "php",
+      "highlights": "highlights.scm",
+      "parserSha256": "c0f69991ebe5cc5669ce7175946af610ab5d1f912e271d5923415e85cfd33d74",
+      "highlightsSha256": "a2a7367659cff3b4be09961c8117d69a9b8703bfc266f8092e089b1760f197e9"
+    }
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "license": "Apache-2.0"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.language.r",
+  "name": "R Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting and folding for R.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-r",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "r",
+      "highlights": "highlights.scm",
+      "parserSha256": "0185df20c9643fec155910c922131815bf6a4bd22aaf1fbb5c667b6d00a5b7e7",
+      "highlightsSha256": "89dfa2a9a057b3ba05eec5277e3625a25b08d96354250b9e971558945938093e"
+    }
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "license": "Apache-2.0"
+}

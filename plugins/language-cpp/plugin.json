@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.language.cpp",
+  "name": "C++ Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting and folding for C++.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-cpp",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "cpp",
+      "highlights": "highlights.scm",
+      "parserSha256": "f5ff3ba7af054af846f37dfd2525bdfede95530d5747a8fe30df87d070ece607",
+      "highlightsSha256": "52136576a9a9dacd9e95a8de0f351689bf46140738572ab4e9f24c9278e6b458"
+    }
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "license": "Apache-2.0"
+}

@@ -1,0 +1,13 @@
+{
+  "crate": "tree-sitter-java",
+  "version": "0.23.5",
+  "sha256": "0aa6cbcdc8c679b214e616fd3300da67da0e492e066df01bcf5a5921a71e90d6",
+  "repository": "https://github.com/tree-sitter/tree-sitter-java",
+  "revision": "94703d5a6bed02b98e438d7cad1136c01a60ba2c",
+  "license": "MIT",
+  "sample": "class Demo { int value = 1; }\n",
+  "highlight": {
+    "text": "class",
+    "scope": "Keyword"
+  }
+}

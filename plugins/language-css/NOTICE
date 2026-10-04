@@ -1,0 +1,9 @@
+CSS Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The parser and upstream queries are derived from tree-sitter-css 0.23.2.
+Source: https://github.com/tree-sitter/tree-sitter-css
+Revision: c0d581e32d183a536731ed6c3a72758b27e20411
+Upstream license: MIT (retained in LICENSE-grammar in the package).

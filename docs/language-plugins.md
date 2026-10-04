@@ -1,11 +1,12 @@
 # 编辑器语言插件
 
-[English](README.en.md)
+[English](language-plugins.en.md)
 
-本目录维护 21 个语言插件的构建配方：C、C++、C#、CSS、Common Lisp、Elixir、Go、HTML、Java、
+`plugins/language-<标识>/` 分别维护 21 个语言插件：C、C++、C#、CSS、Common Lisp、Elixir、Go、HTML、Java、
 JavaScript、Objective-C、Perl、PHP、R、Ruby、Rust、Scala、Swift、TypeScript、TSX 和 Zig。
 主程序保留文件类型识别，解析器与高亮查询随插件分发。Markdown 的现有实现保持内置。
 TypeScript 和 TSX 使用同一固定版本的源码，分别编译和打包。PHP 使用包含 PHP 标签的语法。
+每个目录都有独立的 `plugin.json`、`grammar.json`、`LICENSE` 和 `NOTICE`；自有高亮规则也放在对应插件目录内。
 
 ## 构建与验证
 
@@ -20,8 +21,8 @@ node scripts/build-language-plugins.mjs all --host-repo ../OxideTerm --tree-sitt
 
 也可以把 `all` 换成单个语言标识。产物位于 `dist/languages/`：
 每个语言有独立 ZIP，以及可供本地验证的解压目录。安装包包含
-`plugin.json`、`parser.wasm`、`highlights.scm`、许可证和来源说明。
-Common Lisp 和 JavaScript 查询沿用 OxideTerm 自有规则，其许可证单独随包保留。
+`plugin.json`、`parser.wasm`、`highlights.scm`、Apache-2.0 `LICENSE`、`LICENSE-grammar` 和 `NOTICE`。
+插件自身及 Common Lisp、JavaScript 自有查询采用 Apache-2.0；上游语法许可证和版权声明单独保留。
 
 在主程序仓库逐个验证实际解析器、语法接口，以及指定文本的高亮类别：
 
@@ -32,17 +33,19 @@ cargo run -p oxideterm-editor-syntax --example check_language_plugin -- ../oxide
 识别、安装、更新与禁用的回归用例在主仓库的语法、编辑器及插件注册表测试中。
 构建产物仅是候选包，执行构建不会修改用户的插件目录或官方市场索引。
 
-## 随支持该能力的宿主发布
+## 独立发布与更新
 
-运行 `Build language plugins` 工作流，选择目标宿主引用和插件版本。
-默认只构建、验证并上传候选资产。开启发布时，工作流还会确认目标引用是
-已经公开发布的宿主标签，然后创建不可变的插件发布资产与目录记录。
+只修改对应目录中的 `plugin.json` 版本，运行 `Build language plugin` 工作流，
+选择语言标识和包含语言加载能力的目标宿主引用。默认只构建和验证该插件。
+开启发布后生成 `language-<标识>-v<版本>` Release，其中只有该语言的 ZIP。
+各语言独立升级，不使用共享版本或组合 Release；市场记录使用现有发布脚本从实际 ZIP 生成。
+资产可在新宿主正式发布前准备并上架，但兼容范围必须排除不支持语言加载的旧版本。
 正式市场收录仍使用现有审核流程。
 
 首次创建时，宿主范围从所选源码读取；语言运行时的兼容边界为严格高于 `2.2.0`。
 源码仍为 `2.2.0` 或更早时，自动生成 `>2.2.0`；源码版本更高时，以该版本作为下限。
 普通插件更新继承已发布的兼容范围，不随主程序版本自动抬高下限。
-开发构建仍须通过正式宿主标签验证后才能发布。
+发布前须用目标主程序的 `check_language_plugin` 验证实际解析器、语法接口和高亮。
 新语言条目使用旧原生客户端能够读取的 `minOxidetermVersion` 拼写，
 `>2.2.0` 对应此字段的值为 `2.2.1`，阻止旧版本安装。不要同时输出它与 `minOxideTermVersion`。
 

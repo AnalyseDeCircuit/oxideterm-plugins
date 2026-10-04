@@ -1,0 +1,9 @@
+Elixir Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The parser and upstream queries are derived from tree-sitter-elixir 0.3.5.
+Source: https://github.com/elixir-lang/tree-sitter-elixir
+Revision: e2d9e6e0e76b0c436fa48a0b8c32a031d0cbdf49
+Upstream license: Apache-2.0 (retained in LICENSE-grammar in the package).

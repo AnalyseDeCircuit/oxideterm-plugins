@@ -1,0 +1,9 @@
+R Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The parser and upstream queries are derived from tree-sitter-r 1.2.0.
+Source: https://github.com/r-lib/tree-sitter-r
+Revision: e9944e9801595ad484f49be492daf0c4c81547ef
+Upstream license: MIT (retained in LICENSE-grammar in the package).

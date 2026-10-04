@@ -1,0 +1,13 @@
+{
+  "crate": "tree-sitter-cpp",
+  "version": "0.23.4",
+  "sha256": "df2196ea9d47b4ab4a31b9297eaa5a5d19a0b121dceb9f118f6790ad0ab94743",
+  "repository": "https://github.com/tree-sitter/tree-sitter-cpp",
+  "revision": "f41e1a044c8a84ea9fa8577fdd2eab92ec96de02",
+  "license": "MIT",
+  "sample": "template <typename T> class Box { T value; };\n",
+  "highlight": {
+    "text": "class",
+    "scope": "Keyword"
+  }
+}

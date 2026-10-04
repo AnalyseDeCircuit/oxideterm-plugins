@@ -1,0 +1,9 @@
+Swift Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The parser and upstream queries are derived from tree-sitter-swift 0.7.2.
+Source: https://github.com/alex-pinkus/tree-sitter-swift
+Revision: 78521a22771afcc0ed007e79aa94ad788027c91a
+Upstream license: MIT (retained in LICENSE-grammar in the package).

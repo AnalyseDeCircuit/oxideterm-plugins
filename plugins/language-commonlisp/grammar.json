@@ -1,0 +1,14 @@
+{
+  "crate": "tree-sitter-commonlisp",
+  "version": "0.4.1",
+  "sha256": "36c662ae95eee8c5ada519d4fe87261c5fbcc3ffaac4b10c03d460154cd6a9b2",
+  "repository": "https://github.com/theHamsta/tree-sitter-commonlisp",
+  "revision": "9db594efb43574c5fe4a1f880568b1f0d0ee6057",
+  "license": "MIT",
+  "licenseFile": "LICENSE.md",
+  "sample": "(defun hello (name) (format t \"hi ~a\" name))\n",
+  "highlight": {
+    "text": "defun",
+    "scope": "Keyword"
+  }
+}

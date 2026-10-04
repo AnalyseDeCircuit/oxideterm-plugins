@@ -1,0 +1,13 @@
+{
+  "crate": "tree-sitter-html",
+  "version": "0.23.2",
+  "sha256": "261b708e5d92061ede329babaaa427b819329a9d427a1d710abb0f67bbef63ee",
+  "repository": "https://github.com/tree-sitter/tree-sitter-html",
+  "revision": "5a5ca8551a179998360b4a4ca2c0f366a35acc03",
+  "license": "MIT",
+  "sample": "<main class=\"root\">Hello</main>\n",
+  "highlight": {
+    "text": "class",
+    "scope": "Attribute"
+  }
+}

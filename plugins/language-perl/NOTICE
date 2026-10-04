@@ -1,0 +1,9 @@
+Perl Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The parser and upstream queries are derived from ts-parser-perl 1.0.2.
+Source: https://github.com/tree-sitter-perl/tree-sitter-perl
+Revision: 9b651c0ca29a2c581e2bb07815e17432ac3820d3
+Upstream license: MIT (retained in LICENSE-grammar in the package).

@@ -1,0 +1,9 @@
+C Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The parser and upstream queries are derived from tree-sitter-c 0.24.2.
+Source: https://github.com/tree-sitter/tree-sitter-c
+Revision: b780e47fc780ddc8da13afa35a3f4ed5c157823d
+Upstream license: MIT (retained in LICENSE-grammar in the package).

@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.language.javascript",
+  "name": "JavaScript Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting and folding for JavaScript.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-javascript",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "javascript",
+      "highlights": "highlights.scm",
+      "parserSha256": "f490c0ad5d72d4351e9c69aa8918373f95e9398f40c70405732b938885d75717",
+      "highlightsSha256": "86dc7049d8f1f4f99ca8e47e7f815db2d872d95c484b169f0f76105f01138825"
+    }
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "license": "Apache-2.0"
+}

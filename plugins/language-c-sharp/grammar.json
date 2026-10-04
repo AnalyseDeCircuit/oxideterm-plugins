@@ -1,0 +1,13 @@
+{
+  "crate": "tree-sitter-c-sharp",
+  "version": "0.23.5",
+  "sha256": "c1aac67f1ad71de1d6d39708d34811081c26dfa495658de6c14c34200849357c",
+  "repository": "https://github.com/tree-sitter/tree-sitter-c-sharp",
+  "revision": "cac6d5fb595f5811a076336682d5d595ac1c9e85",
+  "license": "MIT",
+  "sample": "class Demo { static void Main() { var x = 1; } }\n",
+  "highlight": {
+    "text": "class",
+    "scope": "Keyword"
+  }
+}

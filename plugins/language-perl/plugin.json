@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.language.perl",
+  "name": "Perl Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting and folding for Perl.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-perl",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "perl",
+      "highlights": "highlights.scm",
+      "parserSha256": "89f170e85b1335885943cdbe5ca9b54a905c69a59bdd29cbeb0d1e4f2f4c7063",
+      "highlightsSha256": "e00f9039a71cdb4f07c44ea92706cc50cb936427a06da249cee8012cfac9d150"
+    }
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "license": "Apache-2.0"
+}

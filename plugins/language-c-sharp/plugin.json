@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.language.c-sharp",
+  "name": "C# Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting and folding for C#.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-c-sharp",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "c-sharp",
+      "highlights": "highlights.scm",
+      "parserSha256": "a4b053f6fdedfc9c94876b415441ea953c0046ef83d45e0cbc4d9b8938ae6cbc",
+      "highlightsSha256": "ab8a9930aeeee70fa2dbfde82e4763170b7e826bc642338ad0683772c20c060f"
+    }
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "license": "Apache-2.0"
+}

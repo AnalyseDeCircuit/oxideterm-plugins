@@ -1,0 +1,13 @@
+{
+  "crate": "tree-sitter-zig",
+  "version": "1.1.2",
+  "sha256": "ab11fc124851b0db4dd5e55983bbd9631192e93238389dcd44521715e5d53e28",
+  "repository": "https://github.com/tree-sitter-grammars/tree-sitter-zig",
+  "revision": "b670c8df85a1568f498aa5c8cae42f51a90473c0",
+  "license": "MIT",
+  "sample": "pub fn main() void { const x: i32 = 1; }\n",
+  "highlight": {
+    "text": "pub",
+    "scope": "Keyword"
+  }
+}

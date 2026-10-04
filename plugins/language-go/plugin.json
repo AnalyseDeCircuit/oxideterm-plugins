@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.language.go",
+  "name": "Go Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting and folding for Go.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-go",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "go",
+      "highlights": "highlights.scm",
+      "parserSha256": "fa3d71e4f468c69bf68181717665a034903c89c49159649c5f375d6f1c13899b",
+      "highlightsSha256": "81182c986547eba7fa6316e82dfd621fb13b8fc89efac85432aee51a48ed0896"
+    }
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "license": "Apache-2.0"
+}

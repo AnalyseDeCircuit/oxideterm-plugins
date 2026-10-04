@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { spawnSync } from "node:child_process";
+import { requireEngines } from "./validate-registry.mjs";
 
 // Source validation is intentionally independent from the marketplace index:
 // a plugin may be prepared here before its immutable release package exists.
@@ -39,7 +40,23 @@ for (const source of pluginDirectories) {
       throw new Error(`${manifest.id}: runtime entry escapes the plugin directory`);
     }
     const entryPath = path.join(pluginDirectory, normalizedEntry);
-    const generatedWasmEntry = source.label === "plugin template" && runtime.kind === "wasm";
+    const generatedLanguage = runtime.kind === "language";
+    if (generatedLanguage) {
+      if (manifest.license !== "Apache-2.0") throw new Error(`${manifest.id}: expected Apache-2.0 plugin license`);
+      for (const file of ["LICENSE", "NOTICE"]) {
+        requireText(fs.readFileSync(path.join(pluginDirectory, file), "utf8"), `${manifest.id}: ${file}`);
+      }
+      const recipe = JSON.parse(fs.readFileSync(path.join(pluginDirectory, "grammar.json"), "utf8"));
+      for (const field of ["crate", "version", "repository", "revision", "license", "sample"]) {
+        requireText(recipe[field], `${manifest.id}: grammar.${field}`);
+      }
+      if (!/^[a-f0-9]{64}$/.test(recipe.sha256)) throw new Error(`${manifest.id}: invalid grammar checksum`);
+      requireText(recipe.highlight?.text, `${manifest.id}: expected highlight text`);
+      requireText(recipe.highlight?.scope, `${manifest.id}: expected highlight scope`);
+      requireText(manifest.contributes?.language?.id, `${manifest.id}: language id`);
+      requireEngines(manifest.engines, manifest.id);
+    }
+    const generatedWasmEntry = generatedLanguage || (source.label === "plugin template" && runtime.kind === "wasm");
     if (!fs.existsSync(entryPath) && !generatedWasmEntry) {
       throw new Error(`${manifest.id}: runtime entry does not exist`);
     }

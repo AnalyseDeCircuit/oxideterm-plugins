@@ -1,0 +1,13 @@
+{
+  "crate": "ts-parser-perl",
+  "version": "1.0.2",
+  "sha256": "44d9f0f184f4a922d389923612e652bf5e729504fc3d1f225867ef1a9db5016f",
+  "repository": "https://github.com/tree-sitter-perl/tree-sitter-perl",
+  "revision": "9b651c0ca29a2c581e2bb07815e17432ac3820d3",
+  "license": "MIT",
+  "sample": "my $name = \"Ada\";\nprint $name;\n",
+  "highlight": {
+    "text": "my",
+    "scope": "Keyword"
+  }
+}

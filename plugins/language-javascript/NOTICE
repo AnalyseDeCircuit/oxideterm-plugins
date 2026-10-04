@@ -1,0 +1,9 @@
+JavaScript Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The parser and upstream queries are derived from tree-sitter-javascript 0.23.1.
+Source: https://github.com/tree-sitter/tree-sitter-javascript
+Revision: 3a837b6f3658ca3618f2022f8707e29739c91364
+Upstream license: MIT (retained in LICENSE-grammar in the package).

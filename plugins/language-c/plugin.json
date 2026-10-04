@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.language.c",
+  "name": "C Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting and folding for C.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-c",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "c",
+      "highlights": "highlights.scm",
+      "parserSha256": "2030a766fa6c6fe18039524008e52fd4a4995bdd9ed07fc4a73ec892450d2f4a",
+      "highlightsSha256": "3378d854dda695b2b282b9468247524ed4271ef74af691033d2e36883379409c"
+    }
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "license": "Apache-2.0"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.language.scala",
+  "name": "Scala Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting and folding for Scala.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-scala",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "scala",
+      "highlights": "highlights.scm",
+      "parserSha256": "f7432b162981e43c750998cd4f9a7e551031a3b3fcced61f0f5ccfc1f1b70498",
+      "highlightsSha256": "8b3dc3bd20e05112854d3f4bd9a564fe53b762db89db9760d83d4f8e3828d0ab"
+    }
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "license": "Apache-2.0"
+}

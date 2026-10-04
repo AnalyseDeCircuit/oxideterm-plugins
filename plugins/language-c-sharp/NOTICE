@@ -1,0 +1,9 @@
+C# Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The parser and upstream queries are derived from tree-sitter-c-sharp 0.23.5.
+Source: https://github.com/tree-sitter/tree-sitter-c-sharp
+Revision: cac6d5fb595f5811a076336682d5d595ac1c9e85
+Upstream license: MIT (retained in LICENSE-grammar in the package).

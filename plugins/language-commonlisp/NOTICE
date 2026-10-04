@@ -1,0 +1,9 @@
+Common Lisp Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The parser and upstream queries are derived from tree-sitter-commonlisp 0.4.1.
+Source: https://github.com/theHamsta/tree-sitter-commonlisp
+Revision: 9db594efb43574c5fe4a1f880568b1f0d0ee6057
+Upstream license: MIT (retained in LICENSE-grammar in the package).
