@@ -1,0 +1,148 @@
+name: Build PDF preview plugin
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/pdf-preview.yml'
+      - 'plugins/pdf-preview/**'
+      - 'scripts/release-plugin.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish all six tested packages in one immutable plugin release
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+            arch: arm64
+            target: aarch64-apple-darwin
+          - os: macos-15-intel
+            arch: x64
+            target: x86_64-apple-darwin
+          - os: ubuntu-22.04
+            arch: x64
+            target: x86_64-unknown-linux-gnu
+          - os: ubuntu-22.04-arm
+            arch: arm64
+            target: aarch64-unknown-linux-gnu
+          - os: windows-2022
+            arch: x64
+            target: x86_64-pc-windows-msvc
+          - os: windows-11-arm
+            arch: arm64
+            target: aarch64-pc-windows-msvc
+    runs-on: ${{ matrix.os }}
+    env:
+      RUSTUP_TOOLCHAIN: 1.94.1-${{ matrix.target }}
+      PDF_PREVIEW_TARGET: ${{ matrix.target }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          architecture: ${{ matrix.arch }}
+      - name: Install native Rust toolchain
+        run: rustup toolchain install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            plugins/pdf-preview/target
+            plugins/pdf-preview/dist/pdfium
+          key: pdf-preview-${{ matrix.target }}-${{ env.RUSTUP_TOOLCHAIN }}-${{ hashFiles('plugins/pdf-preview/Cargo.lock', 'plugins/pdf-preview/pdfium.json') }}
+      - run: npm ci --ignore-scripts
+      - name: Prepare compatibility
+        run: node scripts/release-plugin.mjs prepare plugins/pdf-preview
+      - name: Build renderer and verify PDFium checksum
+        run: npm --prefix plugins/pdf-preview run build
+      - name: Package native executable, engine and licenses
+        run: npm --prefix plugins/pdf-preview run package
+      - name: Test rendering from the extracted package
+        run: npm --prefix plugins/pdf-preview run test:package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pdf-preview-package-${{ matrix.target }}
+          path: plugins/pdf-preview/dist/pdf-preview-*-${{ matrix.target }}.zip
+          if-no-files-found: error
+
+  assemble:
+    needs: build
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: pdf-preview-package-*
+          path: dist/pdf-preview
+          merge-multiple: true
+      - name: Generate one release record from all six packages
+        env:
+          GH_REPO: ${{ github.repository }}
+        run: |
+          node scripts/release-plugin.mjs prepare plugins/pdf-preview
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import { recordRelease } from './scripts/release-plugin.mjs';
+          import { validateRegistry } from './scripts/validate-registry.mjs';
+          const manifest = JSON.parse(fs.readFileSync('plugins/pdf-preview/plugin.json'));
+          const catalog = JSON.parse(fs.readFileSync('registry/v1/index.json'));
+          const tag = `pdf-preview-v${manifest.version}`;
+          const targets = ['aarch64-apple-darwin', 'x86_64-apple-darwin', 'aarch64-unknown-linux-gnu', 'x86_64-unknown-linux-gnu', 'aarch64-pc-windows-msvc', 'x86_64-pc-windows-msvc'];
+          const packages = targets.map(target => `${target}=dist/pdf-preview/pdf-preview-${manifest.version}-${target}.zip`);
+          const updated = recordRelease(catalog, manifest, `https://github.com/${process.env.GH_REPO}/releases/download/${tag}`, packages);
+          validateRegistry(updated);
+          fs.writeFileSync('dist/pdf-preview/catalog-preview.json', JSON.stringify(updated, null, 2) + '\n');
+          fs.writeFileSync('dist/pdf-preview/catalog-entry.json', JSON.stringify(updated.plugins.find(plugin => plugin.id === manifest.id), null, 2) + '\n');
+          fs.writeFileSync('dist/pdf-preview/release-notes.md', `## 中文\n\nPDF 预览插件 ${manifest.version}，支持翻页、缩放和适应宽度。\n\n主程序要求：OxideTerm ${manifest.engines.oxideterm}\n\nmacOS、Linux、Windows 的 ARM64 和 x86_64 安装包均已通过实际 PDF 页面渲染检查。\n\n## English\n\nPDF Preview ${manifest.version} supports page navigation, zoom and fit-to-width.\n\nHost requirement: OxideTerm ${manifest.engines.oxideterm}\n\nAll six ARM64 and x86_64 packages for macOS, Linux and Windows passed PDF rendering checks.\n`);
+          JS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pdf-preview-release
+          path: dist/pdf-preview/
+          if-no-files-found: error
+
+  publish:
+    needs: assemble
+    if: github.event_name == 'workflow_dispatch' && inputs.publish && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    concurrency:
+      group: pdf-preview-release
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: pdf-preview-release
+          path: dist/pdf-preview
+      - name: Publish the complete plugin release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          version=$(node -p 'require("./plugins/pdf-preview/plugin.json").version')
+          tag="pdf-preview-v$version"
+          gh release create "$tag" dist/pdf-preview/*.zip dist/pdf-preview/catalog-entry.json \
+            --target "$GITHUB_SHA" --title "PDF Preview $version" \
+            --notes-file dist/pdf-preview/release-notes.md --draft --latest=false
+          gh release edit "$tag" --draft=false --latest=false

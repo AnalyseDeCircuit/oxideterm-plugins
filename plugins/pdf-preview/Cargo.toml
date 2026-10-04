@@ -1,0 +1,20 @@
+[package]
+name = "oxideterm-pdf-preview"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+[workspace]
+
+[[bin]]
+name = "pdf-preview"
+path = "src/main.rs"
+
+[dependencies]
+base64 = "0.22"
+image = { version = "0.25", default-features = false, features = ["png"] }
+pdfium-render = { version = "=0.9.4", default-features = false, features = ["pdfium_7881", "image_025"] }
+serde_json = "1"
+
+[dev-dependencies]
+tempfile = "3"

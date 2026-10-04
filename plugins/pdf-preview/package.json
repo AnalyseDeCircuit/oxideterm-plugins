@@ -1,0 +1,12 @@
+{
+  "name": "oxideterm-pdf-preview",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "cargo check --locked",
+    "test": "cargo test --locked --test protocol",
+    "test:package": "node scripts/verify-package.mjs",
+    "package": "node scripts/package.mjs"
+  }
+}

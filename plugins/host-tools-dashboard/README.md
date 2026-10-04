@@ -1,45 +1,69 @@
-# Host Tools Dashboard
+# Workspace Dashboard
 
-This example OxideTerm Native plugin demonstrates:
+A workspace overview for OxideTerm, continuing the existing Host Tools Dashboard
+plugin identity. Version 0.4.0 requires the host APIs introduced after 2.2.0.
+It may be listed before that host release, while older clients retain the published
+0.3.0 package and download record.
 
-- a manifest-declared plugin tab;
-- a left activity-bar icon backed by a sidebar panel;
-- a standalone activity-bar refresh action with its own icon;
-- versioned, host-rendered OxideTerm UI components, including cards, toolbars,
-  selects, status pills, buttons, empty states, and responsive tables;
-- rich baseline calls such as `sessions.getSummary` and `hostTools.getExtensions`;
-- an explicitly approved `host_tools.custom.execute` monitor;
-- bounded TSV output rendered as a native table.
+## What it shows
 
-## Install
+- **Continue work:** saved SSH connections ordered by last use and currently open
+  IDE projects. Connections can be pinned.
+- **In progress:** open terminal and remote desktop tabs, recording tasks, active
+  or paused transfers, and active port forwards.
+- **Needs attention:** disconnected nodes, failed transfers, cloud-sync conflicts
+  or errors, and plugin diagnostics. Links open the relevant built-in page.
+- **Shortcuts:** pinned connections and built-in pages, stored through the host's
+  plugin-scoped storage. Click a page name to add or remove its shortcut.
 
-Install the released package from **Plugin Manager → Plugin Marketplace**.
+The dashboard opens in a tab using the shared OxideTerm page header and native
+controls. It does not register a sidebar panel or activity-bar entry.
+All UI copy has 11 locale bundles.
 
-For source development, copy this complete directory to
-`<config-dir>/plugins/host-tools-dashboard`, then make the process entry
-executable on macOS or Linux:
+## Data and navigation
 
-```sh
-chmod +x <config-dir>/plugins/host-tools-dashboard/bin/host-tools-dashboard.js
-```
+The host owns sessions, transfers, forwarding, recordings, and diagnostic state.
+The plugin reads their snapshots and requests normal host navigation. It does not
+run remote commands, collect performance metrics, or own connections. The original
+Host Tools monitor and OS selector have been removed.
 
-This example requires Node.js on `PATH`. Restart OxideTerm, then enable **Host Tools Dashboard** in the plugin manager and approve its requested capabilities. The process runtime also receives the standard `runtime.process.trusted` approval because it is a local executable.
+The overview refreshes on activation and existing layout, session-state, and
+transfer events. The Refresh button samples other changes, including recording
+elapsed time and cloud-sync state; there is no periodic polling task. Partial
+failures are visible and do not erase successfully loaded sections.
 
-## Use
+Recent project history, closed-workspace restoration, and persistent project
+shortcuts are not implemented. Current projects link to live IDE tabs. The built-in
+dashboard remains available. Recent connections currently use the host's saved-SSH
+summary API; other transport histories are not returned by that API.
 
-1. Connect at least one SSH node.
-2. Open the plugin's Activity icon in the left bar.
-3. Select **Refresh**, or use the standalone Refresh icon in the left bar.
-4. Use **Open full dashboard** to open the same data in a tab.
+## Install and permissions
 
-The tab, sidebar panel, and standalone action each use their manifest-declared
-Lucide icon. The action registration references `refresh-dashboard`; its title,
-icon, placement, and `dashboard.refresh` command cannot be replaced at runtime.
+Node.js must be on PATH. Install the complete plugin directory, including
+`locales/`, using a compatible OxideTerm release. The process entry must be
+executable on macOS and Linux. A source checkout still reporting 2.2.0 is correctly
+rejected by the release manifest; do not weaken the range for publication.
+Activation also checks the host API catalog before registering views or reading
+workspace data. A 2.2.0 host retaining the package after a downgrade receives an
+upgrade message instead of calls to missing workspace APIs.
 
-The runtime sends only component data. OxideTerm owns rendering, theme tokens,
-density, focus, keyboard/IME behavior, accessibility semantics, and validation;
-the plugin does not ship GPUI code, HTML, CSS, or arbitrary drawing callbacks.
+The plugin requests:
 
-By default, the plugin selects the first active connected node and assumes Linux. Set `nodeId` or `osType` in the plugin manager when you want an explicit node or a different remote operating system.
+- `ui.write` for its views and workspace navigation;
+- `sessions.read` for workspace labels, recording states, and plugin issue identities;
+- `connections.control` to open a saved connection through the normal host flow;
+- `transfers.read` for transfer names, progress, state, and owning nodes;
+- `plugin.settings.write` to save pinned connection IDs and page names.
 
-The commands in `plugin.json` are static package metadata and contain no credentials. The host reuses the existing routed node connection, limits execution to three seconds and 16 KiB, parses TSV before delivery, and does not return standard error or failed-command stdout.
+It no longer requests `host_tools.custom.execute`. New permissions must be reviewed
+through the normal plugin-manager approval flow. Workspace summaries exclude terminal
+contents, paths, and diagnostic text. The existing transfer API also returns paths
+and errors; the overview displays names and progress without storing those records.
+
+## Development checks
+
+Run `npm test` and `npm run check` from the marketplace repository. The focused
+process-protocol test covers ordering, navigation, one-way storage writes, event
+refresh, partial failures, and locale key parity. Host-side checks cover destination
+validation and capability gates. Release preparation uses the repository's
+`scripts/release-plugin.mjs prepare` workflow; publishing remains a separate step.

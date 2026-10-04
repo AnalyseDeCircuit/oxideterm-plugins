@@ -1,0 +1,107 @@
+name: Release Workspace Dashboard
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish the tested Dashboard package
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+            arch: arm64
+          - os: macos-15-intel
+            arch: x64
+          - os: ubuntu-22.04
+            arch: x64
+          - os: ubuntu-22.04-arm
+            arch: arm64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          architecture: ${{ matrix.arch }}
+      - run: npm ci --ignore-scripts
+      - run: node --test scripts/host-tools-dashboard.test.mjs
+
+  release:
+    needs: validate
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    concurrency:
+      group: workspace-dashboard-release
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts
+      - run: node scripts/release-plugin.mjs prepare plugins/host-tools-dashboard
+      - name: Package the plugin and preserve catalog history
+        env:
+          GH_REPO: ${{ github.repository }}
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { zipSync } from 'fflate';
+          import { recordRelease } from './scripts/release-plugin.mjs';
+          import { validateRegistry } from './scripts/validate-registry.mjs';
+          const root = 'plugins/host-tools-dashboard';
+          const manifest = JSON.parse(fs.readFileSync(`${root}/plugin.json`));
+          const files = {};
+          function add(name) {
+            const file = path.join(root, name);
+            const stat = fs.lstatSync(file);
+            if (stat.isSymbolicLink()) throw new Error(`Unexpected symlink: ${name}`);
+            if (stat.isDirectory()) {
+              for (const child of fs.readdirSync(file)) add(`${name}/${child}`);
+            } else files[name] = [fs.readFileSync(file), { os: 3, attrs: ((name.startsWith('bin/') ? 0o100755 : 0o100644) << 16) >>> 0 }];
+          }
+          for (const name of ['plugin.json', 'README.md', 'LICENSE', 'bin', 'locales']) add(name);
+          fs.mkdirSync('dist/dashboard', { recursive: true });
+          const zip = `dist/dashboard/host-tools-dashboard-${manifest.version}.zip`;
+          fs.writeFileSync(zip, zipSync(files));
+          const tag = `host-tools-dashboard-v${manifest.version}`;
+          const catalog = JSON.parse(fs.readFileSync('registry/v1/index.json'));
+          const targets = ['aarch64-apple-darwin', 'x86_64-apple-darwin', 'aarch64-unknown-linux-gnu', 'x86_64-unknown-linux-gnu'];
+          const updated = recordRelease(catalog, manifest, `https://github.com/${process.env.GH_REPO}/releases/download/${tag}`, targets.map(target => `${target}=${zip}`));
+          const entry = updated.plugins.find(plugin => plugin.id === manifest.id);
+          entry.name = manifest.name;
+          entry.description = manifest.description;
+          entry.capabilitiesSummary = ['Recent work and pinned shortcuts', 'Active tasks and workspace issues'];
+          validateRegistry(updated);
+          fs.writeFileSync('dist/dashboard/catalog-entry.json', JSON.stringify(entry, null, 2) + '\n');
+          fs.writeFileSync('dist/dashboard/release-notes.md', `## 中文\n\n工作概览 ${manifest.version}：聚合最近连接、打开的项目、活动任务和待处理问题，支持固定常用入口。只注册标签页，使用原生界面和 11 种语言。\n\n需要 OxideTerm ${manifest.engines.oxideterm}，以及可用的 Node.js。旧版主程序继续使用 0.3.0。\n\n## English\n\nWorkspace Dashboard ${manifest.version} brings together recent connections, open projects, active tasks and workspace issues, with pinned shortcuts. It contributes a tab only and uses native controls with 11 locales.\n\nRequires OxideTerm ${manifest.engines.oxideterm} and Node.js on PATH. Older hosts retain version 0.3.0.\n`);
+          fs.appendFileSync(process.env.GITHUB_ENV, `RELEASE_TAG=${tag}\nPLUGIN_VERSION=${manifest.version}\n`);
+          JS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dashboard-release
+          path: dist/dashboard/
+          if-no-files-found: error
+      - name: Publish immutable Dashboard assets
+        if: inputs.publish && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release create "$RELEASE_TAG" dist/dashboard/*.zip dist/dashboard/catalog-entry.json \
+            --target "$GITHUB_SHA" --title "Workspace Dashboard $PLUGIN_VERSION" \
+            --notes-file dist/dashboard/release-notes.md --draft --latest=false
+          gh release edit "$RELEASE_TAG" --draft=false --latest=false

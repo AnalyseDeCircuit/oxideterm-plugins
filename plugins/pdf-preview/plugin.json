@@ -1,0 +1,27 @@
+{
+  "id": "com.oxideterm.preview.pdf",
+  "name": "PDF Preview",
+  "version": "0.1.0",
+  "description": "Preview PDF documents with page navigation and zoom in the file browser.",
+  "author": "OxideTerm",
+  "runtime": {
+    "kind": "process",
+    "entry": "bin/plugin"
+  },
+  "permissions": {
+    "capabilities": []
+  },
+  "contributes": {
+    "filePreviews": [
+      {
+        "mimeTypes": [
+          "application/pdf"
+        ],
+        "command": "preview.render"
+      }
+    ]
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  }
+}

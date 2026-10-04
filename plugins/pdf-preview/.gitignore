@@ -1,0 +1,20 @@
+# Local operating-system and editor files
+.DS_Store
+.idea/
+.vscode/
+
+# JavaScript dependencies and logs
+/node_modules/
+*.log
+
+# Plugin packages
+/dist/
+/target/
+/lib/
+/bin/pdf-preview
+/bin/pdf-preview.exe
+
+# Local environment files
+.env
+.env.*
+!.env.example

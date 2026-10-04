@@ -4,25 +4,29 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 "use strict";
-
 const readline = require("node:readline");
-
 const PLUGIN_ID = "com.oxideterm.examples.host-tools-dashboard";
 const TAB_ID = "dashboard";
-const SIDEBAR_PANEL_ID = "dashboard-panel";
-const ACTIVITY_ITEM_ID = "refresh-dashboard";
-const MONITOR_ID = "system-facts";
-const TAB_REGISTRATION_ID = "host-tools-dashboard-tab";
-const SIDEBAR_REGISTRATION_ID = "host-tools-dashboard-sidebar";
-const ACTIVITY_REGISTRATION_ID = "host-tools-dashboard-refresh-action";
-
-let nextHostRequestId = 1;
-let refreshInProgress = false;
-let currentNodeId = null;
-let currentOsType = "linux";
-let currentRows = [];
-let statusText = "Ready to sample an active node";
 const pendingHostCalls = new Map();
+let nextHostRequestId = 1;
+let messages = require("../locales/en.json");
+let refreshInProgress = false;
+let refreshPending = false;
+let pinned = [];
+let data = {};
+let failures = [];
+let actionFailed = false;
+let editingShortcuts = false;
+const pages = ["sessions", "files", "plugins", "cloudSync", "notifications", "localTerminal"];
+const pageIcons = { sessions: "server", files: "folder", plugins: "puzzle", cloudSync: "cloud", notifications: "bell", localTerminal: "terminal" };
+const events = ["i18n.languageChanged", "ui.layoutChanged", "sessions.nodeStateChanged", "transfers.progress", "transfers.complete", "transfers.error"];
+const t = key => messages[key];
+
+async function loadLanguage() {
+  const locale = await callHost("app", "getLocale");
+  const language = ["en", "de", "es-ES", "fr-FR", "it", "ja", "ko", "pt-BR", "vi", "zh-CN", "zh-TW"].includes(locale) ? locale : "en";
+  messages = require("../locales/" + language + ".json");
+}
 
 // Stdout is exclusively reserved for versioned protocol frames.
 function writeFrame(payload, requestId = null) {
@@ -86,293 +90,179 @@ function handleHostResponse(payload) {
   return true;
 }
 
-function buildDashboardSchema(surfaceKind) {
-  const contentControls = [
-    {
-      kind: "markdown",
-      text: "**Host-rendered UI:** this view uses OxideTerm's shared components, theme, typography, focus, and interaction behavior.",
-    },
-    {
-      kind: "statusBadge",
-      label: statusText,
-      tone: refreshInProgress ? "accent" : currentRows.length > 0 ? "success" : "neutral",
-      strong: refreshInProgress,
-    },
-    {
-      kind: "keyValue",
-      label: "Monitor",
-      value: MONITOR_ID,
-    },
-    {
-      kind: "keyValue",
-      label: "Target node",
-      value: currentNodeId || "Automatic",
-    },
-    {
-      kind: "keyValue",
-      label: "Remote OS",
-      value: currentOsType,
-    },
-    {
-      kind: "select",
-      id: "runtime-os",
-      label: "Remote operating system",
-      value: currentOsType,
-      options: [
-        { label: "Linux", value: "linux" },
-        { label: "macOS", value: "macos" },
-        { label: "BSD", value: "bsd" },
-        { label: "Windows", value: "windows" },
-      ],
-    },
-  ];
-
-  if (currentRows.length > 0) {
-    contentControls.push({
-      kind: "table",
-      id: "system-facts-table",
-      label: "Sampled facts",
-      columnDefs: [
-        { key: "metric", label: "Metric", style: "primary" },
-        { key: "value", label: "Value", style: "mono" },
-      ],
-      rows: currentRows,
-    });
-  } else {
-    contentControls.push({
-      kind: "emptyState",
-      icon: "inbox",
-      label: "No sample yet. Connect a node and select Refresh.",
-    });
+function page(page) { return { kind: "page", page }; }
+function isPin(value) {
+  return value && ((value.kind === "page" && pages.includes(value.page))
+    || (value.kind === "connection" && typeof value.id === "string" && value.id.length > 0));
+}
+function pinKey(value) { return value.kind === "page" ? "page:" + value.page : "connection:" + value.id; }
+function action(id, label, destination, icon = "arrow-right") {
+  return { kind: "button", id, label, icon, value: destination, variant: "ghost", size: "small", disabled: refreshInProgress };
+}
+function entry(id, label, destination, icon, canPin = false) {
+  const children = [action("open-" + id, label, destination, icon)];
+  if (canPin) children.push({
+    kind: "iconButton", id: "pin-" + id, label: t(pinned.some(pin => pinKey(pin) === pinKey(destination)) ? "unpin" : "pin"),
+    icon: pinned.some(pin => pinKey(pin) === pinKey(destination)) ? "check" : "pin", value: destination, size: "small", disabled: refreshInProgress,
+  });
+  return { kind: "actionRow", gap: "compact", children };
+}
+function section(id, title, controls, empty) {
+  return { id, title, controls: controls.length ? controls : [{ kind: "markdown", text: t(failures.length ? "unavailable" : refreshInProgress ? "refreshing" : empty) }] };
+}
+function transferEntry(transfer, label, id, icon) {
+  const workspace = data.workspace;
+  const tab = workspace?.tabs.find(tab => tab.transferOwners?.includes(transfer.nodeId));
+  const target = tab ? { kind: "tab", id: tab.id }
+    : workspace?.nodes.some(node => node.id === transfer.nodeId) ? { kind: "sftp", nodeId: transfer.nodeId } : null;
+  const row = entry(id, label, target, icon);
+  row.children[0].disabled ||= !target;
+  return row;
+}
+function buildSchema() {
+  const workspace = data.workspace;
+  const controls = [{ kind: "row", gap: "compact", children: [
+    { kind: "button", id: "refresh", label: t(refreshInProgress ? "refreshing" : "refresh"), icon: "refresh-cw", variant: "outline", size: "small", loading: refreshInProgress, disabled: refreshInProgress },
+  ] }];
+  if (failures.length) controls.push({ kind: "alert", tone: "warning", label: t("loadFailed"), description: failures.map(key => t(key)).join(" · ") });
+  if (actionFailed) controls.push({ kind: "alert", tone: "error", label: t("actionFailed") });
+  const sections = [];
+  const recent = (data.connections || []).filter(connection => connection.lastUsedAt)
+    .sort((a, b) => Date.parse(b.lastUsedAt) - Date.parse(a.lastUsedAt)).slice(0, 8)
+    .map(connection => entry("connection-" + connection.id, connection.name, { kind: "connection", id: connection.id }, "server", true));
+  for (const tab of (workspace?.tabs || []).filter(tab => tab.kind === "project").slice(0, 6)) {
+    recent.push(entry("project-" + tab.id, t("openProject") + " · " + tab.title, { kind: "tab", id: tab.id }, "folder"));
   }
-
-  const actions = [{
-    kind: "button",
-    id: "refresh",
-    label: refreshInProgress ? "Refreshing" : "Refresh",
-    icon: "refresh-cw",
-    variant: "default",
-    loading: refreshInProgress,
-    disabled: refreshInProgress,
-  }];
-
-  if (surfaceKind === "sidebarPanel") {
-    actions.push({
-      kind: "button",
-      id: "open-dashboard-tab",
-      label: "Open full dashboard",
-      icon: "panel-left-open",
-      variant: "outline",
-    });
+  sections.push(section("continue", t("continue"), recent, "noRecent"));
+  const ongoing = [];
+  for (const tab of (workspace?.tabs || []).filter(tab => ["terminal", "desktop"].includes(tab.kind)).slice(0, 8)) {
+    ongoing.push(entry("tab-" + tab.id, tab.title, { kind: "tab", id: tab.id }, "terminal"));
+    if (tab.recordings.length) ongoing.push(entry("recording-" + tab.id, t("recording") + " · " + tab.title, { kind: "tab", id: tab.id }, "circle"));
   }
-
-  return {
-    componentVersion: 1,
-    kind: "form",
-    title: "Host Tools Dashboard",
-    description: "A reference plugin for custom Host Tools monitors.",
-    sections: [
-      {
-        id: "overview",
-        title: "Remote system facts",
-        controls: [
-          {
-            kind: "card",
-            variant: "inspector",
-            gap: "normal",
-            children: contentControls,
-          },
-          {
-            kind: "toolbar",
-            gap: "compact",
-            children: actions,
-          },
-        ],
-      },
-    ],
+  const transfers = data.transfers || [];
+  for (const transfer of transfers.filter(item => ["pending", "active", "paused"].includes(item.state)).slice(0, 6)) {
+    const progress = transfer.size > 0 ? " · " + Math.min(100, Math.floor(transfer.transferred * 100 / transfer.size)) + "%" : "";
+    ongoing.push(transferEntry(transfer, t("transfer") + " · " + transfer.name + progress, "transfer-" + transfer.id, "arrow-up-down"));
+  }
+  for (const node of (workspace?.nodes || []).filter(node => node.forwards > 0).slice(0, 6)) {
+    ongoing.push(entry("forward-" + node.id, t("forwards") + " · " + node.title + " (" + node.forwards + ")", { kind: "forwards", nodeId: node.id }, "network"));
+  }
+  sections.push(section("ongoing", t("ongoing"), ongoing, "noOngoing"));
+  const attention = [];
+  for (const node of (workspace?.nodes || []).filter(node => ["disconnected", "error"].includes(node.state)).slice(0, 6)) {
+    attention.push(entry("disconnected-" + node.id, t("disconnected") + " · " + node.title, page("sessions"), "alert-triangle"));
+  }
+  for (const transfer of transfers.filter(item => item.state === "error").slice(0, 6)) {
+    attention.push(transferEntry(transfer, t("transferFailed") + " · " + transfer.name, "failed-transfer-" + transfer.id, "alert-triangle"));
+  }
+  if (data.cloud?.conflict) attention.push(entry("sync-conflict", t("syncConflict"), page("cloudSync"), "cloud"));
+  else if (data.cloud?.status === "error") attention.push(entry("sync-error", t("syncFailed"), page("cloudSync"), "cloud"));
+  for (const issue of (workspace?.pluginIssues || []).slice(0, 6)) {
+    attention.push(entry("plugin-" + issue.id, t("pluginIssue") + " · " + issue.name, page("plugins"), "puzzle"));
+  }
+  sections.push(section("attention", t("attention"), attention, "noAttention"));
+  const shortcuts = pinned.map((destination, index) => {
+    const connection = (data.connections || []).find(item => item.id === destination.id);
+    const label = destination.kind === "page" ? t(destination.page) : connection?.name || t("unavailableConnection");
+    const row = entry("shortcut-" + index, label, destination, destination.kind === "page" ? pageIcons[destination.page] : "server", editingShortcuts);
+    row.children[0].disabled ||= destination.kind === "connection" && !connection;
+    return row;
+  });
+  if (editingShortcuts) {
+    shortcuts.push({ kind: "markdown", text: t("shortcutsHint") });
+    shortcuts.push({ kind: "row", gap: "compact", children: pages.map(name => ({ kind: "button", id: "pin-page-" + name, value: page(name), label: t(name), variant: pinned.some(pin => pin.kind === "page" && pin.page === name) ? "outline" : "ghost", size: "small" })) });
+  }
+  sections.push({ id: "shortcuts", title: t("shortcuts"), controls: [
+    { kind: "button", id: "edit-shortcuts", label: t(editingShortcuts ? "done" : "editShortcuts"), icon: editingShortcuts ? "check" : "settings", variant: "ghost", size: "small" },
+    ...shortcuts,
+  ] });
+  const panel = id => {
+    const section = sections.find(section => section.id === id);
+    return { kind: "stack", id, label: section.title, gap: "compact", children: [
+      { kind: "divider" }, ...section.controls,
+    ] };
   };
+  controls.push({ kind: "columns", gap: "spacious", children: [
+    { kind: "stack", gap: "spacious", children: [panel("continue"), panel("shortcuts")] },
+    { kind: "stack", gap: "spacious", children: [panel("ongoing"), panel("attention")] },
+  ] });
+  return { componentVersion: 1, kind: "form", title: t("title"), description: t("description"), controls };
 }
-
-function registerSurface(kind, registrationId, metadata) {
-  writeFrame({
-    type: "registerContribution",
-    registration: {
-      registrationId,
-      pluginId: PLUGIN_ID,
-      kind,
-      metadata,
-    },
-  });
+function registerTab() {
+  writeFrame({ type: "registerContribution", registration: {
+    pluginId: PLUGIN_ID, registrationId: "workspace-tab", kind: "tab",
+    metadata: { tabId: TAB_ID, schema: buildSchema() },
+  } });
 }
-
-function registerDashboardSurfaces() {
-  registerSurface("tab", TAB_REGISTRATION_ID, {
-    tabId: TAB_ID,
-    schema: buildDashboardSchema("tab"),
-  });
-  registerSurface("sidebar-panel", SIDEBAR_REGISTRATION_ID, {
-    panelId: SIDEBAR_PANEL_ID,
-    schema: buildDashboardSchema("sidebarPanel"),
-  });
-}
-
-function registerActivityAction() {
-  registerSurface("activity-bar-item", ACTIVITY_REGISTRATION_ID, {
-    itemId: ACTIVITY_ITEM_ID,
-  });
-}
-
-function firstActiveNodeId(sessionSummary) {
-  const nodes = Array.isArray(sessionSummary?.nodes) ? sessionSummary.nodes : [];
-  const activeNode = nodes.find((node) =>
-    node?.hasConnection && ["active", "connected"].includes(node?.state)
-  );
-  return typeof activeNode?.nodeId === "string" ? activeNode.nodeId : null;
-}
-
-function normalizedOsType(value) {
-  return ["linux", "macos", "bsd", "windows"].includes(value) ? value : "linux";
-}
-
-async function refreshDashboard() {
-  if (refreshInProgress) {
-    return;
-  }
+async function refresh() {
+  if (refreshInProgress) { refreshPending = true; return; }
   refreshInProgress = true;
-  statusText = "Sampling";
-  registerDashboardSurfaces();
-
+  registerTab();
+  const sources = [["workspace", "app", "getWorkspaceSummary"], ["connections", "connections", "getSavedSummaries"], ["transfers", "transfers", "getAll"], ["cloud", "cloudSync", "getSummary"]];
+  const results = await Promise.allSettled(sources.map(([, namespace, method]) => callHost(namespace, method)));
+  failures = [];
+  results.forEach((result, index) => {
+    const key = sources[index][0];
+    if (result.status === "fulfilled") data[key] = result.value;
+    else { delete data[key]; failures.push(key); }
+  });
+  refreshInProgress = false;
+  registerTab();
+  if (refreshPending) { refreshPending = false; await refresh(); }
+}
+async function handleEvent(event) {
+  if (event.name === "i18n.languageChanged") { await loadLanguage(); registerTab(); return; }
+  if (events.includes(event.name)) { await refresh(); return; }
+  if (event.name !== "ui.event" || event.payload?.type !== "click") return;
+  const { controlId, value } = event.payload;
+  actionFailed = false;
   try {
-    const configuredNodeId = await callHost("settings", "get", { key: "nodeId" });
-    const configuredOsType = await callHost("settings", "get", { key: "osType" });
-    const sessionSummary = await callHost("sessions", "getSummary");
-    const extensions = await callHost("hostTools", "getExtensions");
-    const monitorAvailable = Array.isArray(extensions)
-      && extensions.some((extension) => extension?.id === MONITOR_ID);
-    if (!monitorAvailable) {
-      throw new Error("The system-facts monitor is not available");
+    if (controlId === "refresh") await refresh();
+    else if (controlId === "edit-shortcuts") { editingShortcuts = !editingShortcuts; registerTab(); }
+    else if (controlId.startsWith("pin-") && isPin(value)) {
+      const key = pinKey(value);
+      const next = pinned.some(pin => pinKey(pin) === key) ? pinned.filter(pin => pinKey(pin) !== key) : [...pinned, value];
+      // Storage writes are one-way host effects, applied after this event completes.
+      writeFrame({ type: "callHostApi", requestId: "workspace-write-" + nextHostRequestId++, namespace: "storage", method: "set", args: { key: "shortcuts", value: next } });
+      pinned = next;
+      registerTab();
+    } else if (controlId.startsWith("open-")) {
+      if (value?.kind === "connection") await callHost("connections", "connect", { connectionId: value.id });
+      else await callHost("ui", "openWorkspace", value);
     }
-
-    const explicitNodeId = typeof configuredNodeId === "string"
-      ? configuredNodeId.trim()
-      : "";
-    currentNodeId = explicitNodeId || firstActiveNodeId(sessionSummary);
-    currentOsType = normalizedOsType(configuredOsType);
-    if (!currentNodeId) {
-      throw new Error("No active node is available; configure nodeId in plugin settings");
-    }
-
-    const sample = await callHost("hostTools", "runExtension", {
-      nodeId: currentNodeId,
-      osType: currentOsType,
-      monitorId: MONITOR_ID,
-    });
-    if (!sample?.success) {
-      throw new Error("The remote monitor command did not complete successfully");
-    }
-    currentRows = Array.isArray(sample.data) ? sample.data : [];
-    statusText = sample.truncated
-      ? `Ready — ${sample.rowCount || currentRows.length} rows, truncated`
-      : `Ready — ${sample.rowCount || currentRows.length} rows`;
-  } catch (error) {
-    currentRows = [];
-    // Host errors are already sanitized; never append command output or environment data.
-    statusText = error instanceof Error ? error.message : "Refresh failed";
-  } finally {
-    refreshInProgress = false;
-    registerDashboardSurfaces();
-  }
+  } catch (_error) { actionFailed = true; registerTab(); }
 }
-
-async function handlePluginEvent(event) {
-  if (event?.name !== "ui.event") {
-    return { handled: false };
-  }
-  const controlId = event.payload?.controlId;
-  if (event.payload?.type === "change" && controlId === "runtime-os") {
-    currentOsType = normalizedOsType(event.payload.value);
-    registerDashboardSurfaces();
-    return { handled: true, action: "selectOs" };
-  }
-  if (controlId === "refresh") {
-    await refreshDashboard();
-    return { handled: true, action: "refresh" };
-  }
-  if (controlId === "open-dashboard-tab") {
-    await callHost("ui", "openTab", { tabId: TAB_ID });
-    return { handled: true, action: "openTab" };
-  }
-  return { handled: false };
-}
-
 async function handleRequest(envelope) {
   const payload = envelope?.payload;
-  if (!payload) {
-    return;
-  }
-  if (handleHostResponse(payload)) {
-    return;
-  }
-
-  const requestId = payload.requestId;
-  const requestType = payload.kind?.type;
-  switch (requestType) {
-    case "activate":
-      registerDashboardSurfaces();
-      registerActivityAction();
-      writeFrame({ type: "runtimeReady" });
-      respondOk(requestId, { activated: true });
-      break;
-    case "dispatchCommand":
-      if (payload.kind.command !== "dashboard.refresh") {
-        respondError(
-          requestId,
-          "unknown_command",
-          `Unknown plugin command ${payload.kind.command}`,
-        );
+  if (!payload || handleHostResponse(payload) || payload.result) return;
+  const { requestId, kind } = payload;
+  try {
+    switch (kind?.type) {
+      case "activate": {
+        await loadLanguage();
+        const catalog = await callHost("app", "getApiCatalog");
+        const required = ["app.getWorkspaceSummary", "ui.openWorkspace"];
+        if (!Array.isArray(catalog) || required.some(api => !catalog.some(item => item.namespace + "." + item.method === api))) {
+          respondError(requestId, "host_upgrade_required", t("hostUpgradeRequired"));
+          return;
+        }
+        const saved = await callHost("storage", "get", { key: "shortcuts" });
+        pinned = Array.isArray(saved) ? saved.filter(isPin) : [page("sessions"), page("files"), page("localTerminal")];
+        for (const event of events) writeFrame({ type: "registerContribution", registration: { pluginId: PLUGIN_ID, registrationId: event, kind: "event-subscription", metadata: { event } } });
+        await refresh();
+        writeFrame({ type: "runtimeReady" });
+        respondOk(requestId, { activated: true });
         break;
       }
-      await refreshDashboard();
-      respondOk(requestId, { refreshed: true });
-      break;
-    case "sendEvent": {
-      const result = await handlePluginEvent(payload.kind.event);
-      respondOk(requestId, result);
-      break;
+      case "sendEvent": await handleEvent(kind.event); respondOk(requestId, { handled: true }); break;
+      case "health": respondOk(requestId, { ok: true }); break;
+      case "deactivate": case "kill": respondOk(requestId, { stopped: true }); process.exit(0); break;
+      default: respondError(requestId, "unsupported_request", "Unsupported request");
     }
-    case "health":
-      respondOk(requestId, { ok: true, refreshInProgress });
-      break;
-    case "deactivate":
-    case "kill":
-      respondOk(requestId, { stopped: true });
-      process.exit(0);
-      break;
-    default:
-      respondError(
-        requestId,
-        "unsupported_request",
-        `Unsupported request ${requestType || "unknown"}`,
-      );
-  }
+  } catch (_error) { respondError(requestId, "workspace_request_failed", "Workspace request failed"); }
 }
-
-readline.createInterface({
-  input: process.stdin,
-  crlfDelay: Infinity,
-}).on("line", (line) => {
-  if (!line.trim()) {
-    return;
-  }
+readline.createInterface({ input: process.stdin, crlfDelay: Infinity }).on("line", line => {
   let envelope;
-  try {
-    envelope = JSON.parse(line);
-  } catch (_error) {
-    process.stderr.write("Plugin received an invalid protocol frame.\n");
-    return;
-  }
-  handleRequest(envelope).catch(() => {
-    // Do not log protocol values because a future request may contain sensitive content.
-    process.stderr.write("Plugin request handling failed.\n");
-  });
+  try { envelope = JSON.parse(line); } catch (_error) { return; }
+  handleRequest(envelope).catch(() => process.stderr.write("Workspace request failed.\n"));
 });
