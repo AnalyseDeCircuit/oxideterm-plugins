@@ -20,18 +20,24 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - run: npm ci --ignore-scripts
+      - run: npm test
       - run: node scripts/validate-registry.mjs
+        env:
+          REGISTRY_BASE_REF: ${{ github.event.before }}
       - run: node scripts/validate-plugins.mjs
       - name: Install WASM target
         run: rustup target add wasm32-wasip1
       - name: Create standalone plugins
         run: |
-          node scripts/create-plugin.mjs generated-manifest --type manifest --id com.example.generated-manifest --name "Generated Manifest Plugin" --author "OxideTerm CI"
-          node scripts/create-plugin.mjs generated-process --type process --id com.example.generated-process --name "Generated Process Plugin" --author "OxideTerm CI"
-          node scripts/create-plugin.mjs generated-wasm --type wasm --id com.example.generated-wasm --name "Generated WASM Plugin" --author "OxideTerm CI"
+          node scripts/create-plugin.mjs generated-manifest --type manifest --id com.example.generated-manifest --name "Generated Manifest Plugin" --author "OxideTerm CI" --host-range ">=2.0.0"
+          node scripts/create-plugin.mjs generated-process --type process --id com.example.generated-process --name "Generated Process Plugin" --author "OxideTerm CI" --host-range ">=2.0.0"
+          node scripts/create-plugin.mjs generated-wasm --type wasm --id com.example.generated-wasm --name "Generated WASM Plugin" --author "OxideTerm CI" --host-range ">=2.0.0"
       - name: Validate standalone plugins
         run: |
           npm --prefix generated-manifest run check

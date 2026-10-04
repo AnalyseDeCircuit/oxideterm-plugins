@@ -31,11 +31,12 @@ OxideTerm 为三种原生插件形态分别提供可打包和发布的模板：
 
 ## 五分钟创建插件
 
-需要 Git 和 Node.js 18 或更新版本。
+需要 Git 和 Node.js 22 或更新版本。
 
 ```bash
 git clone https://github.com/AnalyseDeCircuit/oxideterm-plugins.git
 cd oxideterm-plugins
+npm ci --ignore-scripts
 node scripts/create-plugin.mjs ../my-oxideterm-plugin \
   --type process \
   --id com.example.my-plugin \
@@ -46,6 +47,8 @@ npm run check
 ```
 
 生成的 Process 插件会注册一个可交互的原生标签页。打开 [`plugin.json`](templates/process-plugin/plugin.json) 修改能力和贡献，在 [`bin/plugin.js`](templates/process-plugin/bin/plugin.js) 中实现行为。
+
+创建时自动以最新正式版确定最低宿主版本；使用 `--host-repo /path/to/OxideTerm` 可改为读取本地源码版本。发布流水线自动继承兼容范围、核对安装包，并生成带校验值的市场记录。兼容范围变更和纠错命令见[发布指南](docs/PUBLISHING.md#自动准备发布)。
 
 将 `--type process` 改成 `manifest` 或 `wasm` 即可生成另外两种模板。WASM 模板还需要 Rust 和 `wasm32-wasip1` target。
 
@@ -111,8 +114,9 @@ docs/                        插件发布与目录维护说明
 维护者在修改目录或一方插件时运行：
 
 ```bash
-node scripts/validate-registry.mjs
-node scripts/validate-plugins.mjs
+npm ci --ignore-scripts
+npm test
+npm run check
 ```
 
 ## 许可证

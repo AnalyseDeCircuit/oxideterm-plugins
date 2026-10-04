@@ -11,7 +11,7 @@ This repository does not accept Pull Requests. Submit new listings, package upda
 ### 1. Establish a stable identity
 
 - Choose a stable reverse-domain ID such as `com.example.server-inspector`.
-- The package and catalog `id`, `name`, and `version` must match `plugin.json`.
+- The package ID, name, and release version must match `plugin.json`. The catalog's top-level version is a compatibility snapshot for older clients.
 - Do not change the ID in a later release to bypass permission review or replace another plugin.
 
 ### 2. Prepare packages
@@ -71,7 +71,7 @@ The Issue must include:
 
 - plugin ID, display name, author, and a concise factual description;
 - source repository, homepage, and license;
-- plugin version and minimum OxideTerm version;
+- plugin version and the supported OxideTerm range from `plugin.json` (`engines.oxideterm`);
 - target, immutable download URL, SHA-256, and exact byte size for every platform package;
 - every capability requested by `plugin.json`;
 - platforms that were actually tested;
@@ -91,7 +91,58 @@ When code, runtime behavior, permissions, or packages change:
 6. open another Plugin listing request and choose “Version update”;
 7. describe feature, permission, compatibility, and tested-platform changes.
 
-OxideTerm offers an update only when the catalog version is newer than the installed version and the current platform and minimum-version requirements are satisfied.
+Clients with release-history support select the highest compatible semantic version that has a package for the current platform. Exact platform packages take precedence over `any`. An update is offered only when that version is newer than the installed plugin. If a higher release needs a different host version, the marketplace shows its requirement without replacing the installed plugin. Plugins are never automatically downgraded.
+
+### Release history and host compatibility
+
+Plugin versions advance independently of OxideTerm versions. Each new package must declare its supported host range in `plugin.json`, and its catalog release must repeat that range:
+
+```json
+{ "engines": { "oxideterm": ">=2.3.0, <3.0.0" } }
+```
+
+This is an example, not a compatibility claim. Use explicit comparators with complete versions, separated by commas for intersection. npm-style `||` and hyphen ranges are not supported. Test the claimed boundaries; a host range does not replace Tree-sitter grammar ABI or plugin API compatibility checks.
+
+Append each published version to `releases` with its `version`, `engines`, and `packages`. Keep the original declaration and assets unchanged. Compatibility corrections are appended separately with a reason and timestamp. For an existing listing, retain the top-level `version`, `minOxideTermVersion`, and `packages` as the legacy snapshot and include that same package record in the history. Do not overwrite the snapshot with each new release.
+
+OxideTerm checks compatibility during installation and startup, including after app upgrades and downgrades. Startup refreshes the official catalog with a bounded wait before runtime activation; offline startup uses the last valid cached catalog. The latest correction for an exact plugin ID and version takes precedence over the packaged declaration without changing the package on disk. Incompatible plugins retain their files, settings, and enable preference. Manual marketplace refreshes also save the catalog for the next startup. Unlisted legacy packages without a declared range remain permitted.
+
+### Automated release preparation
+
+The catalog tools require Node.js 22. Run `npm ci --ignore-scripts` once in this repository.
+
+- Creation defaults to the latest stable OxideTerm version. Pass `--host-repo /path/to/OxideTerm` to read a local checkout through Cargo metadata, or `--host-range` for an explicitly tested range.
+- Ordinary updates inherit the last published range, including corrections. An explicitly changed manifest range is respected.
+- Using a new host capability requires an explicit `--requires-current-app` flag or range change. No upper bound is inferred from publication dates.
+
+```sh
+node scripts/release-plugin.mjs prepare ../my-plugin
+node scripts/release-plugin.mjs prepare ../my-plugin --requires-current-app --host-repo ../OxideTerm
+```
+
+Prepare before packaging. The tool writes `engines.oxideterm` to the source manifest; it never rewrites an existing ZIP. After packaging, generate the marketplace record from the actual archives:
+
+```sh
+node scripts/release-plugin.mjs record ../my-plugin \
+  --release-url https://github.com/example/my-plugin/releases/download/v1.1.0 \
+  --package any=../my-plugin/dist/my-plugin-1.1.0.zip
+```
+
+Repeat `--package target=path` for platform packages. The tool checks the archived identity, version, and host range, calculates SHA-256 and size, and appends the release without replacing history. `--catalog path` selects another catalog file.
+
+All three starter release workflows run preparation before packaging and attach `catalog-entry.json` to the GitHub Release. Authors submit that generated entry for listing; maintainers still review and publish the official catalog. The process starter lists the x86-64 Linux and Windows packages built by its workflow; add other targets only after testing them.
+
+To correct a published compatibility statement:
+
+```sh
+node scripts/release-plugin.mjs correct com.example.my-plugin \
+  --version 1.0.0 --host-range ">=2.2.0, <3.0.0" \
+  --reason "The old API was removed in host 3.0"
+```
+
+This appends `compatibilityCorrections`; it does not edit the original range, assets, or earlier corrections. Clients select the last correction. CI rejects rewriting or deleting earlier correction records.
+
+Older clients keep reading the top-level snapshot and do not gain history selection or runtime checks. Some older native clients also failed to read `minOxideTermVersion` because of a field-name mismatch. Do not rely on that field alone to hide new-only plugin types from those clients; confirm the publication strategy before listing new language packages.
 
 ## Update marketplace text only
 
@@ -118,7 +169,9 @@ Several targets may reference the same package only when its runtime entry and d
 - `downloadUrl` must use HTTPS and point to an immutable versioned asset.
 - `checksum` is a 64-digit hexadecimal SHA-256, optionally prefixed with `sha256:`.
 - `size` is the exact package size in bytes.
-- `minOxideTermVersion` is a complete semantic version.
+- `minOxideTermVersion` is the legacy snapshot's minimum complete semantic version.
+- `releases[].engines.oxideterm` is the release's supported host range.
+- `releases[].packages` contains that version's platform packages, URLs, digests, and sizes.
 - `description`, `tags`, and `capabilitiesSummary` are shown inside OxideTerm.
 
 See the [JSON Schema](../schema/registry-v1.schema.json) and [example entry](../examples/plugin-entry.json) for the complete structure.
@@ -126,3 +179,5 @@ See the [JSON Schema](../schema/registry-v1.schema.json) and [example entry](../
 ## Maintainer review
 
 The maintainer downloads Release assets, independently verifies digests and sizes, inspects the manifest, entry, paths, and permission changes, runs catalog validation, and then commits `registry/v1/index.json` directly. Third-party source is not copied into this repository for marketplace listing.
+
+Compare the downloaded manifest's version and host range with the submitted release record. Run `npm ci --ignore-scripts`, `npm test`, and `npm run check`. To verify history against a previous commit, set `REGISTRY_BASE_REF` to its full SHA when running `node scripts/validate-registry.mjs`; CI performs this comparison against the commit preceding a push. Removed or modified releases and changed legacy snapshots fail validation.

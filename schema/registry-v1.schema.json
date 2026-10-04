@@ -47,6 +47,17 @@
           "type": "string",
           "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$"
         },
+        "engines": {
+          "$ref": "#/$defs/engines"
+        },
+        "minOxidetermVersion": {
+          "$ref": "#/$defs/plugin/properties/minOxideTermVersion"
+        },
+        "releases": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/release" }
+        },
         "tags": {
           "type": "array",
           "uniqueItems": true,
@@ -79,6 +90,37 @@
           "minItems": 1,
           "items": {
             "$ref": "#/$defs/package"
+          }
+        }
+      }
+    },
+    "engines": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["oxideterm"],
+      "properties": {
+        "oxideterm": { "type": "string", "minLength": 1 }
+      }
+    },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "engines", "packages"],
+      "properties": {
+        "version": { "$ref": "#/$defs/plugin/properties/version" },
+        "engines": { "$ref": "#/$defs/engines" },
+        "packages": { "$ref": "#/$defs/plugin/properties/packages" },
+        "compatibilityCorrections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["engines", "reason", "recordedAt"],
+            "properties": {
+              "engines": { "$ref": "#/$defs/engines" },
+              "reason": { "type": "string", "minLength": 1 },
+              "recordedAt": { "type": "string", "format": "date-time" }
+            }
           }
         }
       }
@@ -117,4 +159,3 @@
     }
   }
 }
-

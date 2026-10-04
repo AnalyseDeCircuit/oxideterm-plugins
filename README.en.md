@@ -31,11 +31,12 @@ OxideTerm provides a packageable and releasable starter for each native plugin s
 
 ## Create a plugin in five minutes
 
-Git and Node.js 18 or later are required.
+Git and Node.js 22 or later are required.
 
 ```bash
 git clone https://github.com/AnalyseDeCircuit/oxideterm-plugins.git
 cd oxideterm-plugins
+npm ci --ignore-scripts
 node scripts/create-plugin.mjs ../my-oxideterm-plugin \
   --type process \
   --id com.example.my-plugin \
@@ -46,6 +47,8 @@ npm run check
 ```
 
 The generated Process plugin registers an interactive native tab. Edit [`plugin.json`](templates/process-plugin/plugin.json) to change capabilities and contributions, then implement behavior in [`bin/plugin.js`](templates/process-plugin/bin/plugin.js).
+
+Creation sets the minimum host version from the latest stable release; use `--host-repo /path/to/OxideTerm` to read a local checkout instead. Release workflows inherit compatibility, verify packages, and generate catalog records with digests automatically. See the [publishing guide](docs/PUBLISHING.en.md#automated-release-preparation) for explicit range changes and corrections.
 
 Change `--type process` to `manifest` or `wasm` to generate the other starters. The WASM starter also requires Rust and the `wasm32-wasip1` target.
 
@@ -111,8 +114,9 @@ docs/                        publishing and catalog-maintenance guides
 Maintainers validate catalog or first-party changes with:
 
 ```bash
-node scripts/validate-registry.mjs
-node scripts/validate-plugins.mjs
+npm ci --ignore-scripts
+npm test
+npm run check
 ```
 
 ## License

@@ -5,8 +5,12 @@
   "author": "Example Author",
   "version": "1.0.0",
   "minOxideTermVersion": "2.0.21",
-  "tags": ["sample"],
-  "capabilitiesSummary": ["terminal.content.read"],
+  "tags": [
+    "sample"
+  ],
+  "capabilitiesSummary": [
+    "terminal.content.read"
+  ],
   "homepage": "https://github.com/example/sample-plugin",
   "updatedAt": "2026-08-16T00:00:00Z",
   "packages": [
@@ -16,6 +20,21 @@
       "checksum": "0000000000000000000000000000000000000000000000000000000000000000",
       "size": 1024
     }
+  ],
+  "releases": [
+    {
+      "version": "1.0.0",
+      "engines": {
+        "oxideterm": ">=2.0.21"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/example/sample-plugin/releases/download/v1.0.0/sample-plugin.zip",
+          "checksum": "0000000000000000000000000000000000000000000000000000000000000000",
+          "size": 1024
+        }
+      ]
+    }
   ]
 }
-

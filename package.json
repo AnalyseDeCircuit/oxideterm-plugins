@@ -1,0 +1,14 @@
+{
+  "name": "oxideterm-plugin-catalog",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "check": "node scripts/validate-registry.mjs && node scripts/validate-plugins.mjs",
+    "test": "node --test scripts/release-plugin.test.mjs scripts/validate-registry.test.mjs"
+  },
+  "dependencies": {
+    "fflate": "0.8.3",
+    "semver": "7.8.5"
+  }
+}

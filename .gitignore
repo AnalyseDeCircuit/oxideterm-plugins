@@ -5,6 +5,7 @@
 
 # JavaScript dependencies and logs
 node_modules/
+.language-tools/
 *.log
 
 # Plugin build and package artifacts

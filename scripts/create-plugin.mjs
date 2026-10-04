@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
+import { prepareManifest } from "./release-plugin.mjs";
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.resolve(scriptDirectory, "..");
@@ -19,6 +20,11 @@ const usage = `Usage:
     --id <reverse-domain-id> \\
     --name <display-name> \\
     --author <author-name>
+
+Compatibility:
+  Defaults to the latest stable OxideTerm release.
+  --host-repo <checkout> reads the local app version instead.
+  --host-range ">=2.3.0, <3.0.0" declares a tested range explicitly.
 
 Example:
   node scripts/create-plugin.mjs ../my-plugin \\
@@ -59,6 +65,13 @@ if (!targetWithinTemplates.startsWith("..") && !path.isAbsolute(targetWithinTemp
   fail("Target directory cannot be created inside the templates directory.");
 }
 
+// Resolve compatibility before creating files so a failed lookup leaves no partial plugin.
+const initial = await prepareManifest(
+  { ...JSON.parse(fs.readFileSync(path.join(templatesRoot, templateDirectoryName, "plugin.json"), "utf8")), id: pluginId },
+  { version: 1, plugins: [] },
+  { hostRepository: options.get("host-repo"), hostRange: options.get("host-range") },
+);
+
 // Copy the distributable template without carrying local build artifacts.
 const sourceTemplateDirectory = path.join(templatesRoot, templateDirectoryName);
 const generatedSourcePaths = [
@@ -80,6 +93,7 @@ manifest.id = pluginId;
 manifest.name = pluginName;
 manifest.description = `${pluginName} for OxideTerm.`;
 manifest.author = pluginAuthor;
+manifest.engines = initial.engines;
 if (manifest.contributes?.tabs?.[0]) {
   manifest.contributes.tabs[0].title = pluginName;
 }
@@ -106,7 +120,7 @@ function parseArguments(argumentsList) {
     }
 
     const optionName = argument.slice(2);
-    if (!["type", "id", "name", "author"].includes(optionName)) {
+    if (!["type", "id", "name", "author", "host-repo", "host-range"].includes(optionName)) {
       fail(`Unknown option: ${argument}`);
     }
     const optionValue = argumentsList[index + 1];

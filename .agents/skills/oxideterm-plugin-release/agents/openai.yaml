@@ -1,0 +1,4 @@
+interface:
+  display_name: "OxideTerm Plugin Release"
+  short_description: "Automate plugin releases and compatibility corrections"
+  default_prompt: "Use $oxideterm-plugin-release to prepare a plugin release or correct its host compatibility with the existing automation."

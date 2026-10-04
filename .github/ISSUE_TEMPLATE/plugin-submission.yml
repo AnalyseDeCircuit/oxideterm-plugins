@@ -73,10 +73,11 @@ body:
     validations:
       required: true
   - type: input
-    id: minimum_version
+    id: host_version_range
     attributes:
-      label: Minimum OxideTerm version / 最低 OxideTerm 版本
-      placeholder: 2.0.21
+      label: Supported OxideTerm range / 宿主兼容范围
+      description: Must match engines.oxideterm in the released plugin.json. / 必须与发布包中 plugin.json 的 engines.oxideterm 一致。
+      placeholder: ">=2.3.0, <3.0.0"
     validations:
       required: true
   - type: input

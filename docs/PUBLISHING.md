@@ -11,7 +11,7 @@
 ### 1. 固定插件身份
 
 - 选择长期稳定的反向域名 ID，例如 `com.example.server-inspector`。
-- 安装包和目录条目的 `id`、`name`、`version` 必须与 `plugin.json` 一致。
+- 安装包中的标识、名称和发布版本必须与 `plugin.json` 一致；目录顶层版本保留为旧客户端的兼容记录。
 - 后续更新不得通过更换 ID 规避权限复核或替代已有插件。
 
 ### 2. 准备安装包
@@ -71,7 +71,7 @@ Issue 需要提供：
 
 - 插件 ID、展示名称、作者、客观的一句话描述；
 - 源码仓库、主页和许可证；
-- 插件版本与最低 OxideTerm 版本；
+- 插件版本，以及 `plugin.json` 中声明的宿主兼容范围（`engines.oxideterm`）；
 - 每个平台的 target、不可变下载地址、SHA-256 和准确字节数；
 - `plugin.json` 申请的全部能力；
 - 已实际验证的平台；
@@ -91,7 +91,58 @@ Issue 需要提供：
 6. 提交新的 Plugin listing request，选择“版本更新”；
 7. 说明功能变化、权限变化、兼容性变化和测试平台。
 
-OxideTerm 只会在目录版本高于已安装版本，并且当前平台与最低版本要求都满足时显示更新。
+支持版本历史的客户端会选择当前宿主兼容且有当前平台安装包的最高语义化版本，优先使用精确平台包，其次使用 `any` 包。只有该版本高于已安装版本时才提供更新。若更高版本要求不同的宿主版本，市场会单独说明要求，并保留当前插件，不会自动降级插件。
+
+### 版本历史与宿主兼容范围
+
+插件版本与主应用版本独立递增。新发布的安装包必须在 `plugin.json` 中声明宿主兼容范围，目录中对应的发布记录必须填写同一范围：
+
+```json
+{ "engines": { "oxideterm": ">=2.3.0, <3.0.0" } }
+```
+
+这只是格式示例，不代表实际兼容承诺。使用明确的比较符和完整版本，多个条件用逗号分隔，表示必须同时满足。不支持 npm 的 `||` 或连字符范围写法。应验证声明的兼容边界；宿主版本范围不能替代语法解析器的二进制接口或插件接口兼容检查。
+
+每次发布都向 `releases` 添加包含 `version`、`engines` 和 `packages` 的记录，保留原始声明及资产。兼容性纠错通过追加记录完成，并填写原因和时间。现有条目的顶层 `version`、`minOxideTermVersion` 和 `packages` 保留为旧客户端读取的版本记录，同一安装包记录也应纳入历史。不要随着新版发布覆盖顶层记录。
+
+主应用会在安装和启动时检查兼容性，应用升级和降级后同样生效。启动时限时刷新官方目录，再激活运行时；离线时使用上次有效的缓存。根据插件标识和版本精确匹配到的最新纠错声明优先于安装包声明，但不会改写磁盘上的安装包。不兼容插件保留文件、设置和启用偏好。手动刷新市场也会保存目录，供下次启动使用。未被目录收录且未声明范围的旧插件仍允许使用。
+
+### 自动准备发布
+
+目录工具需要 Node.js 22，首次使用先在本仓库运行 `npm ci --ignore-scripts`。
+
+- 首次创建默认读取主程序最新正式版；使用 `--host-repo /path/to/OxideTerm` 可通过 Cargo 元数据读取本地源码版本，使用 `--host-range` 可指定经过验证的范围。
+- 普通更新继承最近发布版本的范围，包括后续纠错；清单中明确改动的范围会被保留。
+- 使用了新版宿主能力时，明确传入 `--requires-current-app` 或修改范围。工具不会根据发布时间推断旧插件的版本上限。
+
+```sh
+node scripts/release-plugin.mjs prepare ../my-plugin
+node scripts/release-plugin.mjs prepare ../my-plugin --requires-current-app --host-repo ../OxideTerm
+```
+
+应在打包前执行准备步骤。工具将 `engines.oxideterm` 写入源码清单，不会修改已生成的 ZIP。打包后，从实际安装包生成市场记录：
+
+```sh
+node scripts/release-plugin.mjs record ../my-plugin \
+  --release-url https://github.com/example/my-plugin/releases/download/v1.1.0 \
+  --package any=../my-plugin/dist/my-plugin-1.1.0.zip
+```
+
+多个平台包重复填写 `--package target=path`。工具核对包内标识、版本和兼容范围，计算校验值及大小，然后追加发布记录，保留历史版本。`--catalog path` 可以指定其他目录文件。
+
+三套模板的发布流水线均已接入打包前准备，并将自动生成的 `catalog-entry.json` 附加到发布资产。作者提交该文件申请收录，正式目录仍由维护者审核发布。进程插件模板默认列出流水线实际构建的 x86-64 Linux 和 Windows 安装包，其他平台应验证后再添加。
+
+纠正已发布版本的兼容声明：
+
+```sh
+node scripts/release-plugin.mjs correct com.example.my-plugin \
+  --version 1.0.0 --host-range ">=2.2.0, <3.0.0" \
+  --reason "主程序 3.0 已移除旧接口"
+```
+
+此命令追加 `compatibilityCorrections`，保留原始范围、安装包及此前纠错记录。客户端采用最后一条纠错声明；持续集成拒绝改写或删除旧纠错记录。
+
+旧客户端继续读取顶层记录，不会因此获得版本历史选择或运行时检查能力。部分旧原生客户端还存在字段名大小写不一致、未读取 `minOxideTermVersion` 的问题。不能只靠该字段向旧客户端隐藏新插件类型；发布新的语言插件前，须确认对应的目录发布方案。
 
 ## 只更新市场文案
 
@@ -118,7 +169,9 @@ OxideTerm 只会在目录版本高于已安装版本，并且当前平台与最�
 - `downloadUrl` 必须使用 HTTPS 并指向不可变版本资产。
 - `checksum` 是 64 位十六进制 SHA-256，可带 `sha256:` 前缀。
 - `size` 是安装包的准确字节数。
-- `minOxideTermVersion` 使用完整语义化版本。
+- `minOxideTermVersion` 是顶层兼容记录的最低宿主版本，使用完整语义化版本。
+- `releases[].engines.oxideterm` 声明该发布版本的宿主兼容范围。
+- `releases[].packages` 保存该版本各平台的下载地址、校验值和大小。
 - `description`、`tags` 和 `capabilitiesSummary` 是应用内展示信息。
 
 完整结构见 [JSON Schema](../schema/registry-v1.schema.json) 和 [条目示例](../examples/plugin-entry.json)。
@@ -126,3 +179,5 @@ OxideTerm 只会在目录版本高于已安装版本，并且当前平台与最�
 ## 维护者审核流程
 
 维护者会下载 Release 资产并独立复算摘要与大小，检查清单、入口、路径和权限变化，运行目录校验，然后直接提交 `registry/v1/index.json`。第三方插件源码不会为了市场收录而复制到本仓库。
+
+核对下载包清单中的版本和宿主范围与发布记录一致。运行 `npm ci --ignore-scripts`、`npm test` 和 `npm run check`。如需对照历史提交，运行 `node scripts/validate-registry.mjs` 时将环境变量 `REGISTRY_BASE_REF` 设为基准提交的完整标识；持续集成会自动与推送前的提交比较，拒绝删除或修改已发布记录、覆盖旧客户端的顶层版本记录。

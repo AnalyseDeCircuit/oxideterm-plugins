@@ -18,12 +18,28 @@ jobs:
           node-version: "22"
       - name: Install WASM target
         run: rustup target add wasm32-wasip1
+      - uses: actions/checkout@v4
+        with:
+          repository: AnalyseDeCircuit/oxideterm-plugins
+          path: .oxideterm-catalog
+      - run: npm --prefix .oxideterm-catalog ci --ignore-scripts
+      - name: Prepare host compatibility
+        run: node .oxideterm-catalog/scripts/release-plugin.mjs prepare .
       - name: Validate manifest and release tag
         run: node scripts/check.mjs --release-tag "${{ github.ref_name }}"
       - name: Package plugin
         run: npm run package:unix
+      - name: Generate marketplace entry
+        env:
+          GH_REPO: ${{ github.repository }}
+        run: |
+          identity=$(node -p 'const m = require("./plugin.json"); m.id + "-" + m.version')
+          node .oxideterm-catalog/scripts/release-plugin.mjs record . \
+            --release-url "https://github.com/$GH_REPO/releases/download/$GITHUB_REF_NAME" \
+            --package "any=dist/$identity.zip"
+          node --input-type=module -e 'import fs from "node:fs"; const m = JSON.parse(fs.readFileSync("plugin.json")); const index = JSON.parse(fs.readFileSync(".oxideterm-catalog/registry/v1/index.json")); fs.writeFileSync("dist/catalog-entry.json", JSON.stringify(index.plugins.find(p => p.id === m.id), null, 2) + "\n");'
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-        run: gh release create "$GITHUB_REF_NAME" dist/*.zip --generate-notes --verify-tag
+        run: gh release create "$GITHUB_REF_NAME" dist/*.zip dist/catalog-entry.json --generate-notes --verify-tag
