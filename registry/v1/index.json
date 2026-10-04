@@ -79,6 +79,867 @@
           ]
         }
       ]
+    },
+    {
+      "id": "com.oxideterm.language.c",
+      "name": "C Language Support",
+      "description": "Syntax highlighting and folding for C.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-c",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-c-v0.1.0/com.oxideterm.language.c-0.1.0.zip",
+          "checksum": "sha256:84d4d3b7a01be767a5e88b1fc6d75e2cf13011924b337747fea8336cd7dd1d0e",
+          "size": 81477
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-c-v0.1.0/com.oxideterm.language.c-0.1.0.zip",
+              "checksum": "sha256:84d4d3b7a01be767a5e88b1fc6d75e2cf13011924b337747fea8336cd7dd1d0e",
+              "size": 81477
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "c"
+      ],
+      "updatedAt": "2026-10-04T14:32:42.199Z"
+    },
+    {
+      "id": "com.oxideterm.language.c-sharp",
+      "name": "C# Language Support",
+      "description": "Syntax highlighting and folding for C#.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-c-sharp",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-c-sharp-v0.1.0/com.oxideterm.language.c-sharp-0.1.0.zip",
+          "checksum": "sha256:5efed28676f8e0aff85602659a4593462dbeef998517b9c84d80c15adb80c98d",
+          "size": 335123
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-c-sharp-v0.1.0/com.oxideterm.language.c-sharp-0.1.0.zip",
+              "checksum": "sha256:5efed28676f8e0aff85602659a4593462dbeef998517b9c84d80c15adb80c98d",
+              "size": 335123
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "c-sharp"
+      ],
+      "updatedAt": "2026-10-04T14:32:42.261Z"
+    },
+    {
+      "id": "com.oxideterm.language.commonlisp",
+      "name": "Common Lisp Language Support",
+      "description": "Syntax highlighting and folding for Common Lisp.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-commonlisp",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-commonlisp-v0.1.0/com.oxideterm.language.commonlisp-0.1.0.zip",
+          "checksum": "sha256:b5995d350c0b305f9d3075fa168929ff0806f1a2e03caae898fd437251b038fc",
+          "size": 104148
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-commonlisp-v0.1.0/com.oxideterm.language.commonlisp-0.1.0.zip",
+              "checksum": "sha256:b5995d350c0b305f9d3075fa168929ff0806f1a2e03caae898fd437251b038fc",
+              "size": 104148
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "commonlisp"
+      ],
+      "updatedAt": "2026-10-04T14:32:42.322Z"
+    },
+    {
+      "id": "com.oxideterm.language.cpp",
+      "name": "C++ Language Support",
+      "description": "Syntax highlighting and folding for C++.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-cpp",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-cpp-v0.1.0/com.oxideterm.language.cpp-0.1.0.zip",
+          "checksum": "sha256:4794717dee07523020040c5648fd6f4b375ef857b1a6858670b4e35dd9a39253",
+          "size": 286638
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-cpp-v0.1.0/com.oxideterm.language.cpp-0.1.0.zip",
+              "checksum": "sha256:4794717dee07523020040c5648fd6f4b375ef857b1a6858670b4e35dd9a39253",
+              "size": 286638
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "cpp"
+      ],
+      "updatedAt": "2026-10-04T14:32:42.386Z"
+    },
+    {
+      "id": "com.oxideterm.language.css",
+      "name": "CSS Language Support",
+      "description": "Syntax highlighting and folding for CSS.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-css",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-css-v0.1.0/com.oxideterm.language.css-0.1.0.zip",
+          "checksum": "sha256:3acc026aa787805cfe76da723af52332b45e893039a4082d90cf4ee5bde0a507",
+          "size": 26764
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-css-v0.1.0/com.oxideterm.language.css-0.1.0.zip",
+              "checksum": "sha256:3acc026aa787805cfe76da723af52332b45e893039a4082d90cf4ee5bde0a507",
+              "size": 26764
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "css"
+      ],
+      "updatedAt": "2026-10-04T14:32:42.449Z"
+    },
+    {
+      "id": "com.oxideterm.language.elixir",
+      "name": "Elixir Language Support",
+      "description": "Syntax highlighting and folding for Elixir.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-elixir",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-elixir-v0.1.0/com.oxideterm.language.elixir-0.1.0.zip",
+          "checksum": "sha256:48860e6a045b2e535628b7b880c21624c223278a5f760fff358cb293c3f8c169",
+          "size": 160525
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-elixir-v0.1.0/com.oxideterm.language.elixir-0.1.0.zip",
+              "checksum": "sha256:48860e6a045b2e535628b7b880c21624c223278a5f760fff358cb293c3f8c169",
+              "size": 160525
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "elixir"
+      ],
+      "updatedAt": "2026-10-04T14:32:42.511Z"
+    },
+    {
+      "id": "com.oxideterm.language.go",
+      "name": "Go Language Support",
+      "description": "Syntax highlighting and folding for Go.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-go",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-go-v0.1.0/com.oxideterm.language.go-0.1.0.zip",
+          "checksum": "sha256:a2914c78239d529c9afde2ca9f05028513e9cb3735c1093ca8351764ccc451b5",
+          "size": 44494
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-go-v0.1.0/com.oxideterm.language.go-0.1.0.zip",
+              "checksum": "sha256:a2914c78239d529c9afde2ca9f05028513e9cb3735c1093ca8351764ccc451b5",
+              "size": 44494
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "go"
+      ],
+      "updatedAt": "2026-10-04T14:32:42.573Z"
+    },
+    {
+      "id": "com.oxideterm.language.html",
+      "name": "HTML Language Support",
+      "description": "Syntax highlighting and folding for HTML.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-html",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-html-v0.1.0/com.oxideterm.language.html-0.1.0.zip",
+          "checksum": "sha256:b934c5925482f22215700088e5f05d8cb27dfb689d48e3930c5b595db503e875",
+          "size": 13269
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-html-v0.1.0/com.oxideterm.language.html-0.1.0.zip",
+              "checksum": "sha256:b934c5925482f22215700088e5f05d8cb27dfb689d48e3930c5b595db503e875",
+              "size": 13269
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "html"
+      ],
+      "updatedAt": "2026-10-04T14:32:42.638Z"
+    },
+    {
+      "id": "com.oxideterm.language.java",
+      "name": "Java Language Support",
+      "description": "Syntax highlighting and folding for Java.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-java",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-java-v0.1.0/com.oxideterm.language.java-0.1.0.zip",
+          "checksum": "sha256:70e06d17b45fe8ec4801de13acdb0720aeb852076654211e6bef7d44f97f9e7e",
+          "size": 57529
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-java-v0.1.0/com.oxideterm.language.java-0.1.0.zip",
+              "checksum": "sha256:70e06d17b45fe8ec4801de13acdb0720aeb852076654211e6bef7d44f97f9e7e",
+              "size": 57529
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "java"
+      ],
+      "updatedAt": "2026-10-04T14:32:42.701Z"
+    },
+    {
+      "id": "com.oxideterm.language.javascript",
+      "name": "JavaScript Language Support",
+      "description": "Syntax highlighting and folding for JavaScript.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-javascript",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-javascript-v0.1.0/com.oxideterm.language.javascript-0.1.0.zip",
+          "checksum": "sha256:c3c48a12872a6ed7b414f2c8f09dcb2e5004b8bbabb346006c80c51931f65361",
+          "size": 53179
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-javascript-v0.1.0/com.oxideterm.language.javascript-0.1.0.zip",
+              "checksum": "sha256:c3c48a12872a6ed7b414f2c8f09dcb2e5004b8bbabb346006c80c51931f65361",
+              "size": 53179
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "javascript"
+      ],
+      "updatedAt": "2026-10-04T14:32:42.764Z"
+    },
+    {
+      "id": "com.oxideterm.language.objc",
+      "name": "Objective-C Language Support",
+      "description": "Syntax highlighting and folding for Objective-C.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-objc",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-objc-v0.1.0/com.oxideterm.language.objc-0.1.0.zip",
+          "checksum": "sha256:907570ed4dc13cb3b1c7e6323ae65a73ad0619ae5915385af90a42ac3d74620e",
+          "size": 296277
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-objc-v0.1.0/com.oxideterm.language.objc-0.1.0.zip",
+              "checksum": "sha256:907570ed4dc13cb3b1c7e6323ae65a73ad0619ae5915385af90a42ac3d74620e",
+              "size": 296277
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "objc"
+      ],
+      "updatedAt": "2026-10-04T14:32:42.826Z"
+    },
+    {
+      "id": "com.oxideterm.language.perl",
+      "name": "Perl Language Support",
+      "description": "Syntax highlighting and folding for Perl.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-perl",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-perl-v0.1.0/com.oxideterm.language.perl-0.1.0.zip",
+          "checksum": "sha256:a1f593004df477589be2613121a9d620768198d0192a41e26789da96247b8c78",
+          "size": 271048
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-perl-v0.1.0/com.oxideterm.language.perl-0.1.0.zip",
+              "checksum": "sha256:a1f593004df477589be2613121a9d620768198d0192a41e26789da96247b8c78",
+              "size": 271048
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "perl"
+      ],
+      "updatedAt": "2026-10-04T14:32:42.888Z"
+    },
+    {
+      "id": "com.oxideterm.language.php",
+      "name": "PHP Language Support",
+      "description": "Syntax highlighting and folding for PHP.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-php",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-php-v0.1.0/com.oxideterm.language.php-0.1.0.zip",
+          "checksum": "sha256:33a2f10047437ee6d46223229eef084540ed67949da29f859ef6b462b8a43d17",
+          "size": 113215
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-php-v0.1.0/com.oxideterm.language.php-0.1.0.zip",
+              "checksum": "sha256:33a2f10047437ee6d46223229eef084540ed67949da29f859ef6b462b8a43d17",
+              "size": 113215
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "php"
+      ],
+      "updatedAt": "2026-10-04T14:32:42.952Z"
+    },
+    {
+      "id": "com.oxideterm.language.r",
+      "name": "R Language Support",
+      "description": "Syntax highlighting and folding for R.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-r",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-r-v0.1.0/com.oxideterm.language.r-0.1.0.zip",
+          "checksum": "sha256:66a3d70f0f655c49481da7a884cccca4324d68cfb52fd8c3aaf47ae4b0e0df45",
+          "size": 55424
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-r-v0.1.0/com.oxideterm.language.r-0.1.0.zip",
+              "checksum": "sha256:66a3d70f0f655c49481da7a884cccca4324d68cfb52fd8c3aaf47ae4b0e0df45",
+              "size": 55424
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "r"
+      ],
+      "updatedAt": "2026-10-04T14:32:43.014Z"
+    },
+    {
+      "id": "com.oxideterm.language.ruby",
+      "name": "Ruby Language Support",
+      "description": "Syntax highlighting and folding for Ruby.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-ruby",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-ruby-v0.1.0/com.oxideterm.language.ruby-0.1.0.zip",
+          "checksum": "sha256:bddf3a19b0f7f9182a1d9e0568bdc7707096b23b8f59092ae56c0228c925f23e",
+          "size": 175749
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-ruby-v0.1.0/com.oxideterm.language.ruby-0.1.0.zip",
+              "checksum": "sha256:bddf3a19b0f7f9182a1d9e0568bdc7707096b23b8f59092ae56c0228c925f23e",
+              "size": 175749
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "ruby"
+      ],
+      "updatedAt": "2026-10-04T14:32:43.077Z"
+    },
+    {
+      "id": "com.oxideterm.language.rust",
+      "name": "Rust Language Support",
+      "description": "Syntax highlighting and folding for Rust.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-rust",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-rust-v0.1.0/com.oxideterm.language.rust-0.1.0.zip",
+          "checksum": "sha256:357f638e5afcadbdf013c432c41703b74efc756118bde1eca547a833f0ac9717",
+          "size": 123521
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-rust-v0.1.0/com.oxideterm.language.rust-0.1.0.zip",
+              "checksum": "sha256:357f638e5afcadbdf013c432c41703b74efc756118bde1eca547a833f0ac9717",
+              "size": 123521
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "rust"
+      ],
+      "updatedAt": "2026-10-04T14:32:43.141Z"
+    },
+    {
+      "id": "com.oxideterm.language.scala",
+      "name": "Scala Language Support",
+      "description": "Syntax highlighting and folding for Scala.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-scala",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-scala-v0.1.0/com.oxideterm.language.scala-0.1.0.zip",
+          "checksum": "sha256:ddbfb56c369b5fcc1383db2812fe6670511140d588ab9589148a6e0e9de871e4",
+          "size": 460119
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-scala-v0.1.0/com.oxideterm.language.scala-0.1.0.zip",
+              "checksum": "sha256:ddbfb56c369b5fcc1383db2812fe6670511140d588ab9589148a6e0e9de871e4",
+              "size": 460119
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "scala"
+      ],
+      "updatedAt": "2026-10-04T14:32:43.204Z"
+    },
+    {
+      "id": "com.oxideterm.language.swift",
+      "name": "Swift Language Support",
+      "description": "Syntax highlighting and folding for Swift.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-swift",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-swift-v0.1.0/com.oxideterm.language.swift-0.1.0.zip",
+          "checksum": "sha256:222ee5eebca067e959482e85cda06e0c171df3cabeb07b25672a92510da223b7",
+          "size": 312027
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-swift-v0.1.0/com.oxideterm.language.swift-0.1.0.zip",
+              "checksum": "sha256:222ee5eebca067e959482e85cda06e0c171df3cabeb07b25672a92510da223b7",
+              "size": 312027
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "swift"
+      ],
+      "updatedAt": "2026-10-04T14:32:43.266Z"
+    },
+    {
+      "id": "com.oxideterm.language.tsx",
+      "name": "TSX Language Support",
+      "description": "Syntax highlighting and folding for TSX.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-tsx",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-tsx-v0.1.0/com.oxideterm.language.tsx-0.1.0.zip",
+          "checksum": "sha256:be79a89adf634c5c968f17e859ba38e2c629d77bd94513b053aee2b240c1f485",
+          "size": 146572
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-tsx-v0.1.0/com.oxideterm.language.tsx-0.1.0.zip",
+              "checksum": "sha256:be79a89adf634c5c968f17e859ba38e2c629d77bd94513b053aee2b240c1f485",
+              "size": 146572
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "tsx"
+      ],
+      "updatedAt": "2026-10-04T14:32:43.330Z"
+    },
+    {
+      "id": "com.oxideterm.language.typescript",
+      "name": "TypeScript Language Support",
+      "description": "Syntax highlighting and folding for TypeScript.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-typescript",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-typescript-v0.1.0/com.oxideterm.language.typescript-0.1.0.zip",
+          "checksum": "sha256:e18311b4074be6bf10586f2c3de8801ef1dddf774e16121b02ef03b9431aa41d",
+          "size": 144044
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-typescript-v0.1.0/com.oxideterm.language.typescript-0.1.0.zip",
+              "checksum": "sha256:e18311b4074be6bf10586f2c3de8801ef1dddf774e16121b02ef03b9431aa41d",
+              "size": 144044
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "typescript"
+      ],
+      "updatedAt": "2026-10-04T14:32:43.396Z"
+    },
+    {
+      "id": "com.oxideterm.language.zig",
+      "name": "Zig Language Support",
+      "description": "Syntax highlighting and folding for Zig.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-zig",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-zig-v0.1.0/com.oxideterm.language.zig-0.1.0.zip",
+          "checksum": "sha256:7ac18ebc7aef5eaec913b98086ee64c53a0fddef9c3ddfb5e8ac1e194027d4e7",
+          "size": 61286
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-zig-v0.1.0/com.oxideterm.language.zig-0.1.0.zip",
+              "checksum": "sha256:7ac18ebc7aef5eaec913b98086ee64c53a0fddef9c3ddfb5e8ac1e194027d4e7",
+              "size": 61286
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "zig"
+      ],
+      "updatedAt": "2026-10-04T14:32:43.460Z"
     }
   ]
 }
