@@ -972,6 +972,105 @@
         "zig"
       ],
       "updatedAt": "2026-10-04T14:32:43.460Z"
+    },
+    {
+      "id": "com.oxideterm.preview.pdf",
+      "name": "PDF Preview",
+      "description": "Preview PDF documents with page navigation and zoom in the file browser.",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/pdf-preview",
+      "tags": ["pdf", "preview"],
+      "capabilitiesSummary": ["PDF page preview", "Page navigation and zoom"],
+      "author": "OxideTerm",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/pdf-preview-v0.1.0/pdf-preview-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:a80ec410db76fb0d52baa0cafb8863500c8660341115869676376e71f18d3150",
+          "size": 4424877
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/pdf-preview-v0.1.0/pdf-preview-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:7bc7cac435fb4ef1b1519e45bfa042d32303449de8b63ba15abe2645772cd274",
+          "size": 4504121
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/pdf-preview-v0.1.0/pdf-preview-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:fe1ef33e5ca21a055a1151e53a2ad690cea0c989e7649c978da1503108e0ae48",
+          "size": 4670933
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/pdf-preview-v0.1.0/pdf-preview-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:82807fe2ef754c5540114525003cfab1e67e840cffce966ff07d5fad4bc562f9",
+          "size": 4877031
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/pdf-preview-v0.1.0/pdf-preview-0.1.0-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:574574936fb3f1dfb4329028f41ed649ba0c811c2730c00cb96c5e964d5ad505",
+          "size": 3890917
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/pdf-preview-v0.1.0/pdf-preview-0.1.0-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:73cce785a0677f0fb1cff5e3a73806882b41bb619ee6a8662578e7400a233e7b",
+          "size": 4193814
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "aarch64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/pdf-preview-v0.1.0/pdf-preview-0.1.0-aarch64-apple-darwin.zip",
+              "checksum": "sha256:a80ec410db76fb0d52baa0cafb8863500c8660341115869676376e71f18d3150",
+              "size": 4424877
+            },
+            {
+              "target": "x86_64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/pdf-preview-v0.1.0/pdf-preview-0.1.0-x86_64-apple-darwin.zip",
+              "checksum": "sha256:7bc7cac435fb4ef1b1519e45bfa042d32303449de8b63ba15abe2645772cd274",
+              "size": 4504121
+            },
+            {
+              "target": "aarch64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/pdf-preview-v0.1.0/pdf-preview-0.1.0-aarch64-unknown-linux-gnu.zip",
+              "checksum": "sha256:fe1ef33e5ca21a055a1151e53a2ad690cea0c989e7649c978da1503108e0ae48",
+              "size": 4670933
+            },
+            {
+              "target": "x86_64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/pdf-preview-v0.1.0/pdf-preview-0.1.0-x86_64-unknown-linux-gnu.zip",
+              "checksum": "sha256:82807fe2ef754c5540114525003cfab1e67e840cffce966ff07d5fad4bc562f9",
+              "size": 4877031
+            },
+            {
+              "target": "aarch64-pc-windows-msvc",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/pdf-preview-v0.1.0/pdf-preview-0.1.0-aarch64-pc-windows-msvc.zip",
+              "checksum": "sha256:574574936fb3f1dfb4329028f41ed649ba0c811c2730c00cb96c5e964d5ad505",
+              "size": 3890917
+            },
+            {
+              "target": "x86_64-pc-windows-msvc",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/pdf-preview-v0.1.0/pdf-preview-0.1.0-x86_64-pc-windows-msvc.zip",
+              "checksum": "sha256:73cce785a0677f0fb1cff5e3a73806882b41bb619ee6a8662578e7400a233e7b",
+              "size": 4193814
+            }
+          ]
+        }
+      ],
+      "updatedAt": "2026-10-04T18:51:47.704Z"
     }
   ]
 }

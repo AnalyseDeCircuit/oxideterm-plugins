@@ -94,7 +94,8 @@ npm run package:windows
 
 | 插件 | 展示内容 | 源码 |
 | --- | --- | --- |
-| Host Tools Dashboard | 原生标签页、活动栏、设置、受控远端监控 | [`plugins/host-tools-dashboard`](plugins/host-tools-dashboard) |
+| Workspace Dashboard | 最近工作、活动任务、待处理问题和固定入口 | [`plugins/host-tools-dashboard`](plugins/host-tools-dashboard) |
+| PDF Preview | 本地文件和 SFTP 的原生 PDF 预览、翻页与缩放 | [`plugins/pdf-preview`](plugins/pdf-preview) |
 | 21 个语言插件 | 按需安装 Tree-sitter 语法、高亮与折叠支持 | [`plugins/language-*`](plugins)，[构建与发布](docs/language-plugins.md) |
 
 示例用于展示真实的宿主能力和协议边界。第一方插件也必须先生成不可变发布包并完成平台验证，才能加入正式市场目录。

@@ -94,7 +94,8 @@ Name, description, homepage, or tag changes do not require an invented plugin ve
 
 | Plugin | Demonstrates | Source |
 | --- | --- | --- |
-| Host Tools Dashboard | Native tab, activity bar, settings, controlled remote monitor | [`plugins/host-tools-dashboard`](plugins/host-tools-dashboard) |
+| Workspace Dashboard | Recent work, active tasks, workspace issues and pinned shortcuts | [`plugins/host-tools-dashboard`](plugins/host-tools-dashboard) |
+| PDF Preview | Native PDF previews, page navigation and zoom for local files and SFTP | [`plugins/pdf-preview`](plugins/pdf-preview) |
 | 21 language plugins | On-demand Tree-sitter parsing, highlighting, and folding | [`plugins/language-*`](plugins), [build and release guide](docs/language-plugins.en.md) |
 
 Examples demonstrate real host capabilities and protocol boundaries. First-party plugins must still produce immutable release packages and pass platform verification before entering the official catalog.
