@@ -96,9 +96,12 @@ npm run package:windows
 | --- | --- | --- |
 | Workspace Dashboard | 最近工作、活动任务、待处理问题和固定入口 | [`plugins/host-tools-dashboard`](plugins/host-tools-dashboard) |
 | PDF Preview | 本地文件和 SFTP 的原生 PDF 预览、翻页与缩放 | [`plugins/pdf-preview`](plugins/pdf-preview) |
-| Certificate Viewer（开发中） | 多证书浏览、有效期、域名、用途和指纹 | [`plugins/certificate-preview`](plugins/certificate-preview) |
-| Binary Inspector（开发中） | ELF、Mach-O、PE 信息、节区定位和十六进制预览 | [`plugins/binary-preview`](plugins/binary-preview) |
-| 小工具箱（开发中） | 编码、JSON、时间、文本整理、摘要与随机生成 | [`plugins/toolbox`](plugins/toolbox) |
+| Certificate Viewer | 多证书浏览、有效期、域名、用途和指纹 | [`plugins/certificate-preview`](plugins/certificate-preview) |
+| Binary Inspector | ELF、Mach-O、PE 信息、节区定位和十六进制预览 | [`plugins/binary-preview`](plugins/binary-preview) |
+| SQLite Preview | 只读数据库表与分页数据预览 | [`plugins/sqlite-preview`](plugins/sqlite-preview) |
+| 小工具箱 | 编码、JSON、时间、文本整理、摘要与随机生成 | [`plugins/toolbox`](plugins/toolbox) |
+| Tailscale Hosts | 发现设备并填入原生连接表单 | [`plugins/tailscale-hosts`](plugins/tailscale-hosts) |
+| Ansible Inventory | 从主机清单发现 SSH 连接目标 | [`plugins/ansible-inventory`](plugins/ansible-inventory) |
 | 24 个语言插件 | 按需安装 Tree-sitter 语法、高亮与折叠支持 | [`plugins/language-*`](plugins)，[构建与发布](docs/language-plugins.md) |
 
 示例用于展示真实的宿主能力和协议边界。第一方插件也必须先生成不可变发布包并完成平台验证，才能加入正式市场目录。

@@ -96,9 +96,12 @@ Name, description, homepage, or tag changes do not require an invented plugin ve
 | --- | --- | --- |
 | Workspace Dashboard | Recent work, active tasks, workspace issues and pinned shortcuts | [`plugins/host-tools-dashboard`](plugins/host-tools-dashboard) |
 | PDF Preview | Native PDF previews, page navigation and zoom for local files and SFTP | [`plugins/pdf-preview`](plugins/pdf-preview) |
-| Certificate Viewer (in development) | Multiple certificates, validity dates, domains, purposes and fingerprints | [`plugins/certificate-preview`](plugins/certificate-preview) |
-| Binary Inspector (in development) | ELF, Mach-O and PE metadata, section offsets and hex preview | [`plugins/binary-preview`](plugins/binary-preview) |
-| Toolbox (in development) | Encoding, JSON, time, text cleanup, digests and random generation | [`plugins/toolbox`](plugins/toolbox) |
+| Certificate Viewer | Multiple certificates, validity dates, domains, purposes and fingerprints | [`plugins/certificate-preview`](plugins/certificate-preview) |
+| Binary Inspector | ELF, Mach-O and PE metadata, section offsets and hex preview | [`plugins/binary-preview`](plugins/binary-preview) |
+| SQLite Preview | Read-only database tables and paginated data previews | [`plugins/sqlite-preview`](plugins/sqlite-preview) |
+| Toolbox | Encoding, JSON, time, text cleanup, digests and random generation | [`plugins/toolbox`](plugins/toolbox) |
+| Tailscale Hosts | Device discovery and native connection drafts | [`plugins/tailscale-hosts`](plugins/tailscale-hosts) |
+| Ansible Inventory | SSH host discovery from an Ansible inventory | [`plugins/ansible-inventory`](plugins/ansible-inventory) |
 | 24 language plugins | On-demand Tree-sitter parsing, highlighting, and folding | [`plugins/language-*`](plugins), [build and release guide](docs/language-plugins.en.md) |
 
 Examples demonstrate real host capabilities and protocol boundaries. First-party plugins must still produce immutable release packages and pass platform verification before entering the official catalog.

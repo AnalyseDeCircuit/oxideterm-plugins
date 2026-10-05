@@ -978,8 +978,14 @@
       "name": "PDF Preview",
       "description": "Preview PDF documents with page navigation and zoom in the file browser.",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/pdf-preview",
-      "tags": ["pdf", "preview"],
-      "capabilitiesSummary": ["PDF page preview", "Page navigation and zoom"],
+      "tags": [
+        "pdf",
+        "preview"
+      ],
+      "capabilitiesSummary": [
+        "PDF page preview",
+        "Page navigation and zoom"
+      ],
       "author": "OxideTerm",
       "version": "0.1.0",
       "engines": {
@@ -1071,6 +1077,614 @@
         }
       ],
       "updatedAt": "2026-10-04T18:51:47.704Z"
+    },
+    {
+      "id": "com.oxideterm.toolbox",
+      "name": "Toolbox",
+      "tags": ["host-tools", "utilities", "text"],
+      "description": "Local encoding, JSON, time, text, digest and random generation tools with native editors.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/toolbox",
+      "version": "0.2.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/toolbox-v0.2.0/toolbox-0.2.0-any.zip",
+          "checksum": "sha256:92d5b444377c01f2f699f8f95155aefc3a7f36bc6dc6549b573222758cbcce3f",
+          "size": 704489
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.2.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/toolbox-v0.2.0/toolbox-0.2.0-any.zip",
+              "checksum": "sha256:92d5b444377c01f2f699f8f95155aefc3a7f36bc6dc6549b573222758cbcce3f",
+              "size": 704489
+            }
+          ]
+        }
+      ],
+      "updatedAt": "2026-10-05T04:29:31.599Z"
+    },
+    {
+      "id": "com.oxideterm.preview.sqlite",
+      "name": "SQLite Preview",
+      "description": "Browse SQLite tables and read-only paginated data from the file preview.",
+      "author": "OxideTerm",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:6d113a8dde6d5c1708363fb3e565e1e3879b3d177f9046f843e6b3d401b17927",
+          "size": 1203187
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:e3de19bc345b7e9d3879ef6fbd52a55e8f0fdad60fd84c08267589c13f222995",
+          "size": 1048541
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:6ef4715bdb4bc23cf42ec42dc71fd4c79b72f6557c3f0df81c0bfcc93a66e35a",
+          "size": 1332309
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:8a4cfad74f30462c4f373e323f5a1c8106907a6d3d6befa87f49301dd76df776",
+          "size": 1292785
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:e61f555402cc0eadcc7b5479a476298483eb7f16fe7f4588316292c1a648efb8",
+          "size": 1169906
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:2ea5302c9c44a38c76e12c7b283f812a860dacd88aa15ae0695e2bcd2d114632",
+          "size": 1368100
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "aarch64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-aarch64-apple-darwin.zip",
+              "checksum": "sha256:6d113a8dde6d5c1708363fb3e565e1e3879b3d177f9046f843e6b3d401b17927",
+              "size": 1203187
+            },
+            {
+              "target": "aarch64-pc-windows-msvc",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-aarch64-pc-windows-msvc.zip",
+              "checksum": "sha256:e3de19bc345b7e9d3879ef6fbd52a55e8f0fdad60fd84c08267589c13f222995",
+              "size": 1048541
+            },
+            {
+              "target": "aarch64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-aarch64-unknown-linux-gnu.zip",
+              "checksum": "sha256:6ef4715bdb4bc23cf42ec42dc71fd4c79b72f6557c3f0df81c0bfcc93a66e35a",
+              "size": 1332309
+            },
+            {
+              "target": "x86_64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-x86_64-apple-darwin.zip",
+              "checksum": "sha256:8a4cfad74f30462c4f373e323f5a1c8106907a6d3d6befa87f49301dd76df776",
+              "size": 1292785
+            },
+            {
+              "target": "x86_64-pc-windows-msvc",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-x86_64-pc-windows-msvc.zip",
+              "checksum": "sha256:e61f555402cc0eadcc7b5479a476298483eb7f16fe7f4588316292c1a648efb8",
+              "size": 1169906
+            },
+            {
+              "target": "x86_64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-x86_64-unknown-linux-gnu.zip",
+              "checksum": "sha256:2ea5302c9c44a38c76e12c7b283f812a860dacd88aa15ae0695e2bcd2d114632",
+              "size": 1368100
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "preview"
+      ],
+      "updatedAt": "2026-10-05T04:29:31.668Z"
+    },
+    {
+      "id": "com.oxideterm.preview.certificate",
+      "name": "Certificate Viewer",
+      "description": "Inspect certificates in PEM and DER files without displaying private keys.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/certificate-preview",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:99e790648e9f6545b12133d4878139cafc286ecc87b53afc2e6f90afe3460f51",
+          "size": 411586
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:7b282b2793ed7ee948922645661591303782d7e7f751848bd337ca26b328bed0",
+          "size": 276299
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:2cb0e4b2ca567c9737d58ae1ec97b5fb9b76fec34202b58f661c611cdd7eb37d",
+          "size": 437527
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:65dc71f44fe9f2cab6a2b47a04c54a8d055238874770aabcb5dd7e0c95ad7677",
+          "size": 436395
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:74c295b74531b11ee537fddd22c2f23e3b246aeb9087a23e2e2622ade2966b60",
+          "size": 295711
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:67e89794ea1f58520eddf17723ed348e6a78093b046d2627d95ba2cc46471e23",
+          "size": 467133
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "aarch64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-aarch64-apple-darwin.zip",
+              "checksum": "sha256:99e790648e9f6545b12133d4878139cafc286ecc87b53afc2e6f90afe3460f51",
+              "size": 411586
+            },
+            {
+              "target": "aarch64-pc-windows-msvc",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-aarch64-pc-windows-msvc.zip",
+              "checksum": "sha256:7b282b2793ed7ee948922645661591303782d7e7f751848bd337ca26b328bed0",
+              "size": 276299
+            },
+            {
+              "target": "aarch64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-aarch64-unknown-linux-gnu.zip",
+              "checksum": "sha256:2cb0e4b2ca567c9737d58ae1ec97b5fb9b76fec34202b58f661c611cdd7eb37d",
+              "size": 437527
+            },
+            {
+              "target": "x86_64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-x86_64-apple-darwin.zip",
+              "checksum": "sha256:65dc71f44fe9f2cab6a2b47a04c54a8d055238874770aabcb5dd7e0c95ad7677",
+              "size": 436395
+            },
+            {
+              "target": "x86_64-pc-windows-msvc",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-x86_64-pc-windows-msvc.zip",
+              "checksum": "sha256:74c295b74531b11ee537fddd22c2f23e3b246aeb9087a23e2e2622ade2966b60",
+              "size": 295711
+            },
+            {
+              "target": "x86_64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-x86_64-unknown-linux-gnu.zip",
+              "checksum": "sha256:67e89794ea1f58520eddf17723ed348e6a78093b046d2627d95ba2cc46471e23",
+              "size": 467133
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "preview"
+      ],
+      "updatedAt": "2026-10-05T04:29:31.734Z"
+    },
+    {
+      "id": "com.oxideterm.preview.binary",
+      "name": "Binary Inspector",
+      "description": "Inspect ELF, Mach-O and PE metadata, sections and SHA-256 from file preview.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/binary-preview",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:2d7f382ab76d79e567b2ae513d5a56ccb8a7bcce6cf48f344d4b1c57b2c06389",
+          "size": 277088
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:26ddd6ca5d36909e217256b6a5147fe1203257e0a0ceccbcf3d46fd259b670dd",
+          "size": 156934
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:5e583d3384fe8278d212377ba799732125d9faba2cab877e43d988428c71f0c8",
+          "size": 295357
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:f406cb5f975a4f55e1c3a256d92905b542c7fb3a1d6c6f25ca29269cf7457824",
+          "size": 294988
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:69dc473e89d2a972e4ea0f0a4c346794784325223db5abde68b0a7cb5dcff08b",
+          "size": 170714
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:4432238a106da1ff1fafe08ec5ad470348e3a0ae7d8bf188e2c414bf21ccda98",
+          "size": 311441
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "aarch64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-aarch64-apple-darwin.zip",
+              "checksum": "sha256:2d7f382ab76d79e567b2ae513d5a56ccb8a7bcce6cf48f344d4b1c57b2c06389",
+              "size": 277088
+            },
+            {
+              "target": "aarch64-pc-windows-msvc",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-aarch64-pc-windows-msvc.zip",
+              "checksum": "sha256:26ddd6ca5d36909e217256b6a5147fe1203257e0a0ceccbcf3d46fd259b670dd",
+              "size": 156934
+            },
+            {
+              "target": "aarch64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-aarch64-unknown-linux-gnu.zip",
+              "checksum": "sha256:5e583d3384fe8278d212377ba799732125d9faba2cab877e43d988428c71f0c8",
+              "size": 295357
+            },
+            {
+              "target": "x86_64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-x86_64-apple-darwin.zip",
+              "checksum": "sha256:f406cb5f975a4f55e1c3a256d92905b542c7fb3a1d6c6f25ca29269cf7457824",
+              "size": 294988
+            },
+            {
+              "target": "x86_64-pc-windows-msvc",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-x86_64-pc-windows-msvc.zip",
+              "checksum": "sha256:69dc473e89d2a972e4ea0f0a4c346794784325223db5abde68b0a7cb5dcff08b",
+              "size": 170714
+            },
+            {
+              "target": "x86_64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-x86_64-unknown-linux-gnu.zip",
+              "checksum": "sha256:4432238a106da1ff1fafe08ec5ad470348e3a0ae7d8bf188e2c414bf21ccda98",
+              "size": 311441
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "preview"
+      ],
+      "updatedAt": "2026-10-05T04:29:31.799Z"
+    },
+    {
+      "id": "com.oxideterm.sources.tailscale",
+      "name": "Tailscale Hosts",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/tailscale-hosts",
+      "tags": ["host-tools", "sources", "tailscale"],
+      "description": "Discover devices visible to the local Tailscale client and prepare SSH connections.",
+      "author": "OxideTerm",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.0/tailscale-hosts-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:d0e8785defc2ca80d1d833ac7f2732aa85b647809fce39a3dd5ce0faa87376b7",
+          "size": 17347
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.0/tailscale-hosts-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:b575933f39310f327a2bd6361b3380dfc0c865fd0f3b483eff9dc3ba9a8a227c",
+          "size": 17347
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.0/tailscale-hosts-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:0cdc0b65c28ad5a697e72365fc06d9b2a79dc51606c011ab4c79f974054dd588",
+          "size": 17347
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.0/tailscale-hosts-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:99411d65ac1fb50046c797a53df8507943cfa0ad3614236113e8864481d6ff08",
+          "size": 17347
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "aarch64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.0/tailscale-hosts-0.1.0-aarch64-apple-darwin.zip",
+              "checksum": "sha256:d0e8785defc2ca80d1d833ac7f2732aa85b647809fce39a3dd5ce0faa87376b7",
+              "size": 17347
+            },
+            {
+              "target": "x86_64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.0/tailscale-hosts-0.1.0-x86_64-apple-darwin.zip",
+              "checksum": "sha256:b575933f39310f327a2bd6361b3380dfc0c865fd0f3b483eff9dc3ba9a8a227c",
+              "size": 17347
+            },
+            {
+              "target": "x86_64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.0/tailscale-hosts-0.1.0-x86_64-unknown-linux-gnu.zip",
+              "checksum": "sha256:0cdc0b65c28ad5a697e72365fc06d9b2a79dc51606c011ab4c79f974054dd588",
+              "size": 17347
+            },
+            {
+              "target": "aarch64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.0/tailscale-hosts-0.1.0-aarch64-unknown-linux-gnu.zip",
+              "checksum": "sha256:99411d65ac1fb50046c797a53df8507943cfa0ad3614236113e8864481d6ff08",
+              "size": 17347
+            }
+          ]
+        }
+      ],
+      "updatedAt": "2026-10-05T04:29:31.863Z"
+    },
+    {
+      "id": "com.oxideterm.sources.ansible",
+      "name": "Ansible Inventory",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/ansible-inventory",
+      "tags": ["host-tools", "sources", "ansible"],
+      "description": "Discover SSH hosts using Ansible inventory and prepare native connections.",
+      "author": "OxideTerm",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/ansible-inventory-v0.1.0/ansible-inventory-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:6ffabb9decbc5bb988b5fda4a89928845920343a124fb306c487817d008b3251",
+          "size": 18328
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/ansible-inventory-v0.1.0/ansible-inventory-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:93ae0442aac720a7605d6c98bb9c7490d36e16b00264775566e049a7ba20d722",
+          "size": 18328
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/ansible-inventory-v0.1.0/ansible-inventory-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:bc63e18e917eec34162fbb0ad665c9b6e40191de5188a0b54f1cc1aec9cf3398",
+          "size": 18328
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/ansible-inventory-v0.1.0/ansible-inventory-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:4f08b5f6d142465a8ac2675ee253fe893566d99f53eb0e34cdd9e6e2395c5cf6",
+          "size": 18328
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "aarch64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/ansible-inventory-v0.1.0/ansible-inventory-0.1.0-aarch64-apple-darwin.zip",
+              "checksum": "sha256:6ffabb9decbc5bb988b5fda4a89928845920343a124fb306c487817d008b3251",
+              "size": 18328
+            },
+            {
+              "target": "x86_64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/ansible-inventory-v0.1.0/ansible-inventory-0.1.0-x86_64-apple-darwin.zip",
+              "checksum": "sha256:93ae0442aac720a7605d6c98bb9c7490d36e16b00264775566e049a7ba20d722",
+              "size": 18328
+            },
+            {
+              "target": "x86_64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/ansible-inventory-v0.1.0/ansible-inventory-0.1.0-x86_64-unknown-linux-gnu.zip",
+              "checksum": "sha256:bc63e18e917eec34162fbb0ad665c9b6e40191de5188a0b54f1cc1aec9cf3398",
+              "size": 18328
+            },
+            {
+              "target": "aarch64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/ansible-inventory-v0.1.0/ansible-inventory-0.1.0-aarch64-unknown-linux-gnu.zip",
+              "checksum": "sha256:4f08b5f6d142465a8ac2675ee253fe893566d99f53eb0e34cdd9e6e2395c5cf6",
+              "size": 18328
+            }
+          ]
+        }
+      ],
+      "updatedAt": "2026-10-05T04:29:31.928Z"
+    },
+    {
+      "id": "com.oxideterm.language.hcl",
+      "name": "Terraform / HCL Language Support",
+      "description": "Syntax highlighting and folding for Terraform / HCL.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-hcl",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-hcl-v0.1.0/com.oxideterm.language.hcl-0.1.0.zip",
+          "checksum": "sha256:7006b56da49036c175f7c73423b381b355c06b338cee61c434fd1a8289f61ada",
+          "size": 30266
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-hcl-v0.1.0/com.oxideterm.language.hcl-0.1.0.zip",
+              "checksum": "sha256:7006b56da49036c175f7c73423b381b355c06b338cee61c434fd1a8289f61ada",
+              "size": 30266
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "hcl"
+      ],
+      "updatedAt": "2026-10-05T04:29:31.992Z"
+    },
+    {
+      "id": "com.oxideterm.language.nginx",
+      "name": "Nginx Language Support",
+      "description": "Syntax highlighting and folding for Nginx.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-nginx",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-nginx-v0.1.0/com.oxideterm.language.nginx-0.1.0.zip",
+          "checksum": "sha256:4b33ff6511879576bdb988350ef576e4fd8de10b7fd46da8c6202018c82f3adb",
+          "size": 24470
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-nginx-v0.1.0/com.oxideterm.language.nginx-0.1.0.zip",
+              "checksum": "sha256:4b33ff6511879576bdb988350ef576e4fd8de10b7fd46da8c6202018c82f3adb",
+              "size": 24470
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "nginx"
+      ],
+      "updatedAt": "2026-10-05T04:29:32.056Z"
+    },
+    {
+      "id": "com.oxideterm.language.proto",
+      "name": "Protobuf Language Support",
+      "description": "Syntax highlighting and folding for Protobuf.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-proto",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-proto-v0.1.0/com.oxideterm.language.proto-0.1.0.zip",
+          "checksum": "sha256:6343bb67ee010f6fd3441f16925f54ca5ba598bd34602b629bf40bcfd0e764e5",
+          "size": 23621
+        }
+      ],
+      "minOxidetermVersion": "2.2.1",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-proto-v0.1.0/com.oxideterm.language.proto-0.1.0.zip",
+              "checksum": "sha256:6343bb67ee010f6fd3441f16925f54ca5ba598bd34602b629bf40bcfd0e764e5",
+              "size": 23621
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "language",
+        "proto"
+      ],
+      "updatedAt": "2026-10-05T04:29:32.121Z"
     }
   ]
 }
