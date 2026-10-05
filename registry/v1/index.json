@@ -16,7 +16,7 @@
         "Active tasks and workspace issues"
       ],
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/host-tools-dashboard",
-      "updatedAt": "2026-10-04T18:48:02.073Z",
+      "updatedAt": "2026-10-05T05:31:36.911Z",
       "packages": [
         {
           "target": "aarch64-apple-darwin",
@@ -105,6 +105,38 @@
               "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/host-tools-dashboard-v0.4.0/host-tools-dashboard-0.4.0.zip",
               "checksum": "sha256:6ad22a4f81def4d64f954708ec03b10c61a063b5eb6bf321dafe1ad18e3bec36",
               "size": 29336
+            }
+          ]
+        },
+        {
+          "version": "0.4.1",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "aarch64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/host-tools-dashboard-v0.4.1/host-tools-dashboard-0.4.1.zip",
+              "checksum": "sha256:d76ec579251e23253c212d7402ea25028e5a087d49aa44df083ac8fba6aff357",
+              "size": 29582
+            },
+            {
+              "target": "x86_64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/host-tools-dashboard-v0.4.1/host-tools-dashboard-0.4.1.zip",
+              "checksum": "sha256:d76ec579251e23253c212d7402ea25028e5a087d49aa44df083ac8fba6aff357",
+              "size": 29582
+            },
+            {
+              "target": "aarch64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/host-tools-dashboard-v0.4.1/host-tools-dashboard-0.4.1.zip",
+              "checksum": "sha256:d76ec579251e23253c212d7402ea25028e5a087d49aa44df083ac8fba6aff357",
+              "size": 29582
+            },
+            {
+              "target": "x86_64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/host-tools-dashboard-v0.4.1/host-tools-dashboard-0.4.1.zip",
+              "checksum": "sha256:d76ec579251e23253c212d7402ea25028e5a087d49aa44df083ac8fba6aff357",
+              "size": 29582
             }
           ]
         }
@@ -1057,7 +1089,9 @@
     {
       "id": "com.oxideterm.toolbox",
       "name": "Toolbox",
-      "tags": ["utilities"],
+      "tags": [
+        "utilities"
+      ],
       "description": "Local encoding, JSON, time, text, digest and random generation tools with native editors.",
       "author": "OxideTerm",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/toolbox",
@@ -1395,7 +1429,9 @@
       "id": "com.oxideterm.sources.tailscale",
       "name": "Tailscale Hosts",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/tailscale-hosts",
-      "tags": ["host-sources"],
+      "tags": [
+        "host-sources"
+      ],
       "description": "Discover devices visible to the local Tailscale client and prepare SSH connections.",
       "author": "OxideTerm",
       "version": "0.1.0",
@@ -1469,7 +1505,9 @@
       "id": "com.oxideterm.sources.ansible",
       "name": "Ansible Inventory",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/ansible-inventory",
-      "tags": ["host-sources"],
+      "tags": [
+        "host-sources"
+      ],
       "description": "Discover SSH hosts using Ansible inventory and prepare native connections.",
       "author": "OxideTerm",
       "version": "0.1.0",
