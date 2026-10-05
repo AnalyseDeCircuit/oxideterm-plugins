@@ -8,6 +8,7 @@ thread_local! {
     static RESPONSE: RefCell<Zeroizing<Vec<u8>>> = RefCell::new(Zeroizing::new(Vec::new()));
     static OUTBOUND: RefCell<Zeroizing<Vec<u8>>> = RefCell::new(Zeroizing::new(Vec::new()));
 }
+#[cfg(target_arch = "wasm32")]
 #[unsafe(no_mangle)]
 pub extern "C" fn _start() {}
 #[unsafe(no_mangle)]
