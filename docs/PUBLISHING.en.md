@@ -20,6 +20,8 @@ Catalog `tags` supply the category buttons in the marketplace and installed list
 | `workspace` | Workspaces and work overview |
 | `utilities` | Text processing and other utilities |
 | `host-tools` | Host administration, when applicable |
+| `acp` | ACP agent integrations |
+| `remote-desktop` | RDP and VNC remote desktop engines |
 
 For a new listing, `record` uses `plugin.json`'s `tags` when provided. Otherwise, language and file-preview plugins receive `language` and `preview` respectively. Other plugin types should declare a category explicitly, for example `"tags": ["utilities"]`. Updates preserve the existing catalog categories. Maintainers may introduce a new functional category in the catalog; clients build their buttons from the data without an application-side allowlist.
 

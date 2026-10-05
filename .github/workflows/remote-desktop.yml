@@ -1,0 +1,99 @@
+name: Build remote desktop plugins
+
+on:
+  push:
+    tags: ['rdp-v*', 'vnc-v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        plugin: ${{ fromJSON(startsWith(github.ref, 'refs/tags/rdp-v') && '["rdp"]' || startsWith(github.ref, 'refs/tags/vnc-v') && '["vnc"]' || '["rdp","vnc"]') }}
+        platform:
+          - { os: macos-14, arch: arm64, target: aarch64-apple-darwin }
+          - { os: macos-15-intel, arch: x64, target: x86_64-apple-darwin }
+          - { os: ubuntu-22.04, arch: x64, target: x86_64-unknown-linux-gnu }
+          - { os: ubuntu-22.04-arm, arch: arm64, target: aarch64-unknown-linux-gnu }
+          - { os: windows-2022, arch: x64, target: x86_64-pc-windows-msvc }
+          - { os: windows-11-arm, arch: arm64, target: aarch64-pc-windows-msvc }
+    runs-on: ${{ matrix.platform.os }}
+    env:
+      REMOTE_DESKTOP_TARGET: ${{ matrix.platform.target }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          architecture: ${{ matrix.platform.arch }}
+      - run: rustup toolchain install 1.97.0-${{ matrix.platform.target }} --profile minimal
+      - run: rustup default 1.97.0-${{ matrix.platform.target }}
+      - name: Install Linux build dependencies
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libasound2-dev libssl-dev libdbus-1-dev pkg-config cmake perl
+      - uses: ilammy/msvc-dev-cmd@v1
+        if: runner.os == 'Windows'
+        with:
+          arch: ${{ matrix.platform.arch }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: plugins/${{ matrix.plugin }}
+      - run: npm ci --ignore-scripts
+      - run: node scripts/release-plugin.mjs prepare plugins/${{ matrix.plugin }} --host-range '>2.2.1'
+      - run: node scripts/build-remote-desktop.mjs ${{ matrix.plugin }}
+      - run: node scripts/verify-remote-desktop.mjs ${{ matrix.plugin }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.plugin }}-${{ matrix.platform.target }}
+          path: plugins/${{ matrix.plugin }}/dist/*.zip
+          if-no-files-found: error
+
+  release:
+    needs: package
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist/remote-desktop
+          merge-multiple: true
+      - name: Record verified platform packages
+        env:
+          GH_REPO: ${{ github.repository }}
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import { recordRelease } from './scripts/release-plugin.mjs';
+          const tag = process.env.GITHUB_REF_NAME;
+          const name = tag.startsWith('rdp-v') ? 'rdp' : 'vnc';
+          const manifest = JSON.parse(fs.readFileSync(`plugins/${name}/plugin.json`));
+          if (tag !== `${name}-v${manifest.version}`) throw new Error('Release tag and manifest version differ');
+          const targets = ['aarch64-apple-darwin', 'x86_64-apple-darwin', 'x86_64-unknown-linux-gnu', 'aarch64-unknown-linux-gnu', 'x86_64-pc-windows-msvc', 'aarch64-pc-windows-msvc'];
+          const directory = 'dist/remote-desktop';
+          const catalog = JSON.parse(fs.readFileSync('registry/v1/index.json'));
+          const updated = recordRelease(catalog, manifest, `https://github.com/${process.env.GH_REPO}/releases/download/${tag}`, targets.map(target => `${target}=${directory}/${name}-${manifest.version}-${target}.zip`));
+          fs.writeFileSync(`${directory}/catalog-entry.json`, JSON.stringify(updated.plugins.find(entry => entry.id === manifest.id), null, 2) + '\n');
+          for (const file of fs.readdirSync(directory)) {
+            if (file.endsWith('.zip') && !file.startsWith(`${name}-`)) fs.unlinkSync(`${directory}/${file}`);
+          }
+          fs.writeFileSync(`${directory}/release-notes.md`, `${manifest.name} ${manifest.version}\n\nRemote desktop engine packages for macOS, Linux and Windows on x64 and ARM64. Requires OxideTerm ${manifest.engines.oxideterm}.\n`);
+          NODE
+      - name: Publish immutable plugin release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$RELEASE_TAG" dist/remote-desktop/*.zip dist/remote-desktop/catalog-entry.json --verify-tag --title "$RELEASE_TAG" --notes-file dist/remote-desktop/release-notes.md --draft --latest=false
+          gh release edit "$RELEASE_TAG" --draft=false --latest=false

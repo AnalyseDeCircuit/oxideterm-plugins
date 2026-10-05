@@ -45,6 +45,12 @@ test("creation reads the host and ordinary updates inherit without consulting a 
   const languages = recordRelease(empty, prepared, "https://example.com/releases/v0.1.0", ["any=" + zip]);
   assert.equal(languages.plugins[0].minOxidetermVersion, "2.2.1");
   assert.deepEqual((await prepareManifest({ ...language, version: "0.2.0" }, languages, { hostRepository: "/unused/host" })).engines, { oxideterm: ">2.2.0" });
+  fs.writeFileSync(path.join(host, "Cargo.toml"), '[package]\nname = "oxideterm-gpui-app"\nversion = "2.2.1"\nedition = "2021"\n');
+  const acp = { id: "com.example.acp", name: "ACP Agent", version: "0.1.0", runtime: { kind: "acp", entry: "bin/agent" } };
+  const preparedAcp = await prepareManifest(acp, empty, { hostRepository: host });
+  assert.deepEqual(preparedAcp.engines, { oxideterm: ">2.2.1" });
+  const desktop = { ...acp, id: "com.example.vnc", runtime: { kind: "remote-desktop", entry: "bin/helper" } };
+  assert.deepEqual((await prepareManifest(desktop, empty, { hostRepository: host })).engines, { oxideterm: ">2.2.1" });
 });
 
 test("recording reads the actual archive and corrections preserve assets and their audit history", async t => {
@@ -81,6 +87,13 @@ test("recording reads the actual archive and corrections preserve assets and the
   assert.equal(languageCatalog.plugins[0].minOxidetermVersion, "2.0.0");
   assert.equal(languageCatalog.plugins[0].minOxideTermVersion, undefined);
   assert.deepEqual(languageCatalog.plugins[0].tags, ["language"]);
+  const acp = { ...manifest, runtime: { kind: "acp", entry: "bin/agent" }, engines: { oxideterm: ">2.2.1" } };
+  fs.writeFileSync(zip, zipSync({ "plugin.json": strToU8(JSON.stringify(acp)), "bin/agent": strToU8("fixture") }));
+  const acpCatalog = recordRelease(empty, acp, "https://example.com/releases/v1.0.0", ["aarch64-apple-darwin=" + zip]);
+  assert.deepEqual(acpCatalog.plugins[0].tags, ["acp"]);
+  const desktop = { ...acp, runtime: { kind: "remote-desktop", entry: "bin/agent" } };
+  fs.writeFileSync(zip, zipSync({ "plugin.json": strToU8(JSON.stringify(desktop)), "bin/agent": strToU8("fixture") }));
+  assert.deepEqual(recordRelease(empty, desktop, "https://example.com/releases/v1.0.0", ["aarch64-apple-darwin=" + zip]).plugins[0].tags, ["remote-desktop"]);
   const preview = { ...manifest, runtime: { kind: "process", entry: "bin/viewer" }, contributes: { filePreviews: [{ mimeTypes: ["application/pkix-cert"], command: "preview.render" }] } };
   fs.writeFileSync(zip, zipSync({ "plugin.json": strToU8(JSON.stringify(preview)), "bin/viewer": strToU8("fixture") }));
   const previewCatalog = recordRelease(empty, preview, "https://example.com/releases/v1.0.0", ["aarch64-apple-darwin=" + zip]);

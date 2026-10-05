@@ -1,0 +1,38 @@
+[package]
+name = "oxideterm-rdp-helper"
+edition = "2024"
+license = "GPL-3.0-only"
+version = "0.1.0"
+
+[features]
+default = []
+
+[dependencies]
+oxideterm-network-proxy = { git = "https://github.com/AnalyseDeCircuit/oxideterm", rev = "570c541393ad7c7f01e85ba3441c9dab29ac3556" }
+cpal = "0.16"
+ironrdp = { git = "https://github.com/AnalyseDeCircuit/IronRDP", rev = "98a3155e9497401e447a2d88bcb2701382232c17", features = ["cliprdr", "connector", "displaycontrol", "dvc", "graphics", "input", "pdu", "rdpsnd", "session", "svc"] }
+ironrdp-cliprdr-format = { git = "https://github.com/AnalyseDeCircuit/IronRDP", rev = "98a3155e9497401e447a2d88bcb2701382232c17" }
+ironrdp-core = { git = "https://github.com/AnalyseDeCircuit/IronRDP", rev = "98a3155e9497401e447a2d88bcb2701382232c17" }
+ironrdp-displaycontrol = { git = "https://github.com/AnalyseDeCircuit/IronRDP", rev = "98a3155e9497401e447a2d88bcb2701382232c17" }
+ironrdp-egfx = { git = "https://github.com/AnalyseDeCircuit/IronRDP", rev = "98a3155e9497401e447a2d88bcb2701382232c17", features = ["openh264-libloading"] }
+ironrdp-graphics = { git = "https://github.com/AnalyseDeCircuit/IronRDP", rev = "98a3155e9497401e447a2d88bcb2701382232c17" }
+ironrdp-tls = { git = "https://github.com/AnalyseDeCircuit/IronRDP", rev = "98a3155e9497401e447a2d88bcb2701382232c17", default-features = false, features = ["native-tls"] }
+ironrdp-tokio = { git = "https://github.com/AnalyseDeCircuit/IronRDP", rev = "98a3155e9497401e447a2d88bcb2701382232c17", features = ["reqwest"] }
+native-tls = { version = "0.2", features = ["vendored"] }
+oxideterm-pcm-audio = { git = "https://github.com/AnalyseDeCircuit/oxideterm", rev = "570c541393ad7c7f01e85ba3441c9dab29ac3556" }
+oxideterm-remote-desktop = { git = "https://github.com/AnalyseDeCircuit/oxideterm", rev = "570c541393ad7c7f01e85ba3441c9dab29ac3556" }
+semver = "1"
+sha2 = "0.10"
+smallvec = "1"
+tokio = { version = "1.52", features = ["rt-multi-thread", "sync", "time", "io-util", "net", "fs", "process", "macros"] }
+uuid = { version = "1.23", features = ["v4", "v5", "v7", "serde"] }
+x509-cert = "0.3"
+zeroize = { version = "1.8", features = ["serde"] }
+
+[dev-dependencies]
+tempfile = "3"
+
+[workspace]
+
+[patch.crates-io]
+russh = { git = "https://github.com/AnalyseDeCircuit/russh", rev = "df41ee42819999db363e67309bbde0955a43e693" }

@@ -61,8 +61,11 @@ for (const source of pluginDirectories) {
     const rustWasmSource = runtime.kind === "wasm" && normalizedEntry === "plugin.wasm"
       && fs.existsSync(path.join(pluginDirectory, "Cargo.toml"))
       && fs.existsSync(path.join(pluginDirectory, "src/lib.rs"));
-    const generatedWasmEntry = generatedLanguage || rustWasmSource;
-    if (!fs.existsSync(entryPath) && !generatedWasmEntry) {
+    const rustProcessSource = ["acp", "remote-desktop"].includes(runtime.kind)
+      && fs.existsSync(path.join(pluginDirectory, "Cargo.toml"))
+      && fs.existsSync(path.join(pluginDirectory, "src/main.rs"));
+    const generatedEntry = generatedLanguage || rustWasmSource || rustProcessSource;
+    if (!fs.existsSync(entryPath) && !generatedEntry) {
       throw new Error(`${manifest.id}: runtime entry does not exist`);
     }
     if (fs.existsSync(entryPath)) {

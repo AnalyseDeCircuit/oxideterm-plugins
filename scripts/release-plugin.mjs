@@ -48,10 +48,12 @@ export function effectiveEngines(release) {
 }
 
 function hostRequirement(manifest, version) {
-  // The language runtime is introduced after 2.2.0; development checkouts may
-  // still carry that released version while the new loader is being prepared.
-  return manifest.runtime?.kind === "language" && semver.lte(version, "2.2.0")
-    ? ">2.2.0" : ">=" + version;
+  // Development checkouts can still carry the last released version while a
+  // new runtime is being implemented. Exclude hosts that cannot load it.
+  if (manifest.runtime?.kind === "language" && semver.lte(version, "2.2.0")) return ">2.2.0";
+  if (manifest.runtime?.kind === "acp" && semver.lte(version, "2.2.1")) return ">2.2.1";
+  if (manifest.runtime?.kind === "remote-desktop" && semver.lte(version, "2.2.1")) return ">2.2.1";
+  return ">=" + version;
 }
 
 export async function prepareManifest(manifest, catalog, options = {}) {
@@ -137,6 +139,10 @@ export function recordRelease(catalog, manifest, releaseUrl, packageArguments) {
       plugin.tags = [...new Set(manifest.tags.map(tag => tag.trim().toLowerCase()))];
     } else if (manifest.runtime?.kind === "language") {
       plugin.tags = ["language"];
+    } else if (manifest.runtime?.kind === "acp") {
+      plugin.tags = ["acp"];
+    } else if (manifest.runtime?.kind === "remote-desktop") {
+      plugin.tags = ["remote-desktop"];
     } else if (manifest.contributes?.filePreviews?.length) {
       plugin.tags = ["preview"];
     }

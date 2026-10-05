@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.acp.codex",
+  "name": "Codex",
+  "version": "0.1.0",
+  "description": "Connect the local Codex CLI to OxideTerm through ACP, with model discovery and session-scoped settings.",
+  "author": "OxideTerm",
+  "license": "GPL-3.0-only",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/codex-acp",
+  "tags": [
+    "acp"
+  ],
+  "runtime": {
+    "kind": "acp",
+    "entry": "bin/codex-acp"
+  },
+  "permissions": {
+    "capabilities": [
+      "runtime.process.trusted"
+    ]
+  },
+  "engines": {
+    "oxideterm": ">2.2.1"
+  }
+}

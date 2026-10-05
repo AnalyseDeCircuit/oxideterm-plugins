@@ -58,6 +58,18 @@ Inspect the generated diff before using the result in a publication.
   snapshot. Add releases and correction records; do not overwrite prior entries.
 - New plugin types and Tree-sitter grammars also need host loader/API/grammar ABI
   checks. A version range alone does not make an older client understand them.
+- ACP agent packages use `runtime.kind: "acp"` and the `acp` category. Their
+  executable speaks ACP stdio directly to the host ACP owner, never the ordinary
+  plugin lifecycle protocol. Hosts through 2.2.1 do not support this runtime;
+  preparation automatically excludes them when reading such a development host.
+- Remote desktop engine packages use `runtime.kind: "remote-desktop"` and the
+  `remote-desktop` category. Keep the native viewer, credentials, SSH tunnels and
+  process ownership in the host; use the existing direct binary stdio transport.
+  Declare `contributes.remoteDesktop` with its protocol and protocol version.
+  Hosts through 2.2.1 do not support this runtime. Pin shared host dependencies
+  to a published commit and retain the tested Cargo locks. Build and verify each
+  native package with `build-remote-desktop.mjs` and `verify-remote-desktop.mjs`;
+  `.github/workflows/remote-desktop.yml` covers all six platforms.
 - Old clients do not gain history selection, cached corrections, or startup
   checks retroactively. Check the actual old-client path before claiming a new
   catalog field prevents installation.

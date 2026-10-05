@@ -1,0 +1,18 @@
+[package]
+name = "oxideterm-claude-code-acp"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-only"
+
+[workspace]
+
+[[bin]]
+name = "claude-code-acp"
+path = "src/main.rs"
+
+[dependencies]
+oxideterm-acp-adapter = { path = "../../crates/oxideterm-acp-adapter" }
+
+[dev-dependencies]
+serde_json = "1"
+tempfile = "3.23"
