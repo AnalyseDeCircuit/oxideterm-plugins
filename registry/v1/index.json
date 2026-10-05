@@ -9,9 +9,7 @@
       "version": "0.3.0",
       "minOxideTermVersion": "2.0.20",
       "tags": [
-        "host-tools",
-        "dashboard",
-        "example"
+        "workspace"
       ],
       "capabilitiesSummary": [
         "Recent work and pinned shortcuts",
@@ -148,8 +146,7 @@
         }
       ],
       "tags": [
-        "language",
-        "c"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:42.199Z"
     },
@@ -189,8 +186,7 @@
         }
       ],
       "tags": [
-        "language",
-        "c-sharp"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:42.261Z"
     },
@@ -230,8 +226,7 @@
         }
       ],
       "tags": [
-        "language",
-        "commonlisp"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:42.322Z"
     },
@@ -271,8 +266,7 @@
         }
       ],
       "tags": [
-        "language",
-        "cpp"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:42.386Z"
     },
@@ -312,8 +306,7 @@
         }
       ],
       "tags": [
-        "language",
-        "css"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:42.449Z"
     },
@@ -353,8 +346,7 @@
         }
       ],
       "tags": [
-        "language",
-        "elixir"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:42.511Z"
     },
@@ -394,8 +386,7 @@
         }
       ],
       "tags": [
-        "language",
-        "go"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:42.573Z"
     },
@@ -435,8 +426,7 @@
         }
       ],
       "tags": [
-        "language",
-        "html"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:42.638Z"
     },
@@ -476,8 +466,7 @@
         }
       ],
       "tags": [
-        "language",
-        "java"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:42.701Z"
     },
@@ -517,8 +506,7 @@
         }
       ],
       "tags": [
-        "language",
-        "javascript"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:42.764Z"
     },
@@ -558,8 +546,7 @@
         }
       ],
       "tags": [
-        "language",
-        "objc"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:42.826Z"
     },
@@ -599,8 +586,7 @@
         }
       ],
       "tags": [
-        "language",
-        "perl"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:42.888Z"
     },
@@ -640,8 +626,7 @@
         }
       ],
       "tags": [
-        "language",
-        "php"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:42.952Z"
     },
@@ -681,8 +666,7 @@
         }
       ],
       "tags": [
-        "language",
-        "r"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:43.014Z"
     },
@@ -722,8 +706,7 @@
         }
       ],
       "tags": [
-        "language",
-        "ruby"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:43.077Z"
     },
@@ -763,8 +746,7 @@
         }
       ],
       "tags": [
-        "language",
-        "rust"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:43.141Z"
     },
@@ -804,8 +786,7 @@
         }
       ],
       "tags": [
-        "language",
-        "scala"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:43.204Z"
     },
@@ -845,8 +826,7 @@
         }
       ],
       "tags": [
-        "language",
-        "swift"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:43.266Z"
     },
@@ -886,8 +866,7 @@
         }
       ],
       "tags": [
-        "language",
-        "tsx"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:43.330Z"
     },
@@ -927,8 +906,7 @@
         }
       ],
       "tags": [
-        "language",
-        "typescript"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:43.396Z"
     },
@@ -968,8 +946,7 @@
         }
       ],
       "tags": [
-        "language",
-        "zig"
+        "language"
       ],
       "updatedAt": "2026-10-04T14:32:43.460Z"
     },
@@ -979,7 +956,6 @@
       "description": "Preview PDF documents with page navigation and zoom in the file browser.",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/pdf-preview",
       "tags": [
-        "pdf",
         "preview"
       ],
       "capabilitiesSummary": [
@@ -1081,7 +1057,7 @@
     {
       "id": "com.oxideterm.toolbox",
       "name": "Toolbox",
-      "tags": ["host-tools", "utilities", "text"],
+      "tags": ["utilities"],
       "description": "Local encoding, JSON, time, text, digest and random generation tools with native editors.",
       "author": "OxideTerm",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/toolbox",
@@ -1419,7 +1395,7 @@
       "id": "com.oxideterm.sources.tailscale",
       "name": "Tailscale Hosts",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/tailscale-hosts",
-      "tags": ["host-tools", "sources", "tailscale"],
+      "tags": ["host-sources"],
       "description": "Discover devices visible to the local Tailscale client and prepare SSH connections.",
       "author": "OxideTerm",
       "version": "0.1.0",
@@ -1493,7 +1469,7 @@
       "id": "com.oxideterm.sources.ansible",
       "name": "Ansible Inventory",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/ansible-inventory",
-      "tags": ["host-tools", "sources", "ansible"],
+      "tags": ["host-sources"],
       "description": "Discover SSH hosts using Ansible inventory and prepare native connections.",
       "author": "OxideTerm",
       "version": "0.1.0",
@@ -1599,8 +1575,7 @@
         }
       ],
       "tags": [
-        "language",
-        "hcl"
+        "language"
       ],
       "updatedAt": "2026-10-05T04:29:31.992Z"
     },
@@ -1640,8 +1615,7 @@
         }
       ],
       "tags": [
-        "language",
-        "nginx"
+        "language"
       ],
       "updatedAt": "2026-10-05T04:29:32.056Z"
     },
@@ -1681,8 +1655,7 @@
         }
       ],
       "tags": [
-        "language",
-        "proto"
+        "language"
       ],
       "updatedAt": "2026-10-05T04:29:32.121Z"
     }

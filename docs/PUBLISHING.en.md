@@ -8,6 +8,21 @@ This repository does not accept Pull Requests. Submit new listings, package upda
 
 ## First release
 
+### Marketplace categories
+
+Catalog `tags` supply the category buttons in the marketplace and installed list. Choose one or two broad functional categories per plugin. Keep language names, file extensions, example markers and search keywords out of these categories; describe specific functionality in the searchable plugin name and description.
+
+| Category | Purpose |
+| --- | --- |
+| `language` | Language support |
+| `preview` | File previews |
+| `host-sources` | Host discovery and sources |
+| `workspace` | Workspaces and work overview |
+| `utilities` | Text processing and other utilities |
+| `host-tools` | Host administration, when applicable |
+
+For a new listing, `record` uses `plugin.json`'s `tags` when provided. Otherwise, language and file-preview plugins receive `language` and `preview` respectively. Other plugin types should declare a category explicitly, for example `"tags": ["utilities"]`. Updates preserve the existing catalog categories. Maintainers may introduce a new functional category in the catalog; clients build their buttons from the data without an application-side allowlist.
+
 ### 1. Establish a stable identity
 
 - Choose a stable reverse-domain ID such as `com.example.server-inspector`.

@@ -59,6 +59,7 @@
           "items": { "$ref": "#/$defs/release" }
         },
         "tags": {
+          "description": "Broad functional categories shown as filter buttons, not individual language names, file extensions or search keywords.",
           "type": "array",
           "uniqueItems": true,
           "items": {

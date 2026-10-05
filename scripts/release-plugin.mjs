@@ -130,8 +130,13 @@ export function recordRelease(catalog, manifest, releaseUrl, packageArguments) {
       releases: [],
     };
     next.plugins.push(plugin);
-    if (manifest.runtime?.kind === "language") {
-      plugin.tags = ["language", manifest.contributes?.language?.id].filter(Boolean);
+    if (manifest.tags !== undefined) {
+      if (!Array.isArray(manifest.tags) || manifest.tags.some(tag => typeof tag !== "string" || !tag.trim())) {
+        throw new Error("Plugin tags must be non-empty category names");
+      }
+      plugin.tags = [...new Set(manifest.tags.map(tag => tag.trim().toLowerCase()))];
+    } else if (manifest.runtime?.kind === "language") {
+      plugin.tags = ["language"];
     } else if (manifest.contributes?.filePreviews?.length) {
       plugin.tags = ["preview"];
     }
