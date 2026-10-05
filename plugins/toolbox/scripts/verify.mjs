@@ -20,7 +20,8 @@ function decode(packed) {
   return JSON.parse(new TextDecoder().decode(new Uint8Array(guest.memory.buffer, pointer, length)));
 }
 const registrations = decode(guest.oxideterm_plugin_drain_outbound());
-assert.deepEqual(registrations.filter(x=>x.type==='registerContribution').map(x=>x.registration.kind), ['tab','contextMenu']);
+// Registration kinds follow PluginRegistrationKind's kebab-case wire format.
+assert.deepEqual(registrations.filter(x=>x.type==='registerContribution').map(x=>x.registration.kind), ['tab','context-menu']);
 const schema = registrations[0].registration.metadata.schema;
 assert.deepEqual(Object.keys(schema.translations).sort(), Object.keys(locales).sort());
 assert.equal(schema.controls[0].kind, 'textWorkbench');

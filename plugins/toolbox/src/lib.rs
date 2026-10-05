@@ -187,7 +187,7 @@ pub extern "C" fn oxideterm_plugin_drain_outbound() -> i64 {
     .collect::<serde_json::Map<_, _>>();
     let messages = json!([
         {"type":"registerContribution","registration":{"registrationId":"toolbox-view","pluginId":env!("OXIDETERM_PLUGIN_ID"),"kind":"tab","metadata":{"tabId":"toolbox","schema":{"componentVersion":1,"kind":"form","title":"@title","description":"@description","translations":translations,"controls":[{"kind":"textWorkbench","id":"text","options":options,"value":labels}]}}}},
-        {"type":"registerContribution","registration":{"registrationId":"toolbox-selection","pluginId":env!("OXIDETERM_PLUGIN_ID"),"kind":"contextMenu","metadata":{"target":"terminal","items":[{"label":"@openMenu","tabId":"toolbox","controlId":"text"}]}}},
+        {"type":"registerContribution","registration":{"registrationId":"toolbox-selection","pluginId":env!("OXIDETERM_PLUGIN_ID"),"kind":"context-menu","metadata":{"target":"terminal","items":[{"label":"@openMenu","tabId":"toolbox","controlId":"text"}]}}},
         {"type":"runtimeReady"}
     ]);
     OUTBOUND.with(|buffer| store(&mut buffer.borrow_mut(), &messages))
