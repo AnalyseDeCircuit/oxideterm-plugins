@@ -21,7 +21,9 @@ function decode(packed) {
 }
 const registrations = decode(guest.oxideterm_plugin_drain_outbound());
 // Registration kinds follow PluginRegistrationKind's kebab-case wire format.
-assert.deepEqual(registrations.filter(x=>x.type==='registerContribution').map(x=>x.registration.kind), ['tab','context-menu']);
+assert.deepEqual(registrations.filter(x=>x.type==='registerContribution').map(x=>x.registration.kind), ['tab','context-menu','activity-bar-item']);
+assert.deepEqual(manifest.contributes.activityBarItems, [{id:'toolbox',title:'Toolbox',icon:'wrench',command:'toolbox.open',position:'top'}]);
+assert.deepEqual(registrations[2].registration.metadata, {itemId:'toolbox'});
 const schema = registrations[0].registration.metadata.schema;
 assert.deepEqual(Object.keys(schema.translations).sort(), Object.keys(locales).sort());
 assert.equal(schema.controls[0].kind, 'textWorkbench');
@@ -32,15 +34,22 @@ function checkLabels(value) {
 }
 checkLabels(schema);
 assert.deepEqual(registrations[1].registration.metadata.items, [{label:'@openMenu',tabId:'toolbox',controlId:'text'}]);
-function run(command, input, parameter='') {
+function call(command, input, parameter='') {
   const bytes = new TextEncoder().encode(JSON.stringify({requestId:'verify',kind:{type:'dispatchCommand',command,args:{input,parameter}},timeoutMs:5000}));
   const pointer = guest.oxideterm_plugin_alloc(bytes.length);
   new Uint8Array(guest.memory.buffer,pointer,bytes.length).set(bytes);
-  const response = decode(guest.oxideterm_plugin_command(pointer,bytes.length));
+  return decode(guest.oxideterm_plugin_command(pointer,bytes.length));
+}
+function run(command, input, parameter='') {
+  const response = call(command, input, parameter);
   assert.equal(response.requestId,'verify');
   assert.equal(response.result.status,'ok');
   return response.result.value;
 }
+const navigation = call('toolbox.open', '');
+assert.equal(navigation.response.requestId,'verify');
+assert.deepEqual(navigation.response.result,{status:'ok',value:{opened:true}});
+assert.deepEqual(navigation.messages,[{type:'callHostApi',requestId:'verify',namespace:'ui',method:'openTab',args:{tabId:'toolbox'}}]);
 const decoded = run('base64.decode','eyJuIjo5MDA3MTk5MjU0NzQwOTkzfQ==').output;
 assert.equal(decoded,'{"n":9007199254740993}');
 const formatted = run('json.pretty', decoded).output;

@@ -61,6 +61,14 @@ fn store(buffer: &mut Zeroizing<Vec<u8>>, value: &Value) -> i64 {
 #[unsafe(no_mangle)]
 pub extern "C" fn oxideterm_plugin_command(pointer: i32, length: i32) -> i64 {
     let request = request(pointer, length);
+    if request.0["kind"]["command"] == "toolbox.open" {
+        // The host owns tab identity and focuses an existing toolbox when available.
+        let response = Json(json!({
+            "response": {"requestId": request.0["requestId"], "result": {"status": "ok", "value": {"opened": true}}},
+            "messages": [{"type": "callHostApi", "requestId": request.0["requestId"], "namespace": "ui", "method": "openTab", "args": {"tabId": "toolbox"}}]
+        }));
+        return RESPONSE.with(|buffer| store(&mut buffer.borrow_mut(), &response.0));
+    }
     let value = transform::run(
         request.0["kind"]["command"].as_str().unwrap_or(""),
         request.0["kind"]["args"]["input"].as_str().unwrap_or(""),
@@ -188,6 +196,7 @@ pub extern "C" fn oxideterm_plugin_drain_outbound() -> i64 {
     let messages = json!([
         {"type":"registerContribution","registration":{"registrationId":"toolbox-view","pluginId":env!("OXIDETERM_PLUGIN_ID"),"kind":"tab","metadata":{"tabId":"toolbox","schema":{"componentVersion":1,"kind":"form","title":"@title","description":"@description","translations":translations,"controls":[{"kind":"textWorkbench","id":"text","options":options,"value":labels}]}}}},
         {"type":"registerContribution","registration":{"registrationId":"toolbox-selection","pluginId":env!("OXIDETERM_PLUGIN_ID"),"kind":"context-menu","metadata":{"target":"terminal","items":[{"label":"@openMenu","tabId":"toolbox","controlId":"text"}]}}},
+        {"type":"registerContribution","registration":{"registrationId":"toolbox-entry","pluginId":env!("OXIDETERM_PLUGIN_ID"),"kind":"activity-bar-item","metadata":{"itemId":"toolbox"}}},
         {"type":"runtimeReady"}
     ]);
     OUTBOUND.with(|buffer| store(&mut buffer.borrow_mut(), &messages))

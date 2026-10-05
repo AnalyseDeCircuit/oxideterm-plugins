@@ -9,7 +9,7 @@ An independently updated local text utility plugin with six groups:
 - Digests: SHA-256 and SHA-512 of the original UTF-8 text.
 - Generation: UUID v4, and length-controlled alphanumeric, hexadecimal or numeric random strings.
 
-Open its tab or select terminal text and choose **Process in Toolbox…**. Native editors provide selection, scrolling and input-method support. Results are read-only and can be copied, cleared or reused as input. Narrow windows stack the editors. Drafts belong to the open tab and are released when it closes. No processing history is persisted and results are never sent to the terminal automatically.
+Click the activity-bar wrench icon to open or focus its tab, or select terminal text and choose **Process in Toolbox…**. No separate sidebar panel is registered. Native editors provide selection, scrolling and input-method support. Results are read-only and can be copied, cleared or reused as input. Narrow windows stack the editors. Drafts belong to the open tab and are released when it closes. No processing history is persisted and results are never sent to the terminal automatically.
 
 - Base64 rejects invalid characters, padding, lengths and decoded non-UTF-8 data. Spaces and original line endings are preserved.
 - JSON retains large integers and decimal precision. Errors include line and column. Successful validation returns the original input unchanged.
