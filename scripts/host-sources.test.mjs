@@ -42,23 +42,42 @@ test('Ansible consumes resolved hostvars, handles group cycles and excludes cred
     { name: 'alias', host: 'alias', port: 22, username: '', group: 'production' },
     { name: 'app', host: '192.0.2.10', port: 2222, username: 'deploy', group: 'production' },
   ], skipped: 3 });
-  assert.deepEqual(ansible.args('/tmp/inventory with spaces; echo nope'), ['--list', '-i', '/tmp/inventory with spaces; echo nope']);
+  assert.deepEqual(ansible.args('/tmp/inventory with spaces; echo nope'), ['--list', '-i', path.resolve('/tmp/inventory with spaces; echo nope')]);
 });
 
 for (const [slug, data, expected] of [
   ['tailscale-hosts', tailscaleData, { name: 'Build server', host: '100.64.0.3', port: 22, username: '', group: 'Tailscale' }],
   ['ansible-inventory', inventoryData, { name: 'app', host: '192.0.2.10', port: 2222, username: 'deploy', group: 'production' }],
-]) test(`${slug}: extracted package discovers through a child process and opens only a native connection draft`, { timeout: 15000 }, async t => {
+]) test(`${slug}: extracted package discovers through a child process and opens only a native connection draft`, { timeout: 30000, skip: process.platform === 'win32' && slug === 'ansible-inventory' }, async t => {
   const zip = execFileSync(process.execPath, ['scripts/build-host-source.mjs', slug, '--package'], { cwd: repo, encoding: 'utf8' }).trim();
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'host-source-'));
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'host source '));
   for (const [name, bytes] of Object.entries(unzipSync(fs.readFileSync(zip)))) {
     const target = path.join(root, name); fs.mkdirSync(path.dirname(target), { recursive: true }); fs.writeFileSync(target, bytes, { mode: name === 'bin/plugin' ? 0o755 : 0o644 });
   }
-  const fake = path.join(root, 'fixture-client');
+  const fake = path.join(root, process.platform === 'win32' ? 'fixture-client.exe' : 'fixture-client');
   const argsFile = path.join(root, 'args.json');
-  fs.writeFileSync(fake, `#!${process.execPath}\nrequire('node:fs').writeFileSync(${JSON.stringify(argsFile)}, JSON.stringify(process.argv.slice(2)));process.stdout.write(${JSON.stringify(JSON.stringify(data))});`, { mode: 0o755 });
-  const child = spawn(path.join(root, 'bin/plugin'), [], { cwd: root, stdio: ['pipe', 'pipe', 'pipe'] });
-  t.after(() => { child.kill(); fs.rmSync(root, { recursive: true, force: true }); });
+  if (process.platform === 'win32') {
+    // Exercise direct executable discovery, without relying on Unix shebangs or a shell fixture.
+    const fixture = path.join(root, 'fixture.rs');
+    fs.writeFileSync(fixture, `fn main() { std::fs::write(${JSON.stringify(argsFile)}, format!("{:?}", std::env::args().skip(1).collect::<Vec<_>>())).unwrap(); print!("{}", ${JSON.stringify(JSON.stringify(data))}); }`);
+    execFileSync('rustc', [fixture, '-o', fake]);
+  } else {
+    fs.writeFileSync(fake, `#!${process.execPath}\nrequire('node:fs').writeFileSync(${JSON.stringify(argsFile)}, JSON.stringify(process.argv.slice(2)));process.stdout.write(${JSON.stringify(JSON.stringify(data))});`, { mode: 0o755 });
+  }
+  const manifest = JSON.parse(fs.readFileSync(path.join(root, 'plugin.json')));
+  assert.equal(manifest.runtime.entry, process.platform === 'win32' ? 'bin/plugin.cmd' : 'bin/plugin');
+  const entry = path.join(root, manifest.runtime.entry);
+  const child = process.platform === 'win32'
+    ? spawn('cmd.exe', ['/d', '/s', '/c', `""${entry}""`], { windowsVerbatimArguments: true, cwd: root, stdio: ['pipe', 'pipe', 'pipe'] })
+    : spawn(entry, [], { cwd: root, stdio: ['pipe', 'pipe', 'pipe'] });
+  t.after(async () => {
+    if (child.exitCode === null && child.signalCode === null) {
+      const closed = once(child, 'close');
+      child.stdin.end();
+      await closed;
+    }
+    fs.rmSync(root, { recursive: true, force: true });
+  });
   const pending = new Map(), calls = [];
   let schema, output = '', number = 0;
   const send = payload => child.stdin.write(JSON.stringify({ protocolVersion: 1, payload }) + '\n');
@@ -83,7 +102,7 @@ for (const [slug, data, expected] of [
   await event('executable', 'input', fake);
   await event('inventory', 'input', '/tmp/inventory with spaces; echo nope');
   await event('refresh');
-  assert.deepEqual(JSON.parse(fs.readFileSync(argsFile)), slug === 'tailscale-hosts' ? ['status', '--json'] : ['--list', '-i', '/tmp/inventory with spaces; echo nope']);
+  assert.deepEqual(JSON.parse(fs.readFileSync(argsFile)), slug === 'tailscale-hosts' ? ['status', '--json'] : ['--list', '-i', path.resolve('/tmp/inventory with spaces; echo nope')]);
   await event('search', 'input', expected.name);
   const flatten = controls => controls.flatMap(control => [control, ...flatten(control.children || [])]);
   const controls = flatten(schema.controls), connect = controls.find(control => control.id?.startsWith('connect-'));

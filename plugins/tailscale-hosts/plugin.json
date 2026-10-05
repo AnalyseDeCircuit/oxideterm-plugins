@@ -1,7 +1,7 @@
 {
   "id": "com.oxideterm.sources.tailscale",
   "name": "Tailscale Hosts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Discover devices visible to the local Tailscale client and prepare SSH connections.",
   "author": "OxideTerm",
   "license": "MIT",

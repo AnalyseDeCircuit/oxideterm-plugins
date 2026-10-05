@@ -2,17 +2,35 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { spawn } from "node:child_process";
+import { spawn, execFileSync } from "node:child_process";
+import { unzipSync } from "fflate";
 import { createInterface } from "node:readline";
+import { once } from "node:events";
 import test from "node:test";
 
-const source = path.resolve(import.meta.dirname, "../plugins/host-tools-dashboard");
-
 test("workspace overview routes real items, persists pins and preserves partial results", { timeout: 10000 }, async t => {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), "oxideterm-dashboard-"));
-  fs.cpSync(source, root, { recursive: true });
-  const child = spawn(process.execPath, [path.join(root, "bin/host-tools-dashboard.js")]);
-  t.after(() => { child.kill(); fs.rmSync(root, { recursive: true, force: true }); });
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "oxideterm dashboard "));
+  const zip = execFileSync(process.execPath, [path.resolve(import.meta.dirname, 'build-dashboard.mjs')], { encoding: 'utf8' }).trim();
+  for (const [name, bytes] of Object.entries(unzipSync(fs.readFileSync(zip)))) {
+    const file = path.join(root, name);
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, bytes, { mode: name.startsWith('bin/') ? 0o755 : 0o644 });
+  }
+  const manifest = JSON.parse(fs.readFileSync(path.join(root, 'plugin.json')));
+  assert.equal(manifest.runtime.entry, process.platform === 'win32' ? 'bin/plugin.cmd' : 'bin/host-tools-dashboard.js');
+  const entry = path.join(root, manifest.runtime.entry);
+  // Node cannot spawn .cmd directly; explicitly exercise the package's Windows launcher.
+  const child = process.platform === 'win32'
+    ? spawn('cmd.exe', ['/d', '/s', '/c', `""${entry}""`], { windowsVerbatimArguments: true, cwd: root })
+    : spawn(entry, [], { cwd: root });
+  t.after(async () => {
+    if (child.exitCode === null && child.signalCode === null) {
+      const closed = once(child, 'close');
+      child.stdin.end();
+      await closed;
+    }
+    fs.rmSync(root, { recursive: true, force: true });
+  });
   const pending = new Map(), surfaces = new Map(), registrations = new Map(), calls = [];
   let language = "en", stored = null, transfersFail = false;
   let apiCatalog = [{ namespace: "app", method: "getWorkspaceSummary" }, { namespace: "ui", method: "openWorkspace" }, { namespace: "ui", method: "openTab" }];
@@ -83,7 +101,6 @@ test("workspace overview routes real items, persists pins and preserves partial 
     await request({ type: "sendEvent", event: { name: "ui.event", payload: { controlId: id, type: "click", value: control.value } } });
   }
   await request({ type: "activate" });
-  const manifest = JSON.parse(fs.readFileSync(path.join(root, "plugin.json")));
   assert.deepEqual(Object.keys(manifest.contributes).sort(), ["activityBarItems", "tabs"]);
   assert.deepEqual(manifest.contributes.tabs.map(tab => tab.id), ["dashboard"]);
   assert.deepEqual(manifest.contributes.activityBarItems, [{ id: "dashboard", title: "Workspace Dashboard", icon: "layout-dashboard", command: "dashboard.open", position: "top" }]);

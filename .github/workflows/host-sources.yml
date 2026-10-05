@@ -30,6 +30,10 @@ jobs:
             arch: x64
           - os: ubuntu-22.04-arm
             arch: arm64
+          - os: windows-latest
+            arch: x64
+          - os: windows-11-arm
+            arch: arm64
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -38,8 +42,10 @@ jobs:
           node-version: '22'
           architecture: ${{ matrix.arch }}
       - run: npm ci --ignore-scripts
-      - run: node scripts/release-plugin.mjs prepare plugins/tailscale-hosts
-      - run: node scripts/release-plugin.mjs prepare plugins/ansible-inventory
+      - if: runner.os == 'Windows'
+        uses: dtolnay/rust-toolchain@stable
+      - run: node plugins/tailscale-hosts/scripts/check.mjs
+      - run: node plugins/ansible-inventory/scripts/check.mjs
       - run: node --test scripts/host-sources.test.mjs
       - uses: actions/upload-artifact@v4
         with:

@@ -1,7 +1,7 @@
 {
   "id": "com.oxideterm.examples.host-tools-dashboard",
   "name": "Workspace Dashboard",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "license": "GPL-3.0-only",
   "author": "AnalyseDeCircuit",
   "description": "Continue recent work, follow active tasks, and handle workspace issues in one place.",

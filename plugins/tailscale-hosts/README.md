@@ -4,7 +4,7 @@
 
 ## 使用
 
-需要 Node.js 22 或更新版本，以及已登录并运行的 Tailscale 客户端。当前使用 Unix 启动器，面向 macOS 和 Linux。
+需要 Node.js 22 或更新版本，以及已登录并运行的 Tailscale 客户端。提供 macOS、Linux 和 Windows 的 x64/ARM64 安装包。Windows 包使用独立启动入口；Node.js 需要位于 PATH 中，找不到 Tailscale 时可填写 `tailscale.exe` 的完整路径。
 
 1. 安装并启用插件，打开其标签页。
 2. 填写客户端命令或完整路径。

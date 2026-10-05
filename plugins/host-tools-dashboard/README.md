@@ -1,7 +1,7 @@
 # Workspace Dashboard
 
 A workspace overview for OxideTerm, continuing the existing Host Tools Dashboard
-plugin identity. Version 0.4.1 requires the host APIs introduced after 2.2.0.
+plugin identity. Version 0.4.2 requires the host APIs introduced after 2.2.0.
 It may be listed before that host release, while older clients retain the published
 0.3.0 package and download record.
 
@@ -40,7 +40,8 @@ summary API; other transport histories are not returned by that API.
 
 ## Install and permissions
 
-Node.js must be on PATH. Install the complete plugin directory, including
+Node.js must be on PATH. Packages cover x64/ARM64 macOS, Linux, and Windows;
+Windows packages use a dedicated `bin/plugin.cmd` launcher. Install the complete plugin directory, including
 `locales/`, using a compatible OxideTerm release. The process entry must be
 executable on macOS and Linux. A source checkout still reporting 2.2.0 is correctly
 rejected by the release manifest; do not weaken the range for publication.

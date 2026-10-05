@@ -26,6 +26,10 @@ jobs:
             arch: x64
           - os: ubuntu-22.04-arm
             arch: arm64
+          - os: windows-latest
+            arch: x64
+          - os: windows-11-arm
+            arch: arm64
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -35,6 +39,11 @@ jobs:
           architecture: ${{ matrix.arch }}
       - run: npm ci --ignore-scripts
       - run: node --test scripts/host-tools-dashboard.test.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dashboard-${{ matrix.os }}
+          path: plugins/host-tools-dashboard/dist/*.zip
+          if-no-files-found: error
 
   release:
     needs: validate
@@ -52,42 +61,32 @@ jobs:
           node-version: '22'
       - run: npm ci --ignore-scripts
       - run: node scripts/release-plugin.mjs prepare plugins/host-tools-dashboard
-      - name: Package the plugin and preserve catalog history
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: dashboard-*
+          path: dist/dashboard
+          merge-multiple: true
+      - name: Record tested platform packages and preserve catalog history
         env:
           GH_REPO: ${{ github.repository }}
         run: |
           node --input-type=module <<'JS'
           import fs from 'node:fs';
-          import path from 'node:path';
-          import { zipSync } from 'fflate';
           import { recordRelease } from './scripts/release-plugin.mjs';
           import { validateRegistry } from './scripts/validate-registry.mjs';
           const root = 'plugins/host-tools-dashboard';
           const manifest = JSON.parse(fs.readFileSync(`${root}/plugin.json`));
-          const files = {};
-          function add(name) {
-            const file = path.join(root, name);
-            const stat = fs.lstatSync(file);
-            if (stat.isSymbolicLink()) throw new Error(`Unexpected symlink: ${name}`);
-            if (stat.isDirectory()) {
-              for (const child of fs.readdirSync(file)) add(`${name}/${child}`);
-            } else files[name] = [fs.readFileSync(file), { os: 3, attrs: ((name.startsWith('bin/') ? 0o100755 : 0o100644) << 16) >>> 0 }];
-          }
-          for (const name of ['plugin.json', 'README.md', 'LICENSE', 'bin', 'locales']) add(name);
-          fs.mkdirSync('dist/dashboard', { recursive: true });
-          const zip = `dist/dashboard/host-tools-dashboard-${manifest.version}.zip`;
-          fs.writeFileSync(zip, zipSync(files));
           const tag = `host-tools-dashboard-v${manifest.version}`;
           const catalog = JSON.parse(fs.readFileSync('registry/v1/index.json'));
-          const targets = ['aarch64-apple-darwin', 'x86_64-apple-darwin', 'aarch64-unknown-linux-gnu', 'x86_64-unknown-linux-gnu'];
-          const updated = recordRelease(catalog, manifest, `https://github.com/${process.env.GH_REPO}/releases/download/${tag}`, targets.map(target => `${target}=${zip}`));
+          const targets = ['aarch64-apple-darwin', 'x86_64-apple-darwin', 'aarch64-unknown-linux-gnu', 'x86_64-unknown-linux-gnu', 'aarch64-pc-windows-msvc', 'x86_64-pc-windows-msvc'];
+          const updated = recordRelease(catalog, manifest, `https://github.com/${process.env.GH_REPO}/releases/download/${tag}`, targets.map(target => `${target}=dist/dashboard/host-tools-dashboard-${manifest.version}-${target}.zip`));
           const entry = updated.plugins.find(plugin => plugin.id === manifest.id);
           entry.name = manifest.name;
           entry.description = manifest.description;
           entry.capabilitiesSummary = ['Recent work and pinned shortcuts', 'Active tasks and workspace issues'];
           validateRegistry(updated);
           fs.writeFileSync('dist/dashboard/catalog-entry.json', JSON.stringify(entry, null, 2) + '\n');
-          fs.writeFileSync('dist/dashboard/release-notes.md', `## 中文\n\n工作概览 ${manifest.version}：恢复左侧仪表盘图标，点击打开或切回现有标签页。保留页面内刷新，不注册独立侧栏面板。\n\n需要 OxideTerm ${manifest.engines.oxideterm}，以及可用的 Node.js。权限保持不变；旧版主程序继续使用兼容版本。\n\n## English\n\nWorkspace Dashboard ${manifest.version} restores the activity-bar icon to open or focus the existing dashboard tab. Refresh remains inside the page; no sidebar panel is registered.\n\nRequires OxideTerm ${manifest.engines.oxideterm} and Node.js on PATH. Permissions are unchanged; older hosts retain their compatible release.\n`);
+          fs.writeFileSync('dist/dashboard/release-notes.md', `## 中文\n\n工作概览 ${manifest.version}：新增 Windows x64/ARM64 安装包和专用启动入口，六个平台分别验证实际安装包。\n\n需要 OxideTerm ${manifest.engines.oxideterm}，以及 PATH 中可用的 Node.js。功能与权限保持不变。\n\n## English\n\nWorkspace Dashboard ${manifest.version} adds Windows x64/ARM64 packages with a dedicated launcher. The actual packages are tested on all six platforms.\n\nRequires OxideTerm ${manifest.engines.oxideterm} and Node.js on PATH. Features and permissions are unchanged.\n`);
           fs.appendFileSync(process.env.GITHUB_ENV, `RELEASE_TAG=${tag}\nPLUGIN_VERSION=${manifest.version}\n`);
           JS
       - uses: actions/upload-artifact@v4

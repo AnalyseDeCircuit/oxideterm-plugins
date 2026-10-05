@@ -2,7 +2,7 @@
 
 Discover SSH hosts and review them in OxideTerm's native connection form. Authentication, connection creation, saving and session ownership remain in the host. This plugin registers one tab and no sidebar.
 
-Requires Node.js 22+ and a running, signed-in Tailscale client. Current packages use a Unix launcher for macOS and Linux.
+Requires Node.js 22+ and a running, signed-in Tailscale client. Packages cover x64/ARM64 macOS, Linux, and Windows. Windows packages include a dedicated launcher; Node.js must be on PATH. If Tailscale cannot be found, enter the full path to `tailscale.exe`.
 
 ## Usage
 
