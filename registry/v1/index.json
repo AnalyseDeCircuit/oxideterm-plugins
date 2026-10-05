@@ -1136,9 +1136,23 @@
               "size": 704804
             }
           ]
+        },
+        {
+          "version": "0.2.2",
+          "engines": {
+            "oxideterm": ">2.2.0"
+          },
+          "packages": [
+            {
+              "target": "any",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/toolbox-v0.2.2/toolbox-0.2.2-any.zip",
+              "checksum": "sha256:b7714aa0945392998ab44ac9c94fd47db77dd8af7676ec1812c3c7a623ecaf77",
+              "size": 706798
+            }
+          ]
         }
       ],
-      "updatedAt": "2026-10-05T05:48:35.896Z"
+      "updatedAt": "2026-10-05T05:59:21.474Z"
     },
     {
       "id": "com.oxideterm.preview.sqlite",
