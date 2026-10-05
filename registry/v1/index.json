@@ -1826,6 +1826,306 @@
         "language"
       ],
       "updatedAt": "2026-10-05T04:29:32.121Z"
+    },
+    {
+      "id": "com.oxideterm.acp.codex",
+      "name": "Codex",
+      "description": "Connect the local Codex CLI to OxideTerm through ACP, with model discovery and session-scoped settings.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/codex-acp",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.1"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:797cb78cc58bc63c468fcec2e3ed7dbffdde7fdfae889370b33b61e3a07b5d19",
+          "size": 1771431
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:1c232642404c8cc3cf0b09fbf16469a28d4351eab4cdf33fa7e681181b60dd5d",
+          "size": 1813108
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:133a30d543496bd5117825a9fc2d7cbde1b8c0abfae6a53a12ed7b25e2742562",
+          "size": 2011061
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:67aad036bc92f6a2dc6f2d2358cf1dff49558566cae1d9a332e42aa2e7b7d8de",
+          "size": 1863131
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:0a2922f8368ecb118fcc61f24e964405c9bb5df5b55e0f90e8a1306d876ec217",
+          "size": 1566504
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:51a9acc79634c066bd3939e4559837e5967a0c8dc11c582f4d31cb9dd995408c",
+          "size": 1460538
+        }
+      ],
+      "minOxidetermVersion": "2.2.2",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.1"
+          },
+          "packages": [
+            {
+              "target": "aarch64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-aarch64-apple-darwin.zip",
+              "checksum": "sha256:797cb78cc58bc63c468fcec2e3ed7dbffdde7fdfae889370b33b61e3a07b5d19",
+              "size": 1771431
+            },
+            {
+              "target": "x86_64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-x86_64-apple-darwin.zip",
+              "checksum": "sha256:1c232642404c8cc3cf0b09fbf16469a28d4351eab4cdf33fa7e681181b60dd5d",
+              "size": 1813108
+            },
+            {
+              "target": "x86_64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-x86_64-unknown-linux-gnu.zip",
+              "checksum": "sha256:133a30d543496bd5117825a9fc2d7cbde1b8c0abfae6a53a12ed7b25e2742562",
+              "size": 2011061
+            },
+            {
+              "target": "aarch64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-aarch64-unknown-linux-gnu.zip",
+              "checksum": "sha256:67aad036bc92f6a2dc6f2d2358cf1dff49558566cae1d9a332e42aa2e7b7d8de",
+              "size": 1863131
+            },
+            {
+              "target": "x86_64-pc-windows-msvc",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-x86_64-pc-windows-msvc.zip",
+              "checksum": "sha256:0a2922f8368ecb118fcc61f24e964405c9bb5df5b55e0f90e8a1306d876ec217",
+              "size": 1566504
+            },
+            {
+              "target": "aarch64-pc-windows-msvc",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-aarch64-pc-windows-msvc.zip",
+              "checksum": "sha256:51a9acc79634c066bd3939e4559837e5967a0c8dc11c582f4d31cb9dd995408c",
+              "size": 1460538
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "acp"
+      ],
+      "updatedAt": "2026-10-05T15:45:21.488Z"
+    },
+    {
+      "id": "com.oxideterm.acp.claude-code",
+      "name": "Claude Code",
+      "description": "Connect the local Claude Code CLI to OxideTerm through ACP, with streaming output and resumable sessions.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/claude-code-acp",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.1"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/claude-code-acp-v0.1.0/claude-code-acp-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:e93bf1e604fc75831c3a414ccc921cced6a9695e8a4620663d132650878a62f1",
+          "size": 1771533
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/claude-code-acp-v0.1.0/claude-code-acp-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:eb1a06b016c78b32cb736571f8ec4f79ff748528e1aae53ebd57deed0b681aca",
+          "size": 1813145
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/claude-code-acp-v0.1.0/claude-code-acp-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:8ee12c6e1adb963f0ce0d57fac2819337b128ed292df9f9f5865ecc6c87225ed",
+          "size": 2011157
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/claude-code-acp-v0.1.0/claude-code-acp-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:2ab58502a990b13699e12d9b2d6fe082cb6b3d1c70cd9a5ada4ea09819bbe30e",
+          "size": 1863196
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/claude-code-acp-v0.1.0/claude-code-acp-0.1.0-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:ba62391813cac58ec60b48b1386ad9e590d2e5ca1260ffc6606ec1fe76ad5db7",
+          "size": 1566527
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/claude-code-acp-v0.1.0/claude-code-acp-0.1.0-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:ccc4f6ee1fcb2d2198cfac6055b4fb1d4a26c2d38fb7f5f531e893c5e941e073",
+          "size": 1460586
+        }
+      ],
+      "minOxidetermVersion": "2.2.2",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.1"
+          },
+          "packages": [
+            {
+              "target": "aarch64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/claude-code-acp-v0.1.0/claude-code-acp-0.1.0-aarch64-apple-darwin.zip",
+              "checksum": "sha256:e93bf1e604fc75831c3a414ccc921cced6a9695e8a4620663d132650878a62f1",
+              "size": 1771533
+            },
+            {
+              "target": "x86_64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/claude-code-acp-v0.1.0/claude-code-acp-0.1.0-x86_64-apple-darwin.zip",
+              "checksum": "sha256:eb1a06b016c78b32cb736571f8ec4f79ff748528e1aae53ebd57deed0b681aca",
+              "size": 1813145
+            },
+            {
+              "target": "x86_64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/claude-code-acp-v0.1.0/claude-code-acp-0.1.0-x86_64-unknown-linux-gnu.zip",
+              "checksum": "sha256:8ee12c6e1adb963f0ce0d57fac2819337b128ed292df9f9f5865ecc6c87225ed",
+              "size": 2011157
+            },
+            {
+              "target": "aarch64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/claude-code-acp-v0.1.0/claude-code-acp-0.1.0-aarch64-unknown-linux-gnu.zip",
+              "checksum": "sha256:2ab58502a990b13699e12d9b2d6fe082cb6b3d1c70cd9a5ada4ea09819bbe30e",
+              "size": 1863196
+            },
+            {
+              "target": "x86_64-pc-windows-msvc",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/claude-code-acp-v0.1.0/claude-code-acp-0.1.0-x86_64-pc-windows-msvc.zip",
+              "checksum": "sha256:ba62391813cac58ec60b48b1386ad9e590d2e5ca1260ffc6606ec1fe76ad5db7",
+              "size": 1566527
+            },
+            {
+              "target": "aarch64-pc-windows-msvc",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/claude-code-acp-v0.1.0/claude-code-acp-0.1.0-aarch64-pc-windows-msvc.zip",
+              "checksum": "sha256:ccc4f6ee1fcb2d2198cfac6055b4fb1d4a26c2d38fb7f5f531e893c5e941e073",
+              "size": 1460586
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "acp"
+      ],
+      "updatedAt": "2026-10-05T15:45:21.499Z"
+    },
+    {
+      "id": "com.oxideterm.remote-desktop.vnc",
+      "name": "VNC",
+      "description": "VNC connections using OxideTerm's native viewer, clipboard, audio and SSH gateways.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/vnc",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.1"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:6b756c3b07122a1da4c00609440d522e1156c090c0a564554b684ce10aefbde8",
+          "size": 1778093
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:0e11ad36775e4083a15e560b2ae2ed42ff6a0f53dfcd2af58922a21a29288b7f",
+          "size": 1856157
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:df4c484233a2bd3c42b348bb679460e4a7a6924f6406f3d6fbad6b94b71e5729",
+          "size": 4236714
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:bf160f5eed98c4b3c5193f99dbd04330b16048805f44410c6c37120ca6ad8a1e",
+          "size": 4614131
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:732636d92184aaf8f95a967496d4a859fe3b5d4670623c86f4ecdd354f9b9292",
+          "size": 1662718
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:0bcc33df072a838abb2febaa7c0961ebc79fd4209f5c2e93dc59f77fd1248d08",
+          "size": 1554470
+        }
+      ],
+      "minOxidetermVersion": "2.2.2",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "engines": {
+            "oxideterm": ">2.2.1"
+          },
+          "packages": [
+            {
+              "target": "aarch64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-aarch64-apple-darwin.zip",
+              "checksum": "sha256:6b756c3b07122a1da4c00609440d522e1156c090c0a564554b684ce10aefbde8",
+              "size": 1778093
+            },
+            {
+              "target": "x86_64-apple-darwin",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-x86_64-apple-darwin.zip",
+              "checksum": "sha256:0e11ad36775e4083a15e560b2ae2ed42ff6a0f53dfcd2af58922a21a29288b7f",
+              "size": 1856157
+            },
+            {
+              "target": "x86_64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-x86_64-unknown-linux-gnu.zip",
+              "checksum": "sha256:df4c484233a2bd3c42b348bb679460e4a7a6924f6406f3d6fbad6b94b71e5729",
+              "size": 4236714
+            },
+            {
+              "target": "aarch64-unknown-linux-gnu",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-aarch64-unknown-linux-gnu.zip",
+              "checksum": "sha256:bf160f5eed98c4b3c5193f99dbd04330b16048805f44410c6c37120ca6ad8a1e",
+              "size": 4614131
+            },
+            {
+              "target": "x86_64-pc-windows-msvc",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-x86_64-pc-windows-msvc.zip",
+              "checksum": "sha256:732636d92184aaf8f95a967496d4a859fe3b5d4670623c86f4ecdd354f9b9292",
+              "size": 1662718
+            },
+            {
+              "target": "aarch64-pc-windows-msvc",
+              "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-aarch64-pc-windows-msvc.zip",
+              "checksum": "sha256:0bcc33df072a838abb2febaa7c0961ebc79fd4209f5c2e93dc59f77fd1248d08",
+              "size": 1554470
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "remote-desktop"
+      ],
+      "updatedAt": "2026-10-05T15:45:21.510Z"
     }
   ]
 }
