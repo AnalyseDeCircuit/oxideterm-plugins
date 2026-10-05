@@ -1,0 +1,29 @@
+{
+  "id": "com.oxideterm.preview.binary",
+  "name": "Binary Inspector",
+  "version": "0.1.0",
+  "description": "Inspect ELF, Mach-O and PE metadata, sections and SHA-256 from file preview.",
+  "author": "OxideTerm",
+  "license": "MIT",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/binary-preview",
+  "runtime": {
+    "kind": "process",
+    "entry": "bin/plugin"
+  },
+  "permissions": {
+    "capabilities": []
+  },
+  "contributes": {
+    "filePreviews": [
+      {
+        "mimeTypes": [
+          "application/x-oxideterm-binary"
+        ],
+        "command": "preview.render"
+      }
+    ]
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  }
+}

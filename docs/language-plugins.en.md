@@ -2,10 +2,13 @@
 
 [简体中文](language-plugins.md)
 
-The individual `plugins/language-<id>/` directories maintain 21 plugins: C, C++, C#, CSS, Common Lisp,
+The individual `plugins/language-<id>/` directories maintain 24 plugins: C, C++, C#, CSS, Common Lisp,
 Elixir, Go, HTML, Java, JavaScript, Objective-C, Perl, PHP, R, Ruby, Rust, Scala,
 Swift, TypeScript, TSX, and Zig. The host retains file-type recognition; plugins supply parsers
 and highlight queries. Existing Markdown support stays built in.
+Nginx, Terraform/HCL, and Protobuf add recognition for Nginx-specific filenames
+and `.nginx`, `.tf/.tfvars/.hcl`, and `.proto`, respectively. Generic `.conf` files
+are not classified as Nginx; `.tf.json` and `.tfvars.json` remain JSON.
 TypeScript and TSX use the same pinned source release but are built and packaged
 separately. PHP uses the grammar that accepts PHP tags.
 Each directory owns its `plugin.json`, `grammar.json`, `LICENSE`, and `NOTICE`,

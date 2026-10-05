@@ -132,6 +132,8 @@ export function recordRelease(catalog, manifest, releaseUrl, packageArguments) {
     next.plugins.push(plugin);
     if (manifest.runtime?.kind === "language") {
       plugin.tags = ["language", manifest.contributes?.language?.id].filter(Boolean);
+    } else if (manifest.contributes?.filePreviews?.length) {
+      plugin.tags = ["preview"];
     }
   }
   if (!plugin.releases) {

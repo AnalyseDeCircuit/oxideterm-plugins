@@ -80,4 +80,9 @@ test("recording reads the actual archive and corrections preserve assets and the
   const languageCatalog = recordRelease(empty, language, "https://example.com/releases/v1.0.0", ["any=" + zip]);
   assert.equal(languageCatalog.plugins[0].minOxidetermVersion, "2.0.0");
   assert.equal(languageCatalog.plugins[0].minOxideTermVersion, undefined);
+  const preview = { ...manifest, runtime: { kind: "process", entry: "bin/viewer" }, contributes: { filePreviews: [{ mimeTypes: ["application/pkix-cert"], command: "preview.render" }] } };
+  fs.writeFileSync(zip, zipSync({ "plugin.json": strToU8(JSON.stringify(preview)), "bin/viewer": strToU8("fixture") }));
+  const previewCatalog = recordRelease(empty, preview, "https://example.com/releases/v1.0.0", ["aarch64-apple-darwin=" + zip]);
+  assert.deepEqual(previewCatalog.plugins[0].tags, ["preview"]);
+  assert.equal(published.plugins[0].tags, undefined);
 });

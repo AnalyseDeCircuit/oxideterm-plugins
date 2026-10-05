@@ -1,0 +1,13 @@
+{
+  "name": "oxideterm-toolbox",
+  "version": "0.2.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check": "node scripts/check.mjs && cargo fmt --all -- --check && cargo check --target wasm32-wasip1",
+    "test": "cargo test --locked",
+    "package": "node scripts/package.mjs"
+  }
+}

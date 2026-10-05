@@ -1,0 +1,10 @@
+{
+  "name": "tailscale-hosts",
+  "private": true,
+  "scripts": {
+    "build": "node ../../scripts/build-host-source.mjs tailscale-hosts",
+    "check": "node scripts/check.mjs",
+    "package": "node ../../scripts/build-host-source.mjs tailscale-hosts --package",
+    "test": "node --test ../../scripts/host-sources.test.mjs"
+  }
+}

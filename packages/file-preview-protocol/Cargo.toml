@@ -1,0 +1,9 @@
+[package]
+name = "oxideterm-file-preview-protocol"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+[dependencies]
+serde_json = "1"
+zeroize = "1"

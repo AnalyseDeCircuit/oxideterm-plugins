@@ -1,0 +1,10 @@
+{
+  "name": "ansible-inventory",
+  "private": true,
+  "scripts": {
+    "build": "node ../../scripts/build-host-source.mjs ansible-inventory",
+    "check": "node scripts/check.mjs",
+    "package": "node ../../scripts/build-host-source.mjs ansible-inventory --package",
+    "test": "node --test ../../scripts/host-sources.test.mjs"
+  }
+}

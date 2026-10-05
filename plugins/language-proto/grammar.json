@@ -1,0 +1,13 @@
+{
+  "crate": "tree-sitter-proto",
+  "version": "0.6.0",
+  "sha256": "9c93b6f1ed20de442e900eb636f2176af6063953dfaa9f76bf168dd3b490a3a1",
+  "repository": "https://github.com/coder3101/tree-sitter-proto",
+  "revision": "6c878d18628ebbff3474479d2fdd6d8ba1954c3e",
+  "license": "MIT",
+  "sample": "syntax = \"proto3\";\nmessage Greeting {\n  string name = 1;\n}\n",
+  "highlight": {
+    "text": "message",
+    "scope": "Keyword"
+  }
+}

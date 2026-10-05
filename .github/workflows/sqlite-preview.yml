@@ -1,0 +1,58 @@
+name: Build SQLite preview plugin
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/sqlite-preview/**'
+      - '.github/workflows/sqlite-preview.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+            arch: arm64
+            target: aarch64-apple-darwin
+          - os: macos-15-intel
+            arch: x64
+            target: x86_64-apple-darwin
+          - os: ubuntu-22.04
+            arch: x64
+            target: x86_64-unknown-linux-gnu
+          - os: ubuntu-22.04-arm
+            arch: arm64
+            target: aarch64-unknown-linux-gnu
+          - os: windows-2022
+            arch: x64
+            target: x86_64-pc-windows-msvc
+          - os: windows-11-arm
+            arch: arm64
+            target: aarch64-pc-windows-msvc
+    runs-on: ${{ matrix.os }}
+    env:
+      SQLITE_PREVIEW_TARGET: ${{ matrix.target }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          architecture: ${{ matrix.arch }}
+      - run: rustup toolchain install 1.94.1-${{ matrix.target }} --profile minimal
+      - run: rustup default 1.94.1-${{ matrix.target }}
+      - run: npm ci --ignore-scripts
+      - run: node scripts/release-plugin.mjs prepare plugins/sqlite-preview
+      - run: node plugins/sqlite-preview/scripts/build.mjs
+      - run: node plugins/sqlite-preview/scripts/verify-package.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sqlite-preview-${{ matrix.target }}
+          path: plugins/sqlite-preview/dist/*.zip
+          if-no-files-found: error

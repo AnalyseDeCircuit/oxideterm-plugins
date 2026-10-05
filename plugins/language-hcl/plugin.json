@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.language.hcl",
+  "name": "Terraform / HCL Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting and folding for Terraform / HCL.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-hcl",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "hcl",
+      "highlights": "highlights.scm",
+      "parserSha256": "c7fa4ff3cecbd8c9eba1b9643b511a5b226b47d29eb5ec38656a5bc7a216bfc5",
+      "highlightsSha256": "62349f5b27604220ffd305f562f5ee19ffb8dd8a712fa382fa0d2eb3335e7a52"
+    }
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "license": "Apache-2.0"
+}

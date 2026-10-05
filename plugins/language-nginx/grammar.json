@@ -1,0 +1,13 @@
+{
+  "crate": "tree-sitter-nginx",
+  "version": "1.0.1",
+  "sha256": "ad358057b6fa3bd3acaab22ab1c866d4746a2417d9f70b7e91cc7cc8732a5716",
+  "repository": "https://github.com/opa-oz/tree-sitter-nginx",
+  "revision": "47ade644d754cce57974aac44d2c9450e823d4f4",
+  "license": "MIT",
+  "sample": "http {\n  server {\n    listen 80;\n    location / {\n      root /var/www/html;\n    }\n  }\n}\n",
+  "highlight": {
+    "text": "location",
+    "scope": "Keyword"
+  }
+}

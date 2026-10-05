@@ -1,0 +1,11 @@
+{
+  "name": "oxideterm-binary-preview",
+  "private": true,
+  "scripts": {
+    "build": "node ../../scripts/build-inspection-plugin.mjs binary-preview",
+    "check": "cargo check --locked",
+    "test": "cargo test --locked --test protocol",
+    "package": "node ../../scripts/build-inspection-plugin.mjs binary-preview",
+    "test:package": "node ../../scripts/verify-inspection-plugin.mjs binary-preview"
+  }
+}

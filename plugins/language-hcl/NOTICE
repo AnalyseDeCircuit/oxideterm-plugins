@@ -1,0 +1,9 @@
+Terraform / HCL Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The parser and upstream queries are derived from tree-sitter-hcl 1.1.0.
+Source: https://github.com/tree-sitter-grammars/tree-sitter-hcl
+Revision: 009def4ae38ec30e5b40beeae26efe93484ab286
+Upstream license: Apache-2.0 (retained in LICENSE-grammar in the package).

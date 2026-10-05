@@ -1,0 +1,29 @@
+{
+  "id": "com.oxideterm.preview.certificate",
+  "name": "Certificate Viewer",
+  "version": "0.1.0",
+  "description": "Inspect certificates in PEM and DER files without displaying private keys.",
+  "author": "OxideTerm",
+  "license": "MIT",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/certificate-preview",
+  "runtime": {
+    "kind": "process",
+    "entry": "bin/plugin"
+  },
+  "permissions": {
+    "capabilities": []
+  },
+  "contributes": {
+    "filePreviews": [
+      {
+        "mimeTypes": [
+          "application/pkix-cert"
+        ],
+        "command": "preview.render"
+      }
+    ]
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  }
+}

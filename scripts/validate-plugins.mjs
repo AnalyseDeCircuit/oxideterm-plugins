@@ -56,7 +56,12 @@ for (const source of pluginDirectories) {
       requireText(manifest.contributes?.language?.id, `${manifest.id}: language id`);
       requireEngines(manifest.engines, manifest.id);
     }
-    const generatedWasmEntry = generatedLanguage || (source.label === "plugin template" && runtime.kind === "wasm");
+    // Rust WASM sources produce their entry during the plugin build job, just like grammars.
+    // Release recording separately requires and verifies the actual archived executable.
+    const rustWasmSource = runtime.kind === "wasm" && normalizedEntry === "plugin.wasm"
+      && fs.existsSync(path.join(pluginDirectory, "Cargo.toml"))
+      && fs.existsSync(path.join(pluginDirectory, "src/lib.rs"));
+    const generatedWasmEntry = generatedLanguage || rustWasmSource;
     if (!fs.existsSync(entryPath) && !generatedWasmEntry) {
       throw new Error(`${manifest.id}: runtime entry does not exist`);
     }

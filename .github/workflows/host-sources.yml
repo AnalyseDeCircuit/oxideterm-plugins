@@ -1,0 +1,50 @@
+name: Validate host source plugins
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/tailscale-hosts/**'
+      - 'plugins/ansible-inventory/**'
+      - 'packages/host-sources/**'
+      - 'scripts/host-sources.test.mjs'
+      - 'scripts/build-host-source.mjs'
+      - '.github/workflows/host-sources.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+            arch: arm64
+          - os: macos-15-intel
+            arch: x64
+          - os: ubuntu-22.04
+            arch: x64
+          - os: ubuntu-22.04-arm
+            arch: arm64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          architecture: ${{ matrix.arch }}
+      - run: npm ci --ignore-scripts
+      - run: node scripts/release-plugin.mjs prepare plugins/tailscale-hosts
+      - run: node scripts/release-plugin.mjs prepare plugins/ansible-inventory
+      - run: node --test scripts/host-sources.test.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: host-sources-${{ matrix.os }}
+          path: |
+            plugins/tailscale-hosts/dist/*.zip
+            plugins/ansible-inventory/dist/*.zip
+          if-no-files-found: error

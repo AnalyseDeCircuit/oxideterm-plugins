@@ -1,0 +1,28 @@
+name: Build Toolbox
+on:
+  push:
+    branches: [main]
+    paths: ['plugins/toolbox/**', '.github/workflows/toolbox.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: rustup toolchain install 1.94.1 --profile minimal --target wasm32-wasip1
+      - run: rustup default 1.94.1
+      - run: npm ci --ignore-scripts
+      - run: node scripts/release-plugin.mjs prepare plugins/toolbox
+      - run: cargo test --manifest-path plugins/toolbox/Cargo.toml --locked
+      - run: node plugins/toolbox/scripts/package.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: toolbox-any
+          path: plugins/toolbox/dist/*.zip
+          if-no-files-found: error

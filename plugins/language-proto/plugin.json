@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.language.proto",
+  "name": "Protobuf Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting and folding for Protobuf.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-proto",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "proto",
+      "highlights": "highlights.scm",
+      "parserSha256": "2179ef77376c7c1a1c08c145915c8902436d6f08724cb055ce597879f107bf61",
+      "highlightsSha256": "90d918dad99f076681aa035b6879f0c3d3dca207b8490a9ddd670200af68689d"
+    }
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "license": "Apache-2.0"
+}

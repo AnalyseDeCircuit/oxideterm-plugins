@@ -1,0 +1,30 @@
+{
+  "id": "com.oxideterm.sources.ansible",
+  "name": "Ansible Inventory",
+  "version": "0.1.0",
+  "description": "Discover SSH hosts using Ansible inventory and prepare native connections.",
+  "author": "OxideTerm",
+  "license": "MIT",
+  "runtime": {
+    "kind": "process",
+    "entry": "bin/plugin"
+  },
+  "permissions": {
+    "capabilities": [
+      "ui.write",
+      "connections.control"
+    ]
+  },
+  "contributes": {
+    "tabs": [
+      {
+        "id": "hosts",
+        "title": "Ansible Inventory",
+        "icon": "server"
+      }
+    ]
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  }
+}

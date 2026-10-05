@@ -1,0 +1,20 @@
+[package]
+name = "oxideterm-binary-preview"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+[workspace]
+
+[[bin]]
+name = "binary-preview"
+path = "src/main.rs"
+
+[dependencies]
+oxideterm-file-preview-protocol = { path = "../../packages/file-preview-protocol" }
+object = { version = "=0.39.1", default-features = false, features = ["read", "std"] }
+sha2 = "0.10"
+serde_json = "1"
+
+[dev-dependencies]
+tempfile = "3"

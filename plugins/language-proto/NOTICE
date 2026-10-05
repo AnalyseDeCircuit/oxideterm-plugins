@@ -1,0 +1,9 @@
+Protobuf Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The parser and upstream queries are derived from tree-sitter-proto 0.6.0.
+Source: https://github.com/coder3101/tree-sitter-proto
+Revision: 6c878d18628ebbff3474479d2fdd6d8ba1954c3e
+Upstream license: MIT (retained in LICENSE-grammar in the package).

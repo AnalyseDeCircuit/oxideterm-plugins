@@ -1,0 +1,88 @@
+name: Build inspection preview plugins
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/certificate-preview/**'
+      - 'plugins/binary-preview/**'
+      - 'packages/file-preview-protocol/**'
+      - 'scripts/build-inspection-plugin.mjs'
+      - 'scripts/verify-inspection-plugin.mjs'
+      - 'scripts/release-plugin.mjs'
+      - '.github/workflows/inspection-previews.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        plugin: [certificate-preview, binary-preview]
+        platform:
+          - { os: macos-14, arch: arm64, target: aarch64-apple-darwin }
+          - { os: macos-15-intel, arch: x64, target: x86_64-apple-darwin }
+          - { os: ubuntu-22.04, arch: x64, target: x86_64-unknown-linux-gnu }
+          - { os: ubuntu-22.04-arm, arch: arm64, target: aarch64-unknown-linux-gnu }
+          - { os: windows-2022, arch: x64, target: x86_64-pc-windows-msvc }
+          - { os: windows-11-arm, arch: arm64, target: aarch64-pc-windows-msvc }
+    runs-on: ${{ matrix.platform.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          architecture: ${{ matrix.platform.arch }}
+      - run: rustup toolchain install 1.94.1-${{ matrix.platform.target }} --profile minimal
+      - run: rustup default 1.94.1-${{ matrix.platform.target }}
+      - run: npm ci --ignore-scripts
+      - run: node scripts/release-plugin.mjs prepare plugins/${{ matrix.plugin }}
+      - run: node scripts/build-inspection-plugin.mjs ${{ matrix.plugin }}
+      - run: node scripts/verify-inspection-plugin.mjs ${{ matrix.plugin }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: inspection-${{ matrix.plugin }}-${{ matrix.platform.target }}
+          path: plugins/${{ matrix.plugin }}/dist/*.zip
+          if-no-files-found: error
+  catalog:
+    needs: build
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        plugin: [certificate-preview, binary-preview]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: inspection-${{ matrix.plugin }}-*
+          path: dist/inspection
+          merge-multiple: true
+      - name: Prepare preview category entry with all six packages
+        env:
+          PLUGIN: ${{ matrix.plugin }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import { recordRelease } from './scripts/release-plugin.mjs';
+          import { validateRegistry } from './scripts/validate-registry.mjs';
+          const slug = process.env.PLUGIN;
+          const manifest = JSON.parse(fs.readFileSync(`plugins/${slug}/plugin.json`));
+          const catalog = JSON.parse(fs.readFileSync('registry/v1/index.json'));
+          const targets = ['aarch64-apple-darwin', 'x86_64-apple-darwin', 'aarch64-unknown-linux-gnu', 'x86_64-unknown-linux-gnu', 'aarch64-pc-windows-msvc', 'x86_64-pc-windows-msvc'];
+          const next = recordRelease(catalog, manifest, `https://github.com/${process.env.REPOSITORY}/releases/download/${slug}-v${manifest.version}`, targets.map(target => `${target}=dist/inspection/${slug}-${manifest.version}-${target}.zip`));
+          validateRegistry(next);
+          fs.writeFileSync('dist/inspection/catalog-entry.json', JSON.stringify(next.plugins.find(plugin => plugin.id === manifest.id), null, 2));
+          JS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: catalog-${{ matrix.plugin }}
+          path: dist/inspection/catalog-entry.json

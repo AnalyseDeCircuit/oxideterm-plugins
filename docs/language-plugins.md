@@ -2,8 +2,10 @@
 
 [English](language-plugins.en.md)
 
-`plugins/language-<标识>/` 分别维护 21 个语言插件：C、C++、C#、CSS、Common Lisp、Elixir、Go、HTML、Java、
+`plugins/language-<标识>/` 分别维护 24 个语言插件：C、C++、C#、CSS、Common Lisp、Elixir、Go、HTML、Java、
 JavaScript、Objective-C、Perl、PHP、R、Ruby、Rust、Scala、Swift、TypeScript、TSX 和 Zig。
+另有 Nginx、Terraform/HCL 和 Protobuf，分别识别 Nginx 专用文件名及 `.nginx`、`.tf/.tfvars/.hcl` 和 `.proto`。
+通用 `.conf` 不会自动识别为 Nginx，`.tf.json` 和 `.tfvars.json` 仍按 JSON 处理。
 主程序保留文件类型识别，解析器与高亮查询随插件分发。Markdown 的现有实现保持内置。
 TypeScript 和 TSX 使用同一固定版本的源码，分别编译和打包。PHP 使用包含 PHP 标签的语法。
 每个目录都有独立的 `plugin.json`、`grammar.json`、`LICENSE` 和 `NOTICE`；自有高亮规则也放在对应插件目录内。

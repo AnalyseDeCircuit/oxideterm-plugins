@@ -1,0 +1,11 @@
+{
+  "name": "oxideterm-certificate-preview",
+  "private": true,
+  "scripts": {
+    "build": "node ../../scripts/build-inspection-plugin.mjs certificate-preview",
+    "check": "cargo check --locked",
+    "test": "cargo test --locked --test protocol",
+    "package": "node ../../scripts/build-inspection-plugin.mjs certificate-preview",
+    "test:package": "node ../../scripts/verify-inspection-plugin.mjs certificate-preview"
+  }
+}

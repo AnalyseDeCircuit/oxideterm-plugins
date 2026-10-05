@@ -1,0 +1,29 @@
+{
+  "id": "com.oxideterm.preview.sqlite",
+  "name": "SQLite Preview",
+  "version": "0.1.0",
+  "description": "Browse SQLite tables and read-only paginated data from the file preview.",
+  "author": "OxideTerm",
+  "license": "MIT",
+  "runtime": {
+    "kind": "process",
+    "entry": "bin/plugin"
+  },
+  "permissions": {
+    "capabilities": []
+  },
+  "contributes": {
+    "filePreviews": [
+      {
+        "mimeTypes": [
+          "application/vnd.sqlite3",
+          "application/x-sqlite3"
+        ],
+        "command": "preview.render"
+      }
+    ]
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "oxideterm-sqlite-preview",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "cargo check --locked",
+    "test": "cargo test --locked --test protocol",
+    "package": "node scripts/build.mjs",
+    "test:package": "node scripts/verify-package.mjs"
+  }
+}
