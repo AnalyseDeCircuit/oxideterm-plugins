@@ -22,7 +22,7 @@ function decode(packed) {
 const registrations = decode(guest.oxideterm_plugin_drain_outbound());
 // Registration kinds follow PluginRegistrationKind's kebab-case wire format.
 assert.deepEqual(registrations.filter(x=>x.type==='registerContribution').map(x=>x.registration.kind), ['tab','context-menu','activity-bar-item']);
-assert.deepEqual(manifest.contributes.activityBarItems, [{id:'toolbox',title:'Toolbox',icon:'wrench',command:'toolbox.open',position:'top'}]);
+assert.deepEqual(manifest.contributes.activityBarItems, [{id:'toolbox',title:'Toolbox',icon:'code-2',command:'toolbox.open',position:'top'}]);
 assert.deepEqual(registrations[2].registration.metadata, {itemId:'toolbox'});
 const schema = registrations[0].registration.metadata.schema;
 assert.deepEqual(Object.keys(schema.translations).sort(), Object.keys(locales).sort());

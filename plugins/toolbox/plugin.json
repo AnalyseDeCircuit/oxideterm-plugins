@@ -1,7 +1,7 @@
 {
   "id": "com.oxideterm.toolbox",
   "name": "Toolbox",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Local encoding, JSON, time, text, digest and random generation tools with native editors.",
   "license": "MIT",
   "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/toolbox",
@@ -20,7 +20,7 @@
       {
         "id": "toolbox",
         "title": "Toolbox",
-        "icon": "wrench",
+        "icon": "code-2",
         "command": "toolbox.open",
         "position": "top"
       }
@@ -29,7 +29,7 @@
       {
         "id": "toolbox",
         "title": "Toolbox",
-        "icon": "wrench"
+        "icon": "code-2"
       }
     ]
   },
