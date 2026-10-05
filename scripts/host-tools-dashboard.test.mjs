@@ -13,9 +13,9 @@ test("workspace overview routes real items, persists pins and preserves partial 
   fs.cpSync(source, root, { recursive: true });
   const child = spawn(process.execPath, [path.join(root, "bin/host-tools-dashboard.js")]);
   t.after(() => { child.kill(); fs.rmSync(root, { recursive: true, force: true }); });
-  const pending = new Map(), surfaces = new Map(), calls = [];
+  const pending = new Map(), surfaces = new Map(), registrations = new Map(), calls = [];
   let language = "en", stored = null, transfersFail = false;
-  let apiCatalog = [{ namespace: "app", method: "getWorkspaceSummary" }, { namespace: "ui", method: "openWorkspace" }];
+  let apiCatalog = [{ namespace: "app", method: "getWorkspaceSummary" }, { namespace: "ui", method: "openWorkspace" }, { namespace: "ui", method: "openTab" }];
   const workspace = {
     tabs: [{ id: "42", title: "Build shell", kind: "terminal", recordings: [{ paused: false, elapsedSeconds: 12 }] }, { id: "43", title: "Compiler project", kind: "project", recordings: [] }, { id: "44", title: "FTP files", kind: "files", recordings: [], transferOwners: ["ftp:profile"] }],
     nodes: [{ id: "live", title: "Build machine", state: "active", forwards: 2 }, { id: "down", title: "Offline machine", state: "disconnected", forwards: 0 }],
@@ -36,7 +36,10 @@ test("workspace overview routes real items, persists pins and preserves partial 
   const send = payload => child.stdin.write(JSON.stringify({ protocolVersion: 1, payload }) + "\n");
   createInterface({ input: child.stdout }).on("line", line => {
     const { payload } = JSON.parse(line);
-    if (payload.type === "registerContribution") surfaces.set(payload.registration.kind, payload.registration.metadata.schema);
+    if (payload.type === "registerContribution") {
+      surfaces.set(payload.registration.kind, payload.registration.metadata.schema);
+      registrations.set(payload.registration.kind, payload.registration.metadata);
+    }
     if (payload.type === "callHostApi") {
       assert.equal(typeof payload.requestId, "string");
       calls.push(payload);
@@ -46,6 +49,7 @@ test("workspace overview routes real items, persists pins and preserves partial 
         case "app.getApiCatalog": value = apiCatalog; break;
         case "storage.get": value = stored; break;
         case "storage.set": stored = payload.args.value; return;
+        case "ui.openTab": return;
         case "app.getWorkspaceSummary": value = workspace; break;
         case "connections.getSavedSummaries": value = connections; break;
         case "transfers.getAll":
@@ -80,9 +84,17 @@ test("workspace overview routes real items, persists pins and preserves partial 
   }
   await request({ type: "activate" });
   const manifest = JSON.parse(fs.readFileSync(path.join(root, "plugin.json")));
-  assert.deepEqual(Object.keys(manifest.contributes), ["tabs"]);
+  assert.deepEqual(Object.keys(manifest.contributes).sort(), ["activityBarItems", "tabs"]);
   assert.deepEqual(manifest.contributes.tabs.map(tab => tab.id), ["dashboard"]);
-  assert.equal(surfaces.has("activity-bar-item"), false);
+  assert.deepEqual(manifest.contributes.activityBarItems, [{ id: "dashboard", title: "Workspace Dashboard", icon: "layout-dashboard", command: "dashboard.open", position: "top" }]);
+  assert.deepEqual(registrations.get("activity-bar-item"), { itemId: "dashboard" });
+  const callsBeforeOpen = calls.length;
+  await request({ type: "dispatchCommand", command: "dashboard.open", args: {} });
+  await request({ type: "dispatchCommand", command: "dashboard.open", args: {} });
+  assert.deepEqual(calls.slice(callsBeforeOpen).map(({ namespace, method, args }) => ({ namespace, method, args })), [
+    { namespace: "ui", method: "openTab", args: { tabId: "dashboard" } },
+    { namespace: "ui", method: "openTab", args: { tabId: "dashboard" } },
+  ]);
   assert.deepEqual(controls(surfaces.get("tab")).filter(control => control.kind === "stack" && control.label).map(control => control.id), ["continue", "shortcuts", "ongoing", "attention"]);
   assert.equal(surfaces.has("sidebar-panel"), false);
   const recentIds = controls(surfaces.get("tab")).filter(control => control.id?.startsWith("open-connection-")).map(control => control.value.id);

@@ -1,7 +1,7 @@
 # Workspace Dashboard
 
 A workspace overview for OxideTerm, continuing the existing Host Tools Dashboard
-plugin identity. Version 0.4.0 requires the host APIs introduced after 2.2.0.
+plugin identity. Version 0.4.1 requires the host APIs introduced after 2.2.0.
 It may be listed before that host release, while older clients retain the published
 0.3.0 package and download record.
 
@@ -17,7 +17,8 @@ It may be listed before that host release, while older clients retain the publis
   plugin-scoped storage. Click a page name to add or remove its shortcut.
 
 The dashboard opens in a tab using the shared OxideTerm page header and native
-controls. It does not register a sidebar panel or activity-bar entry.
+controls. Its activity-bar icon opens or focuses the dashboard tab. It does not
+register a sidebar panel; the Refresh button remains inside the dashboard.
 All UI copy has 11 locale bundles.
 
 ## Data and navigation

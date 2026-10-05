@@ -241,7 +241,7 @@ async function handleRequest(envelope) {
       case "activate": {
         await loadLanguage();
         const catalog = await callHost("app", "getApiCatalog");
-        const required = ["app.getWorkspaceSummary", "ui.openWorkspace"];
+        const required = ["app.getWorkspaceSummary", "ui.openWorkspace", "ui.openTab"];
         if (!Array.isArray(catalog) || required.some(api => !catalog.some(item => item.namespace + "." + item.method === api))) {
           respondError(requestId, "host_upgrade_required", t("hostUpgradeRequired"));
           return;
@@ -250,11 +250,25 @@ async function handleRequest(envelope) {
         pinned = Array.isArray(saved) ? saved.filter(isPin) : [page("sessions"), page("files"), page("localTerminal")];
         for (const event of events) writeFrame({ type: "registerContribution", registration: { pluginId: PLUGIN_ID, registrationId: event, kind: "event-subscription", metadata: { event } } });
         await refresh();
+        writeFrame({ type: "registerContribution", registration: {
+          pluginId: PLUGIN_ID, registrationId: "workspace-entry", kind: "activity-bar-item",
+          metadata: { itemId: "dashboard" },
+        } });
         writeFrame({ type: "runtimeReady" });
         respondOk(requestId, { activated: true });
         break;
       }
       case "sendEvent": await handleEvent(kind.event); respondOk(requestId, { handled: true }); break;
+      case "dispatchCommand": {
+        if (kind.command !== "dashboard.open") {
+          respondError(requestId, "unsupported_command", "Unsupported command");
+          break;
+        }
+        // Navigation is a one-way effect; the host focuses an existing tab by ID.
+        writeFrame({ type: "callHostApi", requestId: "workspace-open-" + nextHostRequestId++, namespace: "ui", method: "openTab", args: { tabId: TAB_ID } });
+        respondOk(requestId, { opened: true });
+        break;
+      }
       case "health": respondOk(requestId, { ok: true }); break;
       case "deactivate": case "kill": respondOk(requestId, { stopped: true }); process.exit(0); break;
       default: respondError(requestId, "unsupported_request", "Unsupported request");
