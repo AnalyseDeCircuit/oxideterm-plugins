@@ -747,6 +747,46 @@
         "checksum": "sha256:181928de18a63840f28455c772a51d49fb4bb93a9d22f2deec43fbc3bffd3fcc",
         "size": 4566
       }
+    },
+    {
+      "id": "com.oxideterm.acp.opencode",
+      "name": "OpenCode",
+      "description": "Launch the installed OpenCode CLI through ACP. Requires a local OpenCode installation.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/opencode-acp",
+      "tags": [
+        "acp"
+      ],
+      "updatedAt": "2026-10-06T09:06:42.095Z",
+      "version": "0.1.1",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.opencode/7f6ad9ffd33a511446efbe0bb9546583cee5fd7efe23b0fb8eb9ee9ac39fe1b5.json",
+        "checksum": "sha256:7f6ad9ffd33a511446efbe0bb9546583cee5fd7efe23b0fb8eb9ee9ac39fe1b5",
+        "size": 4755
+      }
+    },
+    {
+      "id": "com.oxideterm.acp.cursor",
+      "name": "Cursor",
+      "description": "Launch the installed Cursor CLI through ACP, including question selection and plan approval in OxideTerm chat.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/cursor-acp",
+      "tags": [
+        "acp"
+      ],
+      "updatedAt": "2026-10-06T09:06:49.211Z",
+      "version": "0.1.1",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.cursor/46bc64deaf24b541b6f5e3b0880da433fb063dc68cfdde9c75fa53b5bfb3aed6.json",
+        "checksum": "sha256:46bc64deaf24b541b6f5e3b0880da433fb063dc68cfdde9c75fa53b5bfb3aed6",
+        "size": 4725
+      }
     }
   ]
 }

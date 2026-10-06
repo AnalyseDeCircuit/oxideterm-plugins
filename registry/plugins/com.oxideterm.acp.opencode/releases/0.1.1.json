@@ -1,0 +1,47 @@
+{
+  "release": {
+    "version": "0.1.1",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "aarch64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/opencode-acp-v0.1.1/opencode-acp-0.1.1-aarch64-apple-darwin.zip",
+        "checksum": "sha256:2cbcb5261143a8bab8047d7fe9f080276fe6dc3714564ea231a4cea463b53abe",
+        "size": 239180
+      },
+      {
+        "target": "x86_64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/opencode-acp-v0.1.1/opencode-acp-0.1.1-x86_64-apple-darwin.zip",
+        "checksum": "sha256:ad234980706ac2ac176387278a10b2f3f6701268df978c642a1cb5101ae68246",
+        "size": 250990
+      },
+      {
+        "target": "x86_64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/opencode-acp-v0.1.1/opencode-acp-0.1.1-x86_64-unknown-linux-gnu.zip",
+        "checksum": "sha256:416e8092853f4b11c13affd4ae7131614d0d3c48b9103d08ec291e2bc37ff7d9",
+        "size": 264500
+      },
+      {
+        "target": "aarch64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/opencode-acp-v0.1.1/opencode-acp-0.1.1-aarch64-unknown-linux-gnu.zip",
+        "checksum": "sha256:79190c94a56561ce6e3f3ce4d06f12761e6a0cecbfcf70114987c7644983ec1e",
+        "size": 256289
+      },
+      {
+        "target": "x86_64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/opencode-acp-v0.1.1/opencode-acp-0.1.1-x86_64-pc-windows-msvc.zip",
+        "checksum": "sha256:0f98c7f78ebb9770dba504c79a3cf41272ec7bd1a89f56d88ec27426df33f5f5",
+        "size": 162676
+      },
+      {
+        "target": "aarch64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/opencode-acp-v0.1.1/opencode-acp-0.1.1-aarch64-pc-windows-msvc.zip",
+        "checksum": "sha256:51d97b70c05475a44fb606485ecee548333f58518adc8fd4047146d74f14a2e3",
+        "size": 153984
+      }
+    ]
+  },
+  "publishedAt": "2026-10-06T09:06:42.095Z"
+}
