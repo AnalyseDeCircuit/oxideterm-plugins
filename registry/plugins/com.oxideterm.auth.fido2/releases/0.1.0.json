@@ -1,0 +1,47 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "aarch64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/fido2-v0.1.0/fido2-0.1.0-aarch64-apple-darwin.zip",
+        "checksum": "sha256:ece64acf2461dd6f1097c1405719d5839d09d54af88a442c858a8b0892a4fe84",
+        "size": 2295234
+      },
+      {
+        "target": "aarch64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/fido2-v0.1.0/fido2-0.1.0-aarch64-pc-windows-msvc.zip",
+        "checksum": "sha256:058dd5cc739888ee0d98ce5da64bd039616e8702ee2047d49f2fa12c71011c67",
+        "size": 2622741
+      },
+      {
+        "target": "aarch64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/fido2-v0.1.0/fido2-0.1.0-aarch64-unknown-linux-gnu.zip",
+        "checksum": "sha256:b1148857b63ec926e21ec0beebacdeca83cff4b0be58562856e939501d043568",
+        "size": 3573615
+      },
+      {
+        "target": "x86_64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/fido2-v0.1.0/fido2-0.1.0-x86_64-apple-darwin.zip",
+        "checksum": "sha256:25a6dd1e7a11d1116a3e8732183200117e97cfc0b6108d21bfed17a3a853e1d8",
+        "size": 2039455
+      },
+      {
+        "target": "x86_64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/fido2-v0.1.0/fido2-0.1.0-x86_64-pc-windows-msvc.zip",
+        "checksum": "sha256:43ca0ac3227aba4c83f73a20a86127a7c360ec1fc02c1e68570a5ff64652e93f",
+        "size": 2348981
+      },
+      {
+        "target": "x86_64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/fido2-v0.1.0/fido2-0.1.0-x86_64-unknown-linux-gnu.zip",
+        "checksum": "sha256:f5e4936ed73ba74f13f36873531b2f739fa88ae18cd51b88be6341f7410d63a0",
+        "size": 3199971
+      }
+    ]
+  },
+  "publishedAt": "2026-10-06T17:09:43.391Z"
+}

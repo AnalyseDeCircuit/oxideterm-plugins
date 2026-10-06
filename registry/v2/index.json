@@ -974,6 +974,27 @@
         "checksum": "sha256:ce9f8d3208020d202d385d8473835251d441d244330a373b7d6b97c732eff1f8",
         "size": 4931
       }
+    },
+    {
+      "id": "com.oxideterm.auth.fido2",
+      "name": "FIDO Security Key",
+      "description": "Authenticate SSH with existing ed25519-sk and ecdsa-sk hardware-backed keys.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/fido2",
+      "license": "MIT",
+      "tags": [
+        "remote-connections"
+      ],
+      "updatedAt": "2026-10-06T17:09:43.391Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.auth.fido2/2b224513e02340088809a4584220b56de82fe1ec7785d92f5dcefc7f56089a46.json",
+        "checksum": "sha256:2b224513e02340088809a4584220b56de82fe1ec7785d92f5dcefc7f56089a46",
+        "size": 4624
+      }
     }
   ]
 }
