@@ -1,7 +1,7 @@
 {
   "id": "com.oxideterm.language.cpp",
   "name": "C++ Language Support",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Syntax highlighting and folding for C++.",
   "author": "OxideTerm",
   "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-cpp",

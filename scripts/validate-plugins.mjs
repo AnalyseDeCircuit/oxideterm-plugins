@@ -51,8 +51,12 @@ for (const source of pluginDirectories) {
         requireText(recipe[field], `${manifest.id}: grammar.${field}`);
       }
       if (!/^[a-f0-9]{64}$/.test(recipe.sha256)) throw new Error(`${manifest.id}: invalid grammar checksum`);
-      requireText(recipe.highlight?.text, `${manifest.id}: expected highlight text`);
-      requireText(recipe.highlight?.scope, `${manifest.id}: expected highlight scope`);
+      const captures = Array.isArray(recipe.highlight) ? recipe.highlight : [recipe.highlight];
+      if (!captures.length) throw new Error(`${manifest.id}: expected highlight captures`);
+      for (const capture of captures) {
+        requireText(capture?.text, `${manifest.id}: expected highlight text`);
+        requireText(capture?.scope, `${manifest.id}: expected highlight scope`);
+      }
       requireText(manifest.contributes?.language?.id, `${manifest.id}: language id`);
       requireEngines(manifest.engines, manifest.id);
     }

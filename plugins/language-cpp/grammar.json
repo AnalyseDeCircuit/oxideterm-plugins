@@ -5,9 +5,15 @@
   "repository": "https://github.com/tree-sitter/tree-sitter-cpp",
   "revision": "f41e1a044c8a84ea9fa8577fdd2eab92ec96de02",
   "license": "MIT",
-  "sample": "template <typename T> class Box { T value; };\n",
-  "highlight": {
-    "text": "class",
-    "scope": "Keyword"
-  }
+  "sample": "// preview\n#include <iostream>\nclass Box { public: int value = 42; };\nint main() { std::cout << \"Hello, World!\"; return 0; }\n",
+  "highlight": [
+    {"text": "class", "scope": "Keyword"},
+    {"text": "// preview", "scope": "Comment"},
+    {"text": "#include", "scope": "Keyword"},
+    {"text": "int", "scope": "Type"},
+    {"text": "42", "scope": "Number"},
+    {"text": "\"Hello, World!\"", "scope": "String"},
+    {"text": "main", "scope": "Function"},
+    {"text": "return", "scope": "Keyword"}
+  ]
 }
