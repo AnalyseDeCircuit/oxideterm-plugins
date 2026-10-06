@@ -7,7 +7,7 @@ on:
   release:
     types: [published]
   workflow_run:
-    workflows: ['Build ACP agent plugins', 'Release Workspace Dashboard', 'Validate host source plugins', 'Build inspection preview plugins', 'Build language plugin', 'Build PDF preview plugin', 'Build remote connection plugins', 'Build SQLite preview plugin', 'Build Toolbox']
+    workflows: ['Build ACP agent plugins', 'Release Workspace Dashboard', 'Validate host source plugins', 'Build FIDO security-key plugin', 'Build inspection preview plugins', 'Build language plugin', 'Build PDF preview plugin', 'Build remote connection plugins', 'Build SQLite preview plugin', 'Build Toolbox']
     types: [completed]
   workflow_dispatch:
 
