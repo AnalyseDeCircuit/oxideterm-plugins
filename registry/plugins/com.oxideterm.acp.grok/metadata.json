@@ -1,0 +1,19 @@
+{
+  "id": "com.oxideterm.acp.grok",
+  "name": "Grok Build",
+  "description": "Launch the installed official Grok Build CLI through ACP. Requires a local Grok installation.",
+  "author": "OxideTerm",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/grok-acp",
+  "tags": [
+    "acp"
+  ],
+  "updatedAt": "2026-10-06T09:08:39.418Z",
+  "order": 40,
+  "legacy": {
+    "version": "0.1.1",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "minOxidetermVersion": "2.2.2"
+  }
+}

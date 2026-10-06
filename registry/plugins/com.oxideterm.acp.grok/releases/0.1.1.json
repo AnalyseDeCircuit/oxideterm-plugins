@@ -1,0 +1,47 @@
+{
+  "release": {
+    "version": "0.1.1",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "aarch64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/grok-acp-v0.1.1/grok-acp-0.1.1-aarch64-apple-darwin.zip",
+        "checksum": "sha256:d9c48a23677764b1e608fd4adae28f0a62edd5f6285b90bf9e4c950620e8c5f9",
+        "size": 239883
+      },
+      {
+        "target": "x86_64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/grok-acp-v0.1.1/grok-acp-0.1.1-x86_64-apple-darwin.zip",
+        "checksum": "sha256:745048eb02a52e460bd935dde30ea6602e0b5ebbc97e4e359b233f79e8ce2a2f",
+        "size": 251664
+      },
+      {
+        "target": "x86_64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/grok-acp-v0.1.1/grok-acp-0.1.1-x86_64-unknown-linux-gnu.zip",
+        "checksum": "sha256:3cc30e4c0d800ec1803662b54aff75a58e72e2b28f6acb63eed49792ba4a3d64",
+        "size": 265173
+      },
+      {
+        "target": "aarch64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/grok-acp-v0.1.1/grok-acp-0.1.1-aarch64-unknown-linux-gnu.zip",
+        "checksum": "sha256:00a9fc9c674f68e51927d361d31dc007f236b28853a4d96add2d6f8aad5ddd63",
+        "size": 256997
+      },
+      {
+        "target": "x86_64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/grok-acp-v0.1.1/grok-acp-0.1.1-x86_64-pc-windows-msvc.zip",
+        "checksum": "sha256:212e74e4dac37f9826806f7bf156643c4efdba2e91bbdfde19a8a9efb1a5661e",
+        "size": 163359
+      },
+      {
+        "target": "aarch64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/grok-acp-v0.1.1/grok-acp-0.1.1-aarch64-pc-windows-msvc.zip",
+        "checksum": "sha256:586fbee636d827b90262dd642a1970c865f5c3e3be40ea4912bb3f7e10591fd5",
+        "size": 154676
+      }
+    ]
+  },
+  "publishedAt": "2026-10-06T09:08:39.418Z"
+}

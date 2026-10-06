@@ -807,6 +807,26 @@
         "checksum": "sha256:b31c2b35cbd5aa306edcd287901feedc843e8fb780ca4f7e5cb28be811bd4d3d",
         "size": 4845
       }
+    },
+    {
+      "id": "com.oxideterm.acp.grok",
+      "name": "Grok Build",
+      "description": "Launch the installed official Grok Build CLI through ACP. Requires a local Grok installation.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/grok-acp",
+      "tags": [
+        "acp"
+      ],
+      "updatedAt": "2026-10-06T09:08:39.418Z",
+      "version": "0.1.1",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.grok/c747769cac6f59c08c1f6b1d3f62720e89065a64d3256a6b248502d9c68f1776.json",
+        "checksum": "sha256:c747769cac6f59c08c1f6b1d3f62720e89065a64d3256a6b248502d9c68f1776",
+        "size": 4660
+      }
     }
   ]
 }
