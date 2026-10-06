@@ -847,6 +847,46 @@
         "checksum": "sha256:e0101597cc25f823fc85176844000d8146668af6a9d729821d9cfc4d19dd5275",
         "size": 4635
       }
+    },
+    {
+      "id": "com.oxideterm.acp.copilot",
+      "name": "GitHub Copilot CLI",
+      "description": "Launch the installed GitHub Copilot CLI through its ACP stdio server.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/copilot-acp",
+      "tags": [
+        "acp"
+      ],
+      "updatedAt": "2026-10-06T12:38:19.518Z",
+      "version": "0.1.1",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.copilot/e9f58f0e9c32881ffa3ce38bb30839d550ca4339c9ee40591e4e6c6ad00c17c9.json",
+        "checksum": "sha256:e9f58f0e9c32881ffa3ce38bb30839d550ca4339c9ee40591e4e6c6ad00c17c9",
+        "size": 4722
+      }
+    },
+    {
+      "id": "com.oxideterm.acp.qwen-code",
+      "name": "Qwen Code",
+      "description": "Launch the installed official Qwen Code CLI through ACP, using its configured model provider.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/qwen-code-acp",
+      "tags": [
+        "acp"
+      ],
+      "updatedAt": "2026-10-06T12:38:38.435Z",
+      "version": "0.1.1",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.qwen-code/91a7501fbdedfd4089d00b197be4c4018e363d7f99b744a2c74d79aeba048c61.json",
+        "checksum": "sha256:91a7501fbdedfd4089d00b197be4c4018e363d7f99b744a2c74d79aeba048c61",
+        "size": 4789
+      }
     }
   ]
 }

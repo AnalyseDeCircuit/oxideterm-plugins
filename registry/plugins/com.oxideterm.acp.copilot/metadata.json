@@ -1,0 +1,19 @@
+{
+  "id": "com.oxideterm.acp.copilot",
+  "name": "GitHub Copilot CLI",
+  "description": "Launch the installed GitHub Copilot CLI through its ACP stdio server.",
+  "author": "OxideTerm",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/copilot-acp",
+  "tags": [
+    "acp"
+  ],
+  "updatedAt": "2026-10-06T12:38:19.518Z",
+  "order": 42,
+  "legacy": {
+    "version": "0.1.1",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "minOxidetermVersion": "2.2.2"
+  }
+}
