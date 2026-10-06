@@ -60,13 +60,15 @@ jobs:
         with:
           node-version: '22'
       - run: npm ci --ignore-scripts
-      - run: node scripts/release-plugin.mjs prepare plugins/host-tools-dashboard
+      - if: inputs.publish
+        run: node scripts/release-plugin.mjs prepare plugins/host-tools-dashboard
       - uses: actions/download-artifact@v4
         with:
           pattern: dashboard-*
           path: dist/dashboard
           merge-multiple: true
       - name: Record tested platform packages and preserve catalog history
+        if: inputs.publish
         env:
           GH_REPO: ${{ github.repository }}
         run: |

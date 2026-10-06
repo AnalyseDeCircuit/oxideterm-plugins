@@ -49,7 +49,8 @@ jobs:
       - run: rustup toolchain install 1.94.1-${{ matrix.target }} --profile minimal
       - run: rustup default 1.94.1-${{ matrix.target }}
       - run: npm ci --ignore-scripts
-      - run: node scripts/release-plugin.mjs prepare plugins/sqlite-preview
+      - if: startsWith(github.ref, 'refs/tags/sqlite-preview-v')
+        run: node scripts/release-plugin.mjs prepare plugins/sqlite-preview
       - run: node plugins/sqlite-preview/scripts/build.mjs
       - run: node plugins/sqlite-preview/scripts/verify-package.mjs
       - uses: actions/upload-artifact@v4

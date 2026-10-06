@@ -19,7 +19,8 @@ jobs:
       - run: rustup toolchain install 1.94.1 --profile minimal --target wasm32-wasip1
       - run: rustup default 1.94.1
       - run: npm ci --ignore-scripts
-      - run: node scripts/release-plugin.mjs prepare plugins/toolbox
+      - if: startsWith(github.ref, 'refs/tags/toolbox-v')
+        run: node scripts/release-plugin.mjs prepare plugins/toolbox
       - run: cargo test --manifest-path plugins/toolbox/Cargo.toml --locked
       - run: node plugins/toolbox/scripts/package.mjs
       - uses: actions/upload-artifact@v4

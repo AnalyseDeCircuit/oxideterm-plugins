@@ -65,6 +65,7 @@ jobs:
           key: pdf-preview-${{ matrix.target }}-${{ env.RUSTUP_TOOLCHAIN }}-${{ hashFiles('plugins/pdf-preview/Cargo.lock', 'plugins/pdf-preview/pdfium.json') }}
       - run: npm ci --ignore-scripts
       - name: Prepare compatibility
+        if: inputs.publish
         run: node scripts/release-plugin.mjs prepare plugins/pdf-preview
       - name: Build renderer and verify PDFium checksum
         run: npm --prefix plugins/pdf-preview run build
@@ -94,6 +95,7 @@ jobs:
           path: dist/pdf-preview
           merge-multiple: true
       - name: Generate one release record from all six packages
+        if: inputs.publish
         env:
           GH_REPO: ${{ github.repository }}
         run: |
