@@ -1,0 +1,16 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-hcl-v0.1.0/com.oxideterm.language.hcl-0.1.0.zip",
+        "checksum": "sha256:7006b56da49036c175f7c73423b381b355c06b338cee61c434fd1a8289f61ada",
+        "size": 30266
+      }
+    ]
+  }
+}

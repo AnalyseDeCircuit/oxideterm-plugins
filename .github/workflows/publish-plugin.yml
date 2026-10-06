@@ -1,0 +1,61 @@
+name: Publish verified plugin packages
+
+on:
+  workflow_call:
+    inputs:
+      plugin:
+        type: string
+        required: true
+      artifacts:
+        type: string
+        required: true
+      targets:
+        type: string
+        default: 'aarch64-apple-darwin,x86_64-apple-darwin,aarch64-unknown-linux-gnu,x86_64-unknown-linux-gnu,aarch64-pc-windows-msvc,x86_64-pc-windows-msvc'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ${{ inputs.artifacts }}
+          path: dist/plugin-release
+          merge-multiple: true
+      - name: Verify identity and generate the release record
+        env:
+          PLUGIN: ${{ inputs.plugin }}
+          TARGETS: ${{ inputs.targets }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          node scripts/release-plugin.mjs entry "plugins/$PLUGIN" --release-url "https://github.com/$GH_REPO/releases/download/$RELEASE_TAG" --packages-dir dist/plugin-release --output dist/plugin-release/catalog-entry.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          const manifest=JSON.parse(fs.readFileSync(`plugins/${process.env.PLUGIN}/plugin.json`));
+          assert.equal(process.env.RELEASE_TAG,`${process.env.PLUGIN}-v${manifest.version}`);
+          const entry=JSON.parse(fs.readFileSync('dist/plugin-release/catalog-entry.json'));
+          const release=entry.releases.find(release=>release.version===manifest.version);
+          assert.deepEqual(release.packages.map(pkg=>pkg.target).sort(),process.env.TARGETS.split(',').sort());
+          const packages=new Set(release.packages.map(pkg=>decodeURIComponent(path.basename(new URL(pkg.downloadUrl).pathname))));
+          for(const file of fs.readdirSync('dist/plugin-release')) {
+            if(file.endsWith('.zip') && !packages.has(file)) fs.unlinkSync(path.join('dist/plugin-release',file));
+          }
+          NODE
+      - name: Publish all validated assets together
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$RELEASE_TAG" dist/plugin-release/*.zip dist/plugin-release/catalog-entry.json --verify-tag --title "$RELEASE_TAG" --generate-notes --notes-file docs/catalog-upgrade-notice.md --draft --latest=false
+          gh release edit "$RELEASE_TAG" --draft=false --latest=false

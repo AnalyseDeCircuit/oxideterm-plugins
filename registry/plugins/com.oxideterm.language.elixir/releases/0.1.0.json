@@ -1,0 +1,16 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-elixir-v0.1.0/com.oxideterm.language.elixir-0.1.0.zip",
+        "checksum": "sha256:48860e6a045b2e535628b7b880c21624c223278a5f760fff358cb293c3f8c169",
+        "size": 160525
+      }
+    ]
+  }
+}

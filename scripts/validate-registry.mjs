@@ -4,7 +4,9 @@ import process from "node:process";
 import { execFileSync } from "node:child_process";
 import { isDeepStrictEqual } from "node:util";
 import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
 import semver from "semver";
+import { loadCatalogSources, validateFrozenV1 } from './catalog-source.mjs';
 
 // Release ordering and manifest ranges use semantic versions.
 const repositoryRoot = path.resolve(import.meta.dirname, "..");
@@ -21,7 +23,7 @@ const supportedTargets = new Set([
 
 export function validateRegistry(registry) {
   if (registry.version !== 1 || !Array.isArray(registry.plugins)) {
-    throw new Error("registry/v1/index.json must contain version 1 and a plugins array");
+    throw new Error("Catalog release records must contain version 1 and a plugins array");
   }
 
   const pluginIds = new Set();
@@ -201,16 +203,38 @@ export function validateHistory(previous, current) {
   }
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
-  const registry = JSON.parse(fs.readFileSync(registryPath, "utf8"));
+function publishedCatalogAt(base) {
+  const options = { cwd: repositoryRoot, encoding: "utf8", maxBuffer: 16*1024*1024 };
+  const hasV2 = execFileSync('git', ['ls-tree', '--name-only', base, '--', 'registry/v2/index.json'], options).trim();
+  if (!hasV2) return JSON.parse(execFileSync('git', ['show', `${base}:registry/v1/index.json`], options));
+  const index = JSON.parse(execFileSync('git', ['show', `${base}:registry/v2/index.json`], options));
+  if (index.version !== 2 || !Array.isArray(index.plugins)) throw new Error('Invalid published v2 catalog');
+  const plugins = index.plugins.map(summary => {
+    const hash = summary.history?.checksum?.slice('sha256:'.length);
+    if (!/^[a-z0-9][a-z0-9.-]*$/.test(summary.id) || !/^[0-9a-f]{64}$/.test(hash ?? '')) throw new Error('Invalid published history reference');
+    // Old history artifacts remain served for cached roots, so their verified
+    // bytes also provide the immutable baseline without rebuilding old sources.
+    const bytes = fs.readFileSync(path.join(repositoryRoot, 'registry/v2/plugins', summary.id, `${hash}.json`));
+    if (bytes.length !== summary.history.size || createHash('sha256').update(bytes).digest('hex') !== hash) throw new Error('Published history artifact changed');
+    const plugin = JSON.parse(bytes);
+    if (plugin.id !== summary.id) throw new Error('Published history identity differs');
+    return plugin;
+  });
+  return {version:1,plugins};
+}
+
+if (process.argv[1] && fs.existsSync(process.argv[1]) && fileURLToPath(import.meta.url) === fs.realpathSync(process.argv[1])) {
+  validateFrozenV1();
+  const registry = loadCatalogSources();
   validateRegistry(registry);
   const base = process.env.REGISTRY_BASE_REF;
   if (base && !/^0+$/.test(base)) {
     if (!/^[0-9a-f]{40}$/.test(base)) throw new Error("REGISTRY_BASE_REF must be a full commit SHA");
-    const previous = JSON.parse(execFileSync("git", ["show", `${base}:registry/v1/index.json`], {
-      cwd: repositoryRoot, encoding: "utf8",
-    }));
-    validateHistory(previous, registry);
+    const previousV1 = execFileSync('git', ['show', `${base}:registry/v1/index.json`], {cwd:repositoryRoot});
+    if (!fs.readFileSync(registryPath).equals(previousV1)) throw new Error('Frozen v1 catalog differs from the previous commit');
+    const removedHistories = execFileSync('git', ['diff', '--name-only', '--diff-filter=D', base, '--', 'registry/v2/plugins'], {cwd:repositoryRoot,encoding:'utf8'}).trim();
+    if (removedHistories) throw new Error('Published v2 history artifacts cannot be deleted');
+    validateHistory(publishedCatalogAt(base), registry);
   }
   process.stdout.write(`Validated ${registry.plugins.length} OxideTerm plugin entries.\n`);
 }

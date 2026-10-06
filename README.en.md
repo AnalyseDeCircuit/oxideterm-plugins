@@ -9,7 +9,9 @@ Build, publish, and discover native plugins for OxideTerm.
 
 Plugins can add host-rendered tabs and sidebars, work with approved session state, and extend terminal, SFTP, Host Tools, IDE, AI, and sync workflows. OxideTerm owns themes, focus, permissions, and sensitive-data boundaries; plugins declare their capabilities through a manifest and a typed protocol.
 
-[Start building](#create-a-plugin-in-five-minutes) · [Browse the catalog](registry/v1/index.json) · [Developer guide](https://github.com/AnalyseDeCircuit/oxideterm/blob/main/docs/user-guide/en/plugin-development.md) · [Request a listing](https://github.com/AnalyseDeCircuit/oxideterm-plugins/issues/new?template=plugin-submission.yml)
+[Start building](#create-a-plugin-in-five-minutes) · [Browse the catalog](registry/v2/index.json) · [Developer guide](https://github.com/AnalyseDeCircuit/oxideterm/blob/main/docs/user-guide/en/plugin-development.md) · [Request a listing](https://github.com/AnalyseDeCircuit/oxideterm-plugins/issues/new?template=plugin-submission.yml)
+
+The v1 marketplace catalog is frozen. Its original URL, exact contents, and referenced packages remain available. All subsequent plugins, releases, and compatibility corrections are published only to v2. Existing clients can keep using the frozen catalog but will not see new plugins or updates; upgrade OxideTerm to a version supporting the v2 catalog to receive them.
 
 ## What you can build
 
@@ -109,7 +111,11 @@ Examples demonstrate real host capabilities and protocol boundaries. First-party
 ## Repository layout
 
 ```text
-registry/v1/index.json       marketplace catalog consumed by OxideTerm
+registry/plugins/<id>/      per-plugin metadata, releases, and corrections
+registry/categories.json    registered marketplace categories
+registry/v1/index.json      frozen catalog for existing clients
+registry/v1/index.sha256    checksum of the frozen contents
+registry/v2/                generated summary catalog and individual histories
 schema/                      marketplace catalog format
 plugins/                     first-party plugins maintained by OxideTerm
 templates/process-plugin/    standalone process plugin starter

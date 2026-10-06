@@ -1,0 +1,16 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-nginx-v0.1.0/com.oxideterm.language.nginx-0.1.0.zip",
+        "checksum": "sha256:4b33ff6511879576bdb988350ef576e4fd8de10b7fd46da8c6202018c82f3adb",
+        "size": 24470
+      }
+    ]
+  }
+}

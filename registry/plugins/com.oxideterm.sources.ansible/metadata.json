@@ -1,0 +1,19 @@
+{
+  "id": "com.oxideterm.sources.ansible",
+  "name": "Ansible Inventory",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/ansible-inventory",
+  "tags": [
+    "host-sources"
+  ],
+  "description": "Discover SSH hosts using Ansible inventory and prepare native connections.",
+  "author": "OxideTerm",
+  "updatedAt": "2026-10-05T04:29:31.928Z",
+  "legacy": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "minOxidetermVersion": "2.2.1"
+  },
+  "order": 28
+}

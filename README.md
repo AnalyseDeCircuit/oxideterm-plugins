@@ -9,7 +9,9 @@
 
 插件可以添加由 OxideTerm 原生渲染的标签页和侧边栏，读取经过授权的会话状态，扩展终端、SFTP、Host Tools、IDE、AI 与同步工作流。宿主负责主题、焦点、权限和敏感数据边界；插件通过清单和类型化协议声明能力。
 
-[开始开发](#五分钟创建插件) · [浏览市场目录](registry/v1/index.json) · [插件开发文档](https://github.com/AnalyseDeCircuit/oxideterm/blob/main/docs/user-guide/zh-Hans/plugin-development.md) · [申请收录](https://github.com/AnalyseDeCircuit/oxideterm-plugins/issues/new?template=plugin-submission.yml)
+[开始开发](#五分钟创建插件) · [浏览市场目录](registry/v2/index.json) · [插件开发文档](https://github.com/AnalyseDeCircuit/oxideterm/blob/main/docs/user-guide/zh-Hans/plugin-development.md) · [申请收录](https://github.com/AnalyseDeCircuit/oxideterm-plugins/issues/new?template=plugin-submission.yml)
+
+插件市场 v1 已冻结，原地址、索引内容及其中引用的安装包持续保留。后续插件、新版本和兼容纠错只发布到 v2。旧客户端仍可使用冻结目录中的插件，但不会看到新的插件和更新；请升级到支持 v2 目录的主程序版本。
 
 ## 你可以构建什么
 
@@ -109,7 +111,11 @@ npm run package:windows
 ## 仓库结构
 
 ```text
-registry/v1/index.json       应用读取的正式市场目录
+registry/plugins/<id>/      分插件维护的展示信息、版本和兼容纠错
+registry/categories.json    市场分类标识
+registry/v1/index.json      冻结的旧客户端目录
+registry/v1/index.sha256    冻结内容的校验值
+registry/v2/                自动生成的摘要目录和独立版本历史
 schema/                      市场目录格式
 plugins/                     OxideTerm 维护的一方插件
 templates/process-plugin/    可独立使用的进程插件模板

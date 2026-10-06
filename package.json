@@ -4,8 +4,8 @@
   "type": "module",
   "engines": { "node": ">=22" },
   "scripts": {
-    "check": "node scripts/validate-registry.mjs && node scripts/validate-plugins.mjs",
-    "test": "node --test scripts/release-plugin.test.mjs scripts/validate-registry.test.mjs scripts/host-tools-dashboard.test.mjs"
+    "check": "node scripts/catalog.mjs check && node scripts/validate-registry.mjs && node scripts/validate-plugins.mjs",
+    "test": "node --test scripts/catalog-source.test.mjs scripts/release-plugin.test.mjs scripts/validate-registry.test.mjs scripts/host-tools-dashboard.test.mjs"
   },
   "dependencies": {
     "fflate": "0.8.3",

@@ -1,0 +1,16 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-rust-v0.1.0/com.oxideterm.language.rust-0.1.0.zip",
+        "checksum": "sha256:357f638e5afcadbdf013c432c41703b74efc756118bde1eca547a833f0ac9717",
+        "size": 123521
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-css-v0.1.0/com.oxideterm.language.css-0.1.0.zip",
+        "checksum": "sha256:3acc026aa787805cfe76da723af52332b45e893039a4082d90cf4ee5bde0a507",
+        "size": 26764
+      }
+    ]
+  }
+}

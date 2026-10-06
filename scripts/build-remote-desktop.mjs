@@ -5,7 +5,7 @@ import { zipSync, strToU8 } from 'fflate';
 
 const repository = path.resolve(import.meta.dirname, '..');
 const plugin = process.argv[2];
-if (!['rdp', 'vnc'].includes(plugin)) throw new Error('Choose rdp or vnc');
+if (!['rdp', 'vnc', 'mosh'].includes(plugin)) throw new Error('Choose rdp, vnc or mosh');
 const root = path.join(repository, 'plugins', plugin);
 const target = {
   'darwin-arm64': 'aarch64-apple-darwin', 'darwin-x64': 'x86_64-apple-darwin',
@@ -28,6 +28,10 @@ files[manifest.runtime.entry] = [fs.readFileSync(path.join(root, 'target/release
   os: 3, attrs: (0o100755 << 16) >>> 0,
 }];
 for (const name of ['LICENSE', 'README.md', 'README.en.md']) files[name] = strToU8(fs.readFileSync(path.join(root, name), 'utf8'));
+for (const name of fs.readdirSync(root).filter(name => /^(NOTICE|LICENSE[._-])/.test(name))) {
+  const file = path.join(root, name);
+  if (fs.statSync(file).isFile()) files[name] = strToU8(fs.readFileSync(file, 'utf8'));
+}
 const metadata = JSON.parse(execFileSync('cargo', [toolchain, 'metadata', '--locked', '--format-version', '1', '--filter-platform', target], {
   cwd: root, encoding: 'utf8', maxBuffer: 10 * 1024 * 1024,
 }));

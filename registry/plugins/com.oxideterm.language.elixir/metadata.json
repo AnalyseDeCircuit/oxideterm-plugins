@@ -1,0 +1,19 @@
+{
+  "id": "com.oxideterm.language.elixir",
+  "name": "Elixir Language Support",
+  "description": "Syntax highlighting and folding for Elixir.",
+  "author": "OxideTerm",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-elixir",
+  "tags": [
+    "language"
+  ],
+  "updatedAt": "2026-10-04T14:32:42.511Z",
+  "legacy": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "minOxidetermVersion": "2.2.1"
+  },
+  "order": 6
+}

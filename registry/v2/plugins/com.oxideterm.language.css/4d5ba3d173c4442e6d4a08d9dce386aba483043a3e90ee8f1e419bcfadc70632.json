@@ -1,0 +1,40 @@
+{
+  "id": "com.oxideterm.language.css",
+  "name": "CSS Language Support",
+  "description": "Syntax highlighting and folding for CSS.",
+  "author": "OxideTerm",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-css",
+  "tags": [
+    "language"
+  ],
+  "updatedAt": "2026-10-04T14:32:42.449Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "minOxidetermVersion": "2.2.1",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-css-v0.1.0/com.oxideterm.language.css-0.1.0.zip",
+      "checksum": "sha256:3acc026aa787805cfe76da723af52332b45e893039a4082d90cf4ee5bde0a507",
+      "size": 26764
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-css-v0.1.0/com.oxideterm.language.css-0.1.0.zip",
+          "checksum": "sha256:3acc026aa787805cfe76da723af52332b45e893039a4082d90cf4ee5bde0a507",
+          "size": 26764
+        }
+      ]
+    }
+  ]
+}

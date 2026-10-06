@@ -3,6 +3,7 @@ name: Validate host source plugins
 on:
   push:
     branches: [main]
+    tags: ['tailscale-hosts-v*', 'ansible-inventory-v*']
     paths:
       - 'plugins/tailscale-hosts/**'
       - 'plugins/ansible-inventory/**'
@@ -47,6 +48,13 @@ jobs:
       - run: node plugins/tailscale-hosts/scripts/check.mjs
       - run: node plugins/ansible-inventory/scripts/check.mjs
       - run: node --test scripts/host-sources.test.mjs
+      - if: startsWith(github.ref, 'refs/tags/tailscale-hosts-v')
+        run: node scripts/release-plugin.mjs prepare plugins/tailscale-hosts
+      - if: startsWith(github.ref, 'refs/tags/ansible-inventory-v')
+        run: node scripts/release-plugin.mjs prepare plugins/ansible-inventory
+      - run: node scripts/build-host-source.mjs tailscale-hosts --package
+      - if: runner.os != 'Windows'
+        run: node scripts/build-host-source.mjs ansible-inventory --package
       - uses: actions/upload-artifact@v4
         with:
           name: host-sources-${{ matrix.os }}
@@ -54,3 +62,14 @@ jobs:
             plugins/tailscale-hosts/dist/*.zip
             plugins/ansible-inventory/dist/*.zip
           if-no-files-found: error
+
+  release:
+    needs: validate
+    if: startsWith(github.ref, 'refs/tags/tailscale-hosts-v') || startsWith(github.ref, 'refs/tags/ansible-inventory-v')
+    permissions:
+      contents: write
+    uses: ./.github/workflows/publish-plugin.yml
+    with:
+      plugin: ${{ startsWith(github.ref, 'refs/tags/tailscale-hosts-v') && 'tailscale-hosts' || 'ansible-inventory' }}
+      artifacts: host-sources-*
+      targets: ${{ startsWith(github.ref, 'refs/tags/tailscale-hosts-v') && 'aarch64-apple-darwin,x86_64-apple-darwin,aarch64-unknown-linux-gnu,x86_64-unknown-linux-gnu,aarch64-pc-windows-msvc,x86_64-pc-windows-msvc' || 'aarch64-apple-darwin,x86_64-apple-darwin,aarch64-unknown-linux-gnu,x86_64-unknown-linux-gnu' }}

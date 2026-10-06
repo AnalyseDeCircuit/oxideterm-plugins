@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OxideTerm Plugin Catalog v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "plugins"],
+  "properties": {
+    "version": { "const": 2 },
+    "plugins": { "type": "array", "items": { "$ref": "#/$defs/summary" } }
+  },
+  "$defs": {
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "version", "engines", "history"],
+      "properties": {
+        "id": { "$ref": "registry-v1.schema.json#/$defs/plugin/properties/id" },
+        "name": { "$ref": "registry-v1.schema.json#/$defs/plugin/properties/name" },
+        "version": { "$ref": "registry-v1.schema.json#/$defs/plugin/properties/version" },
+        "engines": { "$ref": "registry-v1.schema.json#/$defs/plugin/properties/engines" },
+        "description": { "$ref": "registry-v1.schema.json#/$defs/plugin/properties/description" },
+        "author": { "$ref": "registry-v1.schema.json#/$defs/plugin/properties/author" },
+        "tags": { "$ref": "registry-v1.schema.json#/$defs/plugin/properties/tags" },
+        "capabilitiesSummary": { "$ref": "registry-v1.schema.json#/$defs/plugin/properties/capabilitiesSummary" },
+        "homepage": { "$ref": "registry-v1.schema.json#/$defs/plugin/properties/homepage" },
+        "updatedAt": { "$ref": "registry-v1.schema.json#/$defs/plugin/properties/updatedAt" },
+        "history": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["downloadUrl", "checksum", "size"],
+          "properties": {
+            "downloadUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
+            "checksum": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "size": { "type": "integer", "minimum": 1, "maximum": 8388608 }
+          }
+        }
+      }
+    }
+  }
+}

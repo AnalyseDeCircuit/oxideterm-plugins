@@ -46,6 +46,37 @@ with compatibility excluding unsupported hosts (`>2.2.0` for this capability).
 The last three operations are subcommands of `scripts/release-plugin.mjs`.
 Inspect the generated diff before using the result in a publication.
 
+## Catalog sources and automatic publication
+
+Maintain `registry/plugins/<id>/metadata.json`, immutable
+`releases/<version>.json`, and append-only `corrections/<version>/<sequence>.json`.
+Register functional categories in `registry/categories.json`. Do not edit the
+generated v2 catalogs or content-addressed histories by hand. `record` and
+`correct` update the authoritative sources and generate only v2. v1 is permanently
+frozen: preserve its original URL, exact bytes, and referenced assets. Do not add
+plugins, releases, metadata changes, or compatibility corrections to v1.
+
+For a CI producer, use `entry <plugin-directory> --release-url URL
+--packages-dir DIRECTORY --output catalog-entry.json`. Upload this record with
+all verified ZIPs to the same immutable Release. The maintained publisher
+reconciles published first-party Releases, verifies the actual asset manifests,
+sizes and SHA-256 values, merges each version, and commits the generated v2 catalog
+under one serialized job. Third-party submissions still require maintainer review.
+Use `node scripts/sync-catalog.mjs --repository OWNER/NAME --dry-run` to verify
+reconciliation without registering releases or publishing an index.
+
+Keep the historical top-level snapshot and every published release unchanged.
+v2 roots contain display summaries and checksum-bound history references; clients
+load histories only for installed plugins and the current marketplace page. Keep
+old content-addressed histories served for cached roots. Run `catalog.mjs generate`
+and `catalog.mjs check` after source edits. Both commands verify the frozen v1
+checksum; CI also requires its exact bytes to match the previous commit. Validate
+release immutability against the previous v2 histories, using original v1 for the
+initial migration only. The v2 summary limit is 2 MiB and each history limit is
+8 MiB. Include `docs/catalog-upgrade-notice.md` in new plugin release notes:
+existing clients see no subsequent plugins or updates until they upgrade to a
+host supporting v2. Do not set an expiration date for the retained v1 catalog.
+
 ## Preserve compatibility
 
 - Plugin and host versions advance independently. A new plugin release does not
@@ -63,13 +94,18 @@ Inspect the generated diff before using the result in a publication.
   plugin lifecycle protocol. Hosts through 2.2.1 do not support this runtime;
   preparation automatically excludes them when reading such a development host.
 - Remote desktop engine packages use `runtime.kind: "remote-desktop"` and the
-  `remote-desktop` category. Keep the native viewer, credentials, SSH tunnels and
+  `remote-connections` category. Keep the native viewer, credentials, SSH tunnels and
   process ownership in the host; use the existing direct binary stdio transport.
   Declare `contributes.remoteDesktop` with its protocol and protocol version.
   Hosts through 2.2.1 do not support this runtime. Pin shared host dependencies
   to a published commit and retain the tested Cargo locks. Build and verify each
   native package with `build-remote-desktop.mjs` and `verify-remote-desktop.mjs`;
   `.github/workflows/remote-desktop.yml` covers all six platforms.
+- Mosh uses `runtime.kind: "terminal-transport"`, `contributes.terminalTransport`
+  and the same `remote-connections` category. It requires OxideTerm 2.2.2 or later.
+  Use `build-remote-desktop.mjs mosh` and `verify-mosh.mjs`; the same workflow
+  builds all six platforms. Keep the pipe protocol version synchronized with the
+  host and verify real UDP with the host's `plugin_process` test before publishing.
 - Old clients do not gain history selection, cached corrections, or startup
   checks retroactively. Check the actual old-client path before claiming a new
   catalog field prevents installation.

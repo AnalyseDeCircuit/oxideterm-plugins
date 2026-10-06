@@ -1,0 +1,16 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-proto-v0.1.0/com.oxideterm.language.proto-0.1.0.zip",
+        "checksum": "sha256:6343bb67ee010f6fd3441f16925f54ca5ba598bd34602b629bf40bcfd0e764e5",
+        "size": 23621
+      }
+    ]
+  }
+}

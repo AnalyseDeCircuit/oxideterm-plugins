@@ -1,0 +1,16 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-commonlisp-v0.1.0/com.oxideterm.language.commonlisp-0.1.0.zip",
+        "checksum": "sha256:b5995d350c0b305f9d3075fa168929ff0806f1a2e03caae898fd437251b038fc",
+        "size": 104148
+      }
+    ]
+  }
+}

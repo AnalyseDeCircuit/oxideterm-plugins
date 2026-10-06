@@ -21,7 +21,7 @@
 | `utilities` | 文本处理等实用工具 |
 | `host-tools` | 主机运维工具，仅在有对应插件时使用 |
 | `acp` | ACP 智能体接入 |
-| `remote-desktop` | RDP、VNC 远程桌面 |
+| `remote-connections` | RDP、VNC、Mosh 远程连接 |
 
 首次运行 `record` 时，发布工具优先读取 `plugin.json` 的 `tags`；未声明时，语言和文件预览插件分别自动归入 `language`、`preview`。其他类型应显式声明分类，例如 `"tags": ["utilities"]`。更新已有插件时保留索引中的分类。新功能大类由维护者在索引中登记，客户端根据实际数据自动生成按钮，无须增加应用内的分类白名单。
 
@@ -195,6 +195,44 @@ node scripts/release-plugin.mjs correct com.example.my-plugin \
 
 ## 维护者审核流程
 
-维护者会下载 Release 资产并独立复算摘要与大小，检查清单、入口、路径和权限变化，运行目录校验，然后直接提交 `registry/v1/index.json`。第三方插件源码不会为了市场收录而复制到本仓库。
+维护者会下载 Release 资产并独立复算摘要与大小，检查清单、入口、路径和权限变化，运行目录校验，然后登记分插件保存的源记录。第三方插件源码不会为了市场收录而复制到本仓库。
 
-核对下载包清单中的版本和宿主范围与发布记录一致。运行 `npm ci --ignore-scripts`、`npm test` 和 `npm run check`。如需对照历史提交，运行 `node scripts/validate-registry.mjs` 时将环境变量 `REGISTRY_BASE_REF` 设为基准提交的完整标识；持续集成会自动与推送前的提交比较，拒绝删除或修改已发布记录、覆盖旧客户端的顶层版本记录。
+### 分插件维护与自动发布
+
+正式数据按插件拆分，生成的索引不作为人工维护入口：
+
+```text
+registry/categories.json                         市场分类
+registry/plugins/<id>/metadata.json               展示信息和固定的旧客户端版本
+registry/plugins/<id>/releases/<version>.json      不可变版本记录
+registry/plugins/<id>/corrections/<version>/000001.json  顺序追加的兼容纠错
+registry/v1/index.json                            冻结的旧客户端目录，禁止更新
+registry/v1/index.sha256                          冻结内容的校验值
+registry/v2/index.json                            自动生成，只含展示摘要和历史引用
+registry/v2/plugins/<id>/<sha256>.json             自动生成，单个插件的完整历史
+```
+
+`record` 和 `correct` 默认维护源记录，只生成 v2 索引。展示信息修改直接编辑对应的 `metadata.json`；分类标识登记在 `categories.json`。不要手动改生成文件或删除旧历史文件。摘要引用包含历史文件的精确大小和摘要，客户端只读取已安装插件及当前页插件的历史，离线启动仍检查当前已安装版本的兼容纠错。
+
+v1 的原地址、索引内容及对应安装包持续保留，后续不接收新插件、新版本、文案修改或兼容纠错。旧客户端继续使用冻结内容，但无法从市场发现新的插件和更新；用户需要升级到支持 v2 目录的主程序版本。不得替换、删除冻结目录中引用的 Release 资产。
+
+一方插件流水线用以下命令生成发布记录，随最终安装包一起上传到同一个 Release：
+
+```sh
+node scripts/release-plugin.mjs entry plugins/my-plugin \
+  --release-url https://github.com/example/plugins/releases/download/my-plugin-v1.1.0 \
+  --packages-dir dist/packages --output dist/catalog-entry.json
+```
+
+生成记录不会提前收录插件。`Publish plugin catalog` 在发布完成、源记录变动或手动触发后运行，重新核对远端资产的清单、大小和校验值，再合并新版本并提交 v2 索引。登记任务串行执行，补登按发布时间排序；重跑不会重复登记，旧流水线快照不会删掉后来发布的版本。第三方插件仍通过收录申请审核。发布流水线会将[目录升级说明](catalog-upgrade-notice.md)加入新插件版本的发布说明。
+
+```sh
+node scripts/catalog.mjs generate
+node scripts/catalog.mjs check
+node scripts/catalog.mjs import /path/to/reviewed-catalog-entry.json
+node scripts/sync-catalog.mjs --repository AnalyseDeCircuit/oxideterm-plugins --dry-run
+```
+
+每次生成和校验都检查 v1 的精确字节与冻结校验值一致；持续集成还与前一提交比较，禁止通过同时改写索引和校验值解除冻结。v1 不再参与生成，后续版本历史增长不受旧版完整索引大小的限制。v2 摘要索引限制为 2 MiB，单个插件的独立历史限制为 8 MiB。远端旧历史文件应继续保留，保证已缓存摘要中的下载引用可用。
+
+核对下载包清单中的版本和宿主范围与发布记录一致。运行 `npm ci --ignore-scripts`、`npm test` 和 `npm run check`。如需对照历史提交，运行 `node scripts/validate-registry.mjs` 时将环境变量 `REGISTRY_BASE_REF` 设为基准提交的完整标识；持续集成会自动与推送前的 v2 历史比较，拒绝删除或修改已发布记录、删除已发布历史文件或改动冻结的 v1。首次迁移以原 v1 中的发布记录为历史基准。

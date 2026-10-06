@@ -2,7 +2,7 @@ name: Build ACP agent plugins
 
 on:
   push:
-    tags: ['codex-acp-v*', 'claude-code-acp-v*']
+    tags: ['codex-acp-v*', 'claude-code-acp-v*', 'opencode-acp-v*', 'antigravity-acp-v*', 'grok-acp-v*', 'cursor-acp-v*']
   workflow_dispatch:
 
 permissions:
@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        plugin: ${{ fromJSON(startsWith(github.ref, 'refs/tags/codex-acp-v') && '["codex-acp"]' || startsWith(github.ref, 'refs/tags/claude-code-acp-v') && '["claude-code-acp"]' || '["codex-acp","claude-code-acp"]') }}
+        plugin: ${{ fromJSON(startsWith(github.ref, 'refs/tags/codex-acp-v') && '["codex-acp"]' || startsWith(github.ref, 'refs/tags/claude-code-acp-v') && '["claude-code-acp"]' || startsWith(github.ref, 'refs/tags/opencode-acp-v') && '["opencode-acp"]' || startsWith(github.ref, 'refs/tags/antigravity-acp-v') && '["antigravity-acp"]' || startsWith(github.ref, 'refs/tags/grok-acp-v') && '["grok-acp"]' || startsWith(github.ref, 'refs/tags/cursor-acp-v') && '["cursor-acp"]' || '["codex-acp","claude-code-acp","opencode-acp","antigravity-acp","grok-acp","cursor-acp"]') }}
         platform:
           - { os: macos-14, arch: arm64, target: aarch64-apple-darwin }
           - { os: macos-15-intel, arch: x64, target: x86_64-apple-darwin }
@@ -37,7 +37,7 @@ jobs:
         with:
           workspaces: plugins/${{ matrix.plugin }}
       - run: npm ci --ignore-scripts
-      - run: node scripts/release-plugin.mjs prepare plugins/${{ matrix.plugin }} --host-range '>2.2.1'
+      - run: node scripts/release-plugin.mjs prepare plugins/${{ matrix.plugin }}
       - run: node scripts/build-acp-agent.mjs ${{ matrix.plugin }}
       - run: node scripts/verify-acp-agent.mjs ${{ matrix.plugin }}
       - uses: actions/upload-artifact@v4
@@ -69,18 +69,20 @@ jobs:
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           import { recordRelease } from './scripts/release-plugin.mjs';
+          import { readCatalog } from './scripts/catalog-source.mjs';
           const tag = process.env.GITHUB_REF_NAME;
-          const name = tag.startsWith('codex-acp-v') ? 'codex-acp' : 'claude-code-acp';
+          const name = ['codex-acp', 'claude-code-acp', 'opencode-acp', 'antigravity-acp', 'grok-acp', 'cursor-acp'].find(name => tag.startsWith(`${name}-v`));
+          if (!name) throw new Error('Unknown ACP plugin release tag');
           const manifest = JSON.parse(fs.readFileSync(`plugins/${name}/plugin.json`));
           if (tag !== `${name}-v${manifest.version}`) throw new Error('Release tag and manifest version differ');
           const targets = ['aarch64-apple-darwin', 'x86_64-apple-darwin', 'x86_64-unknown-linux-gnu', 'aarch64-unknown-linux-gnu', 'x86_64-pc-windows-msvc', 'aarch64-pc-windows-msvc'];
-          const catalog = JSON.parse(fs.readFileSync('registry/v1/index.json'));
+          const catalog = readCatalog();
           const updated = recordRelease(catalog, manifest, `https://github.com/${process.env.GH_REPO}/releases/download/${tag}`, targets.map(target => `${target}=dist/acp/${name}-${manifest.version}-${target}.zip`));
           fs.writeFileSync('dist/acp/catalog-entry.json', JSON.stringify(updated.plugins.find(entry => entry.id === manifest.id), null, 2) + '\n');
           for (const file of fs.readdirSync('dist/acp')) {
             if (file.endsWith('.zip') && !file.startsWith(`${name}-`)) fs.unlinkSync(`dist/acp/${file}`);
           }
-          fs.writeFileSync('dist/acp/release-notes.md', `${manifest.name} ${manifest.version}\n\nNative ACP adapter packages for macOS, Linux and Windows on x64 and ARM64. Requires OxideTerm ${manifest.engines.oxideterm} and the installed, authenticated upstream CLI.\n`);
+          fs.writeFileSync('dist/acp/release-notes.md', `${manifest.name} ${manifest.version}\n\nACP integration packages for macOS, Linux and Windows on x64 and ARM64. Requires OxideTerm ${manifest.engines.oxideterm} and the installed official agent program. See the plugin README for executable configuration and authentication.\n\n` + fs.readFileSync('docs/catalog-upgrade-notice.md', 'utf8'));
           NODE
       - name: Publish immutable plugin release
         env:

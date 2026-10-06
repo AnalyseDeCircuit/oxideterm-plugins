@@ -1,0 +1,60 @@
+name: Publish plugin catalog
+
+on:
+  push:
+    branches: [main]
+    paths: ['registry/plugins/**', 'registry/categories.json', 'scripts/catalog*.mjs', 'scripts/sync-catalog.mjs', '.github/workflows/catalog.yml']
+  release:
+    types: [published]
+  workflow_run:
+    workflows: ['Build ACP agent plugins', 'Release Workspace Dashboard', 'Validate host source plugins', 'Build inspection preview plugins', 'Build language plugin', 'Build PDF preview plugin', 'Build remote connection plugins', 'Build SQLite preview plugin', 'Build Toolbox']
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: plugin-catalog-publisher
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      # Privileged publication always executes the maintained main-branch code.
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts
+      - name: Verify released assets and publish a consistent catalog
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          node scripts/sync-catalog.mjs
+          npm test
+          npm run check
+          git add registry/plugins registry/v2
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Update generated v2 plugin catalog'
+          for attempt in 1 2 3; do
+            echo "Catalog publication attempt $attempt"
+            git fetch origin main
+            git rebase origin/main
+            node scripts/sync-catalog.mjs
+            node scripts/catalog.mjs check
+            REGISTRY_BASE_REF=$(git rev-parse origin/main) node scripts/validate-registry.mjs
+            git add registry/plugins registry/v2
+            if ! git diff --cached --quiet; then git commit --amend --no-edit; fi
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          echo 'Catalog publication could not advance main without a conflict.' >&2
+          exit 1

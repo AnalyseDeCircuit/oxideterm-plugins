@@ -1,0 +1,19 @@
+{
+  "id": "com.oxideterm.remote-desktop.vnc",
+  "name": "VNC",
+  "description": "VNC connections using OxideTerm's native viewer, clipboard, audio and SSH gateways.",
+  "author": "OxideTerm",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/vnc",
+  "tags": [
+    "remote-connections"
+  ],
+  "updatedAt": "2026-10-05T15:45:21.510Z",
+  "legacy": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.1"
+    },
+    "minOxidetermVersion": "2.2.2"
+  },
+  "order": 34
+}

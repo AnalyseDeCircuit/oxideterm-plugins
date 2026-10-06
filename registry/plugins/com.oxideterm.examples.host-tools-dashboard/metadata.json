@@ -1,0 +1,20 @@
+{
+  "id": "com.oxideterm.examples.host-tools-dashboard",
+  "name": "Workspace Dashboard",
+  "description": "Continue recent work, follow active tasks, and handle workspace issues in one place.",
+  "author": "AnalyseDeCircuit",
+  "tags": [
+    "workspace"
+  ],
+  "capabilitiesSummary": [
+    "Recent work and pinned shortcuts",
+    "Active tasks and workspace issues"
+  ],
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/host-tools-dashboard",
+  "updatedAt": "2026-10-05T11:06:26.799Z",
+  "legacy": {
+    "version": "0.3.0",
+    "minOxideTermVersion": "2.0.20"
+  },
+  "order": 0
+}

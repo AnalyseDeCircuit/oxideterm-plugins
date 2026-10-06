@@ -1,0 +1,16 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-objc-v0.1.0/com.oxideterm.language.objc-0.1.0.zip",
+        "checksum": "sha256:907570ed4dc13cb3b1c7e6323ae65a73ad0619ae5915385af90a42ac3d74620e",
+        "size": 296277
+      }
+    ]
+  }
+}

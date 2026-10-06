@@ -1,0 +1,16 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-typescript-v0.1.0/com.oxideterm.language.typescript-0.1.0.zip",
+        "checksum": "sha256:e18311b4074be6bf10586f2c3de8801ef1dddf774e16121b02ef03b9431aa41d",
+        "size": 144044
+      }
+    ]
+  }
+}

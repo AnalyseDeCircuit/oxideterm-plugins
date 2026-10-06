@@ -1,0 +1,46 @@
+{
+  "release": {
+    "version": "0.4.2",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "aarch64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/host-tools-dashboard-v0.4.2/host-tools-dashboard-0.4.2-aarch64-apple-darwin.zip",
+        "checksum": "sha256:439900d2cfd893eebf37b78f2fc9510318ee15cfaed033f712c5ea8b41e8e310",
+        "size": 29649
+      },
+      {
+        "target": "x86_64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/host-tools-dashboard-v0.4.2/host-tools-dashboard-0.4.2-x86_64-apple-darwin.zip",
+        "checksum": "sha256:68ccb2de3870a82f6847d962f6198095e21539ef0e2adca53b50c3ed0700b6af",
+        "size": 29649
+      },
+      {
+        "target": "aarch64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/host-tools-dashboard-v0.4.2/host-tools-dashboard-0.4.2-aarch64-unknown-linux-gnu.zip",
+        "checksum": "sha256:e91dc483b6dcee90f90e3c9e501f368caf76d1d056523852b14ee72692c16b30",
+        "size": 29649
+      },
+      {
+        "target": "x86_64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/host-tools-dashboard-v0.4.2/host-tools-dashboard-0.4.2-x86_64-unknown-linux-gnu.zip",
+        "checksum": "sha256:439900d2cfd893eebf37b78f2fc9510318ee15cfaed033f712c5ea8b41e8e310",
+        "size": 29649
+      },
+      {
+        "target": "aarch64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/host-tools-dashboard-v0.4.2/host-tools-dashboard-0.4.2-aarch64-pc-windows-msvc.zip",
+        "checksum": "sha256:353636080ba6f557fab68ba4e6c1b850f5e5d3b368312570e818796766b866cb",
+        "size": 30064
+      },
+      {
+        "target": "x86_64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/host-tools-dashboard-v0.4.2/host-tools-dashboard-0.4.2-x86_64-pc-windows-msvc.zip",
+        "checksum": "sha256:c05e2d6d0d8339a76003c256d032c94a8aea8ea7cf5066ec305bf5abdeec0fb3",
+        "size": 30064
+      }
+    ]
+  }
+}

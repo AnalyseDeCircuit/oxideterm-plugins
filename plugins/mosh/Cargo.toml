@@ -1,0 +1,22 @@
+[package]
+name = "oxideterm-mosh-helper"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-only"
+
+[dependencies]
+fernomade-crypto = { git = "https://github.com/AnalyseDeCircuit/oxideterm", rev = "7ecf75f2dbb0d4374940792193b7d6c5ebe41483" }
+fernomade-runtime = { git = "https://github.com/AnalyseDeCircuit/oxideterm", rev = "7ecf75f2dbb0d4374940792193b7d6c5ebe41483" }
+tokio = { version = "1.52", features = ["rt-multi-thread", "sync", "time", "io-util", "io-std", "net", "macros"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+zeroize = { version = "1.8", features = ["serde"] }
+thiserror = "2"
+
+[dev-dependencies]
+fernomade-wire = { git = "https://github.com/AnalyseDeCircuit/oxideterm", rev = "7ecf75f2dbb0d4374940792193b7d6c5ebe41483" }
+
+[workspace]
+
+[patch.crates-io]
+vte = { git = "https://github.com/AnalyseDeCircuit/oxideterm", rev = "7ecf75f2dbb0d4374940792193b7d6c5ebe41483" }

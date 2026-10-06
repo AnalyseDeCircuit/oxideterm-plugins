@@ -51,6 +51,8 @@ test("creation reads the host and ordinary updates inherit without consulting a 
   assert.deepEqual(preparedAcp.engines, { oxideterm: ">2.2.1" });
   const desktop = { ...acp, id: "com.example.vnc", runtime: { kind: "remote-desktop", entry: "bin/helper" } };
   assert.deepEqual((await prepareManifest(desktop, empty, { hostRepository: host })).engines, { oxideterm: ">2.2.1" });
+  const mosh = { ...acp, id: "com.example.mosh", runtime: { kind: "terminal-transport", entry: "bin/helper" } };
+  assert.deepEqual((await prepareManifest(mosh, empty, { hostRepository: host })).engines, { oxideterm: ">=2.2.2" });
 });
 
 test("recording reads the actual archive and corrections preserve assets and their audit history", async t => {
@@ -93,7 +95,7 @@ test("recording reads the actual archive and corrections preserve assets and the
   assert.deepEqual(acpCatalog.plugins[0].tags, ["acp"]);
   const desktop = { ...acp, runtime: { kind: "remote-desktop", entry: "bin/agent" } };
   fs.writeFileSync(zip, zipSync({ "plugin.json": strToU8(JSON.stringify(desktop)), "bin/agent": strToU8("fixture") }));
-  assert.deepEqual(recordRelease(empty, desktop, "https://example.com/releases/v1.0.0", ["aarch64-apple-darwin=" + zip]).plugins[0].tags, ["remote-desktop"]);
+  assert.deepEqual(recordRelease(empty, desktop, "https://example.com/releases/v1.0.0", ["aarch64-apple-darwin=" + zip]).plugins[0].tags, ["remote-connections"]);
   const preview = { ...manifest, runtime: { kind: "process", entry: "bin/viewer" }, contributes: { filePreviews: [{ mimeTypes: ["application/pkix-cert"], command: "preview.render" }] } };
   fs.writeFileSync(zip, zipSync({ "plugin.json": strToU8(JSON.stringify(preview)), "bin/viewer": strToU8("fixture") }));
   const previewCatalog = recordRelease(empty, preview, "https://example.com/releases/v1.0.0", ["aarch64-apple-darwin=" + zip]);

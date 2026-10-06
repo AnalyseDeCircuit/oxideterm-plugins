@@ -1,0 +1,18 @@
+{
+  "id": "com.oxideterm.preview.sqlite",
+  "name": "SQLite Preview",
+  "description": "Browse SQLite tables and read-only paginated data from the file preview.",
+  "author": "OxideTerm",
+  "tags": [
+    "preview"
+  ],
+  "updatedAt": "2026-10-05T04:29:31.668Z",
+  "legacy": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "minOxidetermVersion": "2.2.1"
+  },
+  "order": 24
+}

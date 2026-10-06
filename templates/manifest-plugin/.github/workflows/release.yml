@@ -32,12 +32,11 @@ jobs:
           GH_REPO: ${{ github.repository }}
         run: |
           identity=$(node -p 'const m = require("./plugin.json"); m.id + "-" + m.version')
-          node .oxideterm-catalog/scripts/release-plugin.mjs record . \
+          node .oxideterm-catalog/scripts/release-plugin.mjs entry . \
             --release-url "https://github.com/$GH_REPO/releases/download/$GITHUB_REF_NAME" \
-            --package "any=dist/$identity.zip"
-          node --input-type=module -e 'import fs from "node:fs"; const m = JSON.parse(fs.readFileSync("plugin.json")); const index = JSON.parse(fs.readFileSync(".oxideterm-catalog/registry/v1/index.json")); fs.writeFileSync("dist/catalog-entry.json", JSON.stringify(index.plugins.find(p => p.id === m.id), null, 2) + "\n");'
+            --package "any=dist/$identity.zip" --output dist/catalog-entry.json
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-        run: gh release create "$GITHUB_REF_NAME" dist/*.zip dist/catalog-entry.json --generate-notes --verify-tag
+        run: gh release create "$GITHUB_REF_NAME" dist/*.zip dist/catalog-entry.json --generate-notes --notes-file .oxideterm-catalog/docs/catalog-upgrade-notice.md --verify-tag

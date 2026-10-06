@@ -1,0 +1,19 @@
+{
+  "id": "com.oxideterm.language.swift",
+  "name": "Swift Language Support",
+  "description": "Syntax highlighting and folding for Swift.",
+  "author": "OxideTerm",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-swift",
+  "tags": [
+    "language"
+  ],
+  "updatedAt": "2026-10-04T14:32:43.266Z",
+  "legacy": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "minOxidetermVersion": "2.2.1"
+  },
+  "order": 18
+}

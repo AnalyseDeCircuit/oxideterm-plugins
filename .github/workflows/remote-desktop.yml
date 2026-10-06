@@ -1,15 +1,15 @@
-name: Build remote desktop plugins
+name: Build remote connection plugins
 
 on:
   push:
-    tags: ['rdp-v*', 'vnc-v*']
+    tags: ['rdp-v*', 'vnc-v*', 'mosh-v*']
   workflow_dispatch:
     inputs:
       plugin:
         description: Plugin to build
         type: choice
         default: all
-        options: [all, rdp, vnc]
+        options: [all, rdp, vnc, mosh]
 
 permissions:
   contents: read
@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        plugin: ${{ fromJSON(startsWith(github.ref, 'refs/tags/rdp-v') && '["rdp"]' || startsWith(github.ref, 'refs/tags/vnc-v') && '["vnc"]' || inputs.plugin == 'rdp' && '["rdp"]' || inputs.plugin == 'vnc' && '["vnc"]' || '["rdp","vnc"]') }}
+        plugin: ${{ fromJSON(startsWith(github.ref, 'refs/tags/rdp-v') && '["rdp"]' || startsWith(github.ref, 'refs/tags/vnc-v') && '["vnc"]' || startsWith(github.ref, 'refs/tags/mosh-v') && '["mosh"]' || inputs.plugin == 'rdp' && '["rdp"]' || inputs.plugin == 'vnc' && '["vnc"]' || inputs.plugin == 'mosh' && '["mosh"]' || '["rdp","vnc","mosh"]') }}
         platform:
           - { os: macos-14, arch: arm64, target: aarch64-apple-darwin }
           - { os: macos-15-intel, arch: x64, target: x86_64-apple-darwin }
@@ -56,9 +56,16 @@ jobs:
         with:
           workspaces: plugins/${{ matrix.plugin }}
       - run: npm ci --ignore-scripts
-      - run: node scripts/release-plugin.mjs prepare plugins/${{ matrix.plugin }} --host-range '>2.2.1'
+      - run: node scripts/release-plugin.mjs prepare plugins/${{ matrix.plugin }} --host-range '${{ matrix.plugin == 'mosh' && '>=2.2.2' || '>2.2.1' }}'
       - run: node scripts/build-remote-desktop.mjs ${{ matrix.plugin }}
-      - run: node scripts/verify-remote-desktop.mjs ${{ matrix.plugin }}
+      - name: Verify native package
+        shell: bash
+        run: |
+          if [ "${{ matrix.plugin }}" = "mosh" ]; then
+            node scripts/verify-mosh.mjs
+          else
+            node scripts/verify-remote-desktop.mjs ${{ matrix.plugin }}
+          fi
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.plugin }}-${{ matrix.platform.target }}
@@ -88,19 +95,21 @@ jobs:
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           import { recordRelease } from './scripts/release-plugin.mjs';
+          import { readCatalog } from './scripts/catalog-source.mjs';
           const tag = process.env.GITHUB_REF_NAME;
-          const name = tag.startsWith('rdp-v') ? 'rdp' : 'vnc';
+          const name = tag.slice(0, tag.lastIndexOf('-v'));
           const manifest = JSON.parse(fs.readFileSync(`plugins/${name}/plugin.json`));
           if (tag !== `${name}-v${manifest.version}`) throw new Error('Release tag and manifest version differ');
           const targets = ['aarch64-apple-darwin', 'x86_64-apple-darwin', 'x86_64-unknown-linux-gnu', 'aarch64-unknown-linux-gnu', 'x86_64-pc-windows-msvc', 'aarch64-pc-windows-msvc'];
           const directory = 'dist/remote-desktop';
-          const catalog = JSON.parse(fs.readFileSync('registry/v1/index.json'));
+          const catalog = readCatalog();
           const updated = recordRelease(catalog, manifest, `https://github.com/${process.env.GH_REPO}/releases/download/${tag}`, targets.map(target => `${target}=${directory}/${name}-${manifest.version}-${target}.zip`));
           fs.writeFileSync(`${directory}/catalog-entry.json`, JSON.stringify(updated.plugins.find(entry => entry.id === manifest.id), null, 2) + '\n');
           for (const file of fs.readdirSync(directory)) {
             if (file.endsWith('.zip') && !file.startsWith(`${name}-`)) fs.unlinkSync(`${directory}/${file}`);
           }
-          fs.writeFileSync(`${directory}/release-notes.md`, `${manifest.name} ${manifest.version}\n\nRemote desktop engine packages for macOS, Linux and Windows on x64 and ARM64. Requires OxideTerm ${manifest.engines.oxideterm}.\n`);
+          fs.writeFileSync(`${directory}/release-notes.md`, `${manifest.name} ${manifest.version}\n\nRemote connection engine packages for macOS, Linux and Windows on x64 and ARM64. Requires OxideTerm ${manifest.engines.oxideterm}.\n`);
+          fs.appendFileSync(`${directory}/release-notes.md`, '\n' + fs.readFileSync('docs/catalog-upgrade-notice.md', 'utf8'));
           NODE
       - name: Publish immutable plugin release
         env:

@@ -1,0 +1,46 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.1"
+    },
+    "packages": [
+      {
+        "target": "aarch64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-aarch64-apple-darwin.zip",
+        "checksum": "sha256:6b756c3b07122a1da4c00609440d522e1156c090c0a564554b684ce10aefbde8",
+        "size": 1778093
+      },
+      {
+        "target": "x86_64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-x86_64-apple-darwin.zip",
+        "checksum": "sha256:0e11ad36775e4083a15e560b2ae2ed42ff6a0f53dfcd2af58922a21a29288b7f",
+        "size": 1856157
+      },
+      {
+        "target": "x86_64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-x86_64-unknown-linux-gnu.zip",
+        "checksum": "sha256:df4c484233a2bd3c42b348bb679460e4a7a6924f6406f3d6fbad6b94b71e5729",
+        "size": 4236714
+      },
+      {
+        "target": "aarch64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-aarch64-unknown-linux-gnu.zip",
+        "checksum": "sha256:bf160f5eed98c4b3c5193f99dbd04330b16048805f44410c6c37120ca6ad8a1e",
+        "size": 4614131
+      },
+      {
+        "target": "x86_64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-x86_64-pc-windows-msvc.zip",
+        "checksum": "sha256:732636d92184aaf8f95a967496d4a859fe3b5d4670623c86f4ecdd354f9b9292",
+        "size": 1662718
+      },
+      {
+        "target": "aarch64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.0/vnc-0.1.0-aarch64-pc-windows-msvc.zip",
+        "checksum": "sha256:0bcc33df072a838abb2febaa7c0961ebc79fd4209f5c2e93dc59f77fd1248d08",
+        "size": 1554470
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-ruby-v0.1.0/com.oxideterm.language.ruby-0.1.0.zip",
+        "checksum": "sha256:bddf3a19b0f7f9182a1d9e0568bdc7707096b23b8f59092ae56c0228c925f23e",
+        "size": 175749
+      }
+    ]
+  }
+}

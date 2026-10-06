@@ -101,9 +101,10 @@ jobs:
           node --input-type=module <<'JS'
           import fs from 'node:fs';
           import { recordRelease } from './scripts/release-plugin.mjs';
+          import { readCatalog } from './scripts/catalog-source.mjs';
           import { validateRegistry } from './scripts/validate-registry.mjs';
           const manifest = JSON.parse(fs.readFileSync('plugins/pdf-preview/plugin.json'));
-          const catalog = JSON.parse(fs.readFileSync('registry/v1/index.json'));
+          const catalog = readCatalog();
           const tag = `pdf-preview-v${manifest.version}`;
           const targets = ['aarch64-apple-darwin', 'x86_64-apple-darwin', 'aarch64-unknown-linux-gnu', 'x86_64-unknown-linux-gnu', 'aarch64-pc-windows-msvc', 'x86_64-pc-windows-msvc'];
           const packages = targets.map(target => `${target}=dist/pdf-preview/pdf-preview-${manifest.version}-${target}.zip`);
@@ -112,6 +113,7 @@ jobs:
           fs.writeFileSync('dist/pdf-preview/catalog-preview.json', JSON.stringify(updated, null, 2) + '\n');
           fs.writeFileSync('dist/pdf-preview/catalog-entry.json', JSON.stringify(updated.plugins.find(plugin => plugin.id === manifest.id), null, 2) + '\n');
           fs.writeFileSync('dist/pdf-preview/release-notes.md', `## 中文\n\nPDF 预览插件 ${manifest.version}，支持翻页、缩放和适应宽度。\n\n主程序要求：OxideTerm ${manifest.engines.oxideterm}\n\nmacOS、Linux、Windows 的 ARM64 和 x86_64 安装包均已通过实际 PDF 页面渲染检查。\n\n## English\n\nPDF Preview ${manifest.version} supports page navigation, zoom and fit-to-width.\n\nHost requirement: OxideTerm ${manifest.engines.oxideterm}\n\nAll six ARM64 and x86_64 packages for macOS, Linux and Windows passed PDF rendering checks.\n`);
+          fs.appendFileSync('dist/pdf-preview/release-notes.md', '\n' + fs.readFileSync('docs/catalog-upgrade-notice.md', 'utf8'));
           JS
       - uses: actions/upload-artifact@v4
         with:

@@ -2,6 +2,7 @@ name: Build Toolbox
 on:
   push:
     branches: [main]
+    tags: ['toolbox-v*']
     paths: ['plugins/toolbox/**', '.github/workflows/toolbox.yml']
   workflow_dispatch:
 permissions:
@@ -26,3 +27,14 @@ jobs:
           name: toolbox-any
           path: plugins/toolbox/dist/*.zip
           if-no-files-found: error
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/toolbox-v')
+    permissions:
+      contents: write
+    uses: ./.github/workflows/publish-plugin.yml
+    with:
+      plugin: toolbox
+      artifacts: toolbox-any
+      targets: any

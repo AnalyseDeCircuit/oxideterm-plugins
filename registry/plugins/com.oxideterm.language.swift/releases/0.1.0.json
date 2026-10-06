@@ -1,0 +1,16 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-swift-v0.1.0/com.oxideterm.language.swift-0.1.0.zip",
+        "checksum": "sha256:222ee5eebca067e959482e85cda06e0c171df3cabeb07b25672a92510da223b7",
+        "size": 312027
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-tsx-v0.1.0/com.oxideterm.language.tsx-0.1.0.zip",
+        "checksum": "sha256:be79a89adf634c5c968f17e859ba38e2c629d77bd94513b053aee2b240c1f485",
+        "size": 146572
+      }
+    ]
+  }
+}

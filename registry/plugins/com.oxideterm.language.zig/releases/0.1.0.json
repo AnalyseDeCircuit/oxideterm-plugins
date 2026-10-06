@@ -1,0 +1,16 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-zig-v0.1.0/com.oxideterm.language.zig-0.1.0.zip",
+        "checksum": "sha256:7ac18ebc7aef5eaec913b98086ee64c53a0fddef9c3ddfb5e8ac1e194027d4e7",
+        "size": 61286
+      }
+    ]
+  }
+}

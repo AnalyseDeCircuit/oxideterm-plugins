@@ -1,0 +1,19 @@
+{
+  "id": "com.oxideterm.toolbox",
+  "name": "Toolbox",
+  "tags": [
+    "utilities"
+  ],
+  "description": "Local encoding, JSON, time, text, digest and random generation tools with native editors.",
+  "author": "OxideTerm",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/toolbox",
+  "updatedAt": "2026-10-05T10:31:11.608Z",
+  "legacy": {
+    "version": "0.2.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "minOxidetermVersion": "2.2.1"
+  },
+  "order": 23
+}

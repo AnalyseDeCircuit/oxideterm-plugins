@@ -1,0 +1,46 @@
+{
+  "release": {
+    "version": "0.1.1",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "aarch64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.1/tailscale-hosts-0.1.1-aarch64-apple-darwin.zip",
+        "checksum": "sha256:06a3160e9bf7c38cebe4d7af620964e5970b4ec0eaabd2df8c680e3162289543",
+        "size": 17489
+      },
+      {
+        "target": "x86_64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.1/tailscale-hosts-0.1.1-x86_64-apple-darwin.zip",
+        "checksum": "sha256:dd7c7274161ea0f1eb04185ad66ad7821aea17b883de2cb58a08eafa95a1e0ed",
+        "size": 17489
+      },
+      {
+        "target": "aarch64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.1/tailscale-hosts-0.1.1-aarch64-unknown-linux-gnu.zip",
+        "checksum": "sha256:06a3160e9bf7c38cebe4d7af620964e5970b4ec0eaabd2df8c680e3162289543",
+        "size": 17489
+      },
+      {
+        "target": "x86_64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.1/tailscale-hosts-0.1.1-x86_64-unknown-linux-gnu.zip",
+        "checksum": "sha256:6e71e427b6a7d621c7ce49a899732a273b1d0e730b6edee57caab8c32211788c",
+        "size": 17489
+      },
+      {
+        "target": "aarch64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.1/tailscale-hosts-0.1.1-aarch64-pc-windows-msvc.zip",
+        "checksum": "sha256:383bde1ea7ce66c03e64fa0fc3c2408b2f70153cf2aad773e5068faccc865703",
+        "size": 17560
+      },
+      {
+        "target": "x86_64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.1/tailscale-hosts-0.1.1-x86_64-pc-windows-msvc.zip",
+        "checksum": "sha256:5e36816ce3da5481fea254b1c42be784f311e092b3a617fffd53ed0f7ae33a0b",
+        "size": 17560
+      }
+    ]
+  }
+}

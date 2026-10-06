@@ -1,0 +1,46 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.1"
+    },
+    "packages": [
+      {
+        "target": "aarch64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-aarch64-apple-darwin.zip",
+        "checksum": "sha256:6daf0d6c0dcfef024c20b7593829ea4b149edb67ebcde53336269fee60753058",
+        "size": 5711097
+      },
+      {
+        "target": "x86_64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-x86_64-apple-darwin.zip",
+        "checksum": "sha256:364889fcc37f861d7d7ec527f1737443ca095ce9a6bcad5de2c2d7b9a8699ebd",
+        "size": 6151128
+      },
+      {
+        "target": "x86_64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-x86_64-unknown-linux-gnu.zip",
+        "checksum": "sha256:de93b9286ba8365dd83267bcfdcb4959b4182bfdbc97e862d72cd40047d80483",
+        "size": 8474935
+      },
+      {
+        "target": "aarch64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-aarch64-unknown-linux-gnu.zip",
+        "checksum": "sha256:4512dcf275158833d42085172ae47dc84315b10ce4166d2c599240dfc28fc948",
+        "size": 8685272
+      },
+      {
+        "target": "x86_64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-x86_64-pc-windows-msvc.zip",
+        "checksum": "sha256:e9afa33970273ab518df18f0b8372012a2c85716010c662edae63e303ac78bce",
+        "size": 6665627
+      },
+      {
+        "target": "aarch64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-aarch64-pc-windows-msvc.zip",
+        "checksum": "sha256:7af4de761782423d52bc38348d1b19e3a5d892d767c336bdbe56bd5876c7102a",
+        "size": 6260764
+      }
+    ]
+  }
+}

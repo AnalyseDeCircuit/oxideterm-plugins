@@ -1,0 +1,40 @@
+{
+  "id": "com.oxideterm.language.perl",
+  "name": "Perl Language Support",
+  "description": "Syntax highlighting and folding for Perl.",
+  "author": "OxideTerm",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-perl",
+  "tags": [
+    "language"
+  ],
+  "updatedAt": "2026-10-04T14:32:42.888Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "minOxidetermVersion": "2.2.1",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-perl-v0.1.0/com.oxideterm.language.perl-0.1.0.zip",
+      "checksum": "sha256:a1f593004df477589be2613121a9d620768198d0192a41e26789da96247b8c78",
+      "size": 271048
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-perl-v0.1.0/com.oxideterm.language.perl-0.1.0.zip",
+          "checksum": "sha256:a1f593004df477589be2613121a9d620768198d0192a41e26789da96247b8c78",
+          "size": 271048
+        }
+      ]
+    }
+  ]
+}

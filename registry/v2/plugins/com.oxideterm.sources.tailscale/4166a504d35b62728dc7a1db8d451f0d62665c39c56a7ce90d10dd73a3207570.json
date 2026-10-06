@@ -1,0 +1,120 @@
+{
+  "id": "com.oxideterm.sources.tailscale",
+  "name": "Tailscale Hosts",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/tailscale-hosts",
+  "tags": [
+    "host-sources"
+  ],
+  "description": "Discover devices visible to the local Tailscale client and prepare SSH connections.",
+  "author": "OxideTerm",
+  "updatedAt": "2026-10-05T11:06:26.726Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "minOxidetermVersion": "2.2.1",
+  "packages": [
+    {
+      "target": "aarch64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.0/tailscale-hosts-0.1.0-aarch64-apple-darwin.zip",
+      "checksum": "sha256:d0e8785defc2ca80d1d833ac7f2732aa85b647809fce39a3dd5ce0faa87376b7",
+      "size": 17347
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.0/tailscale-hosts-0.1.0-x86_64-apple-darwin.zip",
+      "checksum": "sha256:b575933f39310f327a2bd6361b3380dfc0c865fd0f3b483eff9dc3ba9a8a227c",
+      "size": 17347
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.0/tailscale-hosts-0.1.0-x86_64-unknown-linux-gnu.zip",
+      "checksum": "sha256:0cdc0b65c28ad5a697e72365fc06d9b2a79dc51606c011ab4c79f974054dd588",
+      "size": 17347
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.0/tailscale-hosts-0.1.0-aarch64-unknown-linux-gnu.zip",
+      "checksum": "sha256:99411d65ac1fb50046c797a53df8507943cfa0ad3614236113e8864481d6ff08",
+      "size": 17347
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.0/tailscale-hosts-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:d0e8785defc2ca80d1d833ac7f2732aa85b647809fce39a3dd5ce0faa87376b7",
+          "size": 17347
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.0/tailscale-hosts-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:b575933f39310f327a2bd6361b3380dfc0c865fd0f3b483eff9dc3ba9a8a227c",
+          "size": 17347
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.0/tailscale-hosts-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:0cdc0b65c28ad5a697e72365fc06d9b2a79dc51606c011ab4c79f974054dd588",
+          "size": 17347
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.0/tailscale-hosts-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:99411d65ac1fb50046c797a53df8507943cfa0ad3614236113e8864481d6ff08",
+          "size": 17347
+        }
+      ]
+    },
+    {
+      "version": "0.1.1",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.1/tailscale-hosts-0.1.1-aarch64-apple-darwin.zip",
+          "checksum": "sha256:06a3160e9bf7c38cebe4d7af620964e5970b4ec0eaabd2df8c680e3162289543",
+          "size": 17489
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.1/tailscale-hosts-0.1.1-x86_64-apple-darwin.zip",
+          "checksum": "sha256:dd7c7274161ea0f1eb04185ad66ad7821aea17b883de2cb58a08eafa95a1e0ed",
+          "size": 17489
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.1/tailscale-hosts-0.1.1-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:06a3160e9bf7c38cebe4d7af620964e5970b4ec0eaabd2df8c680e3162289543",
+          "size": 17489
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.1/tailscale-hosts-0.1.1-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:6e71e427b6a7d621c7ce49a899732a273b1d0e730b6edee57caab8c32211788c",
+          "size": 17489
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.1/tailscale-hosts-0.1.1-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:383bde1ea7ce66c03e64fa0fc3c2408b2f70153cf2aad773e5068faccc865703",
+          "size": 17560
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/tailscale-hosts-v0.1.1/tailscale-hosts-0.1.1-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:5e36816ce3da5481fea254b1c42be784f311e092b3a617fffd53ed0f7ae33a0b",
+          "size": 17560
+        }
+      ]
+    }
+  ]
+}

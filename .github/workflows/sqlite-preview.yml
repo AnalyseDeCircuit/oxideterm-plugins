@@ -3,6 +3,7 @@ name: Build SQLite preview plugin
 on:
   push:
     branches: [main]
+    tags: ['sqlite-preview-v*']
     paths:
       - 'plugins/sqlite-preview/**'
       - '.github/workflows/sqlite-preview.yml'
@@ -56,3 +57,13 @@ jobs:
           name: sqlite-preview-${{ matrix.target }}
           path: plugins/sqlite-preview/dist/*.zip
           if-no-files-found: error
+
+  release:
+    needs: package
+    if: startsWith(github.ref, 'refs/tags/sqlite-preview-v')
+    permissions:
+      contents: write
+    uses: ./.github/workflows/publish-plugin.yml
+    with:
+      plugin: sqlite-preview
+      artifacts: sqlite-preview-*

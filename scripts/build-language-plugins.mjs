@@ -5,6 +5,7 @@ import { execFileSync } from "node:child_process";
 import { parseArgs } from "node:util";
 import { zipSync, strToU8 } from "fflate";
 import { prepareManifest, writeJson } from "./release-plugin.mjs";
+import {readCatalog} from './catalog-source.mjs';
 
 const root = path.resolve(import.meta.dirname, "..");
 const plugins = new Map();
@@ -37,7 +38,7 @@ if (!execFileSync(values["tree-sitter"], ["--version"], { encoding: "utf8" }).st
 const digest = bytes => createHash("sha256").update(bytes).digest("hex");
 const output = path.resolve(values.output);
 fs.mkdirSync(output, { recursive: true });
-const catalog = JSON.parse(fs.readFileSync(path.join(root, "registry/v1/index.json")));
+const catalog = readCatalog();
 
 async function download(url) {
   const response = await fetch(url, { signal: AbortSignal.timeout(60000) });

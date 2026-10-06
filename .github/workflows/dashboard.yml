@@ -73,11 +73,12 @@ jobs:
           node --input-type=module <<'JS'
           import fs from 'node:fs';
           import { recordRelease } from './scripts/release-plugin.mjs';
+          import { readCatalog } from './scripts/catalog-source.mjs';
           import { validateRegistry } from './scripts/validate-registry.mjs';
           const root = 'plugins/host-tools-dashboard';
           const manifest = JSON.parse(fs.readFileSync(`${root}/plugin.json`));
           const tag = `host-tools-dashboard-v${manifest.version}`;
-          const catalog = JSON.parse(fs.readFileSync('registry/v1/index.json'));
+          const catalog = readCatalog();
           const targets = ['aarch64-apple-darwin', 'x86_64-apple-darwin', 'aarch64-unknown-linux-gnu', 'x86_64-unknown-linux-gnu', 'aarch64-pc-windows-msvc', 'x86_64-pc-windows-msvc'];
           const updated = recordRelease(catalog, manifest, `https://github.com/${process.env.GH_REPO}/releases/download/${tag}`, targets.map(target => `${target}=dist/dashboard/host-tools-dashboard-${manifest.version}-${target}.zip`));
           const entry = updated.plugins.find(plugin => plugin.id === manifest.id);
@@ -87,6 +88,7 @@ jobs:
           validateRegistry(updated);
           fs.writeFileSync('dist/dashboard/catalog-entry.json', JSON.stringify(entry, null, 2) + '\n');
           fs.writeFileSync('dist/dashboard/release-notes.md', `## 中文\n\n工作概览 ${manifest.version}：新增 Windows x64/ARM64 安装包和专用启动入口，六个平台分别验证实际安装包。\n\n需要 OxideTerm ${manifest.engines.oxideterm}，以及 PATH 中可用的 Node.js。功能与权限保持不变。\n\n## English\n\nWorkspace Dashboard ${manifest.version} adds Windows x64/ARM64 packages with a dedicated launcher. The actual packages are tested on all six platforms.\n\nRequires OxideTerm ${manifest.engines.oxideterm} and Node.js on PATH. Features and permissions are unchanged.\n`);
+          fs.appendFileSync('dist/dashboard/release-notes.md', '\n' + fs.readFileSync('docs/catalog-upgrade-notice.md', 'utf8'));
           fs.appendFileSync(process.env.GITHUB_ENV, `RELEASE_TAG=${tag}\nPLUGIN_VERSION=${manifest.version}\n`);
           JS
       - uses: actions/upload-artifact@v4

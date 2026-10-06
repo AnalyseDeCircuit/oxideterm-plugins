@@ -1,0 +1,46 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "aarch64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-aarch64-apple-darwin.zip",
+        "checksum": "sha256:2d7f382ab76d79e567b2ae513d5a56ccb8a7bcce6cf48f344d4b1c57b2c06389",
+        "size": 277088
+      },
+      {
+        "target": "aarch64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-aarch64-pc-windows-msvc.zip",
+        "checksum": "sha256:26ddd6ca5d36909e217256b6a5147fe1203257e0a0ceccbcf3d46fd259b670dd",
+        "size": 156934
+      },
+      {
+        "target": "aarch64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-aarch64-unknown-linux-gnu.zip",
+        "checksum": "sha256:5e583d3384fe8278d212377ba799732125d9faba2cab877e43d988428c71f0c8",
+        "size": 295357
+      },
+      {
+        "target": "x86_64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-x86_64-apple-darwin.zip",
+        "checksum": "sha256:f406cb5f975a4f55e1c3a256d92905b542c7fb3a1d6c6f25ca29269cf7457824",
+        "size": 294988
+      },
+      {
+        "target": "x86_64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-x86_64-pc-windows-msvc.zip",
+        "checksum": "sha256:69dc473e89d2a972e4ea0f0a4c346794784325223db5abde68b0a7cb5dcff08b",
+        "size": 170714
+      },
+      {
+        "target": "x86_64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/binary-preview-v0.1.0/binary-preview-0.1.0-x86_64-unknown-linux-gnu.zip",
+        "checksum": "sha256:4432238a106da1ff1fafe08ec5ad470348e3a0ae7d8bf188e2c414bf21ccda98",
+        "size": 311441
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "release": {
+    "version": "0.2.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/toolbox-v0.2.0/toolbox-0.2.0-any.zip",
+        "checksum": "sha256:92d5b444377c01f2f699f8f95155aefc3a7f36bc6dc6549b573222758cbcce3f",
+        "size": 704489
+      }
+    ]
+  }
+}

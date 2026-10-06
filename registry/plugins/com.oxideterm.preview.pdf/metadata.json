@@ -1,0 +1,23 @@
+{
+  "id": "com.oxideterm.preview.pdf",
+  "name": "PDF Preview",
+  "description": "Preview PDF documents with page navigation and zoom in the file browser.",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/pdf-preview",
+  "tags": [
+    "preview"
+  ],
+  "capabilitiesSummary": [
+    "PDF page preview",
+    "Page navigation and zoom"
+  ],
+  "author": "OxideTerm",
+  "updatedAt": "2026-10-04T18:51:47.704Z",
+  "legacy": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "minOxidetermVersion": "2.2.1"
+  },
+  "order": 22
+}

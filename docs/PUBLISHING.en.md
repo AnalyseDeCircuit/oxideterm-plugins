@@ -21,7 +21,7 @@ Catalog `tags` supply the category buttons in the marketplace and installed list
 | `utilities` | Text processing and other utilities |
 | `host-tools` | Host administration, when applicable |
 | `acp` | ACP agent integrations |
-| `remote-desktop` | RDP and VNC remote desktop engines |
+| `remote-connections` | RDP, VNC, and Mosh connections |
 
 For a new listing, `record` uses `plugin.json`'s `tags` when provided. Otherwise, language and file-preview plugins receive `language` and `preview` respectively. Other plugin types should declare a category explicitly, for example `"tags": ["utilities"]`. Updates preserve the existing catalog categories. Maintainers may introduce a new functional category in the catalog; clients build their buttons from the data without an application-side allowlist.
 
@@ -195,6 +195,65 @@ See the [JSON Schema](../schema/registry-v1.schema.json) and [example entry](../
 
 ## Maintainer review
 
-The maintainer downloads Release assets, independently verifies digests and sizes, inspects the manifest, entry, paths, and permission changes, runs catalog validation, and then commits `registry/v1/index.json` directly. Third-party source is not copied into this repository for marketplace listing.
+The maintainer downloads Release assets, independently verifies digests and sizes, inspects the manifest, entry, paths, and permission changes, runs catalog validation, and registers per-plugin source records. Third-party source is not copied into this repository for marketplace listing.
 
-Compare the downloaded manifest's version and host range with the submitted release record. Run `npm ci --ignore-scripts`, `npm test`, and `npm run check`. To verify history against a previous commit, set `REGISTRY_BASE_REF` to its full SHA when running `node scripts/validate-registry.mjs`; CI performs this comparison against the commit preceding a push. Removed or modified releases and changed legacy snapshots fail validation.
+### Per-plugin sources and automatic publication
+
+Authoritative records are split by plugin; generated indexes are not edited by hand:
+
+```text
+registry/categories.json                         marketplace categories
+registry/plugins/<id>/metadata.json               display metadata and frozen legacy snapshot
+registry/plugins/<id>/releases/<version>.json      immutable release record
+registry/plugins/<id>/corrections/<version>/000001.json  append-only correction sequence
+registry/v1/index.json                            frozen original catalog; no updates
+registry/v1/index.sha256                          checksum of the frozen contents
+registry/v2/index.json                            generated summaries and history references
+registry/v2/plugins/<id>/<sha256>.json             generated complete history for one plugin
+```
+
+`record` and `correct` update the sources and generate only v2 by default.
+Edit the corresponding `metadata.json` for display changes and register category
+IDs in `categories.json`. Do not edit generated files or remove older history
+artifacts. Each reference binds the exact history size and SHA-256; clients load
+histories for installed plugins and the current page, including exact-version
+compatibility corrections during offline startup.
+
+The original v1 URL, exact contents, and referenced packages remain available.
+v1 no longer receives plugins, releases, metadata changes, or compatibility
+corrections. Existing clients retain the frozen catalog but cannot discover new
+plugins or updates; users must upgrade to a host supporting v2. Never replace or
+delete Release assets referenced by the frozen catalog.
+
+First-party CI producers generate an entry and upload it with the final ZIPs to
+the same Release:
+
+```sh
+node scripts/release-plugin.mjs entry plugins/my-plugin \
+  --release-url https://github.com/example/plugins/releases/download/my-plugin-v1.1.0 \
+  --packages-dir dist/packages --output dist/catalog-entry.json
+```
+
+Generating this record does not register a plugin before its assets are available.
+`Publish plugin catalog` runs after publication, source changes, or manual dispatch.
+It verifies actual remote manifests, sizes, and digests, merges new versions, and
+commits the v2 catalog. A single publisher serializes registration, catches up in
+publication order, and safely repeats without losing later releases to stale
+producer snapshots. Third-party submissions still require listing review.
+Release workflows include the shared [catalog upgrade notice](catalog-upgrade-notice.md).
+
+```sh
+node scripts/catalog.mjs generate
+node scripts/catalog.mjs check
+node scripts/catalog.mjs import /path/to/reviewed-catalog-entry.json
+node scripts/sync-catalog.mjs --repository AnalyseDeCircuit/oxideterm-plugins --dry-run
+```
+
+Generation and validation check the exact v1 bytes against the freeze checksum.
+CI also compares v1 with the previous commit, so changing both the catalog and
+checksum cannot lift the freeze. v1 is no longer generated, and later history
+growth is independent of the old full-index size limit. The v2 summary index has
+a 2 MiB limit, and individual histories have an 8 MiB limit. Keep old remote
+histories available so references in cached root catalogs continue to work.
+
+Compare the downloaded manifest's version and host range with the submitted release record. Run `npm ci --ignore-scripts`, `npm test`, and `npm run check`. To verify history against a previous commit, set `REGISTRY_BASE_REF` to its full SHA when running `node scripts/validate-registry.mjs`; CI compares with the previous v2 history. Removed or modified releases, deleted published history files, and changes to frozen v1 fail validation. The initial migration uses the original v1 releases as its history baseline.

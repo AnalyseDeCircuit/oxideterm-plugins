@@ -9,7 +9,11 @@ import { unzipSync } from 'fflate';
 
 const repository = path.resolve(import.meta.dirname, '..');
 const plugin = process.argv[2];
-if (!['codex-acp', 'claude-code-acp'].includes(plugin)) throw new Error('Choose codex-acp or claude-code-acp');
+if (['opencode-acp', 'antigravity-acp', 'grok-acp', 'cursor-acp'].includes(plugin)) {
+  await import('./verify-acp-launcher.mjs');
+  process.exit(0);
+}
+if (!['codex-acp', 'claude-code-acp'].includes(plugin)) throw new Error('Unknown ACP plugin');
 const root = path.join(repository, 'plugins', plugin);
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'plugin.json'), 'utf8'));
 const target = execFileSync('rustc', ['-vV'], { encoding: 'utf8' }).match(/^host: (.+)$/m)[1];

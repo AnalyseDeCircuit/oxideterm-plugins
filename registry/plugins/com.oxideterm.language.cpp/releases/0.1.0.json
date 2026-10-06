@@ -1,0 +1,16 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-cpp-v0.1.0/com.oxideterm.language.cpp-0.1.0.zip",
+        "checksum": "sha256:4794717dee07523020040c5648fd6f4b375ef857b1a6858670b4e35dd9a39253",
+        "size": 286638
+      }
+    ]
+  }
+}

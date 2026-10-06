@@ -26,6 +26,7 @@ jobs:
         with:
           node-version: "22"
       - run: npm ci --ignore-scripts
+      - run: node scripts/catalog.mjs generate
       - run: npm test
       - run: node scripts/validate-registry.mjs
         env:

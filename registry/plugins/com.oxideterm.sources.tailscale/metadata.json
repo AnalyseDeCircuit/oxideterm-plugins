@@ -1,0 +1,19 @@
+{
+  "id": "com.oxideterm.sources.tailscale",
+  "name": "Tailscale Hosts",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/tailscale-hosts",
+  "tags": [
+    "host-sources"
+  ],
+  "description": "Discover devices visible to the local Tailscale client and prepare SSH connections.",
+  "author": "OxideTerm",
+  "updatedAt": "2026-10-05T11:06:26.726Z",
+  "legacy": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.0"
+    },
+    "minOxidetermVersion": "2.2.1"
+  },
+  "order": 27
+}

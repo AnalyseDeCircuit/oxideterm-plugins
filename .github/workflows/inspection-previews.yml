@@ -3,6 +3,7 @@ name: Build inspection preview plugins
 on:
   push:
     branches: [main]
+    tags: ['certificate-preview-v*', 'binary-preview-v*']
     paths:
       - 'plugins/certificate-preview/**'
       - 'plugins/binary-preview/**'
@@ -22,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        plugin: [certificate-preview, binary-preview]
+        plugin: ${{ fromJSON(startsWith(github.ref, 'refs/tags/certificate-preview-v') && '["certificate-preview"]' || startsWith(github.ref, 'refs/tags/binary-preview-v') && '["binary-preview"]' || '["certificate-preview","binary-preview"]') }}
         platform:
           - { os: macos-14, arch: arm64, target: aarch64-apple-darwin }
           - { os: macos-15-intel, arch: x64, target: x86_64-apple-darwin }
@@ -48,41 +49,12 @@ jobs:
           name: inspection-${{ matrix.plugin }}-${{ matrix.platform.target }}
           path: plugins/${{ matrix.plugin }}/dist/*.zip
           if-no-files-found: error
-  catalog:
+  release:
     needs: build
-    runs-on: ubuntu-22.04
-    strategy:
-      matrix:
-        plugin: [certificate-preview, binary-preview]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - run: npm ci --ignore-scripts
-      - uses: actions/download-artifact@v4
-        with:
-          pattern: inspection-${{ matrix.plugin }}-*
-          path: dist/inspection
-          merge-multiple: true
-      - name: Prepare preview category entry with all six packages
-        env:
-          PLUGIN: ${{ matrix.plugin }}
-          REPOSITORY: ${{ github.repository }}
-        run: |
-          node --input-type=module <<'JS'
-          import fs from 'node:fs';
-          import { recordRelease } from './scripts/release-plugin.mjs';
-          import { validateRegistry } from './scripts/validate-registry.mjs';
-          const slug = process.env.PLUGIN;
-          const manifest = JSON.parse(fs.readFileSync(`plugins/${slug}/plugin.json`));
-          const catalog = JSON.parse(fs.readFileSync('registry/v1/index.json'));
-          const targets = ['aarch64-apple-darwin', 'x86_64-apple-darwin', 'aarch64-unknown-linux-gnu', 'x86_64-unknown-linux-gnu', 'aarch64-pc-windows-msvc', 'x86_64-pc-windows-msvc'];
-          const next = recordRelease(catalog, manifest, `https://github.com/${process.env.REPOSITORY}/releases/download/${slug}-v${manifest.version}`, targets.map(target => `${target}=dist/inspection/${slug}-${manifest.version}-${target}.zip`));
-          validateRegistry(next);
-          fs.writeFileSync('dist/inspection/catalog-entry.json', JSON.stringify(next.plugins.find(plugin => plugin.id === manifest.id), null, 2));
-          JS
-      - uses: actions/upload-artifact@v4
-        with:
-          name: catalog-${{ matrix.plugin }}
-          path: dist/inspection/catalog-entry.json
+    if: startsWith(github.ref, 'refs/tags/')
+    permissions:
+      contents: write
+    uses: ./.github/workflows/publish-plugin.yml
+    with:
+      plugin: ${{ startsWith(github.ref_name, 'certificate-preview-') && 'certificate-preview' || 'binary-preview' }}
+      artifacts: ${{ startsWith(github.ref_name, 'certificate-preview-') && 'inspection-certificate-preview-*' || 'inspection-binary-preview-*' }}

@@ -1,25 +1,16 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
-import { createHash, randomUUID } from "node:crypto";
+import { createHash } from "node:crypto";
 import { parseArgs, isDeepStrictEqual } from "node:util";
 import { fileURLToPath } from "node:url";
 import semver from "semver";
 import { unzipSync, strFromU8 } from "fflate";
 import { requireEngines, validateRegistry, validateHistory } from "./validate-registry.mjs";
+import {defaultCatalog, readCatalog, writeJson, importCatalogEntry, generateCatalog} from './catalog-source.mjs';
+export {writeJson} from './catalog-source.mjs';
 
-const defaultCatalog = path.resolve(import.meta.dirname, "../registry/v1/index.json");
 const readJson = filename => JSON.parse(fs.readFileSync(filename, "utf8"));
-
-export function writeJson(filename, value) {
-  const temporary = filename + "." + randomUUID() + ".tmp";
-  try {
-    fs.writeFileSync(temporary, JSON.stringify(value, null, 2) + "\n", { flag: "wx" });
-    fs.renameSync(temporary, filename);
-  } finally {
-    fs.rmSync(temporary, { force: true });
-  }
-}
 
 export async function readHostVersion(repository) {
   let version;
@@ -53,6 +44,7 @@ function hostRequirement(manifest, version) {
   if (manifest.runtime?.kind === "language" && semver.lte(version, "2.2.0")) return ">2.2.0";
   if (manifest.runtime?.kind === "acp" && semver.lte(version, "2.2.1")) return ">2.2.1";
   if (manifest.runtime?.kind === "remote-desktop" && semver.lte(version, "2.2.1")) return ">2.2.1";
+  if (manifest.runtime?.kind === "terminal-transport" && semver.lte(version, "2.2.1")) return ">=2.2.2";
   return ">=" + version;
 }
 
@@ -142,7 +134,9 @@ export function recordRelease(catalog, manifest, releaseUrl, packageArguments) {
     } else if (manifest.runtime?.kind === "acp") {
       plugin.tags = ["acp"];
     } else if (manifest.runtime?.kind === "remote-desktop") {
-      plugin.tags = ["remote-desktop"];
+      plugin.tags = ["remote-connections"];
+    } else if (manifest.runtime?.kind === "terminal-transport") {
+      plugin.tags = ["remote-connections"];
     } else if (manifest.contributes?.filePreviews?.length) {
       plugin.tags = ["preview"];
     }
@@ -177,7 +171,7 @@ export function correctCompatibility(catalog, id, version, hostRange, reason) {
   return next;
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
+if (process.argv[1] && fs.existsSync(process.argv[1]) && fileURLToPath(import.meta.url) === fs.realpathSync(process.argv[1])) {
   const { values, positionals } = parseArgs({
     allowPositionals: true,
     options: {
@@ -189,26 +183,49 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.a
       package: { type: "string", multiple: true, default: [] },
       version: { type: "string" },
       reason: { type: "string" },
+      output: { type: "string" },
+      "packages-dir": {type:"string"},
     },
   });
   const [command, subject] = positionals;
   if (!subject || positionals.length !== 2) {
-    throw new Error("Usage: release-plugin.mjs prepare <plugin-dir> | record <plugin-dir> --release-url URL --package target=zip | correct <plugin-id> --version VERSION --host-range RANGE --reason TEXT");
+    throw new Error("Use prepare <plugin-dir> | entry/record <plugin-dir> --release-url URL --package target=zip | correct <plugin-id> --version VERSION --host-range RANGE --reason TEXT");
   }
-  const catalog = readJson(values.catalog);
+  const catalog = readCatalog(values.catalog);
+  const save = (next, id) => {
+    if (path.resolve(values.catalog) === defaultCatalog) {
+      importCatalogEntry(next.plugins.find(plugin=>plugin.id===id));
+      generateCatalog();
+    } else writeJson(values.catalog,next);
+  };
   if (command === "correct") {
-    writeJson(values.catalog, correctCompatibility(catalog, subject, values.version, values["host-range"], values.reason));
+    save(correctCompatibility(catalog, subject, values.version, values["host-range"], values.reason),subject);
   } else {
     const manifestPath = path.resolve(subject, "plugin.json");
-    const manifest = readJson(manifestPath);
+    const sourceManifest = readJson(manifestPath);
+    const manifest = command === 'entry' ? await prepareManifest(sourceManifest,catalog) : sourceManifest;
     if (command === "prepare") {
       writeJson(manifestPath, await prepareManifest(manifest, catalog, {
         hostRepository: values["host-repo"],
         hostRange: values["host-range"],
         requiresCurrentApp: values["requires-current-app"],
       }));
-    } else if (command === "record") {
-      writeJson(values.catalog, recordRelease(catalog, manifest, values["release-url"], values.package));
+    } else if (command === "record" || command === "entry") {
+      const packages=[...values.package];
+      if(values['packages-dir']) {
+        const prefix=path.basename(path.resolve(subject));
+        for(const file of fs.readdirSync(values['packages-dir']).filter(file=>file.endsWith('.zip') && (file.startsWith(`${prefix}-${manifest.version}`) || file.startsWith(`${manifest.id}-${manifest.version}`)))) {
+          const match=file.match(/((?:aarch64|x86_64)-(?:apple-darwin|unknown-linux-gnu|pc-windows-msvc))\.zip$/);
+          const target=match?.[1] ?? (file.endsWith('-any.zip') || manifest.runtime?.kind==='language' ? 'any' : undefined);
+          if(!target) throw new Error('Cannot determine package target from filename');
+          packages.push(`${target}=${path.join(values['packages-dir'],file)}`);
+        }
+      }
+      const next=recordRelease(catalog, manifest, values["release-url"], packages);
+      if(command==='entry') {
+        if(!values.output) throw new Error('entry requires --output');
+        writeJson(values.output,next.plugins.find(plugin=>plugin.id===manifest.id));
+      } else save(next,manifest.id);
     } else {
       throw new Error("Unknown release command: " + command);
     }
