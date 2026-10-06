@@ -827,6 +827,26 @@
         "checksum": "sha256:c747769cac6f59c08c1f6b1d3f62720e89065a64d3256a6b248502d9c68f1776",
         "size": 4660
       }
+    },
+    {
+      "id": "com.oxideterm.acp.kimi",
+      "name": "Kimi CLI",
+      "description": "Launch the installed Kimi CLI through ACP, reusing its existing login.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/kimi-acp",
+      "tags": [
+        "acp"
+      ],
+      "updatedAt": "2026-10-06T12:34:08.700Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.kimi/e0101597cc25f823fc85176844000d8146668af6a9d729821d9cfc4d19dd5275.json",
+        "checksum": "sha256:e0101597cc25f823fc85176844000d8146668af6a9d729821d9cfc4d19dd5275",
+        "size": 4635
+      }
     }
   ]
 }

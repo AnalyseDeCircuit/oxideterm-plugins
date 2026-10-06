@@ -1,0 +1,100 @@
+{
+  "id": "com.oxideterm.acp.kimi",
+  "name": "Kimi CLI",
+  "description": "Launch the installed Kimi CLI through ACP, reusing its existing login.",
+  "author": "OxideTerm",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/kimi-acp",
+  "tags": [
+    "acp"
+  ],
+  "updatedAt": "2026-10-06T12:34:08.700Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "minOxidetermVersion": "2.2.2",
+  "packages": [
+    {
+      "target": "aarch64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/kimi-acp-v0.1.0/kimi-acp-0.1.0-aarch64-apple-darwin.zip",
+      "checksum": "sha256:a6cd10686db25a161c33db54d782c69a3b58a9513db0312a2d458ff9f1b59e8e",
+      "size": 269255
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/kimi-acp-v0.1.0/kimi-acp-0.1.0-x86_64-apple-darwin.zip",
+      "checksum": "sha256:6a4619ea16f22013576eb53d66d4996a27e15f9ab51becaafc26da7d701a1402",
+      "size": 285324
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/kimi-acp-v0.1.0/kimi-acp-0.1.0-x86_64-unknown-linux-gnu.zip",
+      "checksum": "sha256:e27c3ee047fcf44163f0a59b966e3b64605c2ed7e8a75a4a2d7f2054cce5795c",
+      "size": 299673
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/kimi-acp-v0.1.0/kimi-acp-0.1.0-aarch64-unknown-linux-gnu.zip",
+      "checksum": "sha256:ad2c84c2567d9ed6c116a4d5ea407c6e7ef7368a21fdb4831325cfc8c6a68b95",
+      "size": 285334
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/kimi-acp-v0.1.0/kimi-acp-0.1.0-x86_64-pc-windows-msvc.zip",
+      "checksum": "sha256:c1496f10a0435fac1e5b60d68286cfc47186537768e20f2e7cc95c100f4f7088",
+      "size": 195547
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/kimi-acp-v0.1.0/kimi-acp-0.1.0-aarch64-pc-windows-msvc.zip",
+      "checksum": "sha256:dfd8b90ee665c7c7308fda590a63d42c034e1c8c89721ca4fe85b5398c78673b",
+      "size": 182037
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/kimi-acp-v0.1.0/kimi-acp-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:a6cd10686db25a161c33db54d782c69a3b58a9513db0312a2d458ff9f1b59e8e",
+          "size": 269255
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/kimi-acp-v0.1.0/kimi-acp-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:6a4619ea16f22013576eb53d66d4996a27e15f9ab51becaafc26da7d701a1402",
+          "size": 285324
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/kimi-acp-v0.1.0/kimi-acp-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:e27c3ee047fcf44163f0a59b966e3b64605c2ed7e8a75a4a2d7f2054cce5795c",
+          "size": 299673
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/kimi-acp-v0.1.0/kimi-acp-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:ad2c84c2567d9ed6c116a4d5ea407c6e7ef7368a21fdb4831325cfc8c6a68b95",
+          "size": 285334
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/kimi-acp-v0.1.0/kimi-acp-0.1.0-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:c1496f10a0435fac1e5b60d68286cfc47186537768e20f2e7cc95c100f4f7088",
+          "size": 195547
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/kimi-acp-v0.1.0/kimi-acp-0.1.0-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:dfd8b90ee665c7c7308fda590a63d42c034e1c8c89721ca4fe85b5398c78673b",
+          "size": 182037
+        }
+      ]
+    }
+  ]
+}
