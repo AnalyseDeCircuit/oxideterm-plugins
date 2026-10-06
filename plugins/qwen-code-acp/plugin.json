@@ -1,7 +1,7 @@
 {
   "id": "com.oxideterm.acp.qwen-code",
   "name": "Qwen Code",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Launch the installed official Qwen Code CLI through ACP, using its configured model provider.",
   "author": "OxideTerm",
   "license": "GPL-3.0-only",

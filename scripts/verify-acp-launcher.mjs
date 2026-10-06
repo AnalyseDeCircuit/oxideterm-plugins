@@ -58,7 +58,6 @@ try {
     fs.writeFileSync(path.join(directory, 'package.json'), JSON.stringify({ name, bin: { [command]: 'entry.js' } }));
     executable = path.join(prefix, `${command}.cmd`);
     fs.writeFileSync(executable, 'This wrapper must never be interpreted.');
-    npmScript = path.toNamespacedPath(fs.realpathSync(npmScript));
   }
   child = spawn(path.join(temporary, packaged.runtime.entry), ['--command', executable, literal], {
     cwd: temporary, detached: process.platform !== 'win32', stdio: ['pipe', 'pipe', 'pipe'],
@@ -89,12 +88,19 @@ try {
     'antigravity-acp': process.platform === 'linux' ? ['--uid='] : [],
     'grok-acp': ['agent', 'stdio'],
     'cursor-acp': cursorScript ? [cursorScript, 'acp'] : ['acp'],
-    'copilot-acp': [...(npmScript ? [npmScript] : []), '--acp', '--stdio'],
-    'qwen-code-acp': [...(npmScript ? [npmScript] : []), '--acp'],
+    'copilot-acp': ['--acp', '--stdio'],
+    'qwen-code-acp': ['--acp'],
     'kimi-acp': ['acp'],
   };
   const expectedArgs = [...defaults[plugin], literal];
-  assert.deepEqual(response._meta.arguments, expectedArgs);
+  if (npmScript) {
+    const [script, ...arguments_] = response._meta.arguments;
+    // Windows short and long paths can identify the same installed entry.
+    assert.equal(fs.realpathSync.native(script), fs.realpathSync.native(npmScript));
+    assert.deepEqual(arguments_, expectedArgs);
+  } else {
+    assert.deepEqual(response._meta.arguments, expectedArgs);
+  }
   assert.equal(response._meta.cwd, fs.realpathSync(temporary));
   assert.equal(response._meta.environment, 'fixture-value');
   stopLauncher();
