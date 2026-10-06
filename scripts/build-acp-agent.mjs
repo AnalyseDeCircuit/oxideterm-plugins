@@ -5,8 +5,8 @@ import { zipSync, strToU8 } from 'fflate';
 
 const repository = path.resolve(import.meta.dirname, '..');
 const plugin = process.argv[2];
-if (!['codex-acp', 'claude-code-acp', 'opencode-acp', 'antigravity-acp', 'grok-acp', 'cursor-acp'].includes(plugin)) throw new Error('Unknown ACP plugin');
-const launcher = ['opencode-acp', 'antigravity-acp', 'grok-acp', 'cursor-acp'].includes(plugin);
+if (!['codex-acp', 'claude-code-acp', 'opencode-acp', 'antigravity-acp', 'grok-acp', 'cursor-acp', 'copilot-acp', 'qwen-code-acp', 'kimi-acp'].includes(plugin)) throw new Error('Unknown ACP plugin');
+const launcher = ['opencode-acp', 'antigravity-acp', 'grok-acp', 'cursor-acp', 'copilot-acp', 'qwen-code-acp', 'kimi-acp'].includes(plugin);
 const root = path.join(repository, 'plugins', plugin);
 const target = {
   'darwin-arm64': 'aarch64-apple-darwin', 'darwin-x64': 'x86_64-apple-darwin',

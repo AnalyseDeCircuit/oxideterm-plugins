@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.acp.kimi",
+  "name": "Kimi CLI",
+  "version": "0.1.0",
+  "description": "Launch the installed Kimi CLI through ACP, reusing its existing login.",
+  "author": "OxideTerm",
+  "license": "GPL-3.0-only",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/kimi-acp",
+  "tags": [
+    "acp"
+  ],
+  "runtime": {
+    "kind": "acp",
+    "entry": "bin/kimi-acp"
+  },
+  "permissions": {
+    "capabilities": [
+      "runtime.process.trusted"
+    ]
+  },
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  }
+}

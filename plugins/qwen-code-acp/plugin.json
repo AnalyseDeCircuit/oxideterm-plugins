@@ -1,0 +1,24 @@
+{
+  "id": "com.oxideterm.acp.qwen-code",
+  "name": "Qwen Code",
+  "version": "0.1.0",
+  "description": "Launch the installed official Qwen Code CLI through ACP, using its configured model provider.",
+  "author": "OxideTerm",
+  "license": "GPL-3.0-only",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/qwen-code-acp",
+  "tags": [
+    "acp"
+  ],
+  "runtime": {
+    "kind": "acp",
+    "entry": "bin/qwen-code-acp"
+  },
+  "permissions": {
+    "capabilities": [
+      "runtime.process.trusted"
+    ]
+  },
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  }
+}

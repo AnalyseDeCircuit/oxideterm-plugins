@@ -24,8 +24,8 @@ dependencies = [
 ]
 
 [[package]]
-name = "oxideterm-opencode-acp"
-version = "0.1.1"
+name = "oxideterm-copilot-acp"
+version = "0.1.0"
 dependencies = [
  "oxideterm-acp-launcher",
 ]

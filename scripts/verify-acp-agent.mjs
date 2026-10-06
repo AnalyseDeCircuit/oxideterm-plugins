@@ -9,7 +9,7 @@ import { unzipSync } from 'fflate';
 
 const repository = path.resolve(import.meta.dirname, '..');
 const plugin = process.argv[2];
-if (['opencode-acp', 'antigravity-acp', 'grok-acp', 'cursor-acp'].includes(plugin)) {
+if (['opencode-acp', 'antigravity-acp', 'grok-acp', 'cursor-acp', 'copilot-acp', 'qwen-code-acp', 'kimi-acp'].includes(plugin)) {
   await import('./verify-acp-launcher.mjs');
   process.exit(0);
 }

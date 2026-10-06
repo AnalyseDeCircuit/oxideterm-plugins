@@ -104,6 +104,9 @@ Name, description, homepage, or tag changes do not require an invented plugin ve
 | Toolbox | Encoding, JSON, time, text cleanup, digests and random generation | [`plugins/toolbox`](plugins/toolbox) |
 | Tailscale Hosts | Device discovery and native connection drafts | [`plugins/tailscale-hosts`](plugins/tailscale-hosts) |
 | Ansible Inventory | SSH host discovery from an Ansible inventory | [`plugins/ansible-inventory`](plugins/ansible-inventory) |
+| GitHub Copilot CLI | Launch the installed official Copilot CLI for ACP chat | [`plugins/copilot-acp`](plugins/copilot-acp) |
+| Qwen Code | Launch the installed Qwen Code CLI for ACP chat | [`plugins/qwen-code-acp`](plugins/qwen-code-acp) |
+| Kimi CLI | Launch the installed Kimi CLI using its existing authentication | [`plugins/kimi-acp`](plugins/kimi-acp) |
 | 24 language plugins | On-demand Tree-sitter parsing, highlighting, and folding | [`plugins/language-*`](plugins), [build and release guide](docs/language-plugins.en.md) |
 
 Examples demonstrate real host capabilities and protocol boundaries. First-party plugins must still produce immutable release packages and pass platform verification before entering the official catalog.

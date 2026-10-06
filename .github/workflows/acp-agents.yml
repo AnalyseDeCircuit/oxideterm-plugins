@@ -2,7 +2,7 @@ name: Build ACP agent plugins
 
 on:
   push:
-    tags: ['codex-acp-v*', 'claude-code-acp-v*', 'opencode-acp-v*', 'antigravity-acp-v*', 'grok-acp-v*', 'cursor-acp-v*']
+    tags: ['codex-acp-v*', 'claude-code-acp-v*', 'opencode-acp-v*', 'antigravity-acp-v*', 'grok-acp-v*', 'cursor-acp-v*', 'copilot-acp-v*', 'qwen-code-acp-v*', 'kimi-acp-v*']
   workflow_dispatch:
 
 permissions:
@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        plugin: ${{ fromJSON(startsWith(github.ref, 'refs/tags/codex-acp-v') && '["codex-acp"]' || startsWith(github.ref, 'refs/tags/claude-code-acp-v') && '["claude-code-acp"]' || startsWith(github.ref, 'refs/tags/opencode-acp-v') && '["opencode-acp"]' || startsWith(github.ref, 'refs/tags/antigravity-acp-v') && '["antigravity-acp"]' || startsWith(github.ref, 'refs/tags/grok-acp-v') && '["grok-acp"]' || startsWith(github.ref, 'refs/tags/cursor-acp-v') && '["cursor-acp"]' || '["codex-acp","claude-code-acp","opencode-acp","antigravity-acp","grok-acp","cursor-acp"]') }}
+        plugin: ${{ fromJSON(startsWith(github.ref, 'refs/tags/codex-acp-v') && '["codex-acp"]' || startsWith(github.ref, 'refs/tags/claude-code-acp-v') && '["claude-code-acp"]' || startsWith(github.ref, 'refs/tags/opencode-acp-v') && '["opencode-acp"]' || startsWith(github.ref, 'refs/tags/antigravity-acp-v') && '["antigravity-acp"]' || startsWith(github.ref, 'refs/tags/grok-acp-v') && '["grok-acp"]' || startsWith(github.ref, 'refs/tags/cursor-acp-v') && '["cursor-acp"]' || startsWith(github.ref, 'refs/tags/copilot-acp-v') && '["copilot-acp"]' || startsWith(github.ref, 'refs/tags/qwen-code-acp-v') && '["qwen-code-acp"]' || startsWith(github.ref, 'refs/tags/kimi-acp-v') && '["kimi-acp"]' || '["codex-acp","claude-code-acp","opencode-acp","antigravity-acp","grok-acp","cursor-acp","copilot-acp","qwen-code-acp","kimi-acp"]') }}
         platform:
           - { os: macos-14, arch: arm64, target: aarch64-apple-darwin }
           - { os: macos-15-intel, arch: x64, target: x86_64-apple-darwin }
@@ -71,7 +71,7 @@ jobs:
           import { recordRelease } from './scripts/release-plugin.mjs';
           import { readCatalog } from './scripts/catalog-source.mjs';
           const tag = process.env.GITHUB_REF_NAME;
-          const name = ['codex-acp', 'claude-code-acp', 'opencode-acp', 'antigravity-acp', 'grok-acp', 'cursor-acp'].find(name => tag.startsWith(`${name}-v`));
+          const name = ['codex-acp', 'claude-code-acp', 'opencode-acp', 'antigravity-acp', 'grok-acp', 'cursor-acp', 'copilot-acp', 'qwen-code-acp', 'kimi-acp'].find(name => tag.startsWith(`${name}-v`));
           if (!name) throw new Error('Unknown ACP plugin release tag');
           const manifest = JSON.parse(fs.readFileSync(`plugins/${name}/plugin.json`));
           if (tag !== `${name}-v${manifest.version}`) throw new Error('Release tag and manifest version differ');

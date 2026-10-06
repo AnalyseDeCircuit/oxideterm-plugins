@@ -104,6 +104,9 @@ npm run package:windows
 | 小工具箱 | 编码、JSON、时间、文本整理、摘要与随机生成 | [`plugins/toolbox`](plugins/toolbox) |
 | Tailscale Hosts | 发现设备并填入原生连接表单 | [`plugins/tailscale-hosts`](plugins/tailscale-hosts) |
 | Ansible Inventory | 从主机清单发现 SSH 连接目标 | [`plugins/ansible-inventory`](plugins/ansible-inventory) |
+| GitHub Copilot CLI | 启动已安装的官方 Copilot CLI，接入 ACP 聊天 | [`plugins/copilot-acp`](plugins/copilot-acp) |
+| Qwen Code | 启动已安装的 Qwen Code，接入 ACP 聊天 | [`plugins/qwen-code-acp`](plugins/qwen-code-acp) |
+| Kimi CLI | 启动已安装的 Kimi CLI，复用已有登录状态 | [`plugins/kimi-acp`](plugins/kimi-acp) |
 | 24 个语言插件 | 按需安装 Tree-sitter 语法、高亮与折叠支持 | [`plugins/language-*`](plugins)，[构建与发布](docs/language-plugins.md) |
 
 示例用于展示真实的宿主能力和协议边界。第一方插件也必须先生成不可变发布包并完成平台验证，才能加入正式市场目录。

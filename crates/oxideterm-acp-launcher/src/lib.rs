@@ -6,6 +6,7 @@
 use std::{path::PathBuf, process::Command};
 use zeroize::{Zeroize, Zeroizing};
 mod cursor;
+mod installed;
 
 #[derive(Clone, Copy)]
 pub enum Provider {
@@ -13,6 +14,9 @@ pub enum Provider {
     Antigravity,
     Grok,
     Cursor,
+    Copilot,
+    QwenCode,
+    Kimi,
 }
 
 impl Provider {
@@ -40,6 +44,9 @@ impl Provider {
                 }
             }
             Self::Cursor => "cursor-agent",
+            Self::Copilot => "copilot",
+            Self::QwenCode => "qwen",
+            Self::Kimi => "kimi",
         }
     }
 
@@ -50,6 +57,9 @@ impl Provider {
             Self::Antigravity => &[],
             Self::Grok => &["agent", "stdio"],
             Self::Cursor => &["acp"],
+            Self::Copilot => &["--acp", "--stdio"],
+            Self::QwenCode => &["--acp"],
+            Self::Kimi => &["acp"],
         }
     }
 }
@@ -76,6 +86,16 @@ fn launch_options(
     };
     let (command, prefix_args) = if matches!(provider, Provider::Cursor) {
         cursor::resolve(&command, explicit)?
+    } else if matches!(
+        provider,
+        Provider::Copilot | Provider::QwenCode | Provider::Kimi
+    ) {
+        let package = match provider {
+            Provider::Copilot => Some(("@github/copilot", "copilot")),
+            Provider::QwenCode => Some(("@qwen-code/qwen-code", "qwen")),
+            _ => None,
+        };
+        installed::resolve(&command, explicit, package)?
     } else {
         (command, Vec::new())
     };

@@ -37,6 +37,7 @@ try {
   const literal = 'project with spaces 中文 $(touch forbidden)';
   let executable = fixture;
   let cursorScript;
+  let npmScript;
   if (plugin === 'cursor-acp' && process.platform === 'win32') {
     const directory = path.join(temporary, 'installed Cursor', 'versions', '2026.10.01-abcd');
     fs.mkdirSync(directory, { recursive: true });
@@ -45,6 +46,19 @@ try {
     fs.writeFileSync(cursorScript, 'fixture entry');
     executable = path.join(temporary, 'installed Cursor', 'cursor-agent.cmd');
     fs.writeFileSync(executable, 'This wrapper must never be interpreted.');
+  }
+  if (['copilot-acp', 'qwen-code-acp'].includes(plugin) && process.platform === 'win32') {
+    const prefix = path.join(temporary, 'installed npm program');
+    const [name, command] = plugin === 'copilot-acp' ? ['@github/copilot', 'copilot'] : ['@qwen-code/qwen-code', 'qwen'];
+    const directory = path.join(prefix, 'node_modules', name);
+    fs.mkdirSync(directory, { recursive: true });
+    fs.copyFileSync(fixture, path.join(prefix, 'node.exe'));
+    npmScript = path.join(directory, 'entry.js');
+    fs.writeFileSync(npmScript, 'fixture entry');
+    fs.writeFileSync(path.join(directory, 'package.json'), JSON.stringify({ name, bin: { [command]: 'entry.js' } }));
+    executable = path.join(prefix, `${command}.cmd`);
+    fs.writeFileSync(executable, 'This wrapper must never be interpreted.');
+    npmScript = path.toNamespacedPath(fs.realpathSync(npmScript));
   }
   child = spawn(path.join(temporary, packaged.runtime.entry), ['--command', executable, literal], {
     cwd: temporary, detached: process.platform !== 'win32', stdio: ['pipe', 'pipe', 'pipe'],
@@ -75,6 +89,9 @@ try {
     'antigravity-acp': process.platform === 'linux' ? ['--uid='] : [],
     'grok-acp': ['agent', 'stdio'],
     'cursor-acp': cursorScript ? [cursorScript, 'acp'] : ['acp'],
+    'copilot-acp': [...(npmScript ? [npmScript] : []), '--acp', '--stdio'],
+    'qwen-code-acp': [...(npmScript ? [npmScript] : []), '--acp'],
+    'kimi-acp': ['acp'],
   };
   const expectedArgs = [...defaults[plugin], literal];
   assert.deepEqual(response._meta.arguments, expectedArgs);
