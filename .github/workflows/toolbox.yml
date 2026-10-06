@@ -1,9 +1,7 @@
 name: Build Toolbox
 on:
   push:
-    branches: [main]
     tags: ['toolbox-v*']
-    paths: ['plugins/toolbox/**', '.github/workflows/toolbox.yml']
   workflow_dispatch:
 permissions:
   contents: read

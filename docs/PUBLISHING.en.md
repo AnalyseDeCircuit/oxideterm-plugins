@@ -242,6 +242,12 @@ publication order, and safely repeats without losing later releases to stale
 producer snapshots. Third-party submissions still require listing review.
 Release workflows include the shared [catalog upgrade notice](catalog-upgrade-notice.md).
 
+Ordinary pushes validate catalogs and scripts without starting multi-platform
+plugin builds. Build native plugins with their release tags or a manual workflow
+run; Dashboard, PDF and language plugins retain their manual publication entry.
+Push release tags separately, with no more than three tags per push; use a manual
+workflow run on the corresponding tag when needed.
+
 ```sh
 node scripts/catalog.mjs generate
 node scripts/catalog.mjs check

@@ -2,16 +2,7 @@ name: Build inspection preview plugins
 
 on:
   push:
-    branches: [main]
     tags: ['certificate-preview-v*', 'binary-preview-v*']
-    paths:
-      - 'plugins/certificate-preview/**'
-      - 'plugins/binary-preview/**'
-      - 'packages/file-preview-protocol/**'
-      - 'scripts/build-inspection-plugin.mjs'
-      - 'scripts/verify-inspection-plugin.mjs'
-      - 'scripts/release-plugin.mjs'
-      - '.github/workflows/inspection-previews.yml'
   workflow_dispatch:
 
 permissions:

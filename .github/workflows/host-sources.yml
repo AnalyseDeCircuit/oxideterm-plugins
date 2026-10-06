@@ -2,15 +2,7 @@ name: Validate host source plugins
 
 on:
   push:
-    branches: [main]
     tags: ['tailscale-hosts-v*', 'ansible-inventory-v*']
-    paths:
-      - 'plugins/tailscale-hosts/**'
-      - 'plugins/ansible-inventory/**'
-      - 'packages/host-sources/**'
-      - 'scripts/host-sources.test.mjs'
-      - 'scripts/build-host-source.mjs'
-      - '.github/workflows/host-sources.yml'
   workflow_dispatch:
 
 permissions:

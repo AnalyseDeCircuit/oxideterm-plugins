@@ -226,6 +226,8 @@ node scripts/release-plugin.mjs entry plugins/my-plugin \
 
 生成记录不会提前收录插件。`Publish plugin catalog` 在发布完成、源记录变动或手动触发后运行，重新核对远端资产的清单、大小和校验值，再合并新版本并提交 v2 索引。登记任务串行执行，补登按发布时间排序；重跑不会重复登记，旧流水线快照不会删掉后来发布的版本。第三方插件仍通过收录申请审核。发布流水线会将[目录升级说明](catalog-upgrade-notice.md)加入新插件版本的发布说明。
 
+普通推送运行目录和脚本校验，不触发插件的多平台构建。原生插件构建由对应的发布标签或手动运行触发；Dashboard、PDF 和语言插件沿用手动发布入口。批量发布标签时应分别推送，每次不超过三个标签；必要时可在对应标签上手动启动工作流。
+
 ```sh
 node scripts/catalog.mjs generate
 node scripts/catalog.mjs check

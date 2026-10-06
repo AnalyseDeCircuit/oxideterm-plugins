@@ -2,11 +2,7 @@ name: Build SQLite preview plugin
 
 on:
   push:
-    branches: [main]
     tags: ['sqlite-preview-v*']
-    paths:
-      - 'plugins/sqlite-preview/**'
-      - '.github/workflows/sqlite-preview.yml'
   workflow_dispatch:
 
 permissions:
