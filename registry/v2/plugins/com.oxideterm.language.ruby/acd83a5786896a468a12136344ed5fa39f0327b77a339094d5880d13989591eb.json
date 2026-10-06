@@ -1,0 +1,42 @@
+{
+  "id": "com.oxideterm.language.ruby",
+  "name": "Ruby Language Support",
+  "description": "Syntax highlighting and folding for Ruby.",
+  "author": "OxideTerm",
+  "license": "Apache-2.0",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-ruby/LICENSE",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-ruby",
+  "tags": [
+    "language"
+  ],
+  "updatedAt": "2026-10-04T14:32:43.077Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "minOxidetermVersion": "2.2.1",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-ruby-v0.1.0/com.oxideterm.language.ruby-0.1.0.zip",
+      "checksum": "sha256:bddf3a19b0f7f9182a1d9e0568bdc7707096b23b8f59092ae56c0228c925f23e",
+      "size": 175749
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-ruby-v0.1.0/com.oxideterm.language.ruby-0.1.0.zip",
+          "checksum": "sha256:bddf3a19b0f7f9182a1d9e0568bdc7707096b23b8f59092ae56c0228c925f23e",
+          "size": 175749
+        }
+      ]
+    }
+  ]
+}

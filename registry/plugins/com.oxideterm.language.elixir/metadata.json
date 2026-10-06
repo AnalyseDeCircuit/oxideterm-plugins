@@ -3,6 +3,8 @@
   "name": "Elixir Language Support",
   "description": "Syntax highlighting and folding for Elixir.",
   "author": "OxideTerm",
+  "license": "Apache-2.0",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-elixir/LICENSE",
   "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-elixir",
   "tags": [
     "language"

@@ -1,0 +1,102 @@
+{
+  "id": "com.oxideterm.acp.codex",
+  "name": "Codex",
+  "description": "Connect the local Codex CLI to OxideTerm through ACP, with model discovery and session-scoped settings.",
+  "author": "OxideTerm",
+  "license": "GPL-3.0-only",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/codex-acp/LICENSE",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/codex-acp",
+  "tags": [
+    "acp"
+  ],
+  "updatedAt": "2026-10-05T15:45:21.488Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">2.2.1"
+  },
+  "minOxidetermVersion": "2.2.2",
+  "packages": [
+    {
+      "target": "aarch64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-aarch64-apple-darwin.zip",
+      "checksum": "sha256:797cb78cc58bc63c468fcec2e3ed7dbffdde7fdfae889370b33b61e3a07b5d19",
+      "size": 1771431
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-x86_64-apple-darwin.zip",
+      "checksum": "sha256:1c232642404c8cc3cf0b09fbf16469a28d4351eab4cdf33fa7e681181b60dd5d",
+      "size": 1813108
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-x86_64-unknown-linux-gnu.zip",
+      "checksum": "sha256:133a30d543496bd5117825a9fc2d7cbde1b8c0abfae6a53a12ed7b25e2742562",
+      "size": 2011061
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-aarch64-unknown-linux-gnu.zip",
+      "checksum": "sha256:67aad036bc92f6a2dc6f2d2358cf1dff49558566cae1d9a332e42aa2e7b7d8de",
+      "size": 1863131
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-x86_64-pc-windows-msvc.zip",
+      "checksum": "sha256:0a2922f8368ecb118fcc61f24e964405c9bb5df5b55e0f90e8a1306d876ec217",
+      "size": 1566504
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-aarch64-pc-windows-msvc.zip",
+      "checksum": "sha256:51a9acc79634c066bd3939e4559837e5967a0c8dc11c582f4d31cb9dd995408c",
+      "size": 1460538
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.1"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:797cb78cc58bc63c468fcec2e3ed7dbffdde7fdfae889370b33b61e3a07b5d19",
+          "size": 1771431
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:1c232642404c8cc3cf0b09fbf16469a28d4351eab4cdf33fa7e681181b60dd5d",
+          "size": 1813108
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:133a30d543496bd5117825a9fc2d7cbde1b8c0abfae6a53a12ed7b25e2742562",
+          "size": 2011061
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:67aad036bc92f6a2dc6f2d2358cf1dff49558566cae1d9a332e42aa2e7b7d8de",
+          "size": 1863131
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:0a2922f8368ecb118fcc61f24e964405c9bb5df5b55e0f90e8a1306d876ec217",
+          "size": 1566504
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/codex-acp-v0.1.0/codex-acp-0.1.0-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:51a9acc79634c066bd3939e4559837e5967a0c8dc11c582f4d31cb9dd995408c",
+          "size": 1460538
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "id": "com.oxideterm.acp.antigravity",
+  "name": "Antigravity",
+  "description": "Launch the installed official Antigravity ACP Server. Requires the local ACP Server executable.",
+  "author": "OxideTerm",
+  "license": "GPL-3.0-only",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/antigravity-acp/LICENSE",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/antigravity-acp",
+  "tags": [
+    "acp"
+  ],
+  "updatedAt": "2026-10-06T09:07:51.516Z",
+  "version": "0.1.1",
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "minOxidetermVersion": "2.2.2",
+  "packages": [
+    {
+      "target": "aarch64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/antigravity-acp-v0.1.1/antigravity-acp-0.1.1-aarch64-apple-darwin.zip",
+      "checksum": "sha256:a591232ae0f9d3d36184d7c749e28df01d5a3ce97bc89e1893ab0138b9ac52d7",
+      "size": 239246
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/antigravity-acp-v0.1.1/antigravity-acp-0.1.1-x86_64-apple-darwin.zip",
+      "checksum": "sha256:218c6e262ab3e890332b96a6cac85a727cbf43bc339ce4e5780e080b926f4df7",
+      "size": 251031
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/antigravity-acp-v0.1.1/antigravity-acp-0.1.1-x86_64-unknown-linux-gnu.zip",
+      "checksum": "sha256:a6397bbe9edc04f9b29dec94c620bd6f4d96d970ac218686b02e7039b9c66c38",
+      "size": 264553
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/antigravity-acp-v0.1.1/antigravity-acp-0.1.1-aarch64-unknown-linux-gnu.zip",
+      "checksum": "sha256:c46fad4cbe9f965f8e515846b66df71b7b34be53887e540dbced01721234d929",
+      "size": 256334
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/antigravity-acp-v0.1.1/antigravity-acp-0.1.1-x86_64-pc-windows-msvc.zip",
+      "checksum": "sha256:c5050cd3a65ddaafeb0e03e6fa184c06fe748790dff91b7fbed25230de0a8b72",
+      "size": 162729
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/antigravity-acp-v0.1.1/antigravity-acp-0.1.1-aarch64-pc-windows-msvc.zip",
+      "checksum": "sha256:68b60aa66123392ab36b90d88f05ca47c8b5cfe3c3219f5f6af3510dfaf3833d",
+      "size": 154036
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.1",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/antigravity-acp-v0.1.1/antigravity-acp-0.1.1-aarch64-apple-darwin.zip",
+          "checksum": "sha256:a591232ae0f9d3d36184d7c749e28df01d5a3ce97bc89e1893ab0138b9ac52d7",
+          "size": 239246
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/antigravity-acp-v0.1.1/antigravity-acp-0.1.1-x86_64-apple-darwin.zip",
+          "checksum": "sha256:218c6e262ab3e890332b96a6cac85a727cbf43bc339ce4e5780e080b926f4df7",
+          "size": 251031
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/antigravity-acp-v0.1.1/antigravity-acp-0.1.1-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:a6397bbe9edc04f9b29dec94c620bd6f4d96d970ac218686b02e7039b9c66c38",
+          "size": 264553
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/antigravity-acp-v0.1.1/antigravity-acp-0.1.1-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:c46fad4cbe9f965f8e515846b66df71b7b34be53887e540dbced01721234d929",
+          "size": 256334
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/antigravity-acp-v0.1.1/antigravity-acp-0.1.1-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:c5050cd3a65ddaafeb0e03e6fa184c06fe748790dff91b7fbed25230de0a8b72",
+          "size": 162729
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/antigravity-acp-v0.1.1/antigravity-acp-0.1.1-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:68b60aa66123392ab36b90d88f05ca47c8b5cfe3c3219f5f6af3510dfaf3833d",
+          "size": 154036
+        }
+      ]
+    }
+  ]
+}

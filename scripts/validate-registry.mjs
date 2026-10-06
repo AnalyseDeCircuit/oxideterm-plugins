@@ -40,6 +40,10 @@ export function validateRegistry(registry) {
     }
     optionalText(plugin.description, `${plugin.id}.description`, 1000);
     optionalText(plugin.author, `${plugin.id}.author`, 128);
+    optionalText(plugin.license, `${plugin.id}.license`, 256);
+    if (plugin.licenseUrl !== undefined) {
+      requireHttpsUrl(plugin.licenseUrl, `${plugin.id}.licenseUrl`);
+    }
     optionalTextArray(plugin.tags, `${plugin.id}.tags`, 48);
     optionalTextArray(plugin.capabilitiesSummary, `${plugin.id}.capabilitiesSummary`, 128);
     if (plugin.homepage !== undefined) {

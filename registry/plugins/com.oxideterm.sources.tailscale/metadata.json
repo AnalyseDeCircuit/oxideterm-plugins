@@ -7,6 +7,8 @@
   ],
   "description": "Discover devices visible to the local Tailscale client and prepare SSH connections.",
   "author": "OxideTerm",
+  "license": "MIT",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/tailscale-hosts/LICENSE",
   "updatedAt": "2026-10-05T11:06:26.726Z",
   "legacy": {
     "version": "0.1.0",

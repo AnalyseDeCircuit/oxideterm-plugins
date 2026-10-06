@@ -6,6 +6,8 @@
       "name": "Workspace Dashboard",
       "description": "Continue recent work, follow active tasks, and handle workspace issues in one place.",
       "author": "AnalyseDeCircuit",
+      "license": "GPL-3.0-only",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/host-tools-dashboard/LICENSE",
       "tags": [
         "workspace"
       ],
@@ -20,9 +22,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.examples.host-tools-dashboard/a06e58d921793166aeae95b8beffd88e0dcc5104f03c336ca54b7eb296800268.json",
-        "checksum": "sha256:a06e58d921793166aeae95b8beffd88e0dcc5104f03c336ca54b7eb296800268",
-        "size": 8791
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.examples.host-tools-dashboard/298553418e0b8de6bbe8e0ee75035c70e336bea5389eb96f5e9e5542ff51145f.json",
+        "checksum": "sha256:298553418e0b8de6bbe8e0ee75035c70e336bea5389eb96f5e9e5542ff51145f",
+        "size": 8940
       }
     },
     {
@@ -30,6 +32,8 @@
       "name": "C Language Support",
       "description": "Syntax highlighting and folding for C.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-c/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-c",
       "tags": [
         "language"
@@ -40,9 +44,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.c/f56fe333203965a8e8577957e93f8dcfb2af88b5f3a0e5178f134b2a3b8ab6b7.json",
-        "checksum": "sha256:f56fe333203965a8e8577957e93f8dcfb2af88b5f3a0e5178f134b2a3b8ab6b7",
-        "size": 1216
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.c/06e96d14c374be8bf3c229d7f3758017ba90749882a247ac58ac2103b9a29e14.json",
+        "checksum": "sha256:06e96d14c374be8bf3c229d7f3758017ba90749882a247ac58ac2103b9a29e14",
+        "size": 1353
       }
     },
     {
@@ -50,6 +54,8 @@
       "name": "C# Language Support",
       "description": "Syntax highlighting and folding for C#.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-c-sharp/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-c-sharp",
       "tags": [
         "language"
@@ -60,9 +66,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.c-sharp/4d2b916f5ccd2b8bd52eb3dd1c1802013ab54292d6abdbdb6216af87b43894a9.json",
-        "checksum": "sha256:4d2b916f5ccd2b8bd52eb3dd1c1802013ab54292d6abdbdb6216af87b43894a9",
-        "size": 1256
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.c-sharp/906f877ee57f1a3cd1bfdf347b3d7d08bd05e4fc0c3cc247473bde8922741dcb.json",
+        "checksum": "sha256:906f877ee57f1a3cd1bfdf347b3d7d08bd05e4fc0c3cc247473bde8922741dcb",
+        "size": 1399
       }
     },
     {
@@ -70,6 +76,8 @@
       "name": "Common Lisp Language Support",
       "description": "Syntax highlighting and folding for Common Lisp.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-commonlisp/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-commonlisp",
       "tags": [
         "language"
@@ -80,9 +88,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.commonlisp/0462542626dace2a7ef1416c0b3e5a632a633376b42c358b3d050a2e33a63247.json",
-        "checksum": "sha256:0462542626dace2a7ef1416c0b3e5a632a633376b42c358b3d050a2e33a63247",
-        "size": 1292
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.commonlisp/30bfbcd751a7078580835787fadacdf076762e3a84066c70d2164e41705067de.json",
+        "checksum": "sha256:30bfbcd751a7078580835787fadacdf076762e3a84066c70d2164e41705067de",
+        "size": 1438
       }
     },
     {
@@ -90,6 +98,8 @@
       "name": "C++ Language Support",
       "description": "Syntax highlighting and folding for C++.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-cpp/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-cpp",
       "tags": [
         "language"
@@ -100,9 +110,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.cpp/0a8f7bffd0210de64798f60f9fd446a9cafa8ffe77610281473082350aa3fd21.json",
-        "checksum": "sha256:0a8f7bffd0210de64798f60f9fd446a9cafa8ffe77610281473082350aa3fd21",
-        "size": 1234
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.cpp/56911d4eca3230a0bed2a16deeef891a1e907d974424afd99f08a3237d366c65.json",
+        "checksum": "sha256:56911d4eca3230a0bed2a16deeef891a1e907d974424afd99f08a3237d366c65",
+        "size": 1373
       }
     },
     {
@@ -110,6 +120,8 @@
       "name": "CSS Language Support",
       "description": "Syntax highlighting and folding for CSS.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-css/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-css",
       "tags": [
         "language"
@@ -120,9 +132,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.css/4d5ba3d173c4442e6d4a08d9dce386aba483043a3e90ee8f1e419bcfadc70632.json",
-        "checksum": "sha256:4d5ba3d173c4442e6d4a08d9dce386aba483043a3e90ee8f1e419bcfadc70632",
-        "size": 1232
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.css/0760f5d551a0c166432ff12e8ca16b3a681128eed8ace5b9d0cfb33a862f9154.json",
+        "checksum": "sha256:0760f5d551a0c166432ff12e8ca16b3a681128eed8ace5b9d0cfb33a862f9154",
+        "size": 1371
       }
     },
     {
@@ -130,6 +142,8 @@
       "name": "Elixir Language Support",
       "description": "Syntax highlighting and folding for Elixir.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-elixir/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-elixir",
       "tags": [
         "language"
@@ -140,9 +154,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.elixir/4b482c1c42f60fc3b8fa25a3c4889c865efe876d31b50fa0bb81b5ad4cafee02.json",
-        "checksum": "sha256:4b482c1c42f60fc3b8fa25a3c4889c865efe876d31b50fa0bb81b5ad4cafee02",
-        "size": 1258
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.elixir/d381e2035c387b39e96ef47b928c3bea216f4207c50f167baaf4bfa991d41b75.json",
+        "checksum": "sha256:d381e2035c387b39e96ef47b928c3bea216f4207c50f167baaf4bfa991d41b75",
+        "size": 1400
       }
     },
     {
@@ -150,6 +164,8 @@
       "name": "Go Language Support",
       "description": "Syntax highlighting and folding for Go.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-go/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-go",
       "tags": [
         "language"
@@ -160,9 +176,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.go/f3d44f2b06ecfa117fe553131e7fb4de00209752bf80b33e4df52a5e2604b993.json",
-        "checksum": "sha256:f3d44f2b06ecfa117fe553131e7fb4de00209752bf80b33e4df52a5e2604b993",
-        "size": 1224
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.go/386ff9b689f521da0940f1d9e9283f7a0a02f4f3430e2f788b3497b6f7b63b39.json",
+        "checksum": "sha256:386ff9b689f521da0940f1d9e9283f7a0a02f4f3430e2f788b3497b6f7b63b39",
+        "size": 1362
       }
     },
     {
@@ -170,6 +186,8 @@
       "name": "HTML Language Support",
       "description": "Syntax highlighting and folding for HTML.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-html/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-html",
       "tags": [
         "language"
@@ -180,9 +198,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.html/be5f01537b1725e0fa4acd0a0baf7324e8e1577719c2d2a62032e1bd840f080f.json",
-        "checksum": "sha256:be5f01537b1725e0fa4acd0a0baf7324e8e1577719c2d2a62032e1bd840f080f",
-        "size": 1240
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.html/f8b08e2e9155eafa1b19215122f1b902fa94d4de317ff21dd771eaf4b1ba9b30.json",
+        "checksum": "sha256:f8b08e2e9155eafa1b19215122f1b902fa94d4de317ff21dd771eaf4b1ba9b30",
+        "size": 1380
       }
     },
     {
@@ -190,6 +208,8 @@
       "name": "Java Language Support",
       "description": "Syntax highlighting and folding for Java.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-java/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-java",
       "tags": [
         "language"
@@ -200,9 +220,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.java/b52022cf4c7e4acd1acaaed5fc7e6bc297fd939af74cbf03a438d41c945cfdb9.json",
-        "checksum": "sha256:b52022cf4c7e4acd1acaaed5fc7e6bc297fd939af74cbf03a438d41c945cfdb9",
-        "size": 1240
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.java/36834916ca5ae882b5ebf4a5de0ec455fd8ad865941b4a0fac539e2a69df1b56.json",
+        "checksum": "sha256:36834916ca5ae882b5ebf4a5de0ec455fd8ad865941b4a0fac539e2a69df1b56",
+        "size": 1380
       }
     },
     {
@@ -210,6 +230,8 @@
       "name": "JavaScript Language Support",
       "description": "Syntax highlighting and folding for JavaScript.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-javascript/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-javascript",
       "tags": [
         "language"
@@ -220,9 +242,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.javascript/d69ae36608b2729066e8b5e7354effdc59182d8a5af22d24144cae3a238c3862.json",
-        "checksum": "sha256:d69ae36608b2729066e8b5e7354effdc59182d8a5af22d24144cae3a238c3862",
-        "size": 1288
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.javascript/d8a0279f86ac99178a1c05e3435e8b6280093ec19b72065ad3350bcdfd082bd2.json",
+        "checksum": "sha256:d8a0279f86ac99178a1c05e3435e8b6280093ec19b72065ad3350bcdfd082bd2",
+        "size": 1434
       }
     },
     {
@@ -230,6 +252,8 @@
       "name": "Objective-C Language Support",
       "description": "Syntax highlighting and folding for Objective-C.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-objc/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-objc",
       "tags": [
         "language"
@@ -240,9 +264,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.objc/843c1f2ac99718aecd7a94c416bba3489cb0d683ebd0b1a75179e7c84d18a6b0.json",
-        "checksum": "sha256:843c1f2ac99718aecd7a94c416bba3489cb0d683ebd0b1a75179e7c84d18a6b0",
-        "size": 1256
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.objc/090ff2f5ba1a3f4dc752614d36f149d09ad03a5e98acaf87ebf0ac77b330661c.json",
+        "checksum": "sha256:090ff2f5ba1a3f4dc752614d36f149d09ad03a5e98acaf87ebf0ac77b330661c",
+        "size": 1396
       }
     },
     {
@@ -250,6 +274,8 @@
       "name": "Perl Language Support",
       "description": "Syntax highlighting and folding for Perl.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-perl/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-perl",
       "tags": [
         "language"
@@ -260,9 +286,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.perl/2e8b8517cdfdd7339f2084e615c10adc2da45ca226e7786e7ca8251777b2a84e.json",
-        "checksum": "sha256:2e8b8517cdfdd7339f2084e615c10adc2da45ca226e7786e7ca8251777b2a84e",
-        "size": 1242
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.perl/c289cfb8cb9c01171ba26b8dc2a3738828bf324eb4ee70a373d4184b46b67405.json",
+        "checksum": "sha256:c289cfb8cb9c01171ba26b8dc2a3738828bf324eb4ee70a373d4184b46b67405",
+        "size": 1382
       }
     },
     {
@@ -270,6 +296,8 @@
       "name": "PHP Language Support",
       "description": "Syntax highlighting and folding for PHP.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-php/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-php",
       "tags": [
         "language"
@@ -280,9 +308,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.php/f33dd9e54f1d626f6030d4343df98684898b3ab3eab8d30919bf3c084ded9253.json",
-        "checksum": "sha256:f33dd9e54f1d626f6030d4343df98684898b3ab3eab8d30919bf3c084ded9253",
-        "size": 1234
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.php/02e75a1b9da379af993342cdb704cc0108cbd3ea4111122eb371bee85de5c5fb.json",
+        "checksum": "sha256:02e75a1b9da379af993342cdb704cc0108cbd3ea4111122eb371bee85de5c5fb",
+        "size": 1373
       }
     },
     {
@@ -290,6 +318,8 @@
       "name": "R Language Support",
       "description": "Syntax highlighting and folding for R.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-r/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-r",
       "tags": [
         "language"
@@ -300,9 +330,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.r/8acfcc81973e954253710a17d87a05295bf60ac5d8ac15b5fbb4f45dd75e2813.json",
-        "checksum": "sha256:8acfcc81973e954253710a17d87a05295bf60ac5d8ac15b5fbb4f45dd75e2813",
-        "size": 1216
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.r/bf0d68679892a9f9e5e553c84831a58329aec7183a310f01b657d21c57f6c7f3.json",
+        "checksum": "sha256:bf0d68679892a9f9e5e553c84831a58329aec7183a310f01b657d21c57f6c7f3",
+        "size": 1353
       }
     },
     {
@@ -310,6 +340,8 @@
       "name": "Ruby Language Support",
       "description": "Syntax highlighting and folding for Ruby.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-ruby/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-ruby",
       "tags": [
         "language"
@@ -320,9 +352,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.ruby/7189a031006ca1d82553d899a612eb3c756ca4a674f79adf90cc061bd352085c.json",
-        "checksum": "sha256:7189a031006ca1d82553d899a612eb3c756ca4a674f79adf90cc061bd352085c",
-        "size": 1242
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.ruby/acd83a5786896a468a12136344ed5fa39f0327b77a339094d5880d13989591eb.json",
+        "checksum": "sha256:acd83a5786896a468a12136344ed5fa39f0327b77a339094d5880d13989591eb",
+        "size": 1382
       }
     },
     {
@@ -330,6 +362,8 @@
       "name": "Rust Language Support",
       "description": "Syntax highlighting and folding for Rust.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-rust/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-rust",
       "tags": [
         "language"
@@ -340,9 +374,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.rust/3c3396ec78da063e81ca90e8914bcbaa915fb58b17241dd089456e69bffd93b9.json",
-        "checksum": "sha256:3c3396ec78da063e81ca90e8914bcbaa915fb58b17241dd089456e69bffd93b9",
-        "size": 1242
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.rust/5f2b491b0580cba65a17ed801de8082b674528ed39ee5a2a7f42e83366cd1648.json",
+        "checksum": "sha256:5f2b491b0580cba65a17ed801de8082b674528ed39ee5a2a7f42e83366cd1648",
+        "size": 1382
       }
     },
     {
@@ -350,6 +384,8 @@
       "name": "Scala Language Support",
       "description": "Syntax highlighting and folding for Scala.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-scala/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-scala",
       "tags": [
         "language"
@@ -360,9 +396,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.scala/70aedfc2e9a7429c3f09f3e83991ecf91b216b4a329850ecd4dafc2c8bb12d09.json",
-        "checksum": "sha256:70aedfc2e9a7429c3f09f3e83991ecf91b216b4a329850ecd4dafc2c8bb12d09",
-        "size": 1250
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.scala/14918dc477aef46cbf461771f80f987a8cef6bf366887d69ef196acbbf694519.json",
+        "checksum": "sha256:14918dc477aef46cbf461771f80f987a8cef6bf366887d69ef196acbbf694519",
+        "size": 1391
       }
     },
     {
@@ -370,6 +406,8 @@
       "name": "Swift Language Support",
       "description": "Syntax highlighting and folding for Swift.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-swift/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-swift",
       "tags": [
         "language"
@@ -380,9 +418,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.swift/426a8dc2149f08227e53d222877104976c4ab6fae7e958ed71752f4f4cfe53ac.json",
-        "checksum": "sha256:426a8dc2149f08227e53d222877104976c4ab6fae7e958ed71752f4f4cfe53ac",
-        "size": 1250
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.swift/55462bb87420885f80af8e9314b92b85565a7953d6a2d297736efd428d92111d.json",
+        "checksum": "sha256:55462bb87420885f80af8e9314b92b85565a7953d6a2d297736efd428d92111d",
+        "size": 1391
       }
     },
     {
@@ -390,6 +428,8 @@
       "name": "TSX Language Support",
       "description": "Syntax highlighting and folding for TSX.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-tsx/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-tsx",
       "tags": [
         "language"
@@ -400,9 +440,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.tsx/79e248bcfc4747f77d3658e4e4d0492d16e1e6319623b3304c0b548942e260da.json",
-        "checksum": "sha256:79e248bcfc4747f77d3658e4e4d0492d16e1e6319623b3304c0b548942e260da",
-        "size": 1234
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.tsx/68e2cb63c140dc3c64fb5b2a1c5db42453bed093fc3f58ad9afd318c0e303efb.json",
+        "checksum": "sha256:68e2cb63c140dc3c64fb5b2a1c5db42453bed093fc3f58ad9afd318c0e303efb",
+        "size": 1373
       }
     },
     {
@@ -410,6 +450,8 @@
       "name": "TypeScript Language Support",
       "description": "Syntax highlighting and folding for TypeScript.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-typescript/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-typescript",
       "tags": [
         "language"
@@ -420,9 +462,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.typescript/78915bc2cbb9371cfa6c2c88bee8d4a9b6fc58852455162c4815152f612acbb9.json",
-        "checksum": "sha256:78915bc2cbb9371cfa6c2c88bee8d4a9b6fc58852455162c4815152f612acbb9",
-        "size": 1290
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.typescript/c9356798fec3775675f91bc692c8caef5c0e96fc98453fd22026287bb700e532.json",
+        "checksum": "sha256:c9356798fec3775675f91bc692c8caef5c0e96fc98453fd22026287bb700e532",
+        "size": 1436
       }
     },
     {
@@ -430,6 +472,8 @@
       "name": "Zig Language Support",
       "description": "Syntax highlighting and folding for Zig.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-zig/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-zig",
       "tags": [
         "language"
@@ -440,9 +484,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.zig/c1218d4d139aceee1a09cf9f6b12d1da2efc20b65b6e0f02e6bafca19a7bdde7.json",
-        "checksum": "sha256:c1218d4d139aceee1a09cf9f6b12d1da2efc20b65b6e0f02e6bafca19a7bdde7",
-        "size": 1232
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.zig/5de63dca4877cbf8be0c5d5187832f1f68ec4e6f92a39a9e0470d8fa599c4374.json",
+        "checksum": "sha256:5de63dca4877cbf8be0c5d5187832f1f68ec4e6f92a39a9e0470d8fa599c4374",
+        "size": 1371
       }
     },
     {
@@ -458,15 +502,16 @@
         "Page navigation and zoom"
       ],
       "author": "OxideTerm",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/pdf-preview/LICENSE",
       "updatedAt": "2026-10-04T18:51:47.704Z",
       "version": "0.1.0",
       "engines": {
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.preview.pdf/c7e52946c9287bb2444fee0f513a05c66d7af5a5d0e69ec987ebcfa082de873a.json",
-        "checksum": "sha256:c7e52946c9287bb2444fee0f513a05c66d7af5a5d0e69ec987ebcfa082de873a",
-        "size": 4819
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.preview.pdf/e4402bef3632fe7b0275a8272dec7df11b80c39251dfc1da1a40277773ddcd4d.json",
+        "checksum": "sha256:e4402bef3632fe7b0275a8272dec7df11b80c39251dfc1da1a40277773ddcd4d",
+        "size": 4930
       }
     },
     {
@@ -477,6 +522,8 @@
       ],
       "description": "Local encoding, JSON, time, text, digest and random generation tools with native editors.",
       "author": "OxideTerm",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/toolbox/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/toolbox",
       "updatedAt": "2026-10-05T10:31:11.608Z",
       "version": "0.2.3",
@@ -484,9 +531,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.toolbox/95b826f42b81506ee4730bf356a55dd091101293d64f142ce73b075002f5e2b0.json",
-        "checksum": "sha256:95b826f42b81506ee4730bf356a55dd091101293d64f142ce73b075002f5e2b0",
-        "size": 2514
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.toolbox/9f13a66e9e91d63f40841c77591afc8fb51c28134eef8ba7092f2aa27fb7ee8a.json",
+        "checksum": "sha256:9f13a66e9e91d63f40841c77591afc8fb51c28134eef8ba7092f2aa27fb7ee8a",
+        "size": 2641
       }
     },
     {
@@ -494,6 +541,8 @@
       "name": "SQLite Preview",
       "description": "Browse SQLite tables and read-only paginated data from the file preview.",
       "author": "OxideTerm",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/sqlite-preview/LICENSE",
       "tags": [
         "preview"
       ],
@@ -503,9 +552,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.preview.sqlite/68d49e596de0c1b84591a5c51726b35cda99745c3f738ffced8ff8d490155c66.json",
-        "checksum": "sha256:68d49e596de0c1b84591a5c51726b35cda99745c3f738ffced8ff8d490155c66",
-        "size": 4709
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.preview.sqlite/e7ba835d566bb35b48cb8b2ed51932a97eb34aa355d25e3619fce53ce1f30ce5.json",
+        "checksum": "sha256:e7ba835d566bb35b48cb8b2ed51932a97eb34aa355d25e3619fce53ce1f30ce5",
+        "size": 4843
       }
     },
     {
@@ -513,6 +562,8 @@
       "name": "Certificate Viewer",
       "description": "Inspect certificates in PEM and DER files without displaying private keys.",
       "author": "OxideTerm",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/certificate-preview/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/certificate-preview",
       "tags": [
         "preview"
@@ -523,9 +574,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.preview.certificate/c5d83a6c50d9f5b583a1ba5ea6dee9e4d29cb3c89db8fa8d03723fd9a0c585c2.json",
-        "checksum": "sha256:c5d83a6c50d9f5b583a1ba5ea6dee9e4d29cb3c89db8fa8d03723fd9a0c585c2",
-        "size": 4937
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.preview.certificate/efa6ac4723efb1fb68100e8585a4f12a1ae9f6ca1e49eec74dce412ccee75dab.json",
+        "checksum": "sha256:efa6ac4723efb1fb68100e8585a4f12a1ae9f6ca1e49eec74dce412ccee75dab",
+        "size": 5076
       }
     },
     {
@@ -533,6 +584,8 @@
       "name": "Binary Inspector",
       "description": "Inspect ELF, Mach-O and PE metadata, sections and SHA-256 from file preview.",
       "author": "OxideTerm",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/binary-preview/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/binary-preview",
       "tags": [
         "preview"
@@ -543,9 +596,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.preview.binary/3faef15b5d5ebc5439cd22c40ed786d9e2dd43642b3329f7b0a661881778bd2c.json",
-        "checksum": "sha256:3faef15b5d5ebc5439cd22c40ed786d9e2dd43642b3329f7b0a661881778bd2c",
-        "size": 4807
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.preview.binary/778817bc5ae0ef9cf1bfd9674c0262d579d64bd0a1b687114582fd0cce7be2cb.json",
+        "checksum": "sha256:778817bc5ae0ef9cf1bfd9674c0262d579d64bd0a1b687114582fd0cce7be2cb",
+        "size": 4941
       }
     },
     {
@@ -557,15 +610,17 @@
       ],
       "description": "Discover devices visible to the local Tailscale client and prepare SSH connections.",
       "author": "OxideTerm",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/tailscale-hosts/LICENSE",
       "updatedAt": "2026-10-05T11:06:26.726Z",
       "version": "0.1.1",
       "engines": {
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.sources.tailscale/4166a504d35b62728dc7a1db8d451f0d62665c39c56a7ce90d10dd73a3207570.json",
-        "checksum": "sha256:4166a504d35b62728dc7a1db8d451f0d62665c39c56a7ce90d10dd73a3207570",
-        "size": 5724
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.sources.tailscale/d02a312bfb37e193717d4e1f505aef1ba0b467c63f7ca885b7969d1c690da551.json",
+        "checksum": "sha256:d02a312bfb37e193717d4e1f505aef1ba0b467c63f7ca885b7969d1c690da551",
+        "size": 5859
       }
     },
     {
@@ -577,15 +632,17 @@
       ],
       "description": "Discover SSH hosts using Ansible inventory and prepare native connections.",
       "author": "OxideTerm",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/ansible-inventory/LICENSE",
       "updatedAt": "2026-10-05T04:29:31.928Z",
       "version": "0.1.0",
       "engines": {
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.sources.ansible/8a5730ab87c7784e7f89c6c8f18b8f664c9d7f620df691ab45ab1670cc3f318b.json",
-        "checksum": "sha256:8a5730ab87c7784e7f89c6c8f18b8f664c9d7f620df691ab45ab1670cc3f318b",
-        "size": 3463
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.sources.ansible/b3b9c962b99825bbf77c58e8fe4ae9991a3991a34fdb9db7217231aeea05ae6d.json",
+        "checksum": "sha256:b3b9c962b99825bbf77c58e8fe4ae9991a3991a34fdb9db7217231aeea05ae6d",
+        "size": 3600
       }
     },
     {
@@ -593,6 +650,8 @@
       "name": "Terraform / HCL Language Support",
       "description": "Syntax highlighting and folding for Terraform / HCL.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-hcl/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-hcl",
       "tags": [
         "language"
@@ -603,9 +662,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.hcl/0be72614a70b77575fd1b9142a3acc2b9afdc0406ac16fdb50d13175594ae734.json",
-        "checksum": "sha256:0be72614a70b77575fd1b9142a3acc2b9afdc0406ac16fdb50d13175594ae734",
-        "size": 1256
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.hcl/e1d71f9cfc7f7b5d6925c499f5056e63e8b8fd24d689964c30350d642ea10aad.json",
+        "checksum": "sha256:e1d71f9cfc7f7b5d6925c499f5056e63e8b8fd24d689964c30350d642ea10aad",
+        "size": 1395
       }
     },
     {
@@ -613,6 +672,8 @@
       "name": "Nginx Language Support",
       "description": "Syntax highlighting and folding for Nginx.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-nginx/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-nginx",
       "tags": [
         "language"
@@ -623,9 +684,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.nginx/8e8f90501bf7a79c990f922b743cd3e061b9846fb006193c528f3a89d28c08ba.json",
-        "checksum": "sha256:8e8f90501bf7a79c990f922b743cd3e061b9846fb006193c528f3a89d28c08ba",
-        "size": 1248
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.nginx/cf81d728bf0b3012ae35c2fd5fdf7afba8c51f146a962bc45941c8f25612e822.json",
+        "checksum": "sha256:cf81d728bf0b3012ae35c2fd5fdf7afba8c51f146a962bc45941c8f25612e822",
+        "size": 1389
       }
     },
     {
@@ -633,6 +694,8 @@
       "name": "Protobuf Language Support",
       "description": "Syntax highlighting and folding for Protobuf.",
       "author": "OxideTerm",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-proto/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-proto",
       "tags": [
         "language"
@@ -643,9 +706,9 @@
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.proto/82cfb52007fa7182db2da9515295de9b4a08630636a530ea3d9d10f630519de1.json",
-        "checksum": "sha256:82cfb52007fa7182db2da9515295de9b4a08630636a530ea3d9d10f630519de1",
-        "size": 1254
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.proto/ae7ed0eab16ef28ae7cc259ef7a3360e528cbeecc1e8ebbe96efc090e48270dd.json",
+        "checksum": "sha256:ae7ed0eab16ef28ae7cc259ef7a3360e528cbeecc1e8ebbe96efc090e48270dd",
+        "size": 1395
       }
     },
     {
@@ -653,6 +716,8 @@
       "name": "Codex",
       "description": "Connect the local Codex CLI to OxideTerm through ACP, with model discovery and session-scoped settings.",
       "author": "OxideTerm",
+      "license": "GPL-3.0-only",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/codex-acp/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/codex-acp",
       "tags": [
         "acp"
@@ -663,9 +728,9 @@
         "oxideterm": ">2.2.1"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.codex/28dc402679f321184efa0bb4f72db8d6e6c60dc4256718582cd786c00a1c1cee.json",
-        "checksum": "sha256:28dc402679f321184efa0bb4f72db8d6e6c60dc4256718582cd786c00a1c1cee",
-        "size": 4701
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.codex/28315236af2e42882976d0efdbe3d91afe267e8ecdfcffede00271eaf4625f67.json",
+        "checksum": "sha256:28315236af2e42882976d0efdbe3d91afe267e8ecdfcffede00271eaf4625f67",
+        "size": 4839
       }
     },
     {
@@ -673,6 +738,8 @@
       "name": "Claude Code",
       "description": "Connect the local Claude Code CLI to OxideTerm through ACP, with streaming output and resumable sessions.",
       "author": "OxideTerm",
+      "license": "GPL-3.0-only",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/claude-code-acp/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/claude-code-acp",
       "tags": [
         "acp"
@@ -683,9 +750,9 @@
         "oxideterm": ">2.2.1"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.claude-code/0b726a25c297e367d0e1229f889422ba418329bf2d6c8655a450cbb6491ab5d8.json",
-        "checksum": "sha256:0b726a25c297e367d0e1229f889422ba418329bf2d6c8655a450cbb6491ab5d8",
-        "size": 4865
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.claude-code/c8948e4633145573806da9a9b70cf0fe18d96e2b45537a2dfbc5b81559bf444f.json",
+        "checksum": "sha256:c8948e4633145573806da9a9b70cf0fe18d96e2b45537a2dfbc5b81559bf444f",
+        "size": 5009
       }
     },
     {
@@ -693,6 +760,8 @@
       "name": "VNC",
       "description": "VNC connections using OxideTerm's native viewer, clipboard, audio and SSH gateways.",
       "author": "OxideTerm",
+      "license": "GPL-3.0-only",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/vnc/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/vnc",
       "tags": [
         "remote-connections"
@@ -703,9 +772,9 @@
         "oxideterm": ">2.2.1"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.remote-desktop.vnc/80633feb315ce93dc72bf50572bb6ccde1933cead3abcebb78733a2a0ee5271f.json",
-        "checksum": "sha256:80633feb315ce93dc72bf50572bb6ccde1933cead3abcebb78733a2a0ee5271f",
-        "size": 4553
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.remote-desktop.vnc/17111d989ea5bb213550df04ab8adcead4d8c2cec75ce6d24c6526ba898b6ac1.json",
+        "checksum": "sha256:17111d989ea5bb213550df04ab8adcead4d8c2cec75ce6d24c6526ba898b6ac1",
+        "size": 4685
       }
     },
     {
@@ -713,6 +782,8 @@
       "name": "RDP",
       "description": "RDP connections using OxideTerm's native viewer, clipboard, audio and SSH gateways.",
       "author": "OxideTerm",
+      "license": "GPL-3.0-only",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/rdp/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/rdp",
       "tags": [
         "remote-connections"
@@ -723,9 +794,9 @@
         "oxideterm": ">2.2.1"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.remote-desktop.rdp/26c05aba3337b2e89cdbd3b4ec9bf38cea696ca37911e4515c08900af00d3348.json",
-        "checksum": "sha256:26c05aba3337b2e89cdbd3b4ec9bf38cea696ca37911e4515c08900af00d3348",
-        "size": 4553
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.remote-desktop.rdp/791defe12567049bc14fbc3cee90eb237aab75f6a2b7978d224266e67e03324b.json",
+        "checksum": "sha256:791defe12567049bc14fbc3cee90eb237aab75f6a2b7978d224266e67e03324b",
+        "size": 4685
       }
     },
     {
@@ -733,6 +804,8 @@
       "name": "Mosh",
       "description": "Mosh roaming connections with OxideTerm's native terminal and local input prediction.",
       "author": "OxideTerm",
+      "license": "GPL-3.0-only",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/mosh/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/mosh",
       "tags": [
         "remote-connections"
@@ -743,9 +816,9 @@
         "oxideterm": ">=2.2.2"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.terminal.mosh/181928de18a63840f28455c772a51d49fb4bb93a9d22f2deec43fbc3bffd3fcc.json",
-        "checksum": "sha256:181928de18a63840f28455c772a51d49fb4bb93a9d22f2deec43fbc3bffd3fcc",
-        "size": 4566
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.terminal.mosh/6e4ba60ffc0bf56e996749aef81d7c552b33f75f384f1d7a9a1fd56b76845e98.json",
+        "checksum": "sha256:6e4ba60ffc0bf56e996749aef81d7c552b33f75f384f1d7a9a1fd56b76845e98",
+        "size": 4699
       }
     },
     {
@@ -753,6 +826,8 @@
       "name": "OpenCode",
       "description": "Launch the installed OpenCode CLI through ACP. Requires a local OpenCode installation.",
       "author": "OxideTerm",
+      "license": "GPL-3.0-only",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/opencode-acp/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/opencode-acp",
       "tags": [
         "acp"
@@ -763,9 +838,9 @@
         "oxideterm": ">=2.2.2"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.opencode/7f6ad9ffd33a511446efbe0bb9546583cee5fd7efe23b0fb8eb9ee9ac39fe1b5.json",
-        "checksum": "sha256:7f6ad9ffd33a511446efbe0bb9546583cee5fd7efe23b0fb8eb9ee9ac39fe1b5",
-        "size": 4755
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.opencode/2b97f0d74db52d9fba0ca629bfffd44325f54fca2c2afcffbaecf46078b86719.json",
+        "checksum": "sha256:2b97f0d74db52d9fba0ca629bfffd44325f54fca2c2afcffbaecf46078b86719",
+        "size": 4896
       }
     },
     {
@@ -773,6 +848,8 @@
       "name": "Cursor",
       "description": "Launch the installed Cursor CLI through ACP, including question selection and plan approval in OxideTerm chat.",
       "author": "OxideTerm",
+      "license": "GPL-3.0-only",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/cursor-acp/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/cursor-acp",
       "tags": [
         "acp"
@@ -783,9 +860,9 @@
         "oxideterm": ">=2.2.2"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.cursor/46bc64deaf24b541b6f5e3b0880da433fb063dc68cfdde9c75fa53b5bfb3aed6.json",
-        "checksum": "sha256:46bc64deaf24b541b6f5e3b0880da433fb063dc68cfdde9c75fa53b5bfb3aed6",
-        "size": 4725
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.cursor/db6398874a364f906ea3907fe48f61f7d22176df0cc807ced784d88c38e74342.json",
+        "checksum": "sha256:db6398874a364f906ea3907fe48f61f7d22176df0cc807ced784d88c38e74342",
+        "size": 4864
       }
     },
     {
@@ -793,6 +870,8 @@
       "name": "Antigravity",
       "description": "Launch the installed official Antigravity ACP Server. Requires the local ACP Server executable.",
       "author": "OxideTerm",
+      "license": "GPL-3.0-only",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/antigravity-acp/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/antigravity-acp",
       "tags": [
         "acp"
@@ -803,9 +882,9 @@
         "oxideterm": ">=2.2.2"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.antigravity/b31c2b35cbd5aa306edcd287901feedc843e8fb780ca4f7e5cb28be811bd4d3d.json",
-        "checksum": "sha256:b31c2b35cbd5aa306edcd287901feedc843e8fb780ca4f7e5cb28be811bd4d3d",
-        "size": 4845
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.antigravity/7a1cd4b8831737e7553fc90fd9532512845a6c142525de9038eef50171b0d623.json",
+        "checksum": "sha256:7a1cd4b8831737e7553fc90fd9532512845a6c142525de9038eef50171b0d623",
+        "size": 4989
       }
     },
     {
@@ -813,6 +892,8 @@
       "name": "Grok Build",
       "description": "Launch the installed official Grok Build CLI through ACP. Requires a local Grok installation.",
       "author": "OxideTerm",
+      "license": "GPL-3.0-only",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/grok-acp/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/grok-acp",
       "tags": [
         "acp"
@@ -823,9 +904,9 @@
         "oxideterm": ">=2.2.2"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.grok/c747769cac6f59c08c1f6b1d3f62720e89065a64d3256a6b248502d9c68f1776.json",
-        "checksum": "sha256:c747769cac6f59c08c1f6b1d3f62720e89065a64d3256a6b248502d9c68f1776",
-        "size": 4660
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.grok/00a9d8a2dd7e57b8879512cd8808f049c146de5f1a04d4f456537ddc3563a9b7.json",
+        "checksum": "sha256:00a9d8a2dd7e57b8879512cd8808f049c146de5f1a04d4f456537ddc3563a9b7",
+        "size": 4797
       }
     },
     {
@@ -833,6 +914,8 @@
       "name": "Kimi CLI",
       "description": "Launch the installed Kimi CLI through ACP, reusing its existing login.",
       "author": "OxideTerm",
+      "license": "GPL-3.0-only",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/kimi-acp/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/kimi-acp",
       "tags": [
         "acp"
@@ -843,9 +926,9 @@
         "oxideterm": ">=2.2.2"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.kimi/e0101597cc25f823fc85176844000d8146668af6a9d729821d9cfc4d19dd5275.json",
-        "checksum": "sha256:e0101597cc25f823fc85176844000d8146668af6a9d729821d9cfc4d19dd5275",
-        "size": 4635
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.kimi/846072a13f8363f8675679c4f20ac7b795f049a92732ae678519830bda1b87f0.json",
+        "checksum": "sha256:846072a13f8363f8675679c4f20ac7b795f049a92732ae678519830bda1b87f0",
+        "size": 4772
       }
     },
     {
@@ -853,6 +936,8 @@
       "name": "GitHub Copilot CLI",
       "description": "Launch the installed GitHub Copilot CLI through its ACP stdio server.",
       "author": "OxideTerm",
+      "license": "GPL-3.0-only",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/copilot-acp/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/copilot-acp",
       "tags": [
         "acp"
@@ -863,9 +948,9 @@
         "oxideterm": ">=2.2.2"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.copilot/e9f58f0e9c32881ffa3ce38bb30839d550ca4339c9ee40591e4e6c6ad00c17c9.json",
-        "checksum": "sha256:e9f58f0e9c32881ffa3ce38bb30839d550ca4339c9ee40591e4e6c6ad00c17c9",
-        "size": 4722
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.copilot/ec9e3f943057bb99d4afcf4a01d1afab05a62487451bb3b30dcd2c623c37b427.json",
+        "checksum": "sha256:ec9e3f943057bb99d4afcf4a01d1afab05a62487451bb3b30dcd2c623c37b427",
+        "size": 4862
       }
     },
     {
@@ -873,6 +958,8 @@
       "name": "Qwen Code",
       "description": "Launch the installed official Qwen Code CLI through ACP, using its configured model provider.",
       "author": "OxideTerm",
+      "license": "GPL-3.0-only",
+      "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/qwen-code-acp/LICENSE",
       "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/qwen-code-acp",
       "tags": [
         "acp"
@@ -883,9 +970,9 @@
         "oxideterm": ">=2.2.2"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.qwen-code/91a7501fbdedfd4089d00b197be4c4018e363d7f99b744a2c74d79aeba048c61.json",
-        "checksum": "sha256:91a7501fbdedfd4089d00b197be4c4018e363d7f99b744a2c74d79aeba048c61",
-        "size": 4789
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.qwen-code/ce9f8d3208020d202d385d8473835251d441d244330a373b7d6b97c732eff1f8.json",
+        "checksum": "sha256:ce9f8d3208020d202d385d8473835251d441d244330a373b7d6b97c732eff1f8",
+        "size": 4931
       }
     }
   ]

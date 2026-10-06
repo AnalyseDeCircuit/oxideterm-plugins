@@ -31,6 +31,8 @@ For a new listing, `record` uses `plugin.json`'s `tags` when provided. Otherwise
 - The package ID, name, and release version must match `plugin.json`. The catalog's top-level version is a compatibility snapshot for older clients.
 - Do not change the ID in a later release to bypass permission review or replace another plugin.
 
+Declare the plugin's own license in `plugin.json`, for example `"license": "MIT"`. The optional `licenseUrl` supplies an HTTPS link to the license text. First-listing automation copies both fields into the catalog; maintain display metadata for existing listings in their `metadata.json`. Missing declarations appear as “Not declared”. The installed page opens the packaged `LICENSE` file when available and offers a separate link to packaged third-party notices. An ACP integration's license is distinct from that of the official program installed separately by the user.
+
 ### 2. Prepare packages
 
 Packages use ZIP. Put `plugin.json` at the package root together with the declared runtime entry and required resources. A single enclosing directory is accepted, but a root manifest is easier to inspect.

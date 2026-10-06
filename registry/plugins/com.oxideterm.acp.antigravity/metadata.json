@@ -3,6 +3,8 @@
   "name": "Antigravity",
   "description": "Launch the installed official Antigravity ACP Server. Requires the local ACP Server executable.",
   "author": "OxideTerm",
+  "license": "GPL-3.0-only",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/antigravity-acp/LICENSE",
   "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/antigravity-acp",
   "tags": [
     "acp"

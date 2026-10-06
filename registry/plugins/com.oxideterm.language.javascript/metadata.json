@@ -3,6 +3,8 @@
   "name": "JavaScript Language Support",
   "description": "Syntax highlighting and folding for JavaScript.",
   "author": "OxideTerm",
+  "license": "Apache-2.0",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-javascript/LICENSE",
   "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-javascript",
   "tags": [
     "language"

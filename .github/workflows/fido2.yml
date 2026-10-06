@@ -1,0 +1,98 @@
+name: Build FIDO security-key plugin
+
+on:
+  push:
+    tags: ['fido2-v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+            arch: arm64
+            target: aarch64-apple-darwin
+            triplet: arm64-osx
+          - os: macos-15-intel
+            arch: x64
+            target: x86_64-apple-darwin
+            triplet: x64-osx
+          - os: ubuntu-22.04
+            arch: x64
+            target: x86_64-unknown-linux-gnu
+            triplet: x64-linux
+          - os: ubuntu-22.04-arm
+            arch: arm64
+            target: aarch64-unknown-linux-gnu
+            triplet: arm64-linux
+          - os: windows-2022
+            arch: x64
+            target: x86_64-pc-windows-msvc
+            triplet: x64-windows-static
+          - os: windows-11-arm
+            arch: arm64
+            target: aarch64-pc-windows-msvc
+            triplet: arm64-windows-static
+    runs-on: ${{ matrix.os }}
+    env:
+      FIDO_TARGET: ${{ matrix.target }}
+      VCPKGRS_TRIPLET: ${{ matrix.triplet }}
+      MACOSX_DEPLOYMENT_TARGET: '11.0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: microsoft/vcpkg
+          ref: 434307da09bc05b2c86996dccc8b2351fc0d5d37
+          path: native-deps/vcpkg
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          architecture: ${{ matrix.arch }}
+      - if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libudev-dev pkg-config ninja-build patchelf
+      - if: runner.os != 'Windows'
+        run: ./native-deps/vcpkg/bootstrap-vcpkg.sh -disableMetrics
+      - if: runner.os == 'Windows'
+        run: ./native-deps/vcpkg/bootstrap-vcpkg.bat -disableMetrics
+      - name: Build pinned native dependencies
+        shell: bash
+        run: |
+          VCPKG="$GITHUB_WORKSPACE/native-deps/vcpkg"
+          "$VCPKG/vcpkg" install "libfido2:${{ matrix.triplet }}"
+          PREFIX="$VCPKG/installed/${{ matrix.triplet }}"
+          {
+            echo "VCPKG_ROOT=$VCPKG"
+            echo "FIDO_NATIVE_PREFIX=$PREFIX"
+            echo "PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
+            echo "OPENSSL_DIR=$PREFIX"
+            if [ "$RUNNER_OS" = Windows ]; then echo "RUSTFLAGS=-C target-feature=+crt-static"; else echo "BINDGEN_EXTRA_CLANG_ARGS=-I$PREFIX/include"; fi
+          } >> "$GITHUB_ENV"
+      - run: rustup toolchain install 1.94.1-${{ matrix.target }} --profile minimal
+      - run: rustup default 1.94.1-${{ matrix.target }}
+      - run: npm ci --ignore-scripts
+      - if: startsWith(github.ref, 'refs/tags/fido2-v')
+        run: node scripts/release-plugin.mjs prepare plugins/fido2
+      - run: node plugins/fido2/scripts/build.mjs
+      - run: node plugins/fido2/scripts/verify-package.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fido2-${{ matrix.target }}
+          path: plugins/fido2/dist/*.zip
+          if-no-files-found: error
+
+  release:
+    needs: package
+    if: startsWith(github.ref, 'refs/tags/fido2-v')
+    permissions:
+      contents: write
+    uses: ./.github/workflows/publish-plugin.yml
+    with:
+      plugin: fido2
+      artifacts: fido2-*

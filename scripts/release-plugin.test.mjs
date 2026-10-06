@@ -10,7 +10,7 @@ import { prepareManifest, recordRelease, correctCompatibility } from "./release-
 import { validateHistory } from "./validate-registry.mjs";
 
 const empty = { version: 1, plugins: [] };
-const manifest = { id: "com.example.release", name: "Release", version: "1.0.0", engines: { oxideterm: ">=2.0.0" } };
+const manifest = { id: "com.example.release", name: "Release", version: "1.0.0", license: "MIT", licenseUrl: "https://example.com/LICENSE", engines: { oxideterm: ">=2.0.0" } };
 
 test("creation reads the host and ordinary updates inherit without consulting a newer host", async t => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "oxideterm-release-"));
@@ -53,6 +53,8 @@ test("creation reads the host and ordinary updates inherit without consulting a 
   assert.deepEqual((await prepareManifest(desktop, empty, { hostRepository: host })).engines, { oxideterm: ">2.2.1" });
   const mosh = { ...acp, id: "com.example.mosh", runtime: { kind: "terminal-transport", entry: "bin/helper" } };
   assert.deepEqual((await prepareManifest(mosh, empty, { hostRepository: host })).engines, { oxideterm: ">=2.2.2" });
+  const fido = { ...acp, id: "com.example.fido", runtime: { kind: "helper", entry: "bin/helper" } };
+  assert.deepEqual((await prepareManifest(fido, empty, { hostRepository: host })).engines, { oxideterm: ">=2.2.2" });
 });
 
 test("recording reads the actual archive and corrections preserve assets and their audit history", async t => {
@@ -63,6 +65,8 @@ test("recording reads the actual archive and corrections preserve assets and the
   fs.writeFileSync(zip, bytes);
   const published = recordRelease(empty, manifest, "https://example.com/releases/v1.0.0", ["any=" + zip]);
   const release = published.plugins[0].releases[0];
+  assert.equal(published.plugins[0].license, "MIT");
+  assert.equal(published.plugins[0].licenseUrl, "https://example.com/LICENSE");
   assert.equal(published.plugins[0].minOxidetermVersion, "2.0.0");
   assert.equal(published.plugins[0].minOxideTermVersion, undefined);
   assert.deepEqual(release.packages, [{

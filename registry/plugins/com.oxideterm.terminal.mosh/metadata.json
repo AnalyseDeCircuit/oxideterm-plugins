@@ -3,6 +3,8 @@
   "name": "Mosh",
   "description": "Mosh roaming connections with OxideTerm's native terminal and local input prediction.",
   "author": "OxideTerm",
+  "license": "GPL-3.0-only",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/mosh/LICENSE",
   "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/mosh",
   "tags": [
     "remote-connections"

@@ -1,0 +1,29 @@
+{
+  "id": "com.oxideterm.auth.fido2",
+  "name": "FIDO Security Key",
+  "version": "0.1.0",
+  "description": "Authenticate SSH with existing ed25519-sk and ecdsa-sk hardware-backed keys.",
+  "author": "OxideTerm",
+  "license": "MIT",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/fido2",
+  "runtime": {
+    "kind": "helper",
+    "entry": "bin/fido2"
+  },
+  "permissions": {
+    "capabilities": [
+      "runtime.process.trusted"
+    ]
+  },
+  "contributes": {
+    "helper": {
+      "feature": "ssh-authentication",
+      "protocol": "oxideterm-security-key",
+      "protocolVersion": 1
+    }
+  },
+  "tags": ["remote-connections"],
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  }
+}

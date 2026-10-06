@@ -1,0 +1,11 @@
+{
+  "name": "oxideterm-fido2",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "cargo check --locked",
+    "test": "cargo test --locked",
+    "package": "node scripts/build.mjs",
+    "test:package": "node scripts/verify-package.mjs"
+  }
+}

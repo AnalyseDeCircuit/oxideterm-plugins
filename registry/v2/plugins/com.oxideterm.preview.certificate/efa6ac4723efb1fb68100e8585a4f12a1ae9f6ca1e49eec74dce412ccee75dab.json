@@ -1,0 +1,102 @@
+{
+  "id": "com.oxideterm.preview.certificate",
+  "name": "Certificate Viewer",
+  "description": "Inspect certificates in PEM and DER files without displaying private keys.",
+  "author": "OxideTerm",
+  "license": "MIT",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/certificate-preview/LICENSE",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/certificate-preview",
+  "tags": [
+    "preview"
+  ],
+  "updatedAt": "2026-10-05T04:29:31.734Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "minOxidetermVersion": "2.2.1",
+  "packages": [
+    {
+      "target": "aarch64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-aarch64-apple-darwin.zip",
+      "checksum": "sha256:99e790648e9f6545b12133d4878139cafc286ecc87b53afc2e6f90afe3460f51",
+      "size": 411586
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-aarch64-pc-windows-msvc.zip",
+      "checksum": "sha256:7b282b2793ed7ee948922645661591303782d7e7f751848bd337ca26b328bed0",
+      "size": 276299
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-aarch64-unknown-linux-gnu.zip",
+      "checksum": "sha256:2cb0e4b2ca567c9737d58ae1ec97b5fb9b76fec34202b58f661c611cdd7eb37d",
+      "size": 437527
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-x86_64-apple-darwin.zip",
+      "checksum": "sha256:65dc71f44fe9f2cab6a2b47a04c54a8d055238874770aabcb5dd7e0c95ad7677",
+      "size": 436395
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-x86_64-pc-windows-msvc.zip",
+      "checksum": "sha256:74c295b74531b11ee537fddd22c2f23e3b246aeb9087a23e2e2622ade2966b60",
+      "size": 295711
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-x86_64-unknown-linux-gnu.zip",
+      "checksum": "sha256:67e89794ea1f58520eddf17723ed348e6a78093b046d2627d95ba2cc46471e23",
+      "size": 467133
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:99e790648e9f6545b12133d4878139cafc286ecc87b53afc2e6f90afe3460f51",
+          "size": 411586
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:7b282b2793ed7ee948922645661591303782d7e7f751848bd337ca26b328bed0",
+          "size": 276299
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:2cb0e4b2ca567c9737d58ae1ec97b5fb9b76fec34202b58f661c611cdd7eb37d",
+          "size": 437527
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:65dc71f44fe9f2cab6a2b47a04c54a8d055238874770aabcb5dd7e0c95ad7677",
+          "size": 436395
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:74c295b74531b11ee537fddd22c2f23e3b246aeb9087a23e2e2622ade2966b60",
+          "size": 295711
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/certificate-preview-v0.1.0/certificate-preview-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:67e89794ea1f58520eddf17723ed348e6a78093b046d2627d95ba2cc46471e23",
+          "size": 467133
+        }
+      ]
+    }
+  ]
+}

@@ -45,6 +45,7 @@ function hostRequirement(manifest, version) {
   if (manifest.runtime?.kind === "acp" && semver.lte(version, "2.2.1")) return ">2.2.1";
   if (manifest.runtime?.kind === "remote-desktop" && semver.lte(version, "2.2.1")) return ">2.2.1";
   if (manifest.runtime?.kind === "terminal-transport" && semver.lte(version, "2.2.1")) return ">=2.2.2";
+  if (manifest.runtime?.kind === "helper" && semver.lte(version, "2.2.1")) return ">=2.2.2";
   return ">=" + version;
 }
 
@@ -117,6 +118,7 @@ export function recordRelease(catalog, manifest, releaseUrl, packageArguments) {
     plugin = {
       id: manifest.id, name: manifest.name, description: manifest.description,
       author: manifest.author, homepage: manifest.repository,
+      license: manifest.license, licenseUrl: manifest.licenseUrl,
       version: manifest.version, engines: manifest.engines, packages,
       // Older native clients read this historical spelling. Do not emit both aliases.
       minOxidetermVersion:

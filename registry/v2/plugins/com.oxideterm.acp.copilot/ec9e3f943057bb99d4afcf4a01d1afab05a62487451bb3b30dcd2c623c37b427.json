@@ -1,0 +1,102 @@
+{
+  "id": "com.oxideterm.acp.copilot",
+  "name": "GitHub Copilot CLI",
+  "description": "Launch the installed GitHub Copilot CLI through its ACP stdio server.",
+  "author": "OxideTerm",
+  "license": "GPL-3.0-only",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/copilot-acp/LICENSE",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/copilot-acp",
+  "tags": [
+    "acp"
+  ],
+  "updatedAt": "2026-10-06T12:38:19.518Z",
+  "version": "0.1.1",
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "minOxidetermVersion": "2.2.2",
+  "packages": [
+    {
+      "target": "aarch64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/copilot-acp-v0.1.1/copilot-acp-0.1.1-aarch64-apple-darwin.zip",
+      "checksum": "sha256:bfe01085f085fd6534f5b7de3053ee5f205d8bd6923850010d7468212583faa8",
+      "size": 269565
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/copilot-acp-v0.1.1/copilot-acp-0.1.1-x86_64-apple-darwin.zip",
+      "checksum": "sha256:8a031d02385b6f4de7d9564cd40f3b28ae967404b693d9da7c8a2d85f83810f6",
+      "size": 285649
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/copilot-acp-v0.1.1/copilot-acp-0.1.1-x86_64-unknown-linux-gnu.zip",
+      "checksum": "sha256:48c5af122efb2c8352610a6754d0311f8f6b41916625732f8f5176e97935ca27",
+      "size": 300013
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/copilot-acp-v0.1.1/copilot-acp-0.1.1-aarch64-unknown-linux-gnu.zip",
+      "checksum": "sha256:42250b4508af4ba351d97425c858a471d90900e942935d51568e7cba744a9005",
+      "size": 285674
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/copilot-acp-v0.1.1/copilot-acp-0.1.1-x86_64-pc-windows-msvc.zip",
+      "checksum": "sha256:b13b300487d4d64ae2f52e945218533e26a3026ae40feb97d96d9edf438e68bb",
+      "size": 195892
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/copilot-acp-v0.1.1/copilot-acp-0.1.1-aarch64-pc-windows-msvc.zip",
+      "checksum": "sha256:a05e5c0766b24aabb6d155eafc4957361c8b1cc1e6210dbb36f65d3a2a26b405",
+      "size": 182382
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.1",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/copilot-acp-v0.1.1/copilot-acp-0.1.1-aarch64-apple-darwin.zip",
+          "checksum": "sha256:bfe01085f085fd6534f5b7de3053ee5f205d8bd6923850010d7468212583faa8",
+          "size": 269565
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/copilot-acp-v0.1.1/copilot-acp-0.1.1-x86_64-apple-darwin.zip",
+          "checksum": "sha256:8a031d02385b6f4de7d9564cd40f3b28ae967404b693d9da7c8a2d85f83810f6",
+          "size": 285649
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/copilot-acp-v0.1.1/copilot-acp-0.1.1-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:48c5af122efb2c8352610a6754d0311f8f6b41916625732f8f5176e97935ca27",
+          "size": 300013
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/copilot-acp-v0.1.1/copilot-acp-0.1.1-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:42250b4508af4ba351d97425c858a471d90900e942935d51568e7cba744a9005",
+          "size": 285674
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/copilot-acp-v0.1.1/copilot-acp-0.1.1-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:b13b300487d4d64ae2f52e945218533e26a3026ae40feb97d96d9edf438e68bb",
+          "size": 195892
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/copilot-acp-v0.1.1/copilot-acp-0.1.1-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:a05e5c0766b24aabb6d155eafc4957361c8b1cc1e6210dbb36f65d3a2a26b405",
+          "size": 182382
+        }
+      ]
+    }
+  ]
+}

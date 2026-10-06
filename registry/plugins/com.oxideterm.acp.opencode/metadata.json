@@ -3,6 +3,8 @@
   "name": "OpenCode",
   "description": "Launch the installed OpenCode CLI through ACP. Requires a local OpenCode installation.",
   "author": "OxideTerm",
+  "license": "GPL-3.0-only",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/opencode-acp/LICENSE",
   "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/opencode-acp",
   "tags": [
     "acp"

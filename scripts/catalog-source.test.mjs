@@ -31,6 +31,11 @@ test('generation leaves the frozen v1 bytes unchanged when plugins, releases and
   const frozen=freezeV1(output);
   migrateCatalog(initial,source);
   const updated=structuredClone(initial.plugins[0]);
+  const metadataPath=path.join(source,updated.id,'metadata.json');
+  const metadata=JSON.parse(fs.readFileSync(metadataPath));
+  metadata.license='MIT';
+  metadata.licenseUrl='https://example.com/LICENSE';
+  fs.writeFileSync(metadataPath,JSON.stringify(metadata));
   updated.releases.push(release('0.2.0'));
   updated.releases[0].compatibilityCorrections=[{engines:{oxideterm:'>=2.1.0, <3.0.0'},reason:'Removed API',recordedAt:'2026-10-06T00:00:00Z'}];
   importCatalogEntry(updated,source);
@@ -38,9 +43,13 @@ test('generation leaves the frozen v1 bytes unchanged when plugins, releases and
   generateCatalog({directory:source,output});
   assert.equal(fs.readFileSync(path.join(output,'v1/index.json'),'utf8'),frozen);
   const summary=JSON.parse(fs.readFileSync(path.join(output,'v2/index.json')));
+  assert.equal(summary.plugins[0].license,'MIT');
+  assert.equal(summary.plugins[0].licenseUrl,'https://example.com/LICENSE');
   assert.deepEqual(summary.plugins.map(entry=>[entry.id,entry.version]),[['com.example.z','0.2.0'],['com.example.a','0.1.0'],['com.example.new','0.1.0']]);
   const referenced=summary.plugins[0].history.checksum.slice('sha256:'.length);
   const history=JSON.parse(fs.readFileSync(path.join(output,'v2/plugins/com.example.z',referenced+'.json')));
+  assert.equal(history.license,'MIT');
+  assert.equal(history.licenseUrl,'https://example.com/LICENSE');
   assert.deepEqual(history.releases[0].compatibilityCorrections,updated.releases[0].compatibilityCorrections);
   fs.appendFileSync(path.join(output,'v1/index.json'),'\n');
   assert.throws(()=>validateFrozenV1(output),/Frozen v1 catalog changed/);

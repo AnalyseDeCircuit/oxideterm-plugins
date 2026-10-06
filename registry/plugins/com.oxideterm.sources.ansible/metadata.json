@@ -7,6 +7,8 @@
   ],
   "description": "Discover SSH hosts using Ansible inventory and prepare native connections.",
   "author": "OxideTerm",
+  "license": "MIT",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/ansible-inventory/LICENSE",
   "updatedAt": "2026-10-05T04:29:31.928Z",
   "legacy": {
     "version": "0.1.0",

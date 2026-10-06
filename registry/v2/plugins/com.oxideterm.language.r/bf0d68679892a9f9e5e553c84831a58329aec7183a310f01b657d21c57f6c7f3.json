@@ -1,0 +1,42 @@
+{
+  "id": "com.oxideterm.language.r",
+  "name": "R Language Support",
+  "description": "Syntax highlighting and folding for R.",
+  "author": "OxideTerm",
+  "license": "Apache-2.0",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-r/LICENSE",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-r",
+  "tags": [
+    "language"
+  ],
+  "updatedAt": "2026-10-04T14:32:43.014Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "minOxidetermVersion": "2.2.1",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-r-v0.1.0/com.oxideterm.language.r-0.1.0.zip",
+      "checksum": "sha256:66a3d70f0f655c49481da7a884cccca4324d68cfb52fd8c3aaf47ae4b0e0df45",
+      "size": 55424
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-r-v0.1.0/com.oxideterm.language.r-0.1.0.zip",
+          "checksum": "sha256:66a3d70f0f655c49481da7a884cccca4324d68cfb52fd8c3aaf47ae4b0e0df45",
+          "size": 55424
+        }
+      ]
+    }
+  ]
+}

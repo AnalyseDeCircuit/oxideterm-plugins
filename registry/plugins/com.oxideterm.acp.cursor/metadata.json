@@ -3,6 +3,8 @@
   "name": "Cursor",
   "description": "Launch the installed Cursor CLI through ACP, including question selection and plan approval in OxideTerm chat.",
   "author": "OxideTerm",
+  "license": "GPL-3.0-only",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/cursor-acp/LICENSE",
   "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/cursor-acp",
   "tags": [
     "acp"

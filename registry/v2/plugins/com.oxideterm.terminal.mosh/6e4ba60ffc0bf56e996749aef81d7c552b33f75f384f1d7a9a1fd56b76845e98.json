@@ -1,0 +1,102 @@
+{
+  "id": "com.oxideterm.terminal.mosh",
+  "name": "Mosh",
+  "description": "Mosh roaming connections with OxideTerm's native terminal and local input prediction.",
+  "author": "OxideTerm",
+  "license": "GPL-3.0-only",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/mosh/LICENSE",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/mosh",
+  "tags": [
+    "remote-connections"
+  ],
+  "updatedAt": "2026-10-06T09:04:32.168Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "minOxidetermVersion": "2.2.2",
+  "packages": [
+    {
+      "target": "aarch64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mosh-v0.1.0/mosh-0.1.0-aarch64-apple-darwin.zip",
+      "checksum": "sha256:133885e6d78c712133a000dc15aed446d0df031044bb20404da7a579a2dcb35c",
+      "size": 693269
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mosh-v0.1.0/mosh-0.1.0-x86_64-apple-darwin.zip",
+      "checksum": "sha256:5e897a973bbddb95b3a87a4c59ebeb810f89c5020258e02168fad34ad49c3ef1",
+      "size": 725542
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mosh-v0.1.0/mosh-0.1.0-x86_64-unknown-linux-gnu.zip",
+      "checksum": "sha256:b064a3513d51adfe15c5d4239a3c118a00481e200accb94c6f8f1754149330f8",
+      "size": 767664
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mosh-v0.1.0/mosh-0.1.0-aarch64-unknown-linux-gnu.zip",
+      "checksum": "sha256:280484961315eb9885bdb68210a03351fbbc0330723b977685c54a105b36c824",
+      "size": 737934
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mosh-v0.1.0/mosh-0.1.0-x86_64-pc-windows-msvc.zip",
+      "checksum": "sha256:d308e4021dedff72230719795953fa7bfa0c9d8d623ffacc7c4c6650817a159f",
+      "size": 593271
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mosh-v0.1.0/mosh-0.1.0-aarch64-pc-windows-msvc.zip",
+      "checksum": "sha256:51f74caad3632b661ec47aac2ad9023dc18f6056fac49c27d638b22a06b1ecd1",
+      "size": 548465
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mosh-v0.1.0/mosh-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:133885e6d78c712133a000dc15aed446d0df031044bb20404da7a579a2dcb35c",
+          "size": 693269
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mosh-v0.1.0/mosh-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:5e897a973bbddb95b3a87a4c59ebeb810f89c5020258e02168fad34ad49c3ef1",
+          "size": 725542
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mosh-v0.1.0/mosh-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:b064a3513d51adfe15c5d4239a3c118a00481e200accb94c6f8f1754149330f8",
+          "size": 767664
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mosh-v0.1.0/mosh-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:280484961315eb9885bdb68210a03351fbbc0330723b977685c54a105b36c824",
+          "size": 737934
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mosh-v0.1.0/mosh-0.1.0-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:d308e4021dedff72230719795953fa7bfa0c9d8d623ffacc7c4c6650817a159f",
+          "size": 593271
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mosh-v0.1.0/mosh-0.1.0-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:51f74caad3632b661ec47aac2ad9023dc18f6056fac49c27d638b22a06b1ecd1",
+          "size": 548465
+        }
+      ]
+    }
+  ]
+}

@@ -3,6 +3,8 @@
   "name": "SQLite Preview",
   "description": "Browse SQLite tables and read-only paginated data from the file preview.",
   "author": "OxideTerm",
+  "license": "MIT",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/sqlite-preview/LICENSE",
   "tags": [
     "preview"
   ],

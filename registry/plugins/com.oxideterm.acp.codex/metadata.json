@@ -3,6 +3,8 @@
   "name": "Codex",
   "description": "Connect the local Codex CLI to OxideTerm through ACP, with model discovery and session-scoped settings.",
   "author": "OxideTerm",
+  "license": "GPL-3.0-only",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/codex-acp/LICENSE",
   "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/codex-acp",
   "tags": [
     "acp"

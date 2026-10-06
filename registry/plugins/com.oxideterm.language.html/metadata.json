@@ -3,6 +3,8 @@
   "name": "HTML Language Support",
   "description": "Syntax highlighting and folding for HTML.",
   "author": "OxideTerm",
+  "license": "Apache-2.0",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-html/LICENSE",
   "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-html",
   "tags": [
     "language"

@@ -3,6 +3,8 @@
   "name": "VNC",
   "description": "VNC connections using OxideTerm's native viewer, clipboard, audio and SSH gateways.",
   "author": "OxideTerm",
+  "license": "GPL-3.0-only",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/vnc/LICENSE",
   "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/vnc",
   "tags": [
     "remote-connections"

@@ -1,0 +1,42 @@
+{
+  "id": "com.oxideterm.language.scala",
+  "name": "Scala Language Support",
+  "description": "Syntax highlighting and folding for Scala.",
+  "author": "OxideTerm",
+  "license": "Apache-2.0",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-scala/LICENSE",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-scala",
+  "tags": [
+    "language"
+  ],
+  "updatedAt": "2026-10-04T14:32:43.204Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "minOxidetermVersion": "2.2.1",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-scala-v0.1.0/com.oxideterm.language.scala-0.1.0.zip",
+      "checksum": "sha256:ddbfb56c369b5fcc1383db2812fe6670511140d588ab9589148a6e0e9de871e4",
+      "size": 460119
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-scala-v0.1.0/com.oxideterm.language.scala-0.1.0.zip",
+          "checksum": "sha256:ddbfb56c369b5fcc1383db2812fe6670511140d588ab9589148a6e0e9de871e4",
+          "size": 460119
+        }
+      ]
+    }
+  ]
+}

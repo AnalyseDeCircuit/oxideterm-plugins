@@ -6,6 +6,8 @@
   ],
   "description": "Local encoding, JSON, time, text, digest and random generation tools with native editors.",
   "author": "OxideTerm",
+  "license": "MIT",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/toolbox/LICENSE",
   "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/toolbox",
   "updatedAt": "2026-10-05T10:31:11.608Z",
   "legacy": {

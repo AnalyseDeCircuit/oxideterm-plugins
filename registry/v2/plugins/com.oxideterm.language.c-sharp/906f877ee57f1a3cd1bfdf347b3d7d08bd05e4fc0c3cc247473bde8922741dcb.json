@@ -1,0 +1,42 @@
+{
+  "id": "com.oxideterm.language.c-sharp",
+  "name": "C# Language Support",
+  "description": "Syntax highlighting and folding for C#.",
+  "author": "OxideTerm",
+  "license": "Apache-2.0",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-c-sharp/LICENSE",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-c-sharp",
+  "tags": [
+    "language"
+  ],
+  "updatedAt": "2026-10-04T14:32:42.261Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "minOxidetermVersion": "2.2.1",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-c-sharp-v0.1.0/com.oxideterm.language.c-sharp-0.1.0.zip",
+      "checksum": "sha256:5efed28676f8e0aff85602659a4593462dbeef998517b9c84d80c15adb80c98d",
+      "size": 335123
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-c-sharp-v0.1.0/com.oxideterm.language.c-sharp-0.1.0.zip",
+          "checksum": "sha256:5efed28676f8e0aff85602659a4593462dbeef998517b9c84d80c15adb80c98d",
+          "size": 335123
+        }
+      ]
+    }
+  ]
+}
