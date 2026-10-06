@@ -1,7 +1,7 @@
 {
   "id": "com.oxideterm.acp.opencode",
   "name": "OpenCode",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Launch the installed OpenCode CLI through ACP. Requires a local OpenCode installation.",
   "author": "OxideTerm",
   "license": "GPL-3.0-only",

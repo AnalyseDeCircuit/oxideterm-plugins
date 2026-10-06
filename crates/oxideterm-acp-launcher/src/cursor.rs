@@ -104,8 +104,8 @@ mod tests {
             std::fs::write(directory.join("node.exe"), []).unwrap();
             std::fs::write(directory.join("index.js"), []).unwrap();
         }
-        std::fs::create_dir_all(root.join("versions/2026.10.02-cccc")).unwrap();
-        let expected = root.join("versions/2026.10.01-12-20-02-bbbb");
+        std::fs::create_dir_all(root.join("versions").join("2026.10.02-cccc")).unwrap();
+        let expected = root.join("versions").join("2026.10.01-12-20-02-bbbb");
         let (program, prefix) = resolve(&root.join("cursor-agent.cmd"), true).unwrap();
         assert_eq!(program, expected.join("node.exe"));
         assert_eq!(prefix, [expected.join("index.js").to_string_lossy()]);

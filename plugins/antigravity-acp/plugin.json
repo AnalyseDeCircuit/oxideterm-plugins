@@ -1,7 +1,7 @@
 {
   "id": "com.oxideterm.acp.antigravity",
   "name": "Antigravity",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Launch the installed official Antigravity ACP Server. Requires the local ACP Server executable.",
   "author": "OxideTerm",
   "license": "GPL-3.0-only",

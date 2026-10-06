@@ -1,7 +1,7 @@
 {
   "id": "com.oxideterm.acp.cursor",
   "name": "Cursor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Launch the installed Cursor CLI through ACP, including question selection and plan approval in OxideTerm chat.",
   "author": "OxideTerm",
   "license": "GPL-3.0-only",
