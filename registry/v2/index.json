@@ -727,6 +727,26 @@
         "checksum": "sha256:26c05aba3337b2e89cdbd3b4ec9bf38cea696ca37911e4515c08900af00d3348",
         "size": 4553
       }
+    },
+    {
+      "id": "com.oxideterm.terminal.mosh",
+      "name": "Mosh",
+      "description": "Mosh roaming connections with OxideTerm's native terminal and local input prediction.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/mosh",
+      "tags": [
+        "remote-connections"
+      ],
+      "updatedAt": "2026-10-06T09:04:32.168Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.terminal.mosh/181928de18a63840f28455c772a51d49fb4bb93a9d22f2deec43fbc3bffd3fcc.json",
+        "checksum": "sha256:181928de18a63840f28455c772a51d49fb4bb93a9d22f2deec43fbc3bffd3fcc",
+        "size": 4566
+      }
     }
   ]
 }

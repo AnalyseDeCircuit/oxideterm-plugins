@@ -1,0 +1,19 @@
+{
+  "id": "com.oxideterm.terminal.mosh",
+  "name": "Mosh",
+  "description": "Mosh roaming connections with OxideTerm's native terminal and local input prediction.",
+  "author": "OxideTerm",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/mosh",
+  "tags": [
+    "remote-connections"
+  ],
+  "updatedAt": "2026-10-06T09:04:32.168Z",
+  "order": 36,
+  "legacy": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "minOxidetermVersion": "2.2.2"
+  }
+}
