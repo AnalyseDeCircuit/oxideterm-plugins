@@ -787,6 +787,26 @@
         "checksum": "sha256:46bc64deaf24b541b6f5e3b0880da433fb063dc68cfdde9c75fa53b5bfb3aed6",
         "size": 4725
       }
+    },
+    {
+      "id": "com.oxideterm.acp.antigravity",
+      "name": "Antigravity",
+      "description": "Launch the installed official Antigravity ACP Server. Requires the local ACP Server executable.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/antigravity-acp",
+      "tags": [
+        "acp"
+      ],
+      "updatedAt": "2026-10-06T09:07:51.516Z",
+      "version": "0.1.1",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.acp.antigravity/b31c2b35cbd5aa306edcd287901feedc843e8fb780ca4f7e5cb28be811bd4d3d.json",
+        "checksum": "sha256:b31c2b35cbd5aa306edcd287901feedc843e8fb780ca4f7e5cb28be811bd4d3d",
+        "size": 4845
+      }
     }
   ]
 }
