@@ -104,15 +104,15 @@
       "tags": [
         "language"
       ],
-      "updatedAt": "2026-10-04T14:32:42.386Z",
-      "version": "0.1.0",
+      "updatedAt": "2026-10-06T18:10:36.005Z",
+      "version": "0.1.1",
       "engines": {
         "oxideterm": ">2.2.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.cpp/56911d4eca3230a0bed2a16deeef891a1e907d974424afd99f08a3237d366c65.json",
-        "checksum": "sha256:56911d4eca3230a0bed2a16deeef891a1e907d974424afd99f08a3237d366c65",
-        "size": 1373
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.cpp/346e9a6c403c29985f539bb87b8d38a24cdc288567704071f859f1c9fb76950a.json",
+        "checksum": "sha256:346e9a6c403c29985f539bb87b8d38a24cdc288567704071f859f1c9fb76950a",
+        "size": 1824
       }
     },
     {
