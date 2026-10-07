@@ -1,0 +1,86 @@
+{
+  "id": "com.oxideterm.toolbox",
+  "listedAt": "2026-10-05T04:31:45.000Z",
+  "latestReleaseAt": "2026-10-05T10:32:01Z",
+  "name": "Toolbox",
+  "tags": [
+    "utilities"
+  ],
+  "description": "Local encoding, JSON, time, text, digest and random generation tools with native editors.",
+  "author": "OxideTerm",
+  "license": "MIT",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/toolbox/LICENSE",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/toolbox",
+  "updatedAt": "2026-10-05T10:31:11.608Z",
+  "version": "0.2.0",
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "minOxidetermVersion": "2.2.1",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/toolbox-v0.2.0/toolbox-0.2.0-any.zip",
+      "checksum": "sha256:92d5b444377c01f2f699f8f95155aefc3a7f36bc6dc6549b573222758cbcce3f",
+      "size": 704489
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.2.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/toolbox-v0.2.0/toolbox-0.2.0-any.zip",
+          "checksum": "sha256:92d5b444377c01f2f699f8f95155aefc3a7f36bc6dc6549b573222758cbcce3f",
+          "size": 704489
+        }
+      ]
+    },
+    {
+      "version": "0.2.1",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/toolbox-v0.2.1/toolbox-0.2.1-any.zip",
+          "checksum": "sha256:ccece9a54af8f69ac9c012a67963f614b647de07b799b8ddd82d53baa79b6076",
+          "size": 704804
+        }
+      ]
+    },
+    {
+      "version": "0.2.2",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/toolbox-v0.2.2/toolbox-0.2.2-any.zip",
+          "checksum": "sha256:b7714aa0945392998ab44ac9c94fd47db77dd8af7676ec1812c3c7a623ecaf77",
+          "size": 706798
+        }
+      ]
+    },
+    {
+      "version": "0.2.3",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/toolbox-v0.2.3/toolbox-0.2.3-any.zip",
+          "checksum": "sha256:31dd43b4c426b9ae9bab7744db46a245236b22a161f7cfe0c54d5586bce1c6b0",
+          "size": 706940
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.language.typst",
+  "listedAt": "2026-10-07T06:17:26.000Z",
+  "latestReleaseAt": "2026-10-07T06:17:19Z",
   "name": "Typst Language Support",
   "description": "Syntax highlighting for Typst files.",
   "author": "OxideTerm",

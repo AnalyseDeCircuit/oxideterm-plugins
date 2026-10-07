@@ -1,0 +1,58 @@
+{
+  "id": "com.oxideterm.language.cpp",
+  "listedAt": "2026-10-04T14:34:50.000Z",
+  "latestReleaseAt": "2026-10-06T18:10:39Z",
+  "name": "C++ Language Support",
+  "description": "Syntax highlighting and folding for C++.",
+  "author": "OxideTerm",
+  "license": "Apache-2.0",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-cpp/LICENSE",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-cpp",
+  "tags": [
+    "language"
+  ],
+  "updatedAt": "2026-10-06T18:10:36.005Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "minOxidetermVersion": "2.2.1",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-cpp-v0.1.0/com.oxideterm.language.cpp-0.1.0.zip",
+      "checksum": "sha256:4794717dee07523020040c5648fd6f4b375ef857b1a6858670b4e35dd9a39253",
+      "size": 286638
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-cpp-v0.1.0/com.oxideterm.language.cpp-0.1.0.zip",
+          "checksum": "sha256:4794717dee07523020040c5648fd6f4b375ef857b1a6858670b4e35dd9a39253",
+          "size": 286638
+        }
+      ]
+    },
+    {
+      "version": "0.1.1",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-cpp-v0.1.1/com.oxideterm.language.cpp-0.1.1.zip",
+          "checksum": "sha256:ba61b90a88a354c1dcc67ec53d38715e4074ad273def6f04e7a69ffcc2fe69fb",
+          "size": 287201
+        }
+      ]
+    }
+  ]
+}

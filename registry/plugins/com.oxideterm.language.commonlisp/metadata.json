@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.language.commonlisp",
+  "listedAt": "2026-10-04T14:34:50.000Z",
+  "latestReleaseAt": "2026-10-04T14:34:21Z",
   "name": "Common Lisp Language Support",
   "description": "Syntax highlighting and folding for Common Lisp.",
   "author": "OxideTerm",

@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.examples.host-tools-dashboard",
+  "listedAt": "2026-08-16T13:09:58.000Z",
+  "latestReleaseAt": "2026-10-05T11:04:49Z",
   "name": "Workspace Dashboard",
   "description": "Continue recent work, follow active tasks, and handle workspace issues in one place.",
   "author": "AnalyseDeCircuit",

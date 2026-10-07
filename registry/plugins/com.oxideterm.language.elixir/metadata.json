@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.language.elixir",
+  "listedAt": "2026-10-04T14:34:50.000Z",
+  "latestReleaseAt": "2026-10-04T14:34:28Z",
   "name": "Elixir Language Support",
   "description": "Syntax highlighting and folding for Elixir.",
   "author": "OxideTerm",

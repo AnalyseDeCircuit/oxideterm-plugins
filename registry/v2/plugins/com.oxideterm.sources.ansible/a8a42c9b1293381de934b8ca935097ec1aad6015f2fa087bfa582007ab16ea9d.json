@@ -1,0 +1,80 @@
+{
+  "id": "com.oxideterm.sources.ansible",
+  "listedAt": "2026-10-05T04:31:45.000Z",
+  "latestReleaseAt": "2026-10-05T04:28:55Z",
+  "name": "Ansible Inventory",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/ansible-inventory",
+  "tags": [
+    "host-sources"
+  ],
+  "description": "Discover SSH hosts using Ansible inventory and prepare native connections.",
+  "author": "OxideTerm",
+  "license": "MIT",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/ansible-inventory/LICENSE",
+  "updatedAt": "2026-10-05T04:29:31.928Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "minOxidetermVersion": "2.2.1",
+  "packages": [
+    {
+      "target": "aarch64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/ansible-inventory-v0.1.0/ansible-inventory-0.1.0-aarch64-apple-darwin.zip",
+      "checksum": "sha256:6ffabb9decbc5bb988b5fda4a89928845920343a124fb306c487817d008b3251",
+      "size": 18328
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/ansible-inventory-v0.1.0/ansible-inventory-0.1.0-x86_64-apple-darwin.zip",
+      "checksum": "sha256:93ae0442aac720a7605d6c98bb9c7490d36e16b00264775566e049a7ba20d722",
+      "size": 18328
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/ansible-inventory-v0.1.0/ansible-inventory-0.1.0-x86_64-unknown-linux-gnu.zip",
+      "checksum": "sha256:bc63e18e917eec34162fbb0ad665c9b6e40191de5188a0b54f1cc1aec9cf3398",
+      "size": 18328
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/ansible-inventory-v0.1.0/ansible-inventory-0.1.0-aarch64-unknown-linux-gnu.zip",
+      "checksum": "sha256:4f08b5f6d142465a8ac2675ee253fe893566d99f53eb0e34cdd9e6e2395c5cf6",
+      "size": 18328
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/ansible-inventory-v0.1.0/ansible-inventory-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:6ffabb9decbc5bb988b5fda4a89928845920343a124fb306c487817d008b3251",
+          "size": 18328
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/ansible-inventory-v0.1.0/ansible-inventory-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:93ae0442aac720a7605d6c98bb9c7490d36e16b00264775566e049a7ba20d722",
+          "size": 18328
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/ansible-inventory-v0.1.0/ansible-inventory-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:bc63e18e917eec34162fbb0ad665c9b6e40191de5188a0b54f1cc1aec9cf3398",
+          "size": 18328
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/ansible-inventory-v0.1.0/ansible-inventory-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:4f08b5f6d142465a8ac2675ee253fe893566d99f53eb0e34cdd9e6e2395c5cf6",
+          "size": 18328
+        }
+      ]
+    }
+  ]
+}

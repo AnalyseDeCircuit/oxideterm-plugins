@@ -63,7 +63,7 @@ for(const release of published) {
       if(!isDeepStrictEqual(byTarget(verified.packages),byTarget(record.packages))) throw new Error('Uploaded asset checksum or size differs from catalog record');
       // Import only the release verified here. Stale producer snapshots cannot
       // remove later releases or carry unverified extra versions into the catalog.
-      const incoming={...entry,releases:known?.releases ? structuredClone(known.releases).concat(record) : [record]};
+      const incoming={...entry,updatedAt:release.published_at,releases:known?.releases ? structuredClone(known.releases).concat(record) : [record]};
       if(verifiedEntry.language) incoming.language=verifiedEntry.language;
       else delete incoming.language;
       if(!known && incoming.version!==record.version) throw new Error('A new plugin must establish its legacy record from the verified release');

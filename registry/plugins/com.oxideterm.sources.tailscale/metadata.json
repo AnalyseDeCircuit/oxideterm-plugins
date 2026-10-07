@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.sources.tailscale",
+  "listedAt": "2026-10-05T04:31:45.000Z",
+  "latestReleaseAt": "2026-10-05T11:06:53Z",
   "name": "Tailscale Hosts",
   "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/tailscale-hosts",
   "tags": [

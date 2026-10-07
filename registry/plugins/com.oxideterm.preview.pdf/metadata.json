@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.preview.pdf",
+  "listedAt": "2026-10-04T18:52:38.000Z",
+  "latestReleaseAt": "2026-10-04T18:49:43Z",
   "name": "PDF Preview",
   "description": "Preview PDF documents with page navigation and zoom in the file browser.",
   "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/pdf-preview",

@@ -1,0 +1,104 @@
+{
+  "id": "com.oxideterm.acp.cursor",
+  "listedAt": "2026-10-06T09:07:17.000Z",
+  "latestReleaseAt": "2026-10-06T09:06:54Z",
+  "name": "Cursor",
+  "description": "Launch the installed Cursor CLI through ACP, including question selection and plan approval in OxideTerm chat.",
+  "author": "OxideTerm",
+  "license": "GPL-3.0-only",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/cursor-acp/LICENSE",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/cursor-acp",
+  "tags": [
+    "acp"
+  ],
+  "updatedAt": "2026-10-06T09:06:49.211Z",
+  "version": "0.1.1",
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "minOxidetermVersion": "2.2.2",
+  "packages": [
+    {
+      "target": "aarch64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/cursor-acp-v0.1.1/cursor-acp-0.1.1-aarch64-apple-darwin.zip",
+      "checksum": "sha256:26b4241a57f6ea09d506d4bd7ca8a5e0640fc7da5987a6e7ff16a4cc4ff71a4a",
+      "size": 240011
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/cursor-acp-v0.1.1/cursor-acp-0.1.1-x86_64-apple-darwin.zip",
+      "checksum": "sha256:83f0c2ab3f9cb72bc064a8e1168fcd2a9ede1b9b922779e87d2d2a4dc84217e2",
+      "size": 251833
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/cursor-acp-v0.1.1/cursor-acp-0.1.1-x86_64-unknown-linux-gnu.zip",
+      "checksum": "sha256:a4f90de85a61672bbfaa13d6e0e3e44b850866d7345a39fb0c9b1aff088eae0e",
+      "size": 265331
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/cursor-acp-v0.1.1/cursor-acp-0.1.1-aarch64-unknown-linux-gnu.zip",
+      "checksum": "sha256:3661a7f244129df85fe0bf9efe58ba78082d019799f61c152209843d8ac3a317",
+      "size": 257142
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/cursor-acp-v0.1.1/cursor-acp-0.1.1-x86_64-pc-windows-msvc.zip",
+      "checksum": "sha256:9cc04f0a1b1284851647996d9e061d7cc9af42f1f87be38ff92180048905f753",
+      "size": 163508
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/cursor-acp-v0.1.1/cursor-acp-0.1.1-aarch64-pc-windows-msvc.zip",
+      "checksum": "sha256:843e6c19a235f4e36071273c9e4e47dd26b525f7b17ab3706953480cb19a3f38",
+      "size": 154826
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.1",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/cursor-acp-v0.1.1/cursor-acp-0.1.1-aarch64-apple-darwin.zip",
+          "checksum": "sha256:26b4241a57f6ea09d506d4bd7ca8a5e0640fc7da5987a6e7ff16a4cc4ff71a4a",
+          "size": 240011
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/cursor-acp-v0.1.1/cursor-acp-0.1.1-x86_64-apple-darwin.zip",
+          "checksum": "sha256:83f0c2ab3f9cb72bc064a8e1168fcd2a9ede1b9b922779e87d2d2a4dc84217e2",
+          "size": 251833
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/cursor-acp-v0.1.1/cursor-acp-0.1.1-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:a4f90de85a61672bbfaa13d6e0e3e44b850866d7345a39fb0c9b1aff088eae0e",
+          "size": 265331
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/cursor-acp-v0.1.1/cursor-acp-0.1.1-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:3661a7f244129df85fe0bf9efe58ba78082d019799f61c152209843d8ac3a317",
+          "size": 257142
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/cursor-acp-v0.1.1/cursor-acp-0.1.1-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:9cc04f0a1b1284851647996d9e061d7cc9af42f1f87be38ff92180048905f753",
+          "size": 163508
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/cursor-acp-v0.1.1/cursor-acp-0.1.1-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:843e6c19a235f4e36071273c9e4e47dd26b525f7b17ab3706953480cb19a3f38",
+          "size": 154826
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.remote-desktop.rdp",
+  "listedAt": "2026-10-05T16:07:35.000Z",
+  "latestReleaseAt": "2026-10-05T16:04:39Z",
   "name": "RDP",
   "description": "RDP connections using OxideTerm's native viewer, clipboard, audio and SSH gateways.",
   "author": "OxideTerm",

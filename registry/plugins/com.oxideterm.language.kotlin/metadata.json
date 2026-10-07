@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.language.kotlin",
+  "listedAt": "2026-10-07T05:44:07.000Z",
+  "latestReleaseAt": "2026-10-07T05:43:43Z",
   "name": "Kotlin Language Support",
   "description": "Syntax highlighting for Kotlin files.",
   "author": "OxideTerm",

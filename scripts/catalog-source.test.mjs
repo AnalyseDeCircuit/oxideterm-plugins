@@ -60,6 +60,35 @@ test('generation leaves the frozen v1 bytes unchanged when plugins, releases and
   assert.equal(fs.readFileSync(path.join(output,'v1/index.json'),'utf8'),frozen+'\n');
 });
 
+test('sorting dates separate initial listing, version publication and metadata edits', t => {
+  const root=fs.mkdtempSync(path.join(os.tmpdir(),'oxideterm-catalog-dates-'));
+  t.after(()=>fs.rmSync(root,{recursive:true,force:true}));
+  migrateCatalog(initial,root);
+  const file=path.join(root,initial.plugins[0].id,'metadata.json');
+  const metadata=JSON.parse(fs.readFileSync(file));
+  metadata.listedAt='2026-01-01T00:00:00Z';
+  metadata.latestReleaseAt='2026-01-02T00:00:00Z';
+  metadata.updatedAt='2099-01-01T00:00:00Z';
+  metadata.description='Edited description';
+  fs.writeFileSync(file,JSON.stringify(metadata));
+  const update=structuredClone(initial.plugins[0]);
+  update.releases.push(release('0.2.0'));
+  update.updatedAt='2026-02-02T00:00:00Z';
+  importCatalogEntry(update,root);
+  const backport=structuredClone(initial.plugins[0]);
+  backport.releases.push(release('0.1.1'));
+  backport.updatedAt='2026-03-03T00:00:00Z';
+  importCatalogEntry(backport,root);
+  const entry=loadCatalogSources(root).plugins[0];
+  assert.equal(entry.description,'Edited description');
+  assert.equal(entry.updatedAt,'2099-01-01T00:00:00Z');
+  assert.equal(entry.listedAt,'2026-01-01T00:00:00Z');
+  assert.equal(entry.latestReleaseAt,'2026-02-02T00:00:00Z');
+  const summary=JSON.parse(catalogOutputs(loadCatalogSources(root)).get('v2/index.json')).plugins[0];
+  assert.equal(summary.listedAt,entry.listedAt);
+  assert.equal(summary.latestReleaseAt,entry.latestReleaseAt);
+});
+
 test('v2 history can grow beyond the old full-index size limit', () => {
   const expanded=structuredClone(initial.plugins[0]);
   expanded.releases.push(...Array.from({length:6000},(_,index)=>release(`0.2.${index}`)));

@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.language.just",
+  "listedAt": "2026-10-07T06:17:26.000Z",
+  "latestReleaseAt": "2026-10-07T06:17:00Z",
   "name": "Justfile Language Support",
   "description": "Syntax highlighting for Justfile files.",
   "author": "OxideTerm",

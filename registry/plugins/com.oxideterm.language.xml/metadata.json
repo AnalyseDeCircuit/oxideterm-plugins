@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.language.xml",
+  "listedAt": "2026-10-07T05:43:38.000Z",
+  "latestReleaseAt": "2026-10-07T05:43:27Z",
   "name": "XML Language Support",
   "description": "Syntax highlighting for XML files.",
   "author": "OxideTerm",

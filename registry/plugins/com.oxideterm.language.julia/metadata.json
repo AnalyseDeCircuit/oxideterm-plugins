@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.language.julia",
+  "listedAt": "2026-10-07T05:44:27.000Z",
+  "latestReleaseAt": "2026-10-07T05:44:10Z",
   "name": "Julia Language Support",
   "description": "Syntax highlighting for Julia files.",
   "author": "OxideTerm",

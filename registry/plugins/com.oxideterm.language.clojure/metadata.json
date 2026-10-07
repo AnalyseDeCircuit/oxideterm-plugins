@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.language.clojure",
+  "listedAt": "2026-10-07T06:17:26.000Z",
+  "latestReleaseAt": "2026-10-07T06:17:13Z",
   "name": "Clojure / ClojureScript Language Support",
   "description": "Syntax highlighting for Clojure / ClojureScript files.",
   "author": "OxideTerm",

@@ -24,6 +24,8 @@
         "capabilitiesSummary": { "$ref": "registry-v1.schema.json#/$defs/plugin/properties/capabilitiesSummary" },
         "homepage": { "$ref": "registry-v1.schema.json#/$defs/plugin/properties/homepage" },
         "updatedAt": { "$ref": "registry-v1.schema.json#/$defs/plugin/properties/updatedAt" },
+        "listedAt": { "type": "string", "format": "date-time" },
+        "latestReleaseAt": { "type": "string", "format": "date-time" },
         "history": {
           "type": "object",
           "additionalProperties": false,

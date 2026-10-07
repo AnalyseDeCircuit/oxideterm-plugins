@@ -1,0 +1,44 @@
+{
+  "id": "com.oxideterm.language.java",
+  "listedAt": "2026-10-04T14:34:50.000Z",
+  "latestReleaseAt": "2026-10-04T14:34:35Z",
+  "name": "Java Language Support",
+  "description": "Syntax highlighting and folding for Java.",
+  "author": "OxideTerm",
+  "license": "Apache-2.0",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-java/LICENSE",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-java",
+  "tags": [
+    "language"
+  ],
+  "updatedAt": "2026-10-04T14:32:42.701Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "minOxidetermVersion": "2.2.1",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-java-v0.1.0/com.oxideterm.language.java-0.1.0.zip",
+      "checksum": "sha256:70e06d17b45fe8ec4801de13acdb0720aeb852076654211e6bef7d44f97f9e7e",
+      "size": 57529
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-java-v0.1.0/com.oxideterm.language.java-0.1.0.zip",
+          "checksum": "sha256:70e06d17b45fe8ec4801de13acdb0720aeb852076654211e6bef7d44f97f9e7e",
+          "size": 57529
+        }
+      ]
+    }
+  ]
+}

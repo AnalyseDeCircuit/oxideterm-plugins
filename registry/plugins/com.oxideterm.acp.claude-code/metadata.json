@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.acp.claude-code",
+  "listedAt": "2026-10-05T15:46:16.000Z",
+  "latestReleaseAt": "2026-10-05T15:31:58Z",
   "name": "Claude Code",
   "description": "Connect the local Claude Code CLI to OxideTerm through ACP, with streaming output and resumable sessions.",
   "author": "OxideTerm",

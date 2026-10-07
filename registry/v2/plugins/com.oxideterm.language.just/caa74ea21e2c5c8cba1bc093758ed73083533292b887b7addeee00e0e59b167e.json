@@ -1,0 +1,55 @@
+{
+  "id": "com.oxideterm.language.just",
+  "listedAt": "2026-10-07T06:17:26.000Z",
+  "latestReleaseAt": "2026-10-07T06:17:00Z",
+  "name": "Justfile Language Support",
+  "description": "Syntax highlighting for Justfile files.",
+  "author": "OxideTerm",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-just",
+  "license": "Apache-2.0",
+  "tags": [
+    "language"
+  ],
+  "language": {
+    "id": "just",
+    "displayName": "Justfile",
+    "grammarName": "just",
+    "extensions": [
+      "just"
+    ],
+    "fileNames": [
+      "justfile",
+      ".justfile"
+    ]
+  },
+  "updatedAt": "2026-10-07T06:16:55.860Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "minOxidetermVersion": "2.2.2",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-just-v0.1.0/com.oxideterm.language.just-0.1.0.zip",
+      "checksum": "sha256:a9dd354ccb467bd62300ef0b5401cc5b550cf80312c121ec580ec0d5b75eec8a",
+      "size": 24084
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-just-v0.1.0/com.oxideterm.language.just-0.1.0.zip",
+          "checksum": "sha256:a9dd354ccb467bd62300ef0b5401cc5b550cf80312c121ec580ec0d5b75eec8a",
+          "size": 24084
+        }
+      ]
+    }
+  ]
+}

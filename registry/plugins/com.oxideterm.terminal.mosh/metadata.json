@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.terminal.mosh",
+  "listedAt": "2026-10-06T09:04:54.000Z",
+  "latestReleaseAt": "2026-10-06T09:04:35Z",
   "name": "Mosh",
   "description": "Mosh roaming connections with OxideTerm's native terminal and local input prediction.",
   "author": "OxideTerm",

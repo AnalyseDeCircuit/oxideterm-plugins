@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.language.ocaml-interface",
+  "listedAt": "2026-10-07T06:17:00.000Z",
+  "latestReleaseAt": "2026-10-07T06:16:57Z",
   "name": "OCaml Interface Language Support",
   "description": "Syntax highlighting for OCaml Interface files.",
   "author": "OxideTerm",

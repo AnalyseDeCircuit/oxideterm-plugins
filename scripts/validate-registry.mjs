@@ -78,6 +78,11 @@ export function validateRegistry(registry) {
     if (plugin.updatedAt !== undefined && Number.isNaN(Date.parse(plugin.updatedAt))) {
       throw new Error(`${plugin.id}.updatedAt must be an ISO date-time`);
     }
+    for (const field of ['listedAt', 'latestReleaseAt']) {
+      if (plugin[field] !== undefined && (typeof plugin[field] !== 'string' || Number.isNaN(Date.parse(plugin[field])))) {
+        throw new Error(`${plugin.id}.${field} must be an ISO date-time`);
+      }
+    }
     if (!/^[a-z0-9][a-z0-9.-]*$/.test(plugin.id)) {
       throw new Error(`${plugin.id}: invalid plugin id`);
     }

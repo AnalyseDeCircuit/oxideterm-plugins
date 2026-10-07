@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.language.hcl",
+  "listedAt": "2026-10-05T04:31:45.000Z",
+  "latestReleaseAt": "2026-10-05T04:28:57Z",
   "name": "Terraform / HCL Language Support",
   "description": "Syntax highlighting and folding for Terraform / HCL.",
   "author": "OxideTerm",

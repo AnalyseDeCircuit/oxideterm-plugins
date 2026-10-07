@@ -192,6 +192,9 @@ node scripts/release-plugin.mjs correct com.example.my-plugin \
 - `releases[].engines.oxideterm` 声明该发布版本的宿主兼容范围。
 - `releases[].packages` 保存该版本各平台的下载地址、校验值和大小。
 - `description`、`tags` 和 `capabilitiesSummary` 是应用内展示信息。
+- v2 的 `listedAt` 是首次收录时间，首次写入目录后保持不变；已有插件按索引提交记录回填。
+- v2 的 `latestReleaseAt` 是最新语义版本的发布时间，自动发布任务使用 GitHub 的正式发布时间。
+  修改介绍或补发较旧版本不会改变它；`updatedAt` 仍用于展示信息的修改时间。
 
 完整结构见 [JSON Schema](../schema/registry-v1.schema.json) 和 [条目示例](../examples/plugin-entry.json)。
 

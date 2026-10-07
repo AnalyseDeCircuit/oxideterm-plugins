@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.language.nix",
+  "listedAt": "2026-10-07T05:44:07.000Z",
+  "latestReleaseAt": "2026-10-07T05:43:40Z",
   "name": "Nix Language Support",
   "description": "Syntax highlighting for Nix files.",
   "author": "OxideTerm",

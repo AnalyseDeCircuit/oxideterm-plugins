@@ -1,0 +1,44 @@
+{
+  "id": "com.oxideterm.language.typescript",
+  "listedAt": "2026-10-04T14:34:50.000Z",
+  "latestReleaseAt": "2026-10-04T14:35:00Z",
+  "name": "TypeScript Language Support",
+  "description": "Syntax highlighting and folding for TypeScript.",
+  "author": "OxideTerm",
+  "license": "Apache-2.0",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/language-typescript/LICENSE",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-typescript",
+  "tags": [
+    "language"
+  ],
+  "updatedAt": "2026-10-04T14:32:43.396Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "minOxidetermVersion": "2.2.1",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-typescript-v0.1.0/com.oxideterm.language.typescript-0.1.0.zip",
+      "checksum": "sha256:e18311b4074be6bf10586f2c3de8801ef1dddf774e16121b02ef03b9431aa41d",
+      "size": 144044
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-typescript-v0.1.0/com.oxideterm.language.typescript-0.1.0.zip",
+          "checksum": "sha256:e18311b4074be6bf10586f2c3de8801ef1dddf774e16121b02ef03b9431aa41d",
+          "size": 144044
+        }
+      ]
+    }
+  ]
+}

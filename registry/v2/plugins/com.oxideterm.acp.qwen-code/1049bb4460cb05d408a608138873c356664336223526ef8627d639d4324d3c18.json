@@ -1,0 +1,104 @@
+{
+  "id": "com.oxideterm.acp.qwen-code",
+  "listedAt": "2026-10-06T12:39:04.000Z",
+  "latestReleaseAt": "2026-10-06T12:38:41Z",
+  "name": "Qwen Code",
+  "description": "Launch the installed official Qwen Code CLI through ACP, using its configured model provider.",
+  "author": "OxideTerm",
+  "license": "GPL-3.0-only",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/qwen-code-acp/LICENSE",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/qwen-code-acp",
+  "tags": [
+    "acp"
+  ],
+  "updatedAt": "2026-10-06T12:38:38.435Z",
+  "version": "0.1.1",
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "minOxidetermVersion": "2.2.2",
+  "packages": [
+    {
+      "target": "aarch64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/qwen-code-acp-v0.1.1/qwen-code-acp-0.1.1-aarch64-apple-darwin.zip",
+      "checksum": "sha256:9aa4fe6c95b25436cf88bc0692f1554f349e747f3e04d04be400059df1008d9d",
+      "size": 269601
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/qwen-code-acp-v0.1.1/qwen-code-acp-0.1.1-x86_64-apple-darwin.zip",
+      "checksum": "sha256:c2a14b58994a49421a0e76a3c5f0a5a365146f954ddfce87946c6ce87e50024f",
+      "size": 285693
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/qwen-code-acp-v0.1.1/qwen-code-acp-0.1.1-x86_64-unknown-linux-gnu.zip",
+      "checksum": "sha256:df5e3fc6b163910add858a5f3158c74ec9da36a0e963faa9776cbc8ad8d61f82",
+      "size": 300039
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/qwen-code-acp-v0.1.1/qwen-code-acp-0.1.1-aarch64-unknown-linux-gnu.zip",
+      "checksum": "sha256:1994e3614f18338f18844bbd9e042b8ff50bc9d4c057f6fa8091174c56989f8c",
+      "size": 285721
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/qwen-code-acp-v0.1.1/qwen-code-acp-0.1.1-x86_64-pc-windows-msvc.zip",
+      "checksum": "sha256:6626303df96f0151184bc5b66f7563c0c07745feb2ea4c36cc9b886d6ce82c13",
+      "size": 195937
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/qwen-code-acp-v0.1.1/qwen-code-acp-0.1.1-aarch64-pc-windows-msvc.zip",
+      "checksum": "sha256:ce205c6e055857048c0aa8003ef8372e6e77db0ae2c8021615b3afb3df560b90",
+      "size": 182423
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.1",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/qwen-code-acp-v0.1.1/qwen-code-acp-0.1.1-aarch64-apple-darwin.zip",
+          "checksum": "sha256:9aa4fe6c95b25436cf88bc0692f1554f349e747f3e04d04be400059df1008d9d",
+          "size": 269601
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/qwen-code-acp-v0.1.1/qwen-code-acp-0.1.1-x86_64-apple-darwin.zip",
+          "checksum": "sha256:c2a14b58994a49421a0e76a3c5f0a5a365146f954ddfce87946c6ce87e50024f",
+          "size": 285693
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/qwen-code-acp-v0.1.1/qwen-code-acp-0.1.1-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:df5e3fc6b163910add858a5f3158c74ec9da36a0e963faa9776cbc8ad8d61f82",
+          "size": 300039
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/qwen-code-acp-v0.1.1/qwen-code-acp-0.1.1-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:1994e3614f18338f18844bbd9e042b8ff50bc9d4c057f6fa8091174c56989f8c",
+          "size": 285721
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/qwen-code-acp-v0.1.1/qwen-code-acp-0.1.1-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:6626303df96f0151184bc5b66f7563c0c07745feb2ea4c36cc9b886d6ce82c13",
+          "size": 195937
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/qwen-code-acp-v0.1.1/qwen-code-acp-0.1.1-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:ce205c6e055857048c0aa8003ef8372e6e77db0ae2c8021615b3afb3df560b90",
+          "size": 182423
+        }
+      ]
+    }
+  ]
+}

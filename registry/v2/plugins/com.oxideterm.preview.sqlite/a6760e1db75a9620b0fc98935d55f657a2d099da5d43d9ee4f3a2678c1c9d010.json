@@ -1,0 +1,103 @@
+{
+  "id": "com.oxideterm.preview.sqlite",
+  "listedAt": "2026-10-05T04:31:45.000Z",
+  "latestReleaseAt": "2026-10-05T04:28:46Z",
+  "name": "SQLite Preview",
+  "description": "Browse SQLite tables and read-only paginated data from the file preview.",
+  "author": "OxideTerm",
+  "license": "MIT",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/sqlite-preview/LICENSE",
+  "tags": [
+    "preview"
+  ],
+  "updatedAt": "2026-10-05T04:29:31.668Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">2.2.0"
+  },
+  "minOxidetermVersion": "2.2.1",
+  "packages": [
+    {
+      "target": "aarch64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-aarch64-apple-darwin.zip",
+      "checksum": "sha256:6d113a8dde6d5c1708363fb3e565e1e3879b3d177f9046f843e6b3d401b17927",
+      "size": 1203187
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-aarch64-pc-windows-msvc.zip",
+      "checksum": "sha256:e3de19bc345b7e9d3879ef6fbd52a55e8f0fdad60fd84c08267589c13f222995",
+      "size": 1048541
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-aarch64-unknown-linux-gnu.zip",
+      "checksum": "sha256:6ef4715bdb4bc23cf42ec42dc71fd4c79b72f6557c3f0df81c0bfcc93a66e35a",
+      "size": 1332309
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-x86_64-apple-darwin.zip",
+      "checksum": "sha256:8a4cfad74f30462c4f373e323f5a1c8106907a6d3d6befa87f49301dd76df776",
+      "size": 1292785
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-x86_64-pc-windows-msvc.zip",
+      "checksum": "sha256:e61f555402cc0eadcc7b5479a476298483eb7f16fe7f4588316292c1a648efb8",
+      "size": 1169906
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-x86_64-unknown-linux-gnu.zip",
+      "checksum": "sha256:2ea5302c9c44a38c76e12c7b283f812a860dacd88aa15ae0695e2bcd2d114632",
+      "size": 1368100
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.0"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:6d113a8dde6d5c1708363fb3e565e1e3879b3d177f9046f843e6b3d401b17927",
+          "size": 1203187
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:e3de19bc345b7e9d3879ef6fbd52a55e8f0fdad60fd84c08267589c13f222995",
+          "size": 1048541
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:6ef4715bdb4bc23cf42ec42dc71fd4c79b72f6557c3f0df81c0bfcc93a66e35a",
+          "size": 1332309
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:8a4cfad74f30462c4f373e323f5a1c8106907a6d3d6befa87f49301dd76df776",
+          "size": 1292785
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:e61f555402cc0eadcc7b5479a476298483eb7f16fe7f4588316292c1a648efb8",
+          "size": 1169906
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/sqlite-preview-v0.1.0/sqlite-preview-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:2ea5302c9c44a38c76e12c7b283f812a860dacd88aa15ae0695e2bcd2d114632",
+          "size": 1368100
+        }
+      ]
+    }
+  ]
+}

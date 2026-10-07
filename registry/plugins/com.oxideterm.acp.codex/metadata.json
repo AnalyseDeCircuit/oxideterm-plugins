@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.acp.codex",
+  "listedAt": "2026-10-05T15:46:16.000Z",
+  "latestReleaseAt": "2026-10-05T15:32:36Z",
   "name": "Codex",
   "description": "Connect the local Codex CLI to OxideTerm through ACP, with model discovery and session-scoped settings.",
   "author": "OxideTerm",

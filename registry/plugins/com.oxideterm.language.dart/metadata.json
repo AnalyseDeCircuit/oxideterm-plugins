@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.language.dart",
+  "listedAt": "2026-10-07T05:43:38.000Z",
+  "latestReleaseAt": "2026-10-07T05:43:25Z",
   "name": "Dart Language Support",
   "description": "Syntax highlighting for Dart files.",
   "author": "OxideTerm",

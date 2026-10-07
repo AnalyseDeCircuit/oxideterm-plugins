@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.language.awk",
+  "listedAt": "2026-10-07T06:17:26.000Z",
+  "latestReleaseAt": "2026-10-07T06:17:05Z",
   "name": "AWK Language Support",
   "description": "Syntax highlighting for AWK files.",
   "author": "OxideTerm",

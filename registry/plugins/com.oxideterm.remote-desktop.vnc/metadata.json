@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.remote-desktop.vnc",
+  "listedAt": "2026-10-05T15:46:16.000Z",
+  "latestReleaseAt": "2026-10-05T15:41:16Z",
   "name": "VNC",
   "description": "VNC connections using OxideTerm's native viewer, clipboard, audio and SSH gateways.",
   "author": "OxideTerm",

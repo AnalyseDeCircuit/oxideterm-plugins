@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.preview.binary",
+  "listedAt": "2026-10-05T04:31:45.000Z",
+  "latestReleaseAt": "2026-10-05T04:28:51Z",
   "name": "Binary Inspector",
   "description": "Inspect ELF, Mach-O and PE metadata, sections and SHA-256 from file preview.",
   "author": "OxideTerm",

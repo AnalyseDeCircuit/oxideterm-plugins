@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.preview.sqlite",
+  "listedAt": "2026-10-05T04:31:45.000Z",
+  "latestReleaseAt": "2026-10-05T04:28:46Z",
   "name": "SQLite Preview",
   "description": "Browse SQLite tables and read-only paginated data from the file preview.",
   "author": "OxideTerm",

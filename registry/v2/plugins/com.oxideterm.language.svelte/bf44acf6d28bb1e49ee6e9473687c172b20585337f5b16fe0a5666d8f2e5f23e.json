@@ -1,0 +1,51 @@
+{
+  "id": "com.oxideterm.language.svelte",
+  "listedAt": "2026-10-07T05:44:07.000Z",
+  "latestReleaseAt": "2026-10-07T05:43:51Z",
+  "name": "Svelte Language Support",
+  "description": "Svelte template highlighting with bundled JavaScript, TypeScript and CSS support.",
+  "author": "OxideTerm",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-svelte",
+  "license": "Apache-2.0",
+  "tags": [
+    "language"
+  ],
+  "language": {
+    "id": "svelte",
+    "displayName": "Svelte",
+    "grammarName": "svelte",
+    "extensions": [
+      "svelte"
+    ]
+  },
+  "updatedAt": "2026-10-07T05:43:47.020Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "minOxidetermVersion": "2.2.2",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-svelte-v0.1.0/com.oxideterm.language.svelte-0.1.0.zip",
+      "checksum": "sha256:dda38d439ec1a7c85c8e48413e5525843f92737176dc30d18771dc92aeac1327",
+      "size": 184927
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-svelte-v0.1.0/com.oxideterm.language.svelte-0.1.0.zip",
+          "checksum": "sha256:dda38d439ec1a7c85c8e48413e5525843f92737176dc30d18771dc92aeac1327",
+          "size": 184927
+        }
+      ]
+    }
+  ]
+}

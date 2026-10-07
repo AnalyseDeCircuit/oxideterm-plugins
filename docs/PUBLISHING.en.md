@@ -192,6 +192,11 @@ Several targets may reference the same package only when its runtime entry and d
 - `releases[].engines.oxideterm` is the release's supported host range.
 - `releases[].packages` contains that version's platform packages, URLs, digests, and sizes.
 - `description`, `tags`, and `capabilitiesSummary` are shown inside OxideTerm.
+- In v2, `listedAt` records initial listing and stays unchanged after registration;
+  existing entries are backfilled from catalog commit history.
+- In v2, `latestReleaseAt` records publication of the highest semantic version.
+  Automation uses GitHub's published timestamp. Description edits and later
+  publication of older versions do not change it; `updatedAt` remains metadata edit time.
 
 See the [JSON Schema](../schema/registry-v1.schema.json) and [example entry](../examples/plugin-entry.json) for the complete structure.
 

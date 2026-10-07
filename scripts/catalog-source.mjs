@@ -77,6 +77,7 @@ export function loadCatalogSources(directory = sourceDirectory) {
     if (metadata.id !== entry.name || !/^[a-z0-9][a-z0-9.-]*$/.test(metadata.id)) throw new Error('Catalog directory and identity differ');
     if (metadata.tags?.length > 2 || metadata.tags?.some(tag=>!categories.has(tag))) throw new Error('Use at most two registered marketplace categories');
     const { legacy, order, ...display } = metadata;
+    const publicationDates = new Map();
     if (!Number.isSafeInteger(order) || order < 0) throw new Error('Invalid catalog order');
     const releases = fs.readdirSync(path.join(root, 'releases')).filter(file => file.endsWith('.json')).map(file => {
       const record = read(path.join(root, 'releases', file));
@@ -92,9 +93,13 @@ export function loadCatalogSources(directory = sourceDirectory) {
       if (record.publishedAt) {
         if (Number.isNaN(Date.parse(record.publishedAt))) throw new Error('Invalid release publication time');
         if (!display.updatedAt || Date.parse(record.publishedAt) > Date.parse(display.updatedAt)) display.updatedAt = record.publishedAt;
+        publicationDates.set(record.release.version, record.publishedAt);
       }
       return release;
     }).sort((a,b) => semver.compare(a.version,b.version));
+    if (!display.latestReleaseAt && publicationDates.has(releases.at(-1)?.version)) {
+      display.latestReleaseAt = publicationDates.get(releases.at(-1).version);
+    }
     const baseline = releases.find(release => release.version === legacy?.version);
     if (!baseline) throw new Error('Legacy release missing');
     return { order, plugin: { ...display, ...legacy, packages: baseline.packages, releases } };
@@ -150,13 +155,21 @@ export function importCatalogEntry(entry, directory = sourceDirectory) {
   const next = {version:1,plugins:previous.plugins.filter(plugin=>plugin.id!==entry.id).concat(merged)};
   validateHistory(previous,next);
   const root = path.join(directory,entry.id);
-  if (!current) writeImmutable(path.join(root,'metadata.json'),metadataFor(entry,previous.plugins.length));
-  else if (!isDeepStrictEqual(current.language,merged.language)) {
+  if (!current) writeImmutable(path.join(root,'metadata.json'),metadataFor({
+    ...entry, listedAt: new Date().toISOString(),
+    ...(entry.updatedAt ? {latestReleaseAt: entry.updatedAt} : {}),
+  },previous.plugins.length));
+  else {
     const file=path.join(root,'metadata.json');
     const metadata=read(file);
-    if (merged.language) metadata.language=merged.language;
-    else delete metadata.language;
-    writeJson(file,metadata);
+    const original = structuredClone(metadata);
+    if (!isDeepStrictEqual(current.language,merged.language)) {
+      if (merged.language) metadata.language=merged.language;
+      else delete metadata.language;
+    }
+    const latest = releases => [...releases].sort((a,b)=>semver.rcompare(a.version,b.version))[0].version;
+    if (entry.updatedAt && semver.gt(latest(merged.releases),latest(current.releases))) metadata.latestReleaseAt=entry.updatedAt;
+    if (!isDeepStrictEqual(original,metadata)) writeJson(file,metadata);
   }
   for (const release of merged.releases) writeRelease(root,release,entry.updatedAt);
   return loadCatalogSources(directory);

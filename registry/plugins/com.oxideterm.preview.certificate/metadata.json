@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.preview.certificate",
+  "listedAt": "2026-10-05T04:31:45.000Z",
+  "latestReleaseAt": "2026-10-05T04:28:48Z",
   "name": "Certificate Viewer",
   "description": "Inspect certificates in PEM and DER files without displaying private keys.",
   "author": "OxideTerm",

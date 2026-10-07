@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.language.svelte",
+  "listedAt": "2026-10-07T05:44:07.000Z",
+  "latestReleaseAt": "2026-10-07T05:43:51Z",
   "name": "Svelte Language Support",
   "description": "Svelte template highlighting with bundled JavaScript, TypeScript and CSS support.",
   "author": "OxideTerm",

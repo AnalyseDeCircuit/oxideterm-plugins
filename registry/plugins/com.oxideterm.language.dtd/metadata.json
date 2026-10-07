@@ -1,5 +1,7 @@
 {
   "id": "com.oxideterm.language.dtd",
+  "listedAt": "2026-10-07T05:43:17.000Z",
+  "latestReleaseAt": "2026-10-07T05:43:09Z",
   "name": "DTD Language Support",
   "description": "Syntax highlighting for DTD files.",
   "author": "OxideTerm",
