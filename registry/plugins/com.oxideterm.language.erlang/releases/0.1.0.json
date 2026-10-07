@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-erlang-v0.1.0/com.oxideterm.language.erlang-0.1.0.zip",
+        "checksum": "sha256:6698bf7264567cbd33c1670553e2dc6b9f58befc255c54da8131bb825e2d9c7b",
+        "size": 63108
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T06:17:04.488Z"
+}

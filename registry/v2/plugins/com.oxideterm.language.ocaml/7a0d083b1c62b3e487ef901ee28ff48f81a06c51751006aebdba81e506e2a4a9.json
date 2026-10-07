@@ -1,0 +1,49 @@
+{
+  "id": "com.oxideterm.language.ocaml",
+  "name": "OCaml Language Support",
+  "description": "Syntax highlighting for OCaml files.",
+  "author": "OxideTerm",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-ocaml",
+  "license": "Apache-2.0",
+  "tags": [
+    "language"
+  ],
+  "language": {
+    "id": "ocaml",
+    "displayName": "OCaml",
+    "grammarName": "ocaml",
+    "extensions": [
+      "ml"
+    ]
+  },
+  "updatedAt": "2026-10-07T06:17:11.738Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "minOxidetermVersion": "2.2.2",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-ocaml-v0.1.0/com.oxideterm.language.ocaml-0.1.0.zip",
+      "checksum": "sha256:523f87da37c70fa53f4df8562e407a7aab172677aed6d768f20b01ae31096f36",
+      "size": 406618
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-ocaml-v0.1.0/com.oxideterm.language.ocaml-0.1.0.zip",
+          "checksum": "sha256:523f87da37c70fa53f4df8562e407a7aab172677aed6d768f20b01ae31096f36",
+          "size": 406618
+        }
+      ]
+    }
+  ]
+}

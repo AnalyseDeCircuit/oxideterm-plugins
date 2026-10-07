@@ -1359,6 +1359,225 @@
         "checksum": "sha256:bb3490f6f9b7ac20edab98de1396623564270a927978f1f3fb98df7bf002d1ea",
         "size": 1517
       }
+    },
+    {
+      "id": "com.oxideterm.language.just",
+      "name": "Justfile Language Support",
+      "description": "Syntax highlighting for Justfile files.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-just",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "just",
+        "displayName": "Justfile",
+        "grammarName": "just",
+        "extensions": [
+          "just"
+        ],
+        "fileNames": [
+          "justfile",
+          ".justfile"
+        ]
+      },
+      "updatedAt": "2026-10-07T06:16:55.860Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.just/61ce34e5aed25272dd3a32368394bac3b1d5f554cfcc668ae7fe3fbadf389e65.json",
+        "checksum": "sha256:61ce34e5aed25272dd3a32368394bac3b1d5f554cfcc668ae7fe3fbadf389e65",
+        "size": 1469
+      }
+    },
+    {
+      "id": "com.oxideterm.language.jq",
+      "name": "jq Language Support",
+      "description": "Syntax highlighting for jq files.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-jq",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "jq",
+        "displayName": "jq",
+        "grammarName": "jq",
+        "extensions": [
+          "jq"
+        ]
+      },
+      "updatedAt": "2026-10-07T06:16:57.000Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.jq/67d78bb09f293d4dd4e9b68ba1f89ee957a40408fbc3afcbe0436417e00b0f6a.json",
+        "checksum": "sha256:67d78bb09f293d4dd4e9b68ba1f89ee957a40408fbc3afcbe0436417e00b0f6a",
+        "size": 1373
+      }
+    },
+    {
+      "id": "com.oxideterm.language.awk",
+      "name": "AWK Language Support",
+      "description": "Syntax highlighting for AWK files.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-awk",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "awk",
+        "displayName": "AWK",
+        "grammarName": "awk",
+        "extensions": [
+          "awk"
+        ]
+      },
+      "updatedAt": "2026-10-07T06:17:00.988Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.awk/d06ea83a00a3d3ce50e41bdb7e31144e772898ed3a231ee87e8a32333faa75eb.json",
+        "checksum": "sha256:d06ea83a00a3d3ce50e41bdb7e31144e772898ed3a231ee87e8a32333faa75eb",
+        "size": 1383
+      }
+    },
+    {
+      "id": "com.oxideterm.language.erlang",
+      "name": "Erlang Language Support",
+      "description": "Syntax highlighting for Erlang files.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-erlang",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "erlang",
+        "displayName": "Erlang",
+        "grammarName": "erlang",
+        "extensions": [
+          "erl",
+          "hrl",
+          "app",
+          "app.src",
+          "escript"
+        ],
+        "fileNames": [
+          "rebar.config",
+          "rebar.config.script"
+        ]
+      },
+      "updatedAt": "2026-10-07T06:17:04.488Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.erlang/945510f04df9ccf43a26552001a63b6fc6ad6ea2e2ab35c7f92680c80c8ccfde.json",
+        "checksum": "sha256:945510f04df9ccf43a26552001a63b6fc6ad6ea2e2ab35c7f92680c80c8ccfde",
+        "size": 1552
+      }
+    },
+    {
+      "id": "com.oxideterm.language.clojure",
+      "name": "Clojure / ClojureScript Language Support",
+      "description": "Syntax highlighting for Clojure / ClojureScript files.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-clojure",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "clojure",
+        "displayName": "Clojure / ClojureScript",
+        "grammarName": "clojure",
+        "extensions": [
+          "clj",
+          "cljs",
+          "cljc",
+          "edn",
+          "bb"
+        ]
+      },
+      "updatedAt": "2026-10-07T06:17:06.723Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.clojure/85eef721f4e0275998a1b4e92788e6ed6e68d8ba05735141734d83704e3f724b.json",
+        "checksum": "sha256:85eef721f4e0275998a1b4e92788e6ed6e68d8ba05735141734d83704e3f724b",
+        "size": 1528
+      }
+    },
+    {
+      "id": "com.oxideterm.language.ocaml",
+      "name": "OCaml Language Support",
+      "description": "Syntax highlighting for OCaml files.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-ocaml",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "ocaml",
+        "displayName": "OCaml",
+        "grammarName": "ocaml",
+        "extensions": [
+          "ml"
+        ]
+      },
+      "updatedAt": "2026-10-07T06:17:11.738Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.ocaml/7a0d083b1c62b3e487ef901ee28ff48f81a06c51751006aebdba81e506e2a4a9.json",
+        "checksum": "sha256:7a0d083b1c62b3e487ef901ee28ff48f81a06c51751006aebdba81e506e2a4a9",
+        "size": 1406
+      }
+    },
+    {
+      "id": "com.oxideterm.language.typst",
+      "name": "Typst Language Support",
+      "description": "Syntax highlighting for Typst files.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-typst",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "typst",
+        "displayName": "Typst",
+        "grammarName": "typst",
+        "extensions": [
+          "typ"
+        ]
+      },
+      "updatedAt": "2026-10-07T06:17:15.163Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.typst/ed311bbb9d8895d5da37fb1d58903fe80d2abb457e5a24454fe3e4b4da5a176c.json",
+        "checksum": "sha256:ed311bbb9d8895d5da37fb1d58903fe80d2abb457e5a24454fe3e4b4da5a176c",
+        "size": 1407
+      }
     }
   ]
 }

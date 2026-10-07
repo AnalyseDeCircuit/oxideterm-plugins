@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-awk-v0.1.0/com.oxideterm.language.awk-0.1.0.zip",
+        "checksum": "sha256:3d46d1a785cd1e3bf8e5b7236e10bd7266870c0e4052c3c18656ee2c2dac19d7",
+        "size": 79744
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T06:17:00.988Z"
+}

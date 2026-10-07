@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-just-v0.1.0/com.oxideterm.language.just-0.1.0.zip",
+        "checksum": "sha256:a9dd354ccb467bd62300ef0b5401cc5b550cf80312c121ec580ec0d5b75eec8a",
+        "size": 24084
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T06:16:55.860Z"
+}

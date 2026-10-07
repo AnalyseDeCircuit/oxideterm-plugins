@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-clojure-v0.1.0/com.oxideterm.language.clojure-0.1.0.zip",
+        "checksum": "sha256:5916ae53ea064dad1e4b914a0970a035d77a16473a5ad59aec49c565c7ab2f94",
+        "size": 32001
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T06:17:06.723Z"
+}

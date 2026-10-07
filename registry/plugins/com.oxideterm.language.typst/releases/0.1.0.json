@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-typst-v0.1.0/com.oxideterm.language.typst-0.1.0.zip",
+        "checksum": "sha256:93691aa829aa0cde7ab7fe75b7ed205a6806d80684cc63830f50214851f898e9",
+        "size": 102756
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T06:17:15.163Z"
+}

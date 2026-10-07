@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-jq-v0.1.0/com.oxideterm.language.jq-0.1.0.zip",
+        "checksum": "sha256:94f59534e1e992a661439ea4165293db944d12cad2c4794b98c1f4fb74714505",
+        "size": 105894
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T06:16:57.000Z"
+}
