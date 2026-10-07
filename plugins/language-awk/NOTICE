@@ -1,0 +1,9 @@
+AWK Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The grammar and upstream queries are derived from tree-sitter-awk 0.7.2.
+Source: https://github.com/Beaglefoot/tree-sitter-awk
+Revision: 34bbdc7cce8e803096f47b625979e34c1be38127
+Upstream license: MIT (retained in LICENSE-grammar in the package).

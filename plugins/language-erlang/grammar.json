@@ -1,0 +1,41 @@
+{
+  "crate": "tree-sitter-erlang",
+  "version": "0.20.0",
+  "sha256": "37ac14f320d4e92afdb914686681e645c1eb737ceddd00a1c3b97abbf1e698b1",
+  "revision": "3966a886ae833672b7429922c4a90f307b55b4ea",
+  "repository": "https://github.com/WhatsApp/tree-sitter-erlang",
+  "license": "Apache-2.0",
+  "archiveUrl": "https://codeload.github.com/WhatsApp/tree-sitter-erlang/tar.gz/3966a886ae833672b7429922c4a90f307b55b4ea",
+  "archiveRoot": "tree-sitter-erlang-3966a886ae833672b7429922c4a90f307b55b4ea",
+  "sample": "% preview\n-module(demo).\n-export([greet/1]).\ngreet(Name) ->\n    Count = 42,\n    {ok, \"hello\", Name, Count}.\n",
+  "highlight": [
+    {
+      "text": "module",
+      "scope": "Keyword"
+    },
+    {
+      "text": "demo",
+      "scope": "Namespace"
+    },
+    {
+      "text": "greet",
+      "scope": "Function"
+    },
+    {
+      "text": "Name",
+      "scope": "Variable"
+    },
+    {
+      "text": "42",
+      "scope": "Number"
+    },
+    {
+      "text": "\"hello\"",
+      "scope": "String"
+    },
+    {
+      "text": "% preview",
+      "scope": "Comment"
+    }
+  ]
+}

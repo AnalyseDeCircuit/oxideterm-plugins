@@ -1,0 +1,31 @@
+{
+  "id": "com.oxideterm.language.clojure",
+  "name": "Clojure / ClojureScript Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting for Clojure / ClojureScript files.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-clojure",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "clojure",
+      "displayName": "Clojure / ClojureScript",
+      "grammarName": "clojure",
+      "extensions": [
+        "clj",
+        "cljs",
+        "cljc",
+        "edn",
+        "bb"
+      ],
+      "highlights": "highlights.scm"
+    }
+  },
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "license": "Apache-2.0"
+}

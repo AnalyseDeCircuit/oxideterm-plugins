@@ -1,0 +1,46 @@
+{
+  "crate": "tree-sitter-clojure",
+  "version": "0.0.13",
+  "sha256": "61ad9510735908e6a6588b3a89a5af5659d89392e2b48663977b5fa02ea64522",
+  "revision": "e43eff80d17cf34852dcd92ca5e6986d23a7040f",
+  "repository": "https://github.com/sogaiu/tree-sitter-clojure",
+  "license": "CC0-1.0",
+  "archiveUrl": "https://codeload.github.com/sogaiu/tree-sitter-clojure/tar.gz/e43eff80d17cf34852dcd92ca5e6986d23a7040f",
+  "archiveRoot": "tree-sitter-clojure-e43eff80d17cf34852dcd92ca5e6986d23a7040f",
+  "licenseFile": "COPYING.txt",
+  "sample": "; preview\n(ns demo.core)\n(defn greet [name]\n  (let [count 42] (str \"hello \" name count)))\n{:enabled true :value nil :items [1 2]}\n",
+  "highlight": [
+    {
+      "text": "ns",
+      "scope": "Keyword"
+    },
+    {
+      "text": "defn",
+      "scope": "Keyword"
+    },
+    {
+      "text": "greet",
+      "scope": "Function"
+    },
+    {
+      "text": "42",
+      "scope": "Number"
+    },
+    {
+      "text": "\"hello \"",
+      "scope": "String"
+    },
+    {
+      "text": ":enabled",
+      "scope": "Constant"
+    },
+    {
+      "text": "true",
+      "scope": "Constant"
+    },
+    {
+      "text": "; preview\n",
+      "scope": "Comment"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "com.oxideterm.language.groovy",
+  "name": "Groovy Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting for Groovy files.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-groovy",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "groovy",
+      "displayName": "Groovy",
+      "grammarName": "groovy",
+      "extensions": [
+        "groovy",
+        "gvy",
+        "gy",
+        "gsh",
+        "gradle"
+      ],
+      "fileNames": [
+        "Jenkinsfile"
+      ],
+      "highlights": "highlights.scm"
+    }
+  },
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "license": "Apache-2.0"
+}

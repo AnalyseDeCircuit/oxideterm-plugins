@@ -1,0 +1,38 @@
+{
+  "crate": "tree-sitter-typst",
+  "version": "0.10.0",
+  "sha256": "0674b2bb9ab920f7fa83ffb6a42a320df14b783fbc7cabd25d71503865e7cd4b",
+  "revision": "46cf4ded12ee974a70bf8457263b67ad7ee0379d",
+  "repository": "https://github.com/uben0/tree-sitter-typst",
+  "license": "MIT",
+  "archiveUrl": "https://codeload.github.com/uben0/tree-sitter-typst/tar.gz/46cf4ded12ee974a70bf8457263b67ad7ee0379d",
+  "archiveRoot": "tree-sitter-typst-46cf4ded12ee974a70bf8457263b67ad7ee0379d",
+  "highlightsPath": "editors/helix/queries/highlights.scm",
+  "sample": "// preview\n#set text(size: 12pt)\n#let count = 42\n= Preview\n#let greet(name) = [Hello #name]\n#greet(\"Ada\")\n$ x + 1 = 2 $\n",
+  "highlight": [
+    {
+      "text": "set",
+      "scope": "Keyword"
+    },
+    {
+      "text": "let",
+      "scope": "Keyword"
+    },
+    {
+      "text": "42",
+      "scope": "Number"
+    },
+    {
+      "text": "\"Ada\"",
+      "scope": "String"
+    },
+    {
+      "text": "text",
+      "scope": "Function"
+    },
+    {
+      "text": "// preview",
+      "scope": "Comment"
+    }
+  ]
+}

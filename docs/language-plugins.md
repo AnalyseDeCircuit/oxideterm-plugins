@@ -20,6 +20,14 @@ Vue、Svelte 包内包含 TypeScript 和 CSS 解析器；TypeScript 解析器同
 脚本、样式、模板表达式按原文件字节坐标解析，无须用户另装对应语言包。
 TypeScript 的基础 JavaScript 规则和框架的 HTML 规则会一并打包。
 
+另有 AWK、jq、Justfile、Groovy、Clojure／ClojureScript、Erlang、OCaml 和 Typst。
+OCaml 的 `.ml` 实现与 `.mli` 接口使用不同解析器，分别维护 `ocaml`、`ocaml-interface` 两个包。
+Justfile 识别 `.just`、`justfile`、`.justfile`；Groovy 识别 `.groovy/.gvy/.gy/.gsh/.gradle` 和 `Jenkinsfile`，
+`.gradle.kts` 继续使用 Kotlin。Clojure 识别 `.clj/.cljs/.cljc/.edn/.bb`。
+Erlang 识别 `.erl/.hrl/.app/.app.src/.escript` 及 `rebar.config`、`rebar.config.script`；
+通用 `.config` 不会被自动归为 Erlang。AWK、jq、Typst 分别识别 `.awk`、`.jq`、`.typ`。
+各包的着色样例同时检查查询命中和原生编辑器实际采用的颜色，避免通用名称规则盖住函数或类型。
+
 ## 构建与验证
 
 在 `contributes.language` 中声明语言元数据，例如：
@@ -71,6 +79,8 @@ node scripts/build-language-plugins.mjs all --host-repo ../OxideTerm --tree-sitt
 每个语言有独立 ZIP，以及可供本地验证的解压目录。安装包包含
 `plugin.json`、`parser.wasm`、`highlights.scm`、Apache-2.0 `LICENSE`、`LICENSE-grammar` 和 `NOTICE`。
 插件自身及 Common Lisp、JavaScript 自有查询采用 Apache-2.0；上游语法许可证和版权声明单独保留。
+使用 GPL 上游语法的包还包含 `SOURCE-grammar.tar.gz` 和 `SOURCE-grammar.json`，
+提供对应的固定版本源码、归档校验值和构建命令；jq 的解析器采用 GPL-3.0-or-later。
 
 在主程序仓库逐个验证实际解析器、语法接口，以及指定文本的高亮类别：
 

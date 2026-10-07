@@ -1,0 +1,27 @@
+{
+  "id": "com.oxideterm.language.jq",
+  "name": "jq Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting for jq files.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-jq",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "jq",
+      "displayName": "jq",
+      "grammarName": "jq",
+      "extensions": [
+        "jq"
+      ],
+      "highlights": "highlights.scm"
+    }
+  },
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "license": "Apache-2.0"
+}

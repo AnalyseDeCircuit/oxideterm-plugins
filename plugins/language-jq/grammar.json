@@ -1,0 +1,45 @@
+{
+  "crate": "tree-sitter-jq",
+  "version": "1.0.2",
+  "sha256": "b8fcdeda02eeafe88d14ba406ae1cc0bb5306c457340c356c928fb7edad1dc5a",
+  "revision": "1e139eba1fd3a9c34a36f0f0f47ed8b73c9b4636",
+  "repository": "https://github.com/nverno/tree-sitter-jq",
+  "license": "GPL-3.0-or-later",
+  "archiveUrl": "https://codeload.github.com/nverno/tree-sitter-jq/tar.gz/1e139eba1fd3a9c34a36f0f0f47ed8b73c9b4636",
+  "archiveRoot": "tree-sitter-jq-1e139eba1fd3a9c34a36f0f0f47ed8b73c9b4636",
+  "sample": "# preview\ndef active($limit): map(select(.enabled == true and .count >= $limit));\nactive(42) | {name: \"demo\", value: null}\n",
+  "highlight": [
+    {
+      "text": "def",
+      "scope": "Keyword"
+    },
+    {
+      "text": "active",
+      "scope": "Function"
+    },
+    {
+      "text": "enabled",
+      "scope": "Property"
+    },
+    {
+      "text": "$limit",
+      "scope": "Variable"
+    },
+    {
+      "text": "true",
+      "scope": "Constant"
+    },
+    {
+      "text": "42",
+      "scope": "Number"
+    },
+    {
+      "text": "\"demo\"",
+      "scope": "String"
+    },
+    {
+      "text": "# preview",
+      "scope": "Comment"
+    }
+  ]
+}

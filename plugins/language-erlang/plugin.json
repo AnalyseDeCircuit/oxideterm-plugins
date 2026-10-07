@@ -1,0 +1,35 @@
+{
+  "id": "com.oxideterm.language.erlang",
+  "name": "Erlang Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting for Erlang files.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-erlang",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "erlang",
+      "displayName": "Erlang",
+      "grammarName": "erlang",
+      "extensions": [
+        "erl",
+        "hrl",
+        "app",
+        "app.src",
+        "escript"
+      ],
+      "fileNames": [
+        "rebar.config",
+        "rebar.config.script"
+      ],
+      "highlights": "highlights.scm"
+    }
+  },
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "license": "Apache-2.0"
+}

@@ -1,0 +1,9 @@
+Typst Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The grammar and upstream queries are derived from tree-sitter-typst 0.10.0.
+Source: https://github.com/uben0/tree-sitter-typst
+Revision: 46cf4ded12ee974a70bf8457263b67ad7ee0379d
+Upstream license: MIT (retained in LICENSE-grammar in the package).

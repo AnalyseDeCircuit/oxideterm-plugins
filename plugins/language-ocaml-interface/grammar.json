@@ -1,0 +1,34 @@
+{
+  "crate": "tree-sitter-ocaml",
+  "version": "0.26.0",
+  "sha256": "e7a26cc4c2495d80f86426fb7afb9573a8cc6a3c5bea26c562170682c7c3235e",
+  "revision": "3b2e14e0697d405c9aa0beddfa09b71f45abc504",
+  "repository": "https://github.com/tree-sitter/tree-sitter-ocaml",
+  "license": "MIT",
+  "archiveUrl": "https://codeload.github.com/tree-sitter/tree-sitter-ocaml/tar.gz/3b2e14e0697d405c9aa0beddfa09b71f45abc504",
+  "archiveRoot": "tree-sitter-ocaml-3b2e14e0697d405c9aa0beddfa09b71f45abc504",
+  "grammarPath": "grammars/interface",
+  "sample": "(* preview *)\nval greet : string -> string\nval count : int\ntype state = Ready | Waiting of int\n",
+  "highlight": [
+    {
+      "text": "val",
+      "scope": "Keyword"
+    },
+    {
+      "text": "greet",
+      "scope": "Function"
+    },
+    {
+      "text": "string",
+      "scope": "Type"
+    },
+    {
+      "text": "Ready",
+      "scope": "Type"
+    },
+    {
+      "text": "(* preview *)",
+      "scope": "Comment"
+    }
+  ]
+}

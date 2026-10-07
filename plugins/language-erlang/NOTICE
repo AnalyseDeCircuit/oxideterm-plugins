@@ -1,0 +1,9 @@
+Erlang Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The grammar and upstream queries are derived from tree-sitter-erlang 0.20.0.
+Source: https://github.com/WhatsApp/tree-sitter-erlang
+Revision: 3966a886ae833672b7429922c4a90f307b55b4ea
+Upstream license: Apache-2.0 (retained in LICENSE-grammar in the package).

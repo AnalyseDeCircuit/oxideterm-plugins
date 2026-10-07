@@ -63,7 +63,7 @@ async function withSource(plugin, read) {
   try {
     execFileSync("tar", ["-xzf", archive, "-C", build]);
     const source = path.join(build, recipe.archiveRoot ?? recipe.crate + "-" + recipe.version);
-    return await read(source);
+    return await read(source, archive);
   } finally {
     fs.rmSync(build, { recursive: true, force: true });
   }
@@ -76,7 +76,7 @@ function readHighlights(plugin, source) {
 
 async function buildGrammar(plugin, directory, includes = []) {
   fs.mkdirSync(directory, { recursive: true });
-  return withSource(plugin, async source => {
+  return withSource(plugin, async (source, archive) => {
     const recipe = plugin.recipe;
     const parser = path.join(directory, "parser.wasm");
     execFileSync(values["tree-sitter"], ["build", "--wasm", path.join(source, recipe.grammarPath ?? "."), "-o", parser], { stdio: "inherit" });
@@ -94,11 +94,21 @@ async function buildGrammar(plugin, directory, includes = []) {
     const licensePath = path.join(source, licenseFile);
     if (fs.existsSync(licensePath)) license = fs.readFileSync(licensePath);
     else license = await download(recipe.repository.replace("https://github.com/", "https://raw.githubusercontent.com/") + "/" + recipe.revision + "/" + licenseFile);
-    const notices = {};
+    const resources = {};
     for (const notice of ["NOTICE", "NOTICE.txt"]) {
-      if (fs.existsSync(path.join(source, notice))) notices["UPSTREAM-" + notice] = fs.readFileSync(path.join(source, notice));
+      if (fs.existsSync(path.join(source, notice))) resources["UPSTREAM-" + notice] = fs.readFileSync(path.join(source, notice));
     }
-    return { wasm: fs.readFileSync(parser), highlights, license, notices };
+    if (recipe.license.startsWith("GPL-")) {
+      resources["SOURCE-grammar.tar.gz"] = fs.readFileSync(archive);
+      resources["SOURCE-grammar.json"] = strToU8(JSON.stringify({
+        archive: "SOURCE-grammar.tar.gz", sha256: recipe.sha256,
+        repository: recipe.repository, revision: recipe.revision,
+        treeSitterCli: "0.27.0",
+        build: ["tree-sitter", "build", "--wasm",
+          (recipe.archiveRoot ?? recipe.crate + "-" + recipe.version) + "/" + (recipe.grammarPath ?? "."), "-o", "parser.wasm"],
+      }, null, 2) + "\n");
+    }
+    return { wasm: fs.readFileSync(parser), highlights, license, resources };
   });
 }
 
@@ -106,7 +116,7 @@ for (const language of names) {
     const plugin = plugins.get(language);
     const recipe = plugin.recipe;
     const directory = path.join(output, language);
-    const { wasm, highlights, license, notices } = await buildGrammar(plugin, directory);
+    const { wasm, highlights, license, resources } = await buildGrammar(plugin, directory);
     const embeddedFiles = {};
     const injections = [];
     for (const declared of recipe.injections ?? []) {
@@ -152,7 +162,7 @@ for (const language of names) {
       "LICENSE": fs.readFileSync(path.join(plugin.directory, "LICENSE")),
       "LICENSE-grammar": license,
       "NOTICE": fs.readFileSync(path.join(plugin.directory, "NOTICE")),
-      ...notices, ...embeddedFiles,
+      ...resources, ...embeddedFiles,
     };
     for (const [name, bytes] of Object.entries(files)) {
       fs.mkdirSync(path.dirname(path.join(directory, name)), {recursive: true});

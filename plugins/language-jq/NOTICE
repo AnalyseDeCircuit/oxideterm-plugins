@@ -1,0 +1,13 @@
+jq Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The grammar and upstream queries are derived from tree-sitter-jq 1.0.2.
+Source: https://github.com/nverno/tree-sitter-jq
+Revision: 1e139eba1fd3a9c34a36f0f0f47ed8b73c9b4636
+Upstream license: GPL-3.0-or-later (retained in LICENSE-grammar in the package).
+
+The exact corresponding grammar source archive is included as SOURCE-grammar.tar.gz.
+SOURCE-grammar.json records its checksum, pinned revision and WASM build command.
+The original OxideTerm highlight queries are Apache-2.0; the upstream parser remains GPL-3.0-or-later.

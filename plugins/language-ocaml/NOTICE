@@ -1,0 +1,9 @@
+OCaml Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The grammar and upstream queries are derived from tree-sitter-ocaml 0.26.0.
+Source: https://github.com/tree-sitter/tree-sitter-ocaml
+Revision: 3b2e14e0697d405c9aa0beddfa09b71f45abc504
+Upstream license: MIT (retained in LICENSE-grammar in the package).

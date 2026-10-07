@@ -1,0 +1,9 @@
+Clojure / ClojureScript Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The grammar and upstream queries are derived from tree-sitter-clojure 0.0.13.
+Source: https://github.com/sogaiu/tree-sitter-clojure
+Revision: e43eff80d17cf34852dcd92ca5e6986d23a7040f
+Upstream license: CC0-1.0 (retained in LICENSE-grammar in the package).

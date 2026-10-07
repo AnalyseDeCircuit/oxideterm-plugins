@@ -1,0 +1,29 @@
+{
+  "crate": "tree-sitter-awk",
+  "version": "0.7.2",
+  "sha256": "477a3ad54aa1ecb85a33b22eb7f5a9f75e60bd11d0e0f4a46b413a779fa83d41",
+  "revision": "34bbdc7cce8e803096f47b625979e34c1be38127",
+  "repository": "https://github.com/Beaglefoot/tree-sitter-awk",
+  "license": "MIT",
+  "archiveUrl": "https://codeload.github.com/Beaglefoot/tree-sitter-awk/tar.gz/34bbdc7cce8e803096f47b625979e34c1be38127",
+  "archiveRoot": "tree-sitter-awk-34bbdc7cce8e803096f47b625979e34c1be38127",
+  "sample": "# preview\nBEGIN { total = 0; print \"ready\" }\n/ERROR/ { total += 1; print $1 }\nEND { print total }\n",
+  "highlight": [
+    {
+      "text": "print",
+      "scope": "Keyword"
+    },
+    {
+      "text": "\"ready\"",
+      "scope": "String"
+    },
+    {
+      "text": "0",
+      "scope": "Number"
+    },
+    {
+      "text": "# preview",
+      "scope": "Comment"
+    }
+  ]
+}

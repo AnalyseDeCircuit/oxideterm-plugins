@@ -1,0 +1,27 @@
+{
+  "id": "com.oxideterm.language.typst",
+  "name": "Typst Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting for Typst files.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-typst",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "typst",
+      "displayName": "Typst",
+      "grammarName": "typst",
+      "extensions": [
+        "typ"
+      ],
+      "highlights": "highlights.scm"
+    }
+  },
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "license": "Apache-2.0"
+}

@@ -25,6 +25,16 @@ Scripts, styles and template expressions use the original document's byte coordi
 without requiring separate language installations. Base JavaScript and HTML highlight
 queries are included alongside their derived language rules.
 
+Further plugins cover AWK, jq, Justfile, Groovy, Clojure/ClojureScript, Erlang, OCaml and Typst.
+OCaml `.ml` implementations and `.mli` interfaces use different parsers, maintained
+as the separate `ocaml` and `ocaml-interface` packages. Justfile recognizes `.just`,
+`justfile` and `.justfile`. Groovy recognizes `.groovy/.gvy/.gy/.gsh/.gradle` and
+`Jenkinsfile`; `.gradle.kts` remains Kotlin. Clojure covers `.clj/.cljs/.cljc/.edn/.bb`.
+Erlang covers `.erl/.hrl/.app/.app.src/.escript`, `rebar.config` and `rebar.config.script`,
+without claiming generic `.config` files. AWK, jq and Typst use `.awk`, `.jq` and `.typ`.
+Highlight samples check both matching captures and the colors consumed by native
+editors, so generic name captures cannot hide functions or types.
+
 ## Build and verify
 
 Declare language metadata in `contributes.language`, for example:
@@ -85,6 +95,10 @@ contain the manifest, parser, highlight queries, Apache-2.0 `LICENSE`,
 `LICENSE-grammar`, and `NOTICE`. Plugin files and OxideTerm's own Common Lisp
 and JavaScript queries use Apache-2.0; upstream grammar licenses and copyright
 notices are retained separately.
+
+Packages using GPL upstream grammars also include `SOURCE-grammar.tar.gz` and
+`SOURCE-grammar.json`, providing the exact source archive, its checksum and the
+build command. The jq parser is licensed under GPL-3.0-or-later.
 
 From the host repository, verify the actual parser, ABI, queries, and expected
 text capture and highlight scope:

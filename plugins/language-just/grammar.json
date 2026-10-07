@@ -1,0 +1,34 @@
+{
+  "crate": "tree-sitter-just",
+  "version": "0.2.0",
+  "sha256": "80796f469a8456e75e11f430bbfe1299caaea92bce9784b4b6b6f2165b8b9a36",
+  "revision": "5685543a6e64f66335e25518c9ae8ffa1dae3d01",
+  "repository": "https://github.com/casey/tree-sitter-just",
+  "license": "Apache-2.0",
+  "archiveUrl": "https://codeload.github.com/casey/tree-sitter-just/tar.gz/5685543a6e64f66335e25518c9ae8ffa1dae3d01",
+  "archiveRoot": "tree-sitter-just-5685543a6e64f66335e25518c9ae8ffa1dae3d01",
+  "highlightsPath": "queries-src/highlights.scm",
+  "sample": "# preview\nset dotenv-load := true\ngreeting := \"hello\"\nbuild name=\"Ada\":\n    echo \"{{greeting}}, {{name}}\"\n",
+  "highlight": [
+    {
+      "text": "set",
+      "scope": "Keyword"
+    },
+    {
+      "text": "build",
+      "scope": "Function"
+    },
+    {
+      "text": "\"hello\"",
+      "scope": "String"
+    },
+    {
+      "text": "true",
+      "scope": "Constant"
+    },
+    {
+      "text": "# preview",
+      "scope": "Comment"
+    }
+  ]
+}

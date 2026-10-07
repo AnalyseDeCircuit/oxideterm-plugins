@@ -1,0 +1,37 @@
+{
+  "crate": "tree-sitter-groovy",
+  "version": "0.0.1",
+  "sha256": "00320c650fdf683337d8a1fffd2f2f36fd4606f26d77f154d3f0fb7b268a5892",
+  "revision": "2a6ddd558b6aa39c5b77d8db9fe9baf817486b2c",
+  "repository": "https://github.com/murtaza64/tree-sitter-groovy",
+  "license": "MIT",
+  "archiveUrl": "https://codeload.github.com/murtaza64/tree-sitter-groovy/tar.gz/2a6ddd558b6aa39c5b77d8db9fe9baf817486b2c",
+  "archiveRoot": "tree-sitter-groovy-2a6ddd558b6aa39c5b77d8db9fe9baf817486b2c",
+  "sample": "// preview\nclass Demo {\n    String greet(String name) {\n        def count = 42\n        return \"hello\"\n    }\n}\npipeline {\n    agent any\n    stages {\n        stage(\"Build\") {\n            steps { sh \"echo ok\" }\n        }\n    }\n}\n",
+  "highlight": [
+    {
+      "text": "class",
+      "scope": "Keyword"
+    },
+    {
+      "text": "Demo",
+      "scope": "Type"
+    },
+    {
+      "text": "greet",
+      "scope": "Function"
+    },
+    {
+      "text": "42",
+      "scope": "Number"
+    },
+    {
+      "text": "\"hello\"",
+      "scope": "String"
+    },
+    {
+      "text": "// preview",
+      "scope": "Comment"
+    }
+  ]
+}

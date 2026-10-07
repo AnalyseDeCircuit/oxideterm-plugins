@@ -1,0 +1,9 @@
+Justfile Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The grammar and upstream queries are derived from tree-sitter-just 0.2.0.
+Source: https://github.com/casey/tree-sitter-just
+Revision: 5685543a6e64f66335e25518c9ae8ffa1dae3d01
+Upstream license: Apache-2.0 (retained in LICENSE-grammar in the package).

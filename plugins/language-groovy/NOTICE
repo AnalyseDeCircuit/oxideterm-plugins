@@ -1,0 +1,9 @@
+Groovy Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The grammar and upstream queries are derived from tree-sitter-groovy 0.0.1.
+Source: https://github.com/murtaza64/tree-sitter-groovy
+Revision: 2a6ddd558b6aa39c5b77d8db9fe9baf817486b2c
+Upstream license: MIT (retained in LICENSE-grammar in the package).

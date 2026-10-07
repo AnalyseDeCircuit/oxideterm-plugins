@@ -1,0 +1,38 @@
+{
+  "crate": "tree-sitter-ocaml",
+  "version": "0.26.0",
+  "sha256": "e7a26cc4c2495d80f86426fb7afb9573a8cc6a3c5bea26c562170682c7c3235e",
+  "revision": "3b2e14e0697d405c9aa0beddfa09b71f45abc504",
+  "repository": "https://github.com/tree-sitter/tree-sitter-ocaml",
+  "license": "MIT",
+  "archiveUrl": "https://codeload.github.com/tree-sitter/tree-sitter-ocaml/tar.gz/3b2e14e0697d405c9aa0beddfa09b71f45abc504",
+  "archiveRoot": "tree-sitter-ocaml-3b2e14e0697d405c9aa0beddfa09b71f45abc504",
+  "grammarPath": "grammars/ocaml",
+  "sample": "(* preview *)\nlet greet name = \"hello \" ^ name\nlet count = 42\nlet enabled = true\nlet () = print_endline (greet \"Ada\")\n",
+  "highlight": [
+    {
+      "text": "let",
+      "scope": "Keyword"
+    },
+    {
+      "text": "greet",
+      "scope": "Function"
+    },
+    {
+      "text": "42",
+      "scope": "Number"
+    },
+    {
+      "text": "\"hello \"",
+      "scope": "String"
+    },
+    {
+      "text": "true",
+      "scope": "Constant"
+    },
+    {
+      "text": "(* preview *)",
+      "scope": "Comment"
+    }
+  ]
+}
