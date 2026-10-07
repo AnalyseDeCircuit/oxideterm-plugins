@@ -1057,6 +1057,97 @@
         "checksum": "sha256:1857790fe5a6a3e9a1be34ecce2fa4ec72f6169208304d6bf4246045576b5464",
         "size": 1383
       }
+    },
+    {
+      "id": "com.oxideterm.language.dart",
+      "name": "Dart Language Support",
+      "description": "Syntax highlighting for Dart files.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-dart",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "dart",
+        "displayName": "Dart",
+        "grammarName": "dart",
+        "extensions": [
+          "dart"
+        ]
+      },
+      "updatedAt": "2026-10-07T05:43:19.771Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.dart/0b88bf03be965470a9b17af79f5758c5fc57bb5099e3d05e614b0965a1cce3d0.json",
+        "checksum": "sha256:0b88bf03be965470a9b17af79f5758c5fc57bb5099e3d05e614b0965a1cce3d0",
+        "size": 1397
+      }
+    },
+    {
+      "id": "com.oxideterm.language.slint",
+      "name": "Slint Language Support",
+      "description": "Syntax highlighting for Slint files.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-slint",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "slint",
+        "displayName": "Slint",
+        "grammarName": "slint",
+        "extensions": [
+          "slint"
+        ]
+      },
+      "updatedAt": "2026-10-07T05:43:22.405Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.slint/74cb7d451fdedd4cf14f1eceaf5b62e1c14077ed51fd371d6e6d8ab82b8875af.json",
+        "checksum": "sha256:74cb7d451fdedd4cf14f1eceaf5b62e1c14077ed51fd371d6e6d8ab82b8875af",
+        "size": 1407
+      }
+    },
+    {
+      "id": "com.oxideterm.language.xml",
+      "name": "XML Language Support",
+      "description": "Syntax highlighting for XML files.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-xml",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "xml",
+        "displayName": "XML",
+        "grammarName": "xml",
+        "extensions": [
+          "xml",
+          "xsd",
+          "xsl",
+          "xslt",
+          "rng"
+        ]
+      },
+      "updatedAt": "2026-10-07T05:43:23.386Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.xml/cedd8a54617ee3e8784d0b6e5f3c9820a28ccffffa540f1671f35cc3b5775bd7.json",
+        "checksum": "sha256:cedd8a54617ee3e8784d0b6e5f3c9820a28ccffffa540f1671f35cc3b5775bd7",
+        "size": 1436
+      }
     }
   ]
 }

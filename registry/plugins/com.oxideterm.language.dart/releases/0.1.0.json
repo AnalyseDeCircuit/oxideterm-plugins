@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-dart-v0.1.0/com.oxideterm.language.dart-0.1.0.zip",
+        "checksum": "sha256:f0e02ce2463d4c438c18d96c240e3f43b3ca0c7bfb866f6e88975a5f65336889",
+        "size": 122883
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T05:43:19.771Z"
+}

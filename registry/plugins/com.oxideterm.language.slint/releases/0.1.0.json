@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-slint-v0.1.0/com.oxideterm.language.slint-0.1.0.zip",
+        "checksum": "sha256:1d0f1a3c6b64a6eef0fdbcf4f87a274133876c9cbe653de85d5ef1991e26de48",
+        "size": 78338
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T05:43:22.405Z"
+}
