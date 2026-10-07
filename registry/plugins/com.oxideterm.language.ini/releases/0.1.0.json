@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-ini-v0.1.0/com.oxideterm.language.ini-0.1.0.zip",
+        "checksum": "sha256:90599dbde2b31225a74edec802fa6362451fbf6c4f74d8b2f1c2f86d61304db4",
+        "size": 11620
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T05:42:56.367Z"
+}

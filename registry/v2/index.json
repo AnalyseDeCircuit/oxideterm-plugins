@@ -995,6 +995,68 @@
         "checksum": "sha256:2b224513e02340088809a4584220b56de82fe1ec7785d92f5dcefc7f56089a46",
         "size": 4624
       }
+    },
+    {
+      "id": "com.oxideterm.language.ini",
+      "name": "INI Language Support",
+      "description": "Syntax highlighting for INI files.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-ini",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "ini",
+        "displayName": "INI",
+        "grammarName": "ini",
+        "extensions": [
+          "ini"
+        ],
+        "fileNames": [
+          ".editorconfig",
+          ".gitconfig"
+        ]
+      },
+      "updatedAt": "2026-10-07T05:42:56.367Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.ini/38dedb3a564dceb37c0359ee0d82cd5c964d13296a84d7ed7379a2f1a8712413.json",
+        "checksum": "sha256:38dedb3a564dceb37c0359ee0d82cd5c964d13296a84d7ed7379a2f1a8712413",
+        "size": 1451
+      }
+    },
+    {
+      "id": "com.oxideterm.language.dtd",
+      "name": "DTD Language Support",
+      "description": "Syntax highlighting for DTD files.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-dtd",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "dtd",
+        "displayName": "DTD",
+        "grammarName": "dtd",
+        "extensions": [
+          "dtd"
+        ]
+      },
+      "updatedAt": "2026-10-07T05:43:05.811Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.dtd/1857790fe5a6a3e9a1be34ecce2fa4ec72f6169208304d6bf4246045576b5464.json",
+        "checksum": "sha256:1857790fe5a6a3e9a1be34ecce2fa4ec72f6169208304d6bf4246045576b5464",
+        "size": 1383
+      }
     }
   ]
 }

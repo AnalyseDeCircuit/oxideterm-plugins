@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-dtd-v0.1.0/com.oxideterm.language.dtd-0.1.0.zip",
+        "checksum": "sha256:912f77c8528c1db49afe5106bcef1911e857b4fbc83d5add28a9b170709cf1f3",
+        "size": 18169
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T05:43:05.811Z"
+}

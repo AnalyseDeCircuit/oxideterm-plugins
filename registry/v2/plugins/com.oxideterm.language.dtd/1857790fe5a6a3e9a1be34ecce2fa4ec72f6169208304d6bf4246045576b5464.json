@@ -1,0 +1,49 @@
+{
+  "id": "com.oxideterm.language.dtd",
+  "name": "DTD Language Support",
+  "description": "Syntax highlighting for DTD files.",
+  "author": "OxideTerm",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-dtd",
+  "license": "Apache-2.0",
+  "tags": [
+    "language"
+  ],
+  "language": {
+    "id": "dtd",
+    "displayName": "DTD",
+    "grammarName": "dtd",
+    "extensions": [
+      "dtd"
+    ]
+  },
+  "updatedAt": "2026-10-07T05:43:05.811Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "minOxidetermVersion": "2.2.2",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-dtd-v0.1.0/com.oxideterm.language.dtd-0.1.0.zip",
+      "checksum": "sha256:912f77c8528c1db49afe5106bcef1911e857b4fbc83d5add28a9b170709cf1f3",
+      "size": 18169
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-dtd-v0.1.0/com.oxideterm.language.dtd-0.1.0.zip",
+          "checksum": "sha256:912f77c8528c1db49afe5106bcef1911e857b4fbc83d5add28a9b170709cf1f3",
+          "size": 18169
+        }
+      ]
+    }
+  ]
+}
