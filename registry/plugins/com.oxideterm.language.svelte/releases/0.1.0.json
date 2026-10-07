@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-svelte-v0.1.0/com.oxideterm.language.svelte-0.1.0.zip",
+        "checksum": "sha256:dda38d439ec1a7c85c8e48413e5525843f92737176dc30d18771dc92aeac1327",
+        "size": 184927
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T05:43:47.020Z"
+}

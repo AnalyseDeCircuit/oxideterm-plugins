@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-nix-v0.1.0/com.oxideterm.language.nix-0.1.0.zip",
+        "checksum": "sha256:bb020faded4fa360473ae48f446520aa5d8ef4dacb570f6dd74e8a9ddc923b5a",
+        "size": 23549
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T05:43:36.400Z"
+}

@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-vue-v0.1.0/com.oxideterm.language.vue-0.1.0.zip",
+        "checksum": "sha256:9335403a719950be51289c4ad3fff2273b2a60a956cad9a343b4e365b0823357",
+        "size": 180988
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T05:43:54.278Z"
+}

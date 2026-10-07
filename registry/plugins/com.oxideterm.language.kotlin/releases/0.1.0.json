@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-kotlin-v0.1.0/com.oxideterm.language.kotlin-0.1.0.zip",
+        "checksum": "sha256:d3fd916e563fd926d71142ef7a38dccaff26c2c2e10405f290596d1003c64ab9",
+        "size": 308600
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T05:43:40.293Z"
+}

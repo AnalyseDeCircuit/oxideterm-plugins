@@ -1148,6 +1148,123 @@
         "checksum": "sha256:cedd8a54617ee3e8784d0b6e5f3c9820a28ccffffa540f1671f35cc3b5775bd7",
         "size": 1436
       }
+    },
+    {
+      "id": "com.oxideterm.language.nix",
+      "name": "Nix Language Support",
+      "description": "Syntax highlighting for Nix files.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-nix",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "nix",
+        "displayName": "Nix",
+        "grammarName": "nix",
+        "extensions": [
+          "nix"
+        ]
+      },
+      "updatedAt": "2026-10-07T05:43:36.400Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.nix/9a258503fddfa6c7bccbd7e6a0ea222c15b5f6c8f0ffd361581e90512b4eb316.json",
+        "checksum": "sha256:9a258503fddfa6c7bccbd7e6a0ea222c15b5f6c8f0ffd361581e90512b4eb316",
+        "size": 1383
+      }
+    },
+    {
+      "id": "com.oxideterm.language.kotlin",
+      "name": "Kotlin Language Support",
+      "description": "Syntax highlighting for Kotlin files.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-kotlin",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "kotlin",
+        "displayName": "Kotlin",
+        "grammarName": "kotlin",
+        "extensions": [
+          "kt",
+          "kts"
+        ]
+      },
+      "updatedAt": "2026-10-07T05:43:40.293Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.kotlin/5d345ab0d5aaf684b91a2c2b8186b04974b31201e27b83b83ea40dd03477d5aa.json",
+        "checksum": "sha256:5d345ab0d5aaf684b91a2c2b8186b04974b31201e27b83b83ea40dd03477d5aa",
+        "size": 1430
+      }
+    },
+    {
+      "id": "com.oxideterm.language.svelte",
+      "name": "Svelte Language Support",
+      "description": "Svelte template highlighting with bundled JavaScript, TypeScript and CSS support.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-svelte",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "svelte",
+        "displayName": "Svelte",
+        "grammarName": "svelte",
+        "extensions": [
+          "svelte"
+        ]
+      },
+      "updatedAt": "2026-10-07T05:43:47.020Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.svelte/b6131f26cb4a5d3347326a0644800379519f71ee555e191fc286fcc3deb2ac6e.json",
+        "checksum": "sha256:b6131f26cb4a5d3347326a0644800379519f71ee555e191fc286fcc3deb2ac6e",
+        "size": 1465
+      }
+    },
+    {
+      "id": "com.oxideterm.language.vue",
+      "name": "Vue Language Support",
+      "description": "Vue template highlighting with bundled JavaScript, TypeScript and CSS support.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-vue",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "vue",
+        "displayName": "Vue",
+        "grammarName": "vue",
+        "extensions": [
+          "vue"
+        ]
+      },
+      "updatedAt": "2026-10-07T05:43:54.278Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.vue/d39238b2510b8b510e2c1c6f53d02459f3029f004915dd06c91d8909e3228407.json",
+        "checksum": "sha256:d39238b2510b8b510e2c1c6f53d02459f3029f004915dd06c91d8909e3228407",
+        "size": 1429
+      }
     }
   ]
 }

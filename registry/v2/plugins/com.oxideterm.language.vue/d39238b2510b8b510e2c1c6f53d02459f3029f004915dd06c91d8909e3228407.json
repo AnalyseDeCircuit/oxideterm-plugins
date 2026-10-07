@@ -1,0 +1,49 @@
+{
+  "id": "com.oxideterm.language.vue",
+  "name": "Vue Language Support",
+  "description": "Vue template highlighting with bundled JavaScript, TypeScript and CSS support.",
+  "author": "OxideTerm",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-vue",
+  "license": "Apache-2.0",
+  "tags": [
+    "language"
+  ],
+  "language": {
+    "id": "vue",
+    "displayName": "Vue",
+    "grammarName": "vue",
+    "extensions": [
+      "vue"
+    ]
+  },
+  "updatedAt": "2026-10-07T05:43:54.278Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "minOxidetermVersion": "2.2.2",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-vue-v0.1.0/com.oxideterm.language.vue-0.1.0.zip",
+      "checksum": "sha256:9335403a719950be51289c4ad3fff2273b2a60a956cad9a343b4e365b0823357",
+      "size": 180988
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-vue-v0.1.0/com.oxideterm.language.vue-0.1.0.zip",
+          "checksum": "sha256:9335403a719950be51289c4ad3fff2273b2a60a956cad9a343b4e365b0823357",
+          "size": 180988
+        }
+      ]
+    }
+  ]
+}
