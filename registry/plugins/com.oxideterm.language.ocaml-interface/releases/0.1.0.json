@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-ocaml-interface-v0.1.0/com.oxideterm.language.ocaml-interface-0.1.0.zip",
+        "checksum": "sha256:44db1c84828cf3f7e74cb220ea120335b0dd1e9ce488946e0533f9b4c846a85e",
+        "size": 354827
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T06:16:53.295Z"
+}

@@ -1294,6 +1294,71 @@
         "checksum": "sha256:126e00014d59b8c79299ea0d7a64d992f5887c629ea2a2f87517da302748522d",
         "size": 1406
       }
+    },
+    {
+      "id": "com.oxideterm.language.groovy",
+      "name": "Groovy Language Support",
+      "description": "Syntax highlighting for Groovy files.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-groovy",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "groovy",
+        "displayName": "Groovy",
+        "grammarName": "groovy",
+        "extensions": [
+          "groovy",
+          "gvy",
+          "gy",
+          "gsh",
+          "gradle"
+        ],
+        "fileNames": [
+          "Jenkinsfile"
+        ]
+      },
+      "updatedAt": "2026-10-07T06:16:36.268Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.groovy/19de8e2f171effdf9457a0388bbfaa43b8d11f27f9c3f7eecb5492ef5eb6c9bf.json",
+        "checksum": "sha256:19de8e2f171effdf9457a0388bbfaa43b8d11f27f9c3f7eecb5492ef5eb6c9bf",
+        "size": 1521
+      }
+    },
+    {
+      "id": "com.oxideterm.language.ocaml-interface",
+      "name": "OCaml Interface Language Support",
+      "description": "Syntax highlighting for OCaml Interface files.",
+      "author": "OxideTerm",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-ocaml-interface",
+      "license": "Apache-2.0",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "ocaml-interface",
+        "displayName": "OCaml Interface",
+        "grammarName": "ocaml_interface",
+        "extensions": [
+          "mli"
+        ]
+      },
+      "updatedAt": "2026-10-07T06:16:53.295Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.language.ocaml-interface/bb3490f6f9b7ac20edab98de1396623564270a927978f1f3fb98df7bf002d1ea.json",
+        "checksum": "sha256:bb3490f6f9b7ac20edab98de1396623564270a927978f1f3fb98df7bf002d1ea",
+        "size": 1517
+      }
     }
   ]
 }

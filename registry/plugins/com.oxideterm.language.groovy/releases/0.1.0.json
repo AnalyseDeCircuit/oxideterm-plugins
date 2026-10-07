@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-groovy-v0.1.0/com.oxideterm.language.groovy-0.1.0.zip",
+        "checksum": "sha256:5c3d66c92f5ed9c4dde3a53d3b97cd1b16e4fe2cb7f6e631873b5c469219c74c",
+        "size": 103263
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T06:16:36.268Z"
+}
