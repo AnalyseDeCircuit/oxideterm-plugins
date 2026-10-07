@@ -21,6 +21,31 @@ const supportedTargets = new Set([
   "x86_64-pc-windows-msvc",
 ]);
 
+// Keep discovery metadata independent of packaged paths and asset digests.
+export function languageDefinition(contribution) {
+  if (contribution === undefined) return undefined;
+  if (!contribution || typeof contribution !== 'object' || Array.isArray(contribution)) {
+    throw new Error('Invalid language definition');
+  }
+  const {id, displayName, grammarName, extensions, fileNames} = contribution;
+  const identifier = value => typeof value === 'string' && /^[a-z][a-z0-9_-]{0,63}$/.test(value);
+  const text = (value, maximum) => typeof value === 'string' && value.trim()
+    && Buffer.byteLength(value) <= maximum && !/[\u0000-\u001f\u007f-\u009f]/.test(value);
+  if (!identifier(id) || (grammarName !== undefined && !identifier(grammarName))
+    || (displayName !== undefined && !text(displayName, 128))) throw new Error('Invalid language identifier or display name');
+  for (const [values, valid] of [
+    [extensions, value => text(value,64) && /^[A-Za-z0-9_+.-]+$/.test(value) && !value.startsWith('.') && !value.endsWith('.')],
+    [fileNames, value => text(value,256) && !['.','..'].includes(value) && !/[\\/]/.test(value)],
+  ]) {
+    if (values !== undefined && (!Array.isArray(values) || values.length > 64 || values.some(value => !valid(value)))) {
+      throw new Error('Invalid language file associations');
+    }
+  }
+  return {id, ...(displayName === undefined ? {} : {displayName}),
+    ...(grammarName === undefined ? {} : {grammarName}),
+    ...(extensions?.length ? {extensions} : {}), ...(fileNames?.length ? {fileNames} : {})};
+}
+
 export function validateRegistry(registry) {
   if (registry.version !== 1 || !Array.isArray(registry.plugins)) {
     throw new Error("Catalog release records must contain version 1 and a plugins array");
@@ -41,6 +66,7 @@ export function validateRegistry(registry) {
     optionalText(plugin.description, `${plugin.id}.description`, 1000);
     optionalText(plugin.author, `${plugin.id}.author`, 128);
     optionalText(plugin.license, `${plugin.id}.license`, 256);
+    languageDefinition(plugin.language);
     if (plugin.licenseUrl !== undefined) {
       requireHttpsUrl(plugin.licenseUrl, `${plugin.id}.licenseUrl`);
     }

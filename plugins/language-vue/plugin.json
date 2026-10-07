@@ -1,0 +1,27 @@
+{
+  "id": "com.oxideterm.language.vue",
+  "name": "Vue Language Support",
+  "version": "0.1.0",
+  "description": "Vue template highlighting with bundled JavaScript, TypeScript and CSS support.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-vue",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "vue",
+      "displayName": "Vue",
+      "grammarName": "vue",
+      "extensions": [
+        "vue"
+      ],
+      "highlights": "highlights.scm"
+    }
+  },
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "license": "Apache-2.0"
+}

@@ -1,0 +1,9 @@
+Dart Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The grammar and upstream queries are derived from tree-sitter-dart 1.0.0.
+Source: https://github.com/UserNobody14/tree-sitter-dart
+Revision: be07cf7118d3dba06236a3f19541685a68209934
+Upstream license: MIT (retained in LICENSE-grammar in the package).

@@ -93,6 +93,19 @@ test("recording reads the actual archive and corrections preserve assets and the
   assert.equal(languageCatalog.plugins[0].minOxidetermVersion, "2.0.0");
   assert.equal(languageCatalog.plugins[0].minOxideTermVersion, undefined);
   assert.deepEqual(languageCatalog.plugins[0].tags, ["language"]);
+  assert.deepEqual(languageCatalog.plugins[0].language, {id: "elixir"});
+  const definition = {id: "custom-lang", displayName: "Custom Language", grammarName: "elixir", extensions: ["custom.expr"], fileNames: ["Customfile"]};
+  const dynamic = {...language, engines: {oxideterm: ">=2.2.2"}, contributes: {language: {...definition, highlights: "highlights.scm", parserSha256: "a".repeat(64)}}};
+  fs.writeFileSync(zip, zipSync({"plugin.json": strToU8(JSON.stringify(dynamic))}));
+  assert.deepEqual(recordRelease(empty, dynamic, "https://example.com/releases/v1.0.0", ["any=" + zip]).plugins[0].language, definition);
+  assert.throws(() => recordRelease(empty, {...dynamic, contributes: {language: {...dynamic.contributes.language, extensions: ["other"]}}}, "https://example.com/releases/v1.0.0", ["any=" + zip]), /does not match/);
+  await assert.rejects(prepareManifest({...dynamic, engines: {oxideterm: ">=2.2.1"}}, empty), /Dynamic language declarations/);
+  const embedded = {...language, engines: {oxideterm: ">=2.2.1"}, contributes: {language: {id: "html", injections: [{id: "typescript"}]}}};
+  await assert.rejects(prepareManifest(embedded, empty), /Embedded language grammars/);
+  assert.throws(() => recordRelease(empty, embedded, "https://example.com/releases/v1.0.0", ["any=" + zip]), /Embedded language grammars/);
+  for (const invalid of [{id: "../lang"}, {...definition, extensions: ["*.expr"]}, {...definition, fileNames: ["dir/Customfile"]}]) {
+    assert.throws(() => recordRelease(empty, {...dynamic, contributes: {language: invalid}}, "https://example.com/releases/v1.0.0", ["any=" + zip]), /Invalid language/);
+  }
   const acp = { ...manifest, runtime: { kind: "acp", entry: "bin/agent" }, engines: { oxideterm: ">2.2.1" } };
   fs.writeFileSync(zip, zipSync({ "plugin.json": strToU8(JSON.stringify(acp)), "bin/agent": strToU8("fixture") }));
   const acpCatalog = recordRelease(empty, acp, "https://example.com/releases/v1.0.0", ["aarch64-apple-darwin=" + zip]);

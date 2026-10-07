@@ -1,0 +1,28 @@
+{
+  "id": "com.oxideterm.language.kotlin",
+  "name": "Kotlin Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting for Kotlin files.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-kotlin",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "kotlin",
+      "displayName": "Kotlin",
+      "grammarName": "kotlin",
+      "extensions": [
+        "kt",
+        "kts"
+      ],
+      "highlights": "highlights.scm"
+    }
+  },
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "license": "Apache-2.0"
+}

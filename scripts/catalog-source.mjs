@@ -129,6 +129,11 @@ export function importCatalogEntry(entry, directory = sourceDirectory) {
   if (entry.tags?.length > 2 || entry.tags?.some(tag=>!categories.has(tag))) throw new Error('Unregistered marketplace category');
   const merged = structuredClone(current ?? entry);
   if (current) {
+    const latest = [...current.releases].sort((a,b)=>semver.rcompare(a.version,b.version))[0];
+    if (entry.releases?.some(release => semver.gt(release.version,latest.version))) {
+      if (entry.language) merged.language = entry.language;
+      else delete merged.language;
+    }
     const probe = { version: 1, plugins: [{...entry, releases: current.releases}] };
     validateHistory({version:1,plugins:[current]}, probe);
     for (const incoming of entry.releases ?? []) {
@@ -146,6 +151,13 @@ export function importCatalogEntry(entry, directory = sourceDirectory) {
   validateHistory(previous,next);
   const root = path.join(directory,entry.id);
   if (!current) writeImmutable(path.join(root,'metadata.json'),metadataFor(entry,previous.plugins.length));
+  else if (!isDeepStrictEqual(current.language,merged.language)) {
+    const file=path.join(root,'metadata.json');
+    const metadata=read(file);
+    if (merged.language) metadata.language=merged.language;
+    else delete metadata.language;
+    writeJson(file,metadata);
+  }
   for (const release of merged.releases) writeRelease(root,release,entry.updatedAt);
   return loadCatalogSources(directory);
 }

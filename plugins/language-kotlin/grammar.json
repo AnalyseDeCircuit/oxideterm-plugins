@@ -1,0 +1,35 @@
+{
+  "crate": "tree-sitter-kotlin-ng",
+  "version": "1.1.0",
+  "sha256": "e800ebbda938acfbf224f4d2c34947a31994b1295ee6e819b65226c7b51b4450",
+  "revision": "77dd60ea0a9003ce062c9728a513ffe1aaff8c82",
+  "repository": "https://github.com/tree-sitter-grammars/tree-sitter-kotlin",
+  "license": "MIT",
+  "sample": "// preview\nfun greet(name: String): String {\n    val count = 42\n    return \"Hello, \" + name\n}\n",
+  "highlight": [
+    {
+      "text": "fun",
+      "scope": "Keyword"
+    },
+    {
+      "text": "greet",
+      "scope": "Function"
+    },
+    {
+      "text": "String",
+      "scope": "Type"
+    },
+    {
+      "text": "42",
+      "scope": "Number"
+    },
+    {
+      "text": "\"Hello, \"",
+      "scope": "String"
+    },
+    {
+      "text": "// preview",
+      "scope": "Comment"
+    }
+  ]
+}

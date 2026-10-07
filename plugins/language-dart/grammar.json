@@ -1,0 +1,29 @@
+{
+  "crate": "tree-sitter-dart",
+  "version": "1.0.0",
+  "sha256": "b126efb8dfeeba8b71f0c6ae1f0cd09cf8b205560786b31d44cc16b283e782f2",
+  "revision": "be07cf7118d3dba06236a3f19541685a68209934",
+  "repository": "https://github.com/UserNobody14/tree-sitter-dart",
+  "license": "MIT",
+  "sample": "// preview\nclass Greeter {\n  final String name = \"World\";\n  final int count = 42;\n  String greet() => \"Hello, $name\";\n}\n",
+  "highlight": [
+    {
+      "text": "class",
+      "scope": "Keyword"
+    },
+    {
+      "text": "42",
+      "scope": "Number"
+    },
+    {
+      "text": "\"World\"",
+      "scope": "String"
+    },
+    {
+      "text": "// preview",
+      "scope": "Comment"
+    }
+  ],
+  "archiveUrl": "https://codeload.github.com/UserNobody14/tree-sitter-dart/tar.gz/be07cf7118d3dba06236a3f19541685a68209934",
+  "archiveRoot": "tree-sitter-dart-be07cf7118d3dba06236a3f19541685a68209934"
+}

@@ -1,0 +1,9 @@
+Julia Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The grammar and upstream queries are derived from tree-sitter-julia 0.23.1.
+Source: https://github.com/tree-sitter/tree-sitter-julia
+Revision: a8e1262997d5a45520a06cbe1b86c0737d507054
+Upstream license: MIT (retained in LICENSE-grammar in the package).

@@ -1,0 +1,9 @@
+Nix Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The grammar and upstream queries are derived from tree-sitter-nix 0.3.0.
+Source: https://github.com/nix-community/tree-sitter-nix
+Revision: ea1d87f7996be1329ef6555dcacfa63a69bd55c6
+Upstream license: MIT (retained in LICENSE-grammar in the package).

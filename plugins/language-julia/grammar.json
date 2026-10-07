@@ -1,0 +1,31 @@
+{
+  "crate": "tree-sitter-julia",
+  "version": "0.23.1",
+  "sha256": "4144731a178812ee867619b1e98b3b91e54c1652304b26e5ebe3175b701de323",
+  "revision": "a8e1262997d5a45520a06cbe1b86c0737d507054",
+  "repository": "https://github.com/tree-sitter/tree-sitter-julia",
+  "license": "MIT",
+  "sample": "# preview\nfunction greet(name::String)\n    count = 42\n    return \"Hello, \" * name\nend\n",
+  "highlight": [
+    {
+      "text": "function",
+      "scope": "Keyword"
+    },
+    {
+      "text": "greet",
+      "scope": "Function"
+    },
+    {
+      "text": "42",
+      "scope": "Number"
+    },
+    {
+      "text": "\"Hello, \"",
+      "scope": "String"
+    },
+    {
+      "text": "# preview",
+      "scope": "Comment"
+    }
+  ]
+}

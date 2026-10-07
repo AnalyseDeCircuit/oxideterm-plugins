@@ -1,0 +1,15 @@
+Svelte Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The grammar and upstream queries are derived from tree-sitter-svelte-ng 1.0.2.
+Source: https://github.com/tree-sitter-grammars/tree-sitter-svelte
+Revision: 774a65aea563accc35f5d45fafa4d96ec5761f57
+Upstream license: MIT (retained in LICENSE-grammar in the package).
+
+The inherited HTML tag queries come from tree-sitter-vue.
+Source: https://github.com/tree-sitter-grammars/tree-sitter-vue
+Revision: ce8011a414fdf8091f4e4071752efc376f4afb08
+Copyright (c) 2024 Amaan Qureshi
+License: MIT (the same copyright and terms retained in LICENSE-grammar).

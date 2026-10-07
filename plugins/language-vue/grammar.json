@@ -1,0 +1,45 @@
+{
+  "crate": "tree-sitter-vue",
+  "version": "0.1.0",
+  "sha256": "e62913c5709ed1e68616bb85aedb2641a0c35c6b6709986ab71487d54b16ad0d",
+  "revision": "ce8011a414fdf8091f4e4071752efc376f4afb08",
+  "repository": "https://github.com/tree-sitter-grammars/tree-sitter-vue",
+  "license": "MIT",
+  "injections": [
+    {"language": "typescript", "query": "typescript.scm", "highlightsInclude": ["javascript"]},
+    {"language": "css", "query": "css.scm"}
+  ],
+  "sample": "<script setup lang=\"ts\">\n// script\nconst count: number = 42;\n</script>\n<template><div class=\"greeting\">{{ count + 1 }}</div></template>\n<style>\n/* style */\n.greeting { color: red; }\n</style>\n",
+  "highlight": [
+    {
+      "text": "div",
+      "scope": "Type"
+    },
+    {
+      "text": "class",
+      "scope": "Attribute"
+    },
+    {
+      "text": "const",
+      "scope": "Keyword"
+    },
+    {
+      "text": "42",
+      "scope": "Number"
+    },
+    {
+      "text": "// script",
+      "scope": "Comment"
+    },
+    {
+      "text": "color",
+      "scope": "Property"
+    },
+    {
+      "text": "/* style */",
+      "scope": "Comment"
+    }
+  ],
+  "archiveUrl": "https://codeload.github.com/tree-sitter-grammars/tree-sitter-vue/tar.gz/ce8011a414fdf8091f4e4071752efc376f4afb08",
+  "archiveRoot": "tree-sitter-vue-ce8011a414fdf8091f4e4071752efc376f4afb08"
+}

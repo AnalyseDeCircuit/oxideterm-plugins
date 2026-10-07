@@ -1,0 +1,31 @@
+{
+  "id": "com.oxideterm.language.xml",
+  "name": "XML Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting for XML files.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-xml",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "xml",
+      "displayName": "XML",
+      "grammarName": "xml",
+      "extensions": [
+        "xml",
+        "xsd",
+        "xsl",
+        "xslt",
+        "rng"
+      ],
+      "highlights": "highlights.scm"
+    }
+  },
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "license": "Apache-2.0"
+}

@@ -1,0 +1,35 @@
+{
+  "crate": "tree-sitter-nix",
+  "version": "0.3.0",
+  "sha256": "4952a9733f3a98f6683a0ccd1035d84ab7a52f7e84eeed58548d86765ad92de3",
+  "revision": "ea1d87f7996be1329ef6555dcacfa63a69bd55c6",
+  "repository": "https://github.com/nix-community/tree-sitter-nix",
+  "license": "MIT",
+  "sample": "# preview\nlet count = 42; in { name = \"demo\"; enabled = true; inherit count; }\n",
+  "highlight": [
+    {
+      "text": "let",
+      "scope": "Keyword"
+    },
+    {
+      "text": "in",
+      "scope": "Keyword"
+    },
+    {
+      "text": "42",
+      "scope": "Number"
+    },
+    {
+      "text": "\"demo\"",
+      "scope": "String"
+    },
+    {
+      "text": "true",
+      "scope": "Variable"
+    },
+    {
+      "text": "# preview",
+      "scope": "Comment"
+    }
+  ]
+}

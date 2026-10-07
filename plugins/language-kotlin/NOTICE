@@ -1,0 +1,9 @@
+Kotlin Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The grammar and upstream queries are derived from tree-sitter-kotlin-ng 1.1.0.
+Source: https://github.com/tree-sitter-grammars/tree-sitter-kotlin
+Revision: 77dd60ea0a9003ce062c9728a513ffe1aaff8c82
+Upstream license: MIT (retained in LICENSE-grammar in the package).

@@ -7,6 +7,7 @@ import {readCatalog, importCatalogEntry, generateCatalog} from './catalog-source
 import {recordRelease} from './release-plugin.mjs';
 import {validateRegistry} from './validate-registry.mjs';
 import {unzipSync, strFromU8} from 'fflate';
+import semver from 'semver';
 
 const {values} = parseArgs({options:{repository:{type:'string',default:process.env.GITHUB_REPOSITORY},'dry-run':{type:'boolean',default:false}}});
 if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(values.repository??'')) throw new Error('A repository owner/name is required');
@@ -56,15 +57,25 @@ for(const release of published) {
         manifest??=packaged;
         packageArguments.push(`${pkg.target}=${file}`);
       }
-      const verified=recordRelease({version:1,plugins:[]},manifest,base,packageArguments).plugins[0].releases[0];
+      const verifiedEntry=recordRelease({version:1,plugins:[]},manifest,base,packageArguments).plugins[0];
+      const verified=verifiedEntry.releases[0];
       const byTarget=packages=>[...packages].sort((a,b)=>a.target.localeCompare(b.target));
       if(!isDeepStrictEqual(byTarget(verified.packages),byTarget(record.packages))) throw new Error('Uploaded asset checksum or size differs from catalog record');
       // Import only the release verified here. Stale producer snapshots cannot
       // remove later releases or carry unverified extra versions into the catalog.
       const incoming={...entry,releases:known?.releases ? structuredClone(known.releases).concat(record) : [record]};
+      if(verifiedEntry.language) incoming.language=verifiedEntry.language;
+      else delete incoming.language;
       if(!known && incoming.version!==record.version) throw new Error('A new plugin must establish its legacy record from the verified release');
       if(!values['dry-run']) catalog=importCatalogEntry(incoming);
-      else catalog={...catalog,plugins:catalog.plugins.filter(plugin=>plugin.id!==entry.id).concat(known ? {...known,releases:incoming.releases} : incoming)};
+      else {
+        const updated=known ? {...known,releases:incoming.releases} : incoming;
+        if(!known || known.releases.every(stored=>semver.lt(stored.version,record.version))) {
+          if(incoming.language) updated.language=incoming.language;
+          else delete updated.language;
+        }
+        catalog={...catalog,plugins:catalog.plugins.filter(plugin=>plugin.id!==entry.id).concat(updated)};
+      }
       imported++;
     } finally { fs.rmSync(temporary,{recursive:true,force:true}); }
 }

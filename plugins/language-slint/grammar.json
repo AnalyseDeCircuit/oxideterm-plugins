@@ -1,0 +1,42 @@
+{
+  "crate": "tree-sitter-slint",
+  "version": "0.0.1",
+  "sha256": "051fbcc276f27769be037895065f902b7d67b1f5d74d18de8706ab5141b0adf5",
+  "revision": "7f3e775941f0268334c5219586d5811229ffcf34",
+  "repository": "https://github.com/slint-ui/tree-sitter-slint",
+  "license": "MIT",
+  "licenseFile": "LICENSES/MIT.txt",
+  "sample": "// preview\nexport component Preview inherits Window {\n    in property<string> title: \"Hello\";\n    width: 320px;\n    background: #112233;\n    Text { text: root.title; }\n}\n",
+  "highlight": [
+    {
+      "text": "export",
+      "scope": "Keyword"
+    },
+    {
+      "text": "Preview",
+      "scope": "Type"
+    },
+    {
+      "text": "title",
+      "scope": "Property"
+    },
+    {
+      "text": "\"Hello\"",
+      "scope": "String"
+    },
+    {
+      "text": "320px",
+      "scope": "Number"
+    },
+    {
+      "text": "#112233",
+      "scope": "Constant"
+    },
+    {
+      "text": "// preview",
+      "scope": "Comment"
+    }
+  ],
+  "archiveUrl": "https://codeload.github.com/slint-ui/tree-sitter-slint/tar.gz/7f3e775941f0268334c5219586d5811229ffcf34",
+  "archiveRoot": "tree-sitter-slint-7f3e775941f0268334c5219586d5811229ffcf34"
+}

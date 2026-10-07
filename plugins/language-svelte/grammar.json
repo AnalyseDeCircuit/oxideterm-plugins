@@ -1,0 +1,39 @@
+{
+  "crate": "tree-sitter-svelte-ng",
+  "version": "1.0.2",
+  "sha256": "ef0a71f9cf5e94373cc86c64893630c8a29bb25d3390a248268d08af2165fa37",
+  "revision": "774a65aea563accc35f5d45fafa4d96ec5761f57",
+  "repository": "https://github.com/tree-sitter-grammars/tree-sitter-svelte",
+  "license": "MIT",
+  "injections": [
+    {"language": "typescript", "query": "typescript.scm", "highlightsInclude": ["javascript"]},
+    {"language": "css", "query": "css.scm"}
+  ],
+  "sample": "<script lang=\"ts\">\n// script\nlet count: number = 42;\n</script>\n<button on:click={() => count += 1}>{count}</button>\n<style>\n/* style */\nbutton { color: red; }\n</style>\n",
+  "highlight": [
+    {
+      "text": "button",
+      "scope": "Type"
+    },
+    {
+      "text": "let",
+      "scope": "Keyword"
+    },
+    {
+      "text": "42",
+      "scope": "Number"
+    },
+    {
+      "text": "// script",
+      "scope": "Comment"
+    },
+    {
+      "text": "color",
+      "scope": "Property"
+    },
+    {
+      "text": "/* style */",
+      "scope": "Comment"
+    }
+  ]
+}

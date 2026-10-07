@@ -1,0 +1,31 @@
+{
+  "crate": "tree-sitter-ini",
+  "version": "1.4.0",
+  "sha256": "387f79682cd53b7c0a5777c96e601a02b9965a787984ef86dbb8952bdab2d62f",
+  "revision": "d1f6ae18e86de3c21bb6ab634ff9ab549ceb1249",
+  "repository": "https://github.com/justinmk/tree-sitter-ini",
+  "license": "Apache-2.0",
+  "sample": "; preview\n[server]\nhost = example.com\nport = 2222\n",
+  "highlight": [
+    {
+      "text": "server",
+      "scope": "Type"
+    },
+    {
+      "text": "host",
+      "scope": "Property"
+    },
+    {
+      "text": "=",
+      "scope": "Operator"
+    },
+    {
+      "text": "; preview\n",
+      "scope": "Comment"
+    },
+    {
+      "text": " example.com",
+      "scope": "String"
+    }
+  ]
+}

@@ -37,6 +37,7 @@ test('generation leaves the frozen v1 bytes unchanged when plugins, releases and
   metadata.licenseUrl='https://example.com/LICENSE';
   fs.writeFileSync(metadataPath,JSON.stringify(metadata));
   updated.releases.push(release('0.2.0'));
+  updated.language={id:'custom-lang',displayName:'Custom Language',extensions:['custom.expr']};
   updated.releases[0].compatibilityCorrections=[{engines:{oxideterm:'>=2.1.0, <3.0.0'},reason:'Removed API',recordedAt:'2026-10-06T00:00:00Z'}];
   importCatalogEntry(updated,source);
   importCatalogEntry(plugin('com.example.new'),source);
@@ -45,11 +46,13 @@ test('generation leaves the frozen v1 bytes unchanged when plugins, releases and
   const summary=JSON.parse(fs.readFileSync(path.join(output,'v2/index.json')));
   assert.equal(summary.plugins[0].license,'MIT');
   assert.equal(summary.plugins[0].licenseUrl,'https://example.com/LICENSE');
+  assert.deepEqual(summary.plugins[0].language,updated.language);
   assert.deepEqual(summary.plugins.map(entry=>[entry.id,entry.version]),[['com.example.z','0.2.0'],['com.example.a','0.1.0'],['com.example.new','0.1.0']]);
   const referenced=summary.plugins[0].history.checksum.slice('sha256:'.length);
   const history=JSON.parse(fs.readFileSync(path.join(output,'v2/plugins/com.example.z',referenced+'.json')));
   assert.equal(history.license,'MIT');
   assert.equal(history.licenseUrl,'https://example.com/LICENSE');
+  assert.deepEqual(history.language,updated.language);
   assert.deepEqual(history.releases[0].compatibilityCorrections,updated.releases[0].compatibilityCorrections);
   fs.appendFileSync(path.join(output,'v1/index.json'),'\n');
   assert.throws(()=>validateFrozenV1(output),/Frozen v1 catalog changed/);
@@ -104,6 +107,7 @@ test('stale parallel release records merge without losing other releases and ref
     const incoming=structuredClone(initial.plugins.find(entry=>entry.id===id));
     incoming.updatedAt='2026-10-06T00:00:00Z';
     incoming.releases.push(release(version));
+    incoming.language={id:'custom-lang',extensions:[version==='0.3.0' ? 'newlang' : 'oldlang']};
     importCatalogEntry(incoming,root);
   }
   const catalog=loadCatalogSources(root);
@@ -112,6 +116,7 @@ test('stale parallel release records merge without losing other releases and ref
   ]);
   importCatalogEntry(initial.plugins[0],root);
   assert.deepEqual(loadCatalogSources(root),catalog);
+  assert.deepEqual(catalog.plugins[0].language,{id:'custom-lang',extensions:['newlang']});
   const tampered=structuredClone(catalog.plugins[0]);
   tampered.releases[1].packages[0].checksum='b'.repeat(64);
   assert.throws(()=>importCatalogEntry(tampered,root),/immutable release/);
@@ -140,6 +145,11 @@ test('publisher catches up multiple versions, validates uploaded bytes, and entr
     const directory=path.join(root,'fixtures',tag);
     fs.mkdirSync(directory,{recursive:true});
     const manifest={id:'com.example.demo',name:'Demo',version,engines:{oxideterm:'>=2.0.0'},tags:['utilities']};
+    if(version!=='1.0.0') {
+      manifest.engines={oxideterm:'>=2.2.2'};
+      manifest.runtime={kind:'language',entry:'parser.wasm'};
+      manifest.contributes={language:{id:'custom-lang',displayName:'Custom Language',extensions:[`v${version.replaceAll('.','')}`]}};
+    }
     const file=path.join(directory,`demo-${version}-any.zip`);
     fs.writeFileSync(file,zipSync({'plugin.json':strToU8(JSON.stringify(manifest)),'payload.txt':strToU8('payload-unchanged')},{level:0}));
     producer=recordRelease(producer,manifest,`https://github.com/${repository}/releases/download/${tag}`,[`any=${file}`]);
@@ -151,6 +161,10 @@ test('publisher catches up multiple versions, validates uploaded bytes, and entr
   }
   publish('1.0.0','01');
   publish('2.0.0','02');
+  const producerFile=path.join(root,'fixtures/demo-v2.0.0/catalog-entry.json');
+  const untrusted=JSON.parse(fs.readFileSync(producerFile));
+  untrusted.language.extensions=['wrong'];
+  fs.writeFileSync(producerFile,JSON.stringify(untrusted));
   const gh=path.join(root,'bin/gh');
   fs.writeFileSync(gh,`#!/usr/bin/env node
 const fs=require('node:fs'),path=require('node:path');
@@ -167,6 +181,7 @@ else throw new Error('Unexpected gh command');
   const saved=loadCatalogSources(path.join(root,'registry/plugins'));
   assert.deepEqual(saved.plugins[0].releases.map(record=>record.version),['1.0.0','2.0.0']);
   assert.equal(saved.plugins[0].version,'1.0.0');
+  assert.deepEqual(saved.plugins[0].language,{id:'custom-lang',displayName:'Custom Language',extensions:['v200']});
   assert.match(sync(),/Imported 0 unpublished/);
   execFileSync('git',['init'],{cwd:root,stdio:'ignore'});
   execFileSync('git',['config','user.name','Catalog test'],{cwd:root});

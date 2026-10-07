@@ -1,0 +1,27 @@
+{
+  "id": "com.oxideterm.language.dtd",
+  "name": "DTD Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting for DTD files.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-dtd",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "dtd",
+      "displayName": "DTD",
+      "grammarName": "dtd",
+      "extensions": [
+        "dtd"
+      ],
+      "highlights": "highlights.scm"
+    }
+  },
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "license": "Apache-2.0"
+}

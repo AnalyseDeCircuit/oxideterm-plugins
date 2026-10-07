@@ -48,36 +48,100 @@ async function download(url) {
   return bytes;
 }
 
-for (const language of names) {
-  const plugin = plugins.get(language);
+async function withSource(plugin, read) {
+  const language = plugin.manifest.contributes.language.id;
   const recipe = plugin.recipe;
-  const archive = path.join(output, recipe.crate + "-" + recipe.version + ".crate");
+  const archive = path.join(output, recipe.archiveUrl
+    ? language + "-" + recipe.revision + ".tar.gz"
+    : recipe.crate + "-" + recipe.version + ".crate");
   if (!fs.existsSync(archive)) {
-    fs.writeFileSync(archive, await download("https://static.crates.io/crates/" + recipe.crate + "/" + recipe.crate + "-" + recipe.version + ".crate"));
+    fs.writeFileSync(archive, await download(recipe.archiveUrl
+      ?? "https://static.crates.io/crates/" + recipe.crate + "/" + recipe.crate + "-" + recipe.version + ".crate"));
   }
   if (digest(fs.readFileSync(archive)) !== recipe.sha256) throw new Error("Source archive checksum mismatch: " + language);
   const build = fs.mkdtempSync(path.join(output, ".build-"));
   try {
     execFileSync("tar", ["-xzf", archive, "-C", build]);
-    const source = path.join(build, recipe.crate + "-" + recipe.version);
-    const directory = path.join(output, language);
-    fs.mkdirSync(directory, { recursive: true });
+    const source = path.join(build, recipe.archiveRoot ?? recipe.crate + "-" + recipe.version);
+    return await read(source);
+  } finally {
+    fs.rmSync(build, { recursive: true, force: true });
+  }
+}
+
+function readHighlights(plugin, source) {
+  const override = path.join(plugin.directory, "highlights.scm");
+  return fs.readFileSync(fs.existsSync(override) ? override : path.join(source, plugin.recipe.highlightsPath ?? "queries/highlights.scm"));
+}
+
+async function buildGrammar(plugin, directory, includes = []) {
+  fs.mkdirSync(directory, { recursive: true });
+  return withSource(plugin, async source => {
+    const recipe = plugin.recipe;
     const parser = path.join(directory, "parser.wasm");
     execFileSync(values["tree-sitter"], ["build", "--wasm", path.join(source, recipe.grammarPath ?? "."), "-o", parser], { stdio: "inherit" });
-    const override = path.join(plugin.directory, "highlights.scm");
-    const highlights = fs.readFileSync(fs.existsSync(override) ? override : path.join(source, "queries/highlights.scm"));
+    const parts = [];
+    for (const language of includes) {
+      const included = plugins.get(language);
+      if (!included) throw new Error("Unknown included highlight language: " + language);
+      parts.push(await withSource(included, source => readHighlights(included, source)));
+    }
+    parts.push(readHighlights(plugin, source));
+    const highlights = Buffer.concat(parts.flatMap(part => [part, Buffer.from("\n")]));
     fs.writeFileSync(path.join(directory, "highlights.scm"), highlights);
     let license;
     const licenseFile = recipe.licenseFile ?? "LICENSE";
     const licensePath = path.join(source, licenseFile);
     if (fs.existsSync(licensePath)) license = fs.readFileSync(licensePath);
     else license = await download(recipe.repository.replace("https://github.com/", "https://raw.githubusercontent.com/") + "/" + recipe.revision + "/" + licenseFile);
-    const wasm = fs.readFileSync(parser);
+    const notices = {};
+    for (const notice of ["NOTICE", "NOTICE.txt"]) {
+      if (fs.existsSync(path.join(source, notice))) notices["UPSTREAM-" + notice] = fs.readFileSync(path.join(source, notice));
+    }
+    return { wasm: fs.readFileSync(parser), highlights, license, notices };
+  });
+}
+
+for (const language of names) {
+    const plugin = plugins.get(language);
+    const recipe = plugin.recipe;
+    const directory = path.join(output, language);
+    const { wasm, highlights, license, notices } = await buildGrammar(plugin, directory);
+    const embeddedFiles = {};
+    const injections = [];
+    for (const declared of recipe.injections ?? []) {
+      const embedded = plugins.get(declared.language);
+      if (!embedded) throw new Error("Unknown embedded language: " + declared.language);
+      const prefix = "embedded/" + declared.language + "/";
+      const assets = await buildGrammar(embedded, path.join(directory, prefix), declared.highlightsInclude);
+      const query = fs.readFileSync(path.join(plugin.directory, declared.query));
+      embeddedFiles[prefix + "parser.wasm"] = assets.wasm;
+      embeddedFiles[prefix + "highlights.scm"] = assets.highlights;
+      embeddedFiles[prefix + "injections.scm"] = query;
+      embeddedFiles[prefix + "LICENSE-grammar"] = assets.license;
+      embeddedFiles[prefix + "NOTICE"] = fs.readFileSync(path.join(embedded.directory, "NOTICE"));
+      for (const included of declared.highlightsInclude ?? []) {
+        const dependency = plugins.get(included);
+        const licensed = await withSource(dependency, async source => {
+          const file = dependency.recipe.licenseFile ?? "LICENSE";
+          const local = path.join(source, file);
+          return fs.existsSync(local) ? fs.readFileSync(local) : download(dependency.recipe.repository.replace("https://github.com/", "https://raw.githubusercontent.com/") + "/" + dependency.recipe.revision + "/" + file);
+        });
+        embeddedFiles[prefix + "LICENSE-" + included] = licensed;
+        embeddedFiles[prefix + "NOTICE-" + included] = fs.readFileSync(path.join(dependency.directory, "NOTICE"));
+      }
+      injections.push({
+        id: declared.language, grammarName: embedded.manifest.contributes.language.grammarName ?? declared.language,
+        parser: prefix + "parser.wasm", highlights: prefix + "highlights.scm", query: prefix + "injections.scm",
+        parserSha256: digest(assets.wasm), highlightsSha256: digest(assets.highlights), querySha256: digest(query),
+      });
+    }
     const manifest = await prepareManifest({
       ...plugin.manifest,
       contributes: { ...plugin.manifest.contributes, language: {
         ...plugin.manifest.contributes.language,
         parserSha256: digest(wasm), highlightsSha256: digest(highlights),
+        ...(injections.length ? {injections} : {}),
       } },
     }, catalog, { hostRepository: values["host-repo"] });
     writeJson(path.join(directory, "plugin.json"), manifest);
@@ -88,15 +152,12 @@ for (const language of names) {
       "LICENSE": fs.readFileSync(path.join(plugin.directory, "LICENSE")),
       "LICENSE-grammar": license,
       "NOTICE": fs.readFileSync(path.join(plugin.directory, "NOTICE")),
+      ...notices, ...embeddedFiles,
     };
-    for (const notice of ["NOTICE", "NOTICE.txt"]) {
-      if (fs.existsSync(path.join(source, notice))) {
-        files["UPSTREAM-" + notice] = fs.readFileSync(path.join(source, notice));
-      }
+    for (const [name, bytes] of Object.entries(files)) {
+      fs.mkdirSync(path.dirname(path.join(directory, name)), {recursive: true});
+      fs.writeFileSync(path.join(directory, name), bytes);
     }
     fs.writeFileSync(path.join(output, manifest.id + "-" + manifest.version + ".zip"), zipSync(files));
     console.log("Built " + manifest.id + " " + manifest.version + " (" + wasm.length + " parser bytes)");
-  } finally {
-    fs.rmSync(build, { recursive: true, force: true });
-  }
 }

@@ -1,0 +1,27 @@
+{
+  "id": "com.oxideterm.language.nix",
+  "name": "Nix Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting for Nix files.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-nix",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "nix",
+      "displayName": "Nix",
+      "grammarName": "nix",
+      "extensions": [
+        "nix"
+      ],
+      "highlights": "highlights.scm"
+    }
+  },
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "license": "Apache-2.0"
+}

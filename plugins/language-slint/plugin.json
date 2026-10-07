@@ -1,0 +1,27 @@
+{
+  "id": "com.oxideterm.language.slint",
+  "name": "Slint Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting for Slint files.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-slint",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "slint",
+      "displayName": "Slint",
+      "grammarName": "slint",
+      "extensions": [
+        "slint"
+      ],
+      "highlights": "highlights.scm"
+    }
+  },
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "license": "Apache-2.0"
+}

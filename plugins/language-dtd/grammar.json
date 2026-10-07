@@ -1,0 +1,37 @@
+{
+  "crate": "tree-sitter-xml",
+  "version": "0.7.0",
+  "sha256": "e670041f591d994f54d597ddcd8f4ebc930e282c4c76a42268743b71f0c8b6b3",
+  "revision": "4b64dd3a03ec002258d6268d712fd93716d6ab57",
+  "repository": "https://github.com/tree-sitter-grammars/tree-sitter-xml",
+  "license": "MIT",
+  "grammarPath": "dtd",
+  "highlightsPath": "queries/dtd/highlights.scm",
+  "sample": "<!-- preview -->\n<!ELEMENT project (#PCDATA)>\n<!ATTLIST project name CDATA #REQUIRED>\n<!ENTITY label \"demo\">\n",
+  "highlight": [
+    {
+      "text": "ELEMENT",
+      "scope": "Keyword"
+    },
+    {
+      "text": "project",
+      "scope": "Type"
+    },
+    {
+      "text": "name",
+      "scope": "Property"
+    },
+    {
+      "text": "#REQUIRED",
+      "scope": "Attribute"
+    },
+    {
+      "text": "\"demo\"",
+      "scope": "String"
+    },
+    {
+      "text": "<!-- preview -->",
+      "scope": "Comment"
+    }
+  ]
+}

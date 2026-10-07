@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { spawnSync } from "node:child_process";
-import { requireEngines } from "./validate-registry.mjs";
+import { requireEngines, languageDefinition } from "./validate-registry.mjs";
 
 // Source validation is intentionally independent from the marketplace index:
 // a plugin may be prepared here before its immutable release package exists.
@@ -51,6 +51,21 @@ for (const source of pluginDirectories) {
         requireText(recipe[field], `${manifest.id}: grammar.${field}`);
       }
       if (!/^[a-f0-9]{64}$/.test(recipe.sha256)) throw new Error(`${manifest.id}: invalid grammar checksum`);
+      if (!/^[a-f0-9]{40}$/.test(recipe.revision)) throw new Error(`${manifest.id}: invalid pinned grammar revision`);
+      if (recipe.archiveUrl && recipe.archiveUrl !== recipe.repository.replace('https://github.com/', 'https://codeload.github.com/') + '/tar.gz/' + recipe.revision) {
+        throw new Error(`${manifest.id}: source archive must match its pinned repository revision`);
+      }
+      for (const field of ['archiveRoot','grammarPath','highlightsPath','licenseFile']) {
+        const value=recipe[field];
+        if(value!==undefined && (typeof value!=='string' || path.posix.isAbsolute(value) || value.split(/[\\/]/).includes('..'))) throw new Error(`${manifest.id}: invalid grammar ${field}`);
+      }
+      const injections=recipe.injections ?? [];
+      if(!Array.isArray(injections) || injections.length>8 || new Set(injections.map(item=>item.language)).size!==injections.length) throw new Error(`${manifest.id}: invalid embedded grammar list`);
+      for(const injection of injections) {
+        if(!/^[a-z][a-z0-9_-]{0,63}$/.test(injection.language ?? '') || typeof injection.query!=='string' || path.posix.isAbsolute(injection.query) || injection.query.split(/[\\/]/).includes('..')) throw new Error(`${manifest.id}: invalid injection source`);
+        requireText(fs.readFileSync(path.join(pluginDirectory,injection.query),'utf8'),`${manifest.id}: injection query`);
+        if(injection.highlightsInclude!==undefined && (!Array.isArray(injection.highlightsInclude) || injection.highlightsInclude.some(id=>!/^[a-z][a-z0-9_-]{0,63}$/.test(id)))) throw new Error(`${manifest.id}: invalid inherited highlight list`);
+      }
       const captures = Array.isArray(recipe.highlight) ? recipe.highlight : [recipe.highlight];
       if (!captures.length) throw new Error(`${manifest.id}: expected highlight captures`);
       for (const capture of captures) {
@@ -58,6 +73,7 @@ for (const source of pluginDirectories) {
         requireText(capture?.scope, `${manifest.id}: expected highlight scope`);
       }
       requireText(manifest.contributes?.language?.id, `${manifest.id}: language id`);
+      languageDefinition(manifest.contributes.language);
       requireEngines(manifest.engines, manifest.id);
     }
     // Rust WASM sources produce their entry during the plugin build job, just like grammars.

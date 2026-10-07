@@ -1,0 +1,9 @@
+Vue Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The grammar and upstream queries are derived from tree-sitter-vue 0.1.0.
+Source: https://github.com/tree-sitter-grammars/tree-sitter-vue
+Revision: ce8011a414fdf8091f4e4071752efc376f4afb08
+Upstream license: MIT (retained in LICENSE-grammar in the package).

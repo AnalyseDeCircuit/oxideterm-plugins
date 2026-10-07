@@ -1,0 +1,27 @@
+{
+  "id": "com.oxideterm.language.dart",
+  "name": "Dart Language Support",
+  "version": "0.1.0",
+  "description": "Syntax highlighting for Dart files.",
+  "author": "OxideTerm",
+  "repository": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-dart",
+  "runtime": {
+    "kind": "language",
+    "entry": "parser.wasm"
+  },
+  "contributes": {
+    "language": {
+      "id": "dart",
+      "displayName": "Dart",
+      "grammarName": "dart",
+      "extensions": [
+        "dart"
+      ],
+      "highlights": "highlights.scm"
+    }
+  },
+  "engines": {
+    "oxideterm": ">=2.2.2"
+  },
+  "license": "Apache-2.0"
+}

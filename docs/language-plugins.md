@@ -2,15 +2,61 @@
 
 [English](language-plugins.en.md)
 
-`plugins/language-<标识>/` 分别维护 24 个语言插件：C、C++、C#、CSS、Common Lisp、Elixir、Go、HTML、Java、
+`plugins/language-<标识>/` 独立维护语言插件：C、C++、C#、CSS、Common Lisp、Elixir、Go、HTML、Java、
 JavaScript、Objective-C、Perl、PHP、R、Ruby、Rust、Scala、Swift、TypeScript、TSX 和 Zig。
 另有 Nginx、Terraform/HCL 和 Protobuf，分别识别 Nginx 专用文件名及 `.nginx`、`.tf/.tfvars/.hcl` 和 `.proto`。
 通用 `.conf` 不会自动识别为 Nginx，`.tf.json` 和 `.tfvars.json` 仍按 JSON 处理。
-主程序保留文件类型识别，解析器与高亮查询随插件分发。Markdown 的现有实现保持内置。
+已有语言包仍兼容原来的文件识别规则。自 2.2.2 起，新语言可以在插件清单中声明文件关联，
+无需向主程序增加语言枚举或扩展名。Markdown 的现有实现保持内置。
 TypeScript 和 TSX 使用同一固定版本的源码，分别编译和打包。PHP 使用包含 PHP 标签的语法。
 每个目录都有独立的 `plugin.json`、`grammar.json`、`LICENSE` 和 `NOTICE`；自有高亮规则也放在对应插件目录内。
 
+新增的独立插件包括 XML、DTD、INI、Kotlin、Dart、Nix、Julia、Vue、Svelte 和 Slint。
+文件关联由各自清单声明：`.xml/.xsd/.xsl/.xslt/.rng`、`.dtd`、`.ini` 及 `.editorconfig/.gitconfig`、
+`.kt/.kts`、`.dart`、`.nix`、`.jl`、`.vue`、`.svelte` 和 `.slint`。
+通用 `.conf`、`.cfg` 不会被自动归为 INI；SVG 图片预览仍保留现有入口。
+
+Vue、Svelte 包内包含 TypeScript 和 CSS 解析器；TypeScript 解析器同时处理 JavaScript。
+脚本、样式、模板表达式按原文件字节坐标解析，无须用户另装对应语言包。
+TypeScript 的基础 JavaScript 规则和框架的 HTML 规则会一并打包。
+
 ## 构建与验证
+
+在 `contributes.language` 中声明语言元数据，例如：
+
+```json
+{
+  "id": "ocaml-interface",
+  "displayName": "OCaml Interface",
+  "grammarName": "ocaml_interface",
+  "extensions": ["mli"],
+  "fileNames": []
+}
+```
+
+`id` 是稳定的语言标识；`grammarName` 是解析器导出名称，不含 `tree_sitter_` 前缀，
+省略时使用语言标识并将连字符换成下划线。扩展名不带点，可声明复合扩展名；
+文件名是字面值，不能使用路径或通配符。匹配忽略 ASCII 大小写。
+构建脚本继续写入 `highlights`、`parserSha256`、`highlightsSha256`，不需要人工维护索引中的对应字段。
+
+发布工具从实际安装包提取元数据，写入 v2 的摘要与版本历史。
+安装前，客户端从兼容的索引条目识别文件并提供对应插件的安装入口；安装后优先使用本地清单。
+精确文件名优先于扩展名，较长扩展名优先于较短扩展名；同等匹配按插件 ID 排序。
+内置语言保留现有扩展名优先级，例如 `.tf.json` 仍使用内置 JSON。
+安装、更新、禁用及索引刷新会重新识别已打开的文件，并保留文本与撤销历史。
+
+新声明要求宿主 `>=2.2.2`。现有语言增加这些字段时，准备发布使用
+`--requires-current-app --host-repo <主程序源码目录>` 或明确的 `--host-range '>=2.2.2'`；
+发布工具会拒绝仍包含旧宿主的范围。旧语言包无需重新发布。
+v1 索引保持冻结，所有新增语言与更新只写入 v2。
+
+混合语言插件在 `grammar.json` 中声明 `injections`，每项指定 `language` 和本地选择查询 `query`，
+可用 `highlightsInclude` 合并基础高亮规则。查询用 `@injection.content` 选择原文区域。
+构建脚本将子解析器、查询、许可证和校验值放进同一个安装包。
+宿主校验所有资源，再为每种嵌入语言建立一个文档解析器；编辑和取消沿用文档自己的任务生命周期。
+
+没有合适的 crate 归档时，可在配方中使用固定提交的 `archiveUrl`、`archiveRoot`。
+归档地址必须对应 `repository` 和 `revision`，并填写实际下载内容的 SHA-256。
 
 需要 Node.js 22、目标主程序源码和 Tree-sitter CLI 0.27.0。
 配方固定语法源码版本和归档校验值；编译器首次使用会准备其 WebAssembly 工具链。

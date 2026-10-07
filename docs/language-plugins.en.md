@@ -2,10 +2,11 @@
 
 [简体中文](language-plugins.md)
 
-The individual `plugins/language-<id>/` directories maintain 24 plugins: C, C++, C#, CSS, Common Lisp,
+The individual `plugins/language-<id>/` directories independently maintain plugins: C, C++, C#, CSS, Common Lisp,
 Elixir, Go, HTML, Java, JavaScript, Objective-C, Perl, PHP, R, Ruby, Rust, Scala,
-Swift, TypeScript, TSX, and Zig. The host retains file-type recognition; plugins supply parsers
-and highlight queries. Existing Markdown support stays built in.
+Swift, TypeScript, TSX, and Zig. Existing packages retain their legacy file associations.
+From 2.2.2, new languages declare associations in their manifests without adding
+host enum variants or extension mappings. Existing Markdown support stays built in.
 Nginx, Terraform/HCL, and Protobuf add recognition for Nginx-specific filenames
 and `.nginx`, `.tf/.tfvars/.hcl`, and `.proto`, respectively. Generic `.conf` files
 are not classified as Nginx; `.tf.json` and `.tfvars.json` remain JSON.
@@ -14,7 +15,59 @@ separately. PHP uses the grammar that accepts PHP tags.
 Each directory owns its `plugin.json`, `grammar.json`, `LICENSE`, and `NOTICE`,
 along with any OxideTerm highlight queries used by that plugin.
 
+Additional plugins cover XML, DTD, INI, Kotlin, Dart, Nix, Julia, Vue, Svelte and Slint.
+Their manifests declare `.xml/.xsd/.xsl/.xslt/.rng`, `.dtd`, `.ini` and `.editorconfig/.gitconfig`,
+`.kt/.kts`, `.dart`, `.nix`, `.jl`, `.vue`, `.svelte`, and `.slint`, respectively.
+Generic `.conf` and `.cfg` files are not classified as INI; SVG keeps its existing image preview.
+
+Vue and Svelte packages bundle TypeScript and CSS parsers; TypeScript also parses JavaScript.
+Scripts, styles and template expressions use the original document's byte coordinates,
+without requiring separate language installations. Base JavaScript and HTML highlight
+queries are included alongside their derived language rules.
+
 ## Build and verify
+
+Declare language metadata in `contributes.language`, for example:
+
+```json
+{
+  "id": "ocaml-interface",
+  "displayName": "OCaml Interface",
+  "grammarName": "ocaml_interface",
+  "extensions": ["mli"],
+  "fileNames": []
+}
+```
+
+`id` is the stable language identifier. `grammarName` is the exported grammar name,
+without the `tree_sitter_` prefix; by default it uses the ID with hyphens replaced
+by underscores. Extensions have no leading dot and can be compound extensions.
+File names are literals, without paths or wildcards. Matching ignores ASCII case.
+The builder still supplies `highlights`, `parserSha256`, and `highlightsSha256`.
+
+Release tools extract metadata from actual archives into the v2 summary and history.
+Before installation, compatible catalog declarations identify files and link to
+the owning plugin; installed manifests take precedence. Exact file names outrank
+extensions, longer extensions outrank shorter ones, and equal matches use plugin
+ID order. Built-in grammars retain their extension defaults, so `.tf.json` stays JSON.
+Installation, updates, disabling and catalog refresh re-detect open files while
+preserving text and undo history.
+
+These declarations require host `>=2.2.2`. When adding them to an existing plugin,
+prepare with `--requires-current-app --host-repo <host-checkout>` or an explicit
+`--host-range '>=2.2.2'`; recording rejects ranges that include older hosts.
+Existing packages do not need republication. Frozen v1 stays unchanged; new
+languages and updates are published only in v2.
+
+Mixed-language recipes declare `injections` with a `language` and a local selector
+`query`; `highlightsInclude` can supply base highlight rules. Select source regions
+with `@injection.content`. The builder packages embedded parsers, queries, licenses
+and digests together. The host verifies every asset and owns one document parser
+per embedded language, using the document's existing edit and cancellation lifecycle.
+
+For grammars without a suitable crate archive, recipes can supply a pinned
+`archiveUrl` and `archiveRoot`. The URL must match `repository` and `revision`,
+and the recipe must include the actual downloaded archive's SHA-256.
 
 Use Node.js 22, the target host checkout, and Tree-sitter CLI 0.27.0.
 Recipes pin grammar source versions and archive digests. On first use, the

@@ -1,0 +1,9 @@
+Slint Language Support
+Copyright 2026 AnalyseDeCircuit
+
+OxideTerm plugin files and original highlight queries are licensed under Apache-2.0.
+
+The grammar and upstream queries are derived from tree-sitter-slint 0.0.1.
+Source: https://github.com/slint-ui/tree-sitter-slint
+Revision: 7f3e775941f0268334c5219586d5811229ffcf34
+Upstream license: MIT (retained in LICENSE-grammar in the package).

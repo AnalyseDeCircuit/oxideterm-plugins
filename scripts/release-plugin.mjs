@@ -6,7 +6,7 @@ import { parseArgs, isDeepStrictEqual } from "node:util";
 import { fileURLToPath } from "node:url";
 import semver from "semver";
 import { unzipSync, strFromU8 } from "fflate";
-import { requireEngines, validateRegistry, validateHistory } from "./validate-registry.mjs";
+import { requireEngines, validateRegistry, validateHistory, languageDefinition } from "./validate-registry.mjs";
 import {defaultCatalog, readCatalog, writeJson, importCatalogEntry, generateCatalog} from './catalog-source.mjs';
 export {writeJson} from './catalog-source.mjs';
 
@@ -41,6 +41,9 @@ export function effectiveEngines(release) {
 function hostRequirement(manifest, version) {
   // Development checkouts can still carry the last released version while a
   // new runtime is being implemented. Exclude hosts that cannot load it.
+  const language = languageDefinition(manifest.contributes?.language);
+  if (manifest.contributes?.language?.injections?.length && semver.lt(version, "2.2.2")) return ">=2.2.2";
+  if (language && Object.keys(language).some(key => key !== 'id') && semver.lt(version, "2.2.2")) return ">=2.2.2";
   if (manifest.runtime?.kind === "language" && semver.lte(version, "2.2.0")) return ">2.2.0";
   if (manifest.runtime?.kind === "acp" && semver.lte(version, "2.2.1")) return ">2.2.1";
   if (manifest.runtime?.kind === "remote-desktop" && semver.lte(version, "2.2.1")) return ">2.2.1";
@@ -76,12 +79,27 @@ export async function prepareManifest(manifest, catalog, options = {}) {
     engines = manifest.engines ?? { oxideterm: hostRequirement(manifest, await readHostVersion(options.hostRepository)) };
   }
   requireEngines(engines, manifest.id);
+  validateLanguageHost(manifest, engines);
   return { ...manifest, engines };
+}
+
+function validateLanguageHost(manifest, engines) {
+  if (manifest.contributes?.language?.injections?.length
+    && semver.intersects(engines.oxideterm.replaceAll(',', ' '), '<2.2.2')) {
+    throw new Error('Embedded language grammars require OxideTerm >=2.2.2; prepare with --requires-current-app or --host-range');
+  }
+  const language = languageDefinition(manifest.contributes?.language);
+  if (language && Object.keys(language).some(key => key !== 'id')
+    && semver.intersects(engines.oxideterm.replaceAll(',', ' '), '<2.2.2')) {
+    throw new Error('Dynamic language declarations require OxideTerm >=2.2.2; prepare with --requires-current-app or --host-range');
+  }
 }
 
 export function recordRelease(catalog, manifest, releaseUrl, packageArguments) {
   validateRegistry(catalog);
   requireEngines(manifest.engines, manifest.id);
+  validateLanguageHost(manifest, manifest.engines);
+  const language = languageDefinition(manifest.contributes?.language);
   const base = new URL(releaseUrl);
   if (base.protocol !== "https:" || base.search || base.hash) throw new Error("Use an immutable HTTPS release asset directory");
   const packages = packageArguments.map(argument => {
@@ -102,7 +120,8 @@ export function recordRelease(catalog, manifest, releaseUrl, packageArguments) {
     const packaged = JSON.parse(strFromU8(entries[0]));
     if (packaged.id !== manifest.id || packaged.version !== manifest.version
       || !isDeepStrictEqual(packaged.engines, manifest.engines)
-      || packaged.runtime?.kind !== manifest.runtime?.kind) {
+      || packaged.runtime?.kind !== manifest.runtime?.kind
+      || !isDeepStrictEqual(languageDefinition(packaged.contributes?.language), language)) {
       throw new Error("Packaged identity, version or host range does not match the prepared manifest");
     }
     return {
@@ -152,6 +171,10 @@ export function recordRelease(catalog, manifest, releaseUrl, packageArguments) {
   const release = { version: manifest.version, engines: manifest.engines, packages };
   const existing = plugin.releases.find(item => semver.eq(item.version, manifest.version));
   if (existing) throw new Error("Release already exists; package records are immutable");
+  if (plugin.releases.every(item => semver.lt(item.version, manifest.version))) {
+    if (language) plugin.language = language;
+    else delete plugin.language;
+  }
   plugin.releases.push(release);
   plugin.updatedAt = new Date().toISOString();
   validateHistory(catalog, next);
