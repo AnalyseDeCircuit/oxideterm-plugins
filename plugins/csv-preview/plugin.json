@@ -1,0 +1,28 @@
+{
+  "id": "com.oxideterm.preview.csv",
+  "name": "CSV Preview",
+  "version": "0.1.0",
+  "description": "CSV Preview for OxideTerm.",
+  "author": "OxideTerm",
+  "runtime": {
+    "kind": "process",
+    "entry": "bin/plugin"
+  },
+  "permissions": {
+    "capabilities": [
+      "ui.write"
+    ]
+  },
+  "contributes": {
+    "tabs": [
+      {
+        "id": "starter",
+        "title": "CSV Preview",
+        "icon": "puzzle"
+      }
+    ]
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  }
+}

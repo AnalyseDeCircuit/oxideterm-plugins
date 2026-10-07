@@ -1,0 +1,18 @@
+[package]
+name = "oxideterm-redb-preview"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+[workspace]
+
+[[bin]]
+name = "redb-preview"
+path = "src/main.rs"
+
+[dependencies]
+redb = "=4.3.0"
+serde_json = "1"
+
+[dev-dependencies]
+tempfile = "3"

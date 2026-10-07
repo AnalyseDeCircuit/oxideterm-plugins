@@ -1,0 +1,28 @@
+{
+  "id": "com.oxideterm.preview.redb",
+  "name": "redb Preview",
+  "version": "0.1.0",
+  "description": "redb Preview for OxideTerm.",
+  "author": "OxideTerm",
+  "runtime": {
+    "kind": "process",
+    "entry": "bin/plugin"
+  },
+  "permissions": {
+    "capabilities": [
+      "ui.write"
+    ]
+  },
+  "contributes": {
+    "tabs": [
+      {
+        "id": "starter",
+        "title": "redb Preview",
+        "icon": "puzzle"
+      }
+    ]
+  },
+  "engines": {
+    "oxideterm": ">2.2.0"
+  }
+}

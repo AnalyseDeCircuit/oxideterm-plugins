@@ -1,0 +1,79 @@
+name: Release plugin
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/checkout@v4
+        with:
+          repository: AnalyseDeCircuit/oxideterm-plugins
+          path: .oxideterm-catalog
+      - run: npm --prefix .oxideterm-catalog ci --ignore-scripts
+      - name: Prepare host compatibility
+        run: node .oxideterm-catalog/scripts/release-plugin.mjs prepare .
+      - name: Validate manifest and release tag
+        run: node scripts/check.mjs --release-tag "${{ github.ref_name }}"
+      - name: Package Unix plugin
+        if: runner.os != 'Windows'
+        run: npm run package:unix
+      - name: Package Windows plugin
+        if: runner.os == 'Windows'
+        run: npm run package:windows
+      - uses: actions/upload-artifact@v4
+        with:
+          name: plugin-${{ runner.os }}
+          path: dist/*.zip
+          if-no-files-found: error
+
+  release:
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/checkout@v4
+        with:
+          repository: AnalyseDeCircuit/oxideterm-plugins
+          path: .oxideterm-catalog
+      - run: npm --prefix .oxideterm-catalog ci --ignore-scripts
+      - run: node .oxideterm-catalog/scripts/release-plugin.mjs prepare .
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: plugin-*
+          path: dist
+          merge-multiple: true
+      - name: Generate marketplace entry
+        env:
+          GH_REPO: ${{ github.repository }}
+        run: |
+          identity=$(node -p 'const m = require("./plugin.json"); m.id + "-" + m.version')
+          node .oxideterm-catalog/scripts/release-plugin.mjs record . \
+            --release-url "https://github.com/$GH_REPO/releases/download/$GITHUB_REF_NAME" \
+            --package "x86_64-unknown-linux-gnu=dist/$identity-unix.zip" \
+            --package "x86_64-pc-windows-msvc=dist/$identity-windows.zip"
+          node --input-type=module -e 'import fs from "node:fs"; const m = JSON.parse(fs.readFileSync("plugin.json")); const index = JSON.parse(fs.readFileSync(".oxideterm-catalog/registry/v1/index.json")); fs.writeFileSync("dist/catalog-entry.json", JSON.stringify(index.plugins.find(p => p.id === m.id), null, 2) + "\n");'
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release create "$GITHUB_REF_NAME" dist/*.zip dist/catalog-entry.json --generate-notes --verify-tag
