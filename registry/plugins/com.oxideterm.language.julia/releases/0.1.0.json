@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/language-julia-v0.1.0/com.oxideterm.language.julia-0.1.0.zip",
+        "checksum": "sha256:f45a1608086feaa29d28b70f225912d100df828234d20673b9f15254bf7441e1",
+        "size": 585851
+      }
+    ]
+  },
+  "publishedAt": "2026-10-07T05:44:06.017Z"
+}

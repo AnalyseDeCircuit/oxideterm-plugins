@@ -1,0 +1,28 @@
+{
+  "id": "com.oxideterm.language.julia",
+  "name": "Julia Language Support",
+  "description": "Syntax highlighting for Julia files.",
+  "author": "OxideTerm",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/language-julia",
+  "license": "Apache-2.0",
+  "tags": [
+    "language"
+  ],
+  "language": {
+    "id": "julia",
+    "displayName": "Julia",
+    "grammarName": "julia",
+    "extensions": [
+      "jl"
+    ]
+  },
+  "updatedAt": "2026-10-07T05:44:06.017Z",
+  "order": 54,
+  "legacy": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "minOxidetermVersion": "2.2.2"
+  }
+}
