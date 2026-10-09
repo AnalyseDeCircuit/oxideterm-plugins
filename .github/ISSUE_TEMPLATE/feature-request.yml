@@ -1,0 +1,32 @@
+name: Plugin feature request / 插件功能建议
+description: Describe a concrete plugin use case and desired behavior. / 描述具体使用场景和期望行为。
+title: "[Feature] "
+labels: [enhancement]
+body:
+  - type: input
+    id: plugin
+    attributes:
+      label: Existing or proposed plugin / 涉及的插件或拟新增插件
+    validations:
+      required: true
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Problem or use case / 问题或使用场景
+    validations:
+      required: true
+  - type: textarea
+    id: desired_behavior
+    attributes:
+      label: Desired behavior / 期望行为
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist / 提交前确认
+      options:
+        - label: I searched existing issues and plugin documentation. / 我已搜索已有 Issue 和插件文档。
+          required: true
+        - label: I described a concrete use case and desired behavior. / 我已说明具体使用场景和期望行为。
+          required: true

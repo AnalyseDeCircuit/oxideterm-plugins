@@ -1,0 +1,74 @@
+name: Plugin bug report / 插件故障
+description: Report a reproducible plugin problem. / 报告可复现的插件问题。
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Include written reproduction steps; screenshots supplement the report. Incomplete reports are closed automatically and reopened after correction. Never include passwords, private keys, or tokens.
+
+        请用文字填写复现步骤，截图作为补充。信息不完整的报告会自动关闭，补全后重新打开。不要提供密码、私钥或令牌。
+  - type: input
+    id: plugin
+    attributes:
+      label: Plugin name or ID / 插件名称或 ID
+    validations:
+      required: true
+  - type: input
+    id: plugin_version
+    attributes:
+      label: Plugin version / 插件版本
+      description: Copy the installed version from the plugin manager. / 从插件管理器复制已安装版本。
+    validations:
+      required: true
+  - type: input
+    id: host_version
+    attributes:
+      label: OxideTerm version / 应用版本
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: OS version and architecture / 系统版本与架构
+      placeholder: Windows 11 x64 / macOS 15 ARM64 / Ubuntu 24.04 x64
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Related environment and configuration / 相关环境与配置
+      description: "Connection plugins: server software/version, authentication method and connection settings. ACP: external CLI/version and startup settings. Languages: file extension and minimal sample. Write Not applicable when appropriate. Remove secrets. / 连接插件：服务端软件及版本、认证方式和连接配置。ACP：外部程序及版本、启动配置。语言插件：扩展名和最小示例。不涉及时填写不适用，请删除敏感信息。"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce / 复现步骤
+      description: Describe each step in text, starting from opening the application. / 从打开应用开始，用文字说明每一步操作。
+    validations:
+      required: true
+  - type: textarea
+    id: expected_actual
+    attributes:
+      label: Expected and actual behavior / 预期与实际结果
+      description: Include the exact error text when available. / 如有错误提示，请填写完整文字。
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots, logs and other-client comparison / 截图、日志与其他客户端对比
+      description: Optional; remove secrets before attaching evidence. / 可选，附上材料前请删除敏感信息。
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist / 提交前确认
+      options:
+        - label: I searched existing issues. / 我已搜索已有 Issue。
+          required: true
+        - label: I provided the installed versions and written reproduction steps. / 我已填写已安装版本和文字复现步骤。
+          required: true
+        - label: I removed passwords, private keys, tokens and other secrets. / 我已删除密码、私钥、令牌及其他敏感信息。
+          required: true

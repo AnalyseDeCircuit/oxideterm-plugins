@@ -1,0 +1,30 @@
+name: Issue Quality Gate
+
+on:
+  issues:
+    types: [opened, edited, reopened, labeled, unlabeled]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: issue-quality-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    if: ${{ github.event.sender.type != 'Bot' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts
+      - run: node --test scripts/issue-quality.test.mjs
+      - uses: actions/github-script@v9
+        with:
+          script: |
+            const { checkIssue } = await import(`${process.env.GITHUB_WORKSPACE}/scripts/issue-quality.mjs`);
+            await checkIssue({ github, context, core });

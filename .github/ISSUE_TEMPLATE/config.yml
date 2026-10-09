@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: OxideTerm application issues / 主程序问题
+    url: https://github.com/AnalyseDeCircuit/oxideterm/issues/new/choose
+    about: Report application problems unrelated to plugins here. / 与插件无关的主程序问题请在这里提交。
