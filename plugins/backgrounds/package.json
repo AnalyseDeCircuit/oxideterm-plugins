@@ -1,0 +1,13 @@
+{
+  "name": "oxideterm-backgrounds",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "package:unix": "sh scripts/package.sh",
+    "package:windows": "pwsh -NoProfile -File scripts/package.ps1"
+  }
+}

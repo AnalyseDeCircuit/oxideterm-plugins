@@ -1,0 +1,39 @@
+name: Build background material pack
+
+on:
+  push:
+    tags: ['backgrounds-v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: node scripts/release-plugin.mjs prepare plugins/backgrounds
+      - run: npm run check --prefix plugins/backgrounds
+      - run: npm run package:unix --prefix plugins/backgrounds
+      - uses: actions/upload-artifact@v4
+        with:
+          name: backgrounds-any
+          path: plugins/backgrounds/dist/*.zip
+          if-no-files-found: error
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
+    permissions:
+      contents: write
+    uses: ./.github/workflows/publish-plugin.yml
+    with:
+      plugin: backgrounds
+      artifacts: backgrounds-any
+      targets: any
