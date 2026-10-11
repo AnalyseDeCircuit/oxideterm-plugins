@@ -55,6 +55,16 @@ test("creation reads the host and ordinary updates inherit without consulting a 
   assert.deepEqual((await prepareManifest(mosh, empty, { hostRepository: host })).engines, { oxideterm: ">=2.2.2" });
   const fido = { ...acp, id: "com.example.fido", runtime: { kind: "helper", entry: "bin/helper" } };
   assert.deepEqual((await prepareManifest(fido, empty, { hostRepository: host })).engines, { oxideterm: ">=2.2.2" });
+  fs.writeFileSync(path.join(host, "Cargo.toml"), '[package]\nname = "oxideterm-gpui-app"\nversion = "2.2.2"\nedition = "2021"\n');
+  const backgrounds = {id: 'com.example.backgrounds', name: 'Backgrounds', version: '1.0.0', contributes: {backgrounds: ['assets/dawn.mp4']}};
+  const preparedBackgrounds = await prepareManifest(backgrounds, empty, {hostRepository: host});
+  assert.deepEqual(preparedBackgrounds.engines, {oxideterm: '>2.2.2'});
+  await assert.rejects(prepareManifest({...backgrounds, engines: {oxideterm: '>=2.2.2'}}, empty), /Background packs require/);
+  fs.writeFileSync(zip, zipSync({'plugin.json': strToU8(JSON.stringify(preparedBackgrounds))}));
+  assert.throws(() => recordRelease(empty, preparedBackgrounds, 'https://example.com/releases/v1.0.0', ['any=' + zip]), /media is missing/);
+  fs.writeFileSync(zip, zipSync({'plugin.json': strToU8(JSON.stringify(preparedBackgrounds)), 'assets/dawn.mp4': strToU8('media fixture')}));
+  assert.equal(recordRelease(empty, preparedBackgrounds, 'https://example.com/releases/v1.0.0', ['any=' + zip]).plugins[0].releases[0].packages[0].target, 'any');
+  assert.throws(() => recordRelease(empty, {...preparedBackgrounds, contributes: {backgrounds: ['assets/night.mp4']}}, 'https://example.com/releases/v1.0.0', ['any=' + zip]), /does not match/);
 });
 
 test("recording reads the actual archive and corrections preserve assets and their audit history", async t => {

@@ -32,6 +32,23 @@ for (const source of pluginDirectories) {
   pluginIds.add(manifest.id);
 
   const runtime = manifest.runtime;
+  if (manifest.contributes?.backgrounds !== undefined) {
+    requireEngines(manifest.engines, manifest.id);
+    const backgrounds = manifest.contributes.backgrounds;
+    if (runtime !== undefined || manifest.main !== undefined
+      || (manifest.permissions?.capabilities ?? []).length
+      || Object.keys(manifest.contributes).some(key => key !== 'backgrounds')
+      || !Array.isArray(backgrounds) || !backgrounds.length) {
+      throw new Error(`${manifest.id}: expected a media-only background pack`);
+    }
+    for (const file of backgrounds) {
+      if (typeof file !== 'string' || file.includes(':') || file.includes('\\')
+        || path.posix.isAbsolute(file) || file.split('/').some(part => !part || part === '..' || part === '.')
+        || !fs.statSync(path.join(pluginDirectory, file)).isFile()) {
+        throw new Error(`${manifest.id}: invalid background media path`);
+      }
+    }
+  }
   if (runtime !== undefined) {
     requireText(runtime.kind, `${manifest.id}: runtime.kind`);
     requireText(runtime.entry, `${manifest.id}: runtime.entry`);

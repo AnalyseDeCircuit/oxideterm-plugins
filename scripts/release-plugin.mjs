@@ -42,6 +42,7 @@ function hostRequirement(manifest, version) {
   // Development checkouts can still carry the last released version while a
   // new runtime is being implemented. Exclude hosts that cannot load it.
   const language = languageDefinition(manifest.contributes?.language);
+  if (manifest.contributes?.backgrounds?.length && semver.lte(version, "2.2.2")) return ">2.2.2";
   if (manifest.contributes?.language?.injections?.length && semver.lt(version, "2.2.2")) return ">=2.2.2";
   if (language && Object.keys(language).some(key => key !== 'id') && semver.lt(version, "2.2.2")) return ">=2.2.2";
   if (manifest.runtime?.kind === "language" && semver.lte(version, "2.2.0")) return ">2.2.0";
@@ -84,6 +85,29 @@ export async function prepareManifest(manifest, catalog, options = {}) {
 }
 
 function validateLanguageHost(manifest, engines) {
+  if (manifest.contributes?.backgrounds !== undefined) {
+    const backgrounds = manifest.contributes.backgrounds;
+    if (manifest.runtime !== undefined || manifest.main !== undefined
+      || (manifest.permissions?.capabilities ?? []).length
+      || Object.keys(manifest.contributes).some(key => key !== 'backgrounds')
+      || !Array.isArray(backgrounds) || !backgrounds.length) {
+      throw new Error('Background packs must contain only media declarations');
+    }
+    const names = new Set();
+    for (const file of backgrounds) {
+      if (typeof file !== 'string' || file.includes('\\') || file.includes(':')
+        || path.posix.isAbsolute(file) || file.split('/').some(part => !part || part === '..' || part === '.')
+        || !/\.(png|jpe?g|webp|gif|bmp|mp4|m4v)$/i.test(file)
+        || names.has(path.posix.basename(file).toLowerCase())) {
+        throw new Error('Invalid background pack media path');
+      }
+      names.add(path.posix.basename(file).toLowerCase());
+    }
+  }
+  if (manifest.contributes?.backgrounds?.length
+    && semver.intersects(engines.oxideterm.replaceAll(',', ' '), '<=2.2.2')) {
+    throw new Error('Background packs require a host newer than 2.2.2; prepare with --requires-current-app or --host-range');
+  }
   if (manifest.contributes?.language?.injections?.length
     && semver.intersects(engines.oxideterm.replaceAll(',', ' '), '<2.2.2')) {
     throw new Error('Embedded language grammars require OxideTerm >=2.2.2; prepare with --requires-current-app or --host-range');
@@ -110,7 +134,9 @@ export function recordRelease(catalog, manifest, releaseUrl, packageArguments) {
     const size = fs.statSync(filename).size;
     if (size < 1 || size > 50 * 1024 * 1024) throw new Error("Invalid package size");
     const bytes = fs.readFileSync(filename);
+    const archiveFiles = new Map();
     const manifests = unzipSync(bytes, { filter: file => {
+      archiveFiles.set(file.name, file.originalSize);
       if (!/^(?:[^/]+\/)?plugin\.json$/.test(file.name)) return false;
       if (file.originalSize > 1024 * 1024) throw new Error("Package manifest is too large");
       return true;
@@ -121,8 +147,19 @@ export function recordRelease(catalog, manifest, releaseUrl, packageArguments) {
     if (packaged.id !== manifest.id || packaged.version !== manifest.version
       || !isDeepStrictEqual(packaged.engines, manifest.engines)
       || packaged.runtime?.kind !== manifest.runtime?.kind
-      || !isDeepStrictEqual(languageDefinition(packaged.contributes?.language), language)) {
+      || !isDeepStrictEqual(languageDefinition(packaged.contributes?.language), language)
+      || !isDeepStrictEqual(packaged.contributes?.backgrounds, manifest.contributes?.backgrounds)) {
       throw new Error("Packaged identity, version or host range does not match the prepared manifest");
+    }
+    if (manifest.contributes?.backgrounds) {
+      validateLanguageHost(packaged, packaged.engines);
+      const prefix = Object.keys(manifests)[0].slice(0, -'plugin.json'.length);
+      for (const media of manifest.contributes.backgrounds) {
+        if (!(archiveFiles.get(prefix + media) > 0)) throw new Error('Background pack media is missing from the archive');
+      }
+      if ([...archiveFiles.values()].reduce((sum, size) => sum + size, 0) > 100 * 1024 * 1024) {
+        throw new Error('Background pack extracted size exceeds the host limit');
+      }
     }
     return {
       target,

@@ -22,6 +22,7 @@
 | `host-tools` | 主机运维工具，仅在有对应插件时使用 |
 | `acp` | ACP 智能体接入 |
 | `remote-connections` | RDP、VNC、Mosh 远程连接 |
+| `backgrounds` | 按需安装的背景素材 |
 
 首次运行 `record` 时，发布工具优先读取 `plugin.json` 的 `tags`；未声明时，语言和文件预览插件分别自动归入 `language`、`preview`。其他类型应显式声明分类，例如 `"tags": ["utilities"]`。更新已有插件时保留索引中的分类。新功能大类由维护者在索引中登记，客户端根据实际数据自动生成按钮，无须增加应用内的分类白名单。
 
