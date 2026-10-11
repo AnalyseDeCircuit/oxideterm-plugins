@@ -1706,6 +1706,30 @@
         "checksum": "sha256:0ceba55832e0542ccdd3ed697997d7cc2a271eafc383238b7bbda6eef8d1c085",
         "size": 1494
       }
+    },
+    {
+      "id": "com.oxideterm.backgrounds",
+      "name": "OxideTerm Backgrounds",
+      "description": "Two original 4K looping backgrounds for light and dark appearances. Install, then choose them in the appearance media library.",
+      "author": "OxideTerm Contributors",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "tags": [
+        "backgrounds"
+      ],
+      "updatedAt": "2026-10-11T11:44:30Z",
+      "listedAt": "2026-10-11T11:44:43.770Z",
+      "latestReleaseAt": "2026-10-11T11:44:30Z",
+      "version": "1.0.0",
+      "engines": {
+        "oxideterm": ">2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.backgrounds/454de59629e8936696535ccd2f3e7eeb627da0822963155b848b6517ab049bb0.json",
+        "checksum": "sha256:454de59629e8936696535ccd2f3e7eeb627da0822963155b848b6517ab049bb0",
+        "size": 1495
+      }
     }
   ]
 }
