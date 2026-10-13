@@ -255,4 +255,14 @@ else throw new Error('Unexpected gh command');
   fs.writeFileSync(file,tampered);
   assert.throws(()=>sync(),/checksum or size differs/);
   assert.deepEqual(loadCatalogSources(path.join(root,'registry/plugins')),saved);
+  fs.writeFileSync(path.join(root,'registry/withdrawn-plugins.json'),JSON.stringify([{
+    id:'com.example.demo',reason:'Replaced by separate packages',withdrawnAt:'2026-10-14T00:00:00Z',
+  }]));
+  fs.rmSync(path.join(root,'registry/plugins/com.example.demo'),{recursive:true});
+  fs.rmSync(path.join(root,'registry/v2/plugins/com.example.demo'),{recursive:true});
+  generateCatalog({directory:path.join(root,'registry/plugins'),output:path.join(root,'registry')});
+  assert.match(validate(),/Validated 0 OxideTerm plugin entries/);
+  assert.match(sync(),/Imported 0 unpublished/);
+  assert.deepEqual(loadCatalogSources(path.join(root,'registry/plugins')).plugins,[]);
+  assert.deepEqual(JSON.parse(fs.readFileSync(path.join(root,'registry/v2/index.json'))).plugins,[]);
 });

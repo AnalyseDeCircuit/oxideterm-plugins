@@ -12,6 +12,27 @@ const json = value => JSON.stringify(value, null, 2) + '\n';
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 
+export function withdrawnPluginIds() {
+  const file = path.join(repository, 'registry/withdrawn-plugins.json');
+  if (!fs.existsSync(file)) return new Set();
+  const entries = read(file);
+  if (!Array.isArray(entries)) throw new Error('Invalid plugin withdrawals');
+  const frozen = read(path.join(repository, 'registry/v1/index.json'));
+  const ids = new Set();
+  for (const entry of entries) {
+    if (!/^[a-z0-9][a-z0-9.-]*$/.test(entry.id ?? '') || ids.has(entry.id)
+      || typeof entry.reason !== 'string' || !entry.reason.trim()
+      || typeof entry.withdrawnAt !== 'string' || Number.isNaN(Date.parse(entry.withdrawnAt))) {
+      throw new Error('Invalid plugin withdrawal');
+    }
+    if (frozen.plugins.some(plugin => plugin.id === entry.id)) {
+      throw new Error('Frozen v1 plugins cannot be withdrawn');
+    }
+    ids.add(entry.id);
+  }
+  return ids;
+}
+
 export function writeJson(file, value) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
   const temporary = `${file}.${randomUUID()}.tmp`;
@@ -70,10 +91,12 @@ export function migrateCatalog(catalog, directory = sourceDirectory) {
 }
 
 export function loadCatalogSources(directory = sourceDirectory) {
+  const withdrawn = withdrawnPluginIds();
   const categories = new Set(read(path.join(repository,'registry/categories.json')));
   const plugins = fs.readdirSync(directory, { withFileTypes: true }).filter(entry => entry.isDirectory()).sort((a,b) => a.name.localeCompare(b.name)).map(entry => {
     const root = path.join(directory, entry.name);
     const metadata = read(path.join(root, 'metadata.json'));
+    if (withdrawn.has(metadata.id)) throw new Error('Withdrawn plugin remains in catalog sources');
     if (metadata.id !== entry.name || !/^[a-z0-9][a-z0-9.-]*$/.test(metadata.id)) throw new Error('Catalog directory and identity differ');
     if (metadata.tags?.length > 2 || metadata.tags?.some(tag=>!categories.has(tag))) throw new Error('Use at most two registered marketplace categories');
     const { legacy, order, ...display } = metadata;
@@ -127,6 +150,7 @@ export function validateFrozenV1(directory = path.join(repository, 'registry')) 
 }
 
 export function importCatalogEntry(entry, directory = sourceDirectory) {
+  if (withdrawnPluginIds().has(entry.id)) throw new Error('Cannot import a withdrawn plugin');
   const previous = loadCatalogSources(directory);
   const current = previous.plugins.find(plugin => plugin.id === entry.id);
   validateRegistry({ version: 1, plugins: [entry] });

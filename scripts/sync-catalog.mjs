@@ -3,7 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {parseArgs, isDeepStrictEqual} from 'node:util';
-import {readCatalog, importCatalogEntry, generateCatalog} from './catalog-source.mjs';
+import {readCatalog, importCatalogEntry, generateCatalog, withdrawnPluginIds} from './catalog-source.mjs';
 import {recordRelease} from './release-plugin.mjs';
 import {validateRegistry} from './validate-registry.mjs';
 import {unzipSync, strFromU8} from 'fflate';
@@ -13,6 +13,7 @@ const {values} = parseArgs({options:{repository:{type:'string',default:process.e
 if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(values.repository??'')) throw new Error('A repository owner/name is required');
 const gh = args => execFileSync('gh',args,{encoding:'utf8',maxBuffer:16*1024*1024});
 let catalog=readCatalog();
+const withdrawn=withdrawnPluginIds();
 let imported=0;
 const registered=new Set(catalog.plugins.flatMap(plugin=>plugin.releases.flatMap(record=>record.packages.map(pkg=>pkg.downloadUrl.slice(0,pkg.downloadUrl.lastIndexOf('/'))))));
 const releaseBase=tag=>`https://github.com/${values.repository}/releases/download/${encodeURIComponent(tag)}`;
@@ -33,6 +34,7 @@ for(const release of published) {
     try {
       gh(['release','download',release.tag_name,'--repo',values.repository,'--pattern','catalog-entry.json','--dir',temporary]);
       const entry=JSON.parse(fs.readFileSync(path.join(temporary,'catalog-entry.json')));
+      if(withdrawn.has(entry.id)) continue;
       validateRegistry({version:1,plugins:[entry]});
       const known=catalog.plugins.find(plugin=>plugin.id===entry.id);
       const missing=(entry.releases??[]).filter(record=>!known?.releases?.some(stored=>stored.version===record.version));

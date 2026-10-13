@@ -1,6 +1,6 @@
 # OxideTerm Backgrounds
 
-This page retains the published 1.0.0 two-background bundle. For new installations, choose Dawn Mist, Night Flow, or Desert Gold individually. Each plugin contains one background and downloads and updates independently; historical packages remain available.
+The two-background bundle has been withdrawn and deleted. Choose Dawn Mist, Night Flow, or Desert Gold individually. Each plugin contains one background and downloads and updates independently. Its production, validation, and packaging scripts remain shared by the individual backgrounds.
 
 [简体中文](README.md) | **English**
 

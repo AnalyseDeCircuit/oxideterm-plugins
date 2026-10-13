@@ -2,7 +2,7 @@ name: Build background material pack
 
 on:
   push:
-    tags: ['backgrounds-v*', 'background-*-v*']
+    tags: ['background-*-v*']
   workflow_dispatch:
     inputs:
       plugin:
@@ -43,10 +43,10 @@ jobs:
           const plugin = tagged
             ? process.env.RELEASE_TAG.replace(/-v\d.*$/, '')
             : process.env.INPUT_PLUGIN;
-          assert.match(plugin, /^background(?:s|-[a-z0-9-]+)$/);
+          assert.match(plugin, /^background-[a-z0-9-]+$/);
           const manifest = JSON.parse(fs.readFileSync(`plugins/${plugin}/plugin.json`, 'utf8'));
           if (tagged) assert.equal(process.env.RELEASE_TAG, `${plugin}-v${manifest.version}`);
-          if (plugin !== 'backgrounds') assert.equal(manifest.contributes.backgrounds.length, 1);
+          assert.equal(manifest.contributes.backgrounds.length, 1);
           console.log(`plugin=${plugin}`);
           NODE
       - run: sudo apt-get update && sudo apt-get install -y ffmpeg
