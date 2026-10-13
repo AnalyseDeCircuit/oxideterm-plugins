@@ -1730,6 +1730,54 @@
         "checksum": "sha256:454de59629e8936696535ccd2f3e7eeb627da0822963155b848b6517ab049bb0",
         "size": 1495
       }
+    },
+    {
+      "id": "com.oxideterm.background.desert-gold",
+      "name": "Desert Gold",
+      "description": "One original 4K looping background with layered sand, gold, and oxide-orange curves.",
+      "author": "OxideTerm Contributors",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "tags": [
+        "backgrounds"
+      ],
+      "updatedAt": "2026-10-13T17:17:27Z",
+      "listedAt": "2026-10-13T17:17:42.374Z",
+      "latestReleaseAt": "2026-10-13T17:17:27Z",
+      "version": "1.0.0",
+      "engines": {
+        "oxideterm": ">=2.2.3"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.background.desert-gold/6a30ae2898ac277a96a3d0d725c20ac1482716735623d7b1816ed9f6f305d6d1.json",
+        "checksum": "sha256:6a30ae2898ac277a96a3d0d725c20ac1482716735623d7b1816ed9f6f305d6d1",
+        "size": 1498
+      }
+    },
+    {
+      "id": "com.oxideterm.background.night-flow",
+      "name": "Night Flow",
+      "description": "One original 4K looping background with deep blue and violet surfaces for dark appearances.",
+      "author": "OxideTerm Contributors",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "tags": [
+        "backgrounds"
+      ],
+      "updatedAt": "2026-10-13T17:17:34Z",
+      "listedAt": "2026-10-13T17:17:43.580Z",
+      "latestReleaseAt": "2026-10-13T17:17:34Z",
+      "version": "1.0.0",
+      "engines": {
+        "oxideterm": ">=2.2.3"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.background.night-flow/b8f3f8f1ac3f68989608bfff4b9e2a02d3f16c7278282416edabe645b3b6623a.json",
+        "checksum": "sha256:b8f3f8f1ac3f68989608bfff4b9e2a02d3f16c7278282416edabe645b3b6623a",
+        "size": 1499
+      }
     }
   ]
 }

@@ -1,0 +1,44 @@
+{
+  "id": "com.oxideterm.background.desert-gold",
+  "name": "Desert Gold",
+  "description": "One original 4K looping background with layered sand, gold, and oxide-orange curves.",
+  "author": "OxideTerm Contributors",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins",
+  "license": "CC-BY-4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/legalcode",
+  "tags": [
+    "backgrounds"
+  ],
+  "updatedAt": "2026-10-13T17:17:27Z",
+  "listedAt": "2026-10-13T17:17:42.374Z",
+  "latestReleaseAt": "2026-10-13T17:17:27Z",
+  "version": "1.0.0",
+  "engines": {
+    "oxideterm": ">=2.2.3"
+  },
+  "minOxidetermVersion": "2.2.3",
+  "packages": [
+    {
+      "target": "any",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/background-desert-gold-v1.0.0/com.oxideterm.background.desert-gold-1.0.0-any.zip",
+      "checksum": "sha256:1b23de2896a3b77d00456fd92815855379d1a7ce15581c0d0f6c8b4e030715d6",
+      "size": 5445146
+    }
+  ],
+  "releases": [
+    {
+      "version": "1.0.0",
+      "engines": {
+        "oxideterm": ">=2.2.3"
+      },
+      "packages": [
+        {
+          "target": "any",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/background-desert-gold-v1.0.0/com.oxideterm.background.desert-gold-1.0.0-any.zip",
+          "checksum": "sha256:1b23de2896a3b77d00456fd92815855379d1a7ce15581c0d0f6c8b4e030715d6",
+          "size": 5445146
+        }
+      ]
+    }
+  ]
+}

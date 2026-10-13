@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "1.0.0",
+    "engines": {
+      "oxideterm": ">=2.2.3"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/background-night-flow-v1.0.0/com.oxideterm.background.night-flow-1.0.0-any.zip",
+        "checksum": "sha256:1f061d68e86058d84842695936e3e74df6e38c258939d1eacbedb5e0e5c751e2",
+        "size": 6280892
+      }
+    ]
+  },
+  "publishedAt": "2026-10-13T17:17:34Z"
+}
