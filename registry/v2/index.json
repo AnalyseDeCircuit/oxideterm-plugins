@@ -1778,6 +1778,30 @@
         "checksum": "sha256:b8f3f8f1ac3f68989608bfff4b9e2a02d3f16c7278282416edabe645b3b6623a",
         "size": 1499
       }
+    },
+    {
+      "id": "com.oxideterm.background.dawn-mist",
+      "name": "Dawn Mist",
+      "description": "One original 4K looping background with warm white and teal surfaces for light appearances.",
+      "author": "OxideTerm Contributors",
+      "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "tags": [
+        "backgrounds"
+      ],
+      "updatedAt": "2026-10-13T17:24:52Z",
+      "listedAt": "2026-10-13T17:25:08.661Z",
+      "latestReleaseAt": "2026-10-13T17:24:52Z",
+      "version": "1.0.0",
+      "engines": {
+        "oxideterm": ">=2.2.3"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.background.dawn-mist/c9fefd1b2bf0121d62db05387704b7db443f49da762476e05dda885cb4697163.json",
+        "checksum": "sha256:c9fefd1b2bf0121d62db05387704b7db443f49da762476e05dda885cb4697163",
+        "size": 1493
+      }
     }
   ]
 }

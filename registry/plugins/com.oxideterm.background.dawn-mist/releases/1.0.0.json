@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "1.0.0",
+    "engines": {
+      "oxideterm": ">=2.2.3"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/background-dawn-mist-v1.0.0/com.oxideterm.background.dawn-mist-1.0.0-any.zip",
+        "checksum": "sha256:5bcfb5f35e71f6f233c5ba589a47fcb4691849774f59d3008ce278607f7b5180",
+        "size": 5741759
+      }
+    ]
+  },
+  "publishedAt": "2026-10-13T17:24:52Z"
+}
