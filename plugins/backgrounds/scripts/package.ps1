@@ -1,8 +1,10 @@
 # SPDX-License-Identifier: MIT
 
+param([string]$PluginDirectory = (Join-Path $PSScriptRoot ".."))
+
 $ErrorActionPreference = "Stop"
 
-$PluginRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
+$PluginRoot = (Resolve-Path $PluginDirectory).Path
 $ManifestPath = Join-Path $PluginRoot "plugin.json"
 $Manifest = Get-Content -Raw $ManifestPath | ConvertFrom-Json
 

@@ -1,0 +1,13 @@
+{
+  "name": "oxideterm-background-dawn-mist",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check": "node ../backgrounds/scripts/check.mjs .",
+    "package:unix": "sh ../backgrounds/scripts/package.sh .",
+    "package:windows": "pwsh -NoProfile -File ../backgrounds/scripts/package.ps1 -PluginDirectory ."
+  }
+}

@@ -1,5 +1,7 @@
 # OxideTerm Backgrounds
 
+This page retains the published 1.0.0 two-background bundle. For new installations, choose Dawn Mist, Night Flow, or Desert Gold individually. Each plugin contains one background and downloads and updates independently; historical packages remain available.
+
 [简体中文](README.md) | **English**
 
 Two original looping backgrounds for OxideTerm: Dawn Mist pairs warm ivory with teal, while Night Flow pairs deep blue with soft violet. Smooth surfaces and reflections move gently across continuous gradients, suited to light and dark appearances. This pack contains media only, runs no plugin code, and requests no permissions.

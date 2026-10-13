@@ -4,7 +4,9 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { prepareManifest } from "../../../scripts/release-plugin.mjs";
 
-const pluginRoot = path.resolve(import.meta.dirname, "..");
+const pluginRoot = process.argv[2]
+  ? path.resolve(process.argv[2])
+  : path.resolve(import.meta.dirname, "..");
 const manifest = JSON.parse(fs.readFileSync(path.join(pluginRoot, "plugin.json"), "utf8"));
 await prepareManifest(manifest, {version: 1, plugins: []});
 if (manifest.license !== "CC-BY-4.0") throw new Error("Expected CC-BY-4.0 artwork license");

@@ -5,7 +5,7 @@
 set -eu
 
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-plugin_root=$(CDPATH= cd -- "$script_dir/.." && pwd)
+plugin_root=$(CDPATH= cd -- "${1:-$script_dir/..}" && pwd)
 manifest_path="$plugin_root/plugin.json"
 dist_dir="$plugin_root/dist"
 
@@ -23,7 +23,12 @@ rm -f "$artifact_path"
 
 (
   cd "$plugin_root"
-  zip -X -q "$artifact_path" plugin.json README.md README.en.md LICENSE assets/*.mp4
+  node -e '
+    const fs = require("node:fs");
+    const manifest = JSON.parse(fs.readFileSync("plugin.json", "utf8"));
+    process.stdout.write(["plugin.json", "README.md", "README.en.md", "LICENSE",
+      ...manifest.contributes.backgrounds].join("\n") + "\n");
+  ' | zip -X -q "$artifact_path" -@
 )
 
 if command -v shasum >/dev/null 2>&1; then

@@ -2,8 +2,17 @@ name: Build background material pack
 
 on:
   push:
-    tags: ['backgrounds-v*']
+    tags: ['backgrounds-v*', 'background-*-v*']
   workflow_dispatch:
+    inputs:
+      plugin:
+        description: 'Background to package without publishing'
+        type: choice
+        default: background-desert-gold
+        options:
+          - background-dawn-mist
+          - background-night-flow
+          - background-desert-gold
 
 permissions:
   contents: read
@@ -12,20 +21,46 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    outputs:
+      plugin: ${{ steps.identity.outputs.plugin }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - run: npm ci --ignore-scripts
+      - name: Select the background from its release tag
+        id: identity
+        env:
+          REF_TYPE: ${{ github.ref_type }}
+          RELEASE_TAG: ${{ github.ref_name }}
+          INPUT_PLUGIN: ${{ inputs.plugin }}
+        run: |
+          node --input-type=module <<'NODE' >> "$GITHUB_OUTPUT"
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const tagged = process.env.REF_TYPE === 'tag';
+          const plugin = tagged
+            ? process.env.RELEASE_TAG.replace(/-v\d.*$/, '')
+            : process.env.INPUT_PLUGIN;
+          assert.match(plugin, /^background(?:s|-[a-z0-9-]+)$/);
+          const manifest = JSON.parse(fs.readFileSync(`plugins/${plugin}/plugin.json`, 'utf8'));
+          if (tagged) assert.equal(process.env.RELEASE_TAG, `${plugin}-v${manifest.version}`);
+          if (plugin !== 'backgrounds') assert.equal(manifest.contributes.backgrounds.length, 1);
+          console.log(`plugin=${plugin}`);
+          NODE
       - run: sudo apt-get update && sudo apt-get install -y ffmpeg
-      - run: node scripts/release-plugin.mjs prepare plugins/backgrounds
-      - run: npm run check --prefix plugins/backgrounds
-      - run: npm run package:unix --prefix plugins/backgrounds
+      - name: Prepare and verify the selected background
+        env:
+          PLUGIN: ${{ steps.identity.outputs.plugin }}
+        run: |
+          node scripts/release-plugin.mjs prepare "plugins/$PLUGIN"
+          node plugins/backgrounds/scripts/check.mjs "plugins/$PLUGIN"
+          sh plugins/backgrounds/scripts/package.sh "plugins/$PLUGIN"
       - uses: actions/upload-artifact@v4
         with:
-          name: backgrounds-any
-          path: plugins/backgrounds/dist/*.zip
+          name: ${{ steps.identity.outputs.plugin }}-any
+          path: plugins/${{ steps.identity.outputs.plugin }}/dist/*.zip
           if-no-files-found: error
   release:
     needs: build
@@ -34,6 +69,6 @@ jobs:
       contents: write
     uses: ./.github/workflows/publish-plugin.yml
     with:
-      plugin: backgrounds
-      artifacts: backgrounds-any
+      plugin: ${{ needs.build.outputs.plugin }}
+      artifacts: ${{ needs.build.outputs.plugin }}-any
       targets: any
