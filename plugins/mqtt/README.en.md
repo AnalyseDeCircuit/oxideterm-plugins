@@ -36,8 +36,11 @@ npm run check
 npm test
 node scripts/check-host.mjs /path/to/OxideTerm
 npm run package
+node scripts/verify-package.mjs
 ```
 
 Packages in `dist/` contain a native executable, manifest, documentation and licenses. Node.js is not required at runtime. Build and verify each platform natively. Packaging reuses the marketplace preparation workflow without publishing a Release or changing the catalog.
+
+The `mqtt-v<version>` tag triggers native builds for macOS, Linux and Windows on x64 and ARM64. Each runner executes unit tests and runs the extracted package against a local broker, including TLS checks. All six must pass before the shared release workflow publishes the packages and the catalog publisher registers them.
 
 The MQTT implementation uses rumqttc. Host communication, session state and UI are independently implemented here. Package dependency licenses are included in `THIRD_PARTY_NOTICES.txt`.

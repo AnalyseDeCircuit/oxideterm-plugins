@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 import { Aedes } from 'aedes';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
-const binary = path.join(root, 'target/debug', `oxideterm-mqtt${process.platform === 'win32' ? '.exe' : ''}`);
+const binary = process.env.MQTT_TEST_BINARY ?? path.join(root, 'target/debug', `oxideterm-mqtt${process.platform === 'win32' ? '.exe' : ''}`);
 const secret = 'synthetic-mqtt-password';
 
 class Host {
@@ -171,7 +171,10 @@ test('real broker: isolated instances, QoS, retained delivery, pause, reconnect 
   await host.ui('retained', 'subscriptions', 'subscribe', 'click');
   await host.ui('retained', 'session', 'page', 'change', 'messages');
   await host.until(() => host.rows('retained').some(m => m.preview === 'value-2\n第二行' && m.retain === '✓'));
+  const disconnected = once(server.broker, 'clientDisconnect');
   await host.close('retained');
+  // The broker observes socket closure independently of the host's reply.
+  await disconnected;
   await host.close('retained');
   assert.equal(server.clients.size, 2);
   await host.close('receiver');

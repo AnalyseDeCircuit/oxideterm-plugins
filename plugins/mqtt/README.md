@@ -36,8 +36,11 @@ npm run check
 npm test
 node scripts/check-host.mjs /path/to/OxideTerm
 npm run package
+node scripts/verify-package.mjs
 ```
 
 安装包写入 `dist/`，只包含原生可执行文件、清单、文档与许可证；运行时不需要 Node.js。每个平台应在对应原生环境构建和验收。打包使用插件仓库已有版本准备流程，不创建 Release 或修改市场目录。
+
+发布标签 `mqtt-v<版本号>` 会触发六平台原生构建：macOS、Linux、Windows 的 x64 和 ARM64。每个平台都运行单元测试，并解压安装包执行本机消息服务器与 TLS 集成测试；全部通过后统一发布，由现有市场发布流程收录。
 
 网络协议使用 rumqttc；宿主通信、连接状态和工作台由本插件独立实现。第三方依赖许可随安装包的 `THIRD_PARTY_NOTICES.txt` 提供。
