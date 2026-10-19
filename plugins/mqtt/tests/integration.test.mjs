@@ -23,6 +23,7 @@ class Host {
   constructor(t) {
     this.child = spawn(binary, [], { stdio: ['pipe', 'pipe', 'pipe'] });
     this.exited = once(this.child, 'exit');
+    this.child.on('exit', () => this.events.emit('change'));
     t.after(() => { if (this.child.exitCode === null) this.child.kill(); });
     this.child.stderr.on('data', chunk => { this.error += chunk.toString(); });
     createInterface({ input: this.child.stdout }).on('line', line => {
@@ -41,8 +42,16 @@ class Host {
   }
   async until(predicate) {
     const signal = AbortSignal.timeout(7000);
+    const timeout = new Error('Timed out waiting for the MQTT process');
     while (!predicate()) {
-      await once(this.events, 'change', { signal });
+      assert(!this.error.includes(secret), 'credentials must never appear in stderr');
+      assert.equal(this.child.exitCode, null, this.error || 'MQTT process exited before replying');
+      try {
+        await once(this.events, 'change', { signal });
+      } catch (error) {
+        if (error.name === 'AbortError') throw timeout;
+        throw error;
+      }
     }
   }
   async request(kind, fragmented = false) {
