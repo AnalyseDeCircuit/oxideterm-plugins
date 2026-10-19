@@ -41,6 +41,7 @@ jobs:
         run: node scripts/verify-package.mjs
         working-directory: plugins/mqtt
       - uses: actions/upload-artifact@v4
+        if: success() || failure()
         with:
           name: mqtt-${{ matrix.target }}
           path: plugins/mqtt/dist/*.zip

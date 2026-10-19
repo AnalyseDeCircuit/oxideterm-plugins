@@ -7,6 +7,7 @@ import path from 'node:path';
 import { spawn, execFileSync } from 'node:child_process';
 import { createInterface } from 'node:readline';
 import { EventEmitter, once } from 'node:events';
+import { X509Certificate } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { Aedes } from 'aedes';
 
@@ -200,7 +201,19 @@ test('TLS verifies certificates and accepts an explicitly configured test CA', {
   execFileSync('openssl', ['req','-x509','-newkey','rsa:2048','-nodes','-keyout',key,'-out',cert,'-days','1','-subj','/CN=localhost','-addext','subjectAltName=DNS:localhost','-addext','basicConstraints=critical,CA:FALSE'], { stdio: 'ignore' });
   const ca = fs.readFileSync(cert, 'utf8');
   const server = await broker(t, { key: fs.readFileSync(key), cert: ca });
+  server.broker.on('error', error => t.diagnostic(`Test broker: ${error.message}`));
   const host = new Host(t);
+  t.after(() => {
+    if (t.passed) return;
+    const certificate = new X509Certificate(ca);
+    t.diagnostic(JSON.stringify({
+      openssl: execFileSync('openssl', ['version'], { encoding: 'utf8' }).trim(),
+      subject: certificate.subject, issuer: certificate.issuer,
+      validFrom: certificate.validFrom, validTo: certificate.validTo,
+      ca: certificate.ca, keyUsage: certificate.keyUsage,
+      session: host.section('trusted', 'session'),
+    }));
+  });
   await host.activate();
   await host.open('untrusted', server.port, { 'root/tls': true });
   await host.until(() => host.section('untrusted', 'session')?.controls.some(c => c.text?.endsWith('.mqtt.tls_failed')));
