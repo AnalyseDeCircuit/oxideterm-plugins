@@ -1778,6 +1778,28 @@
         "checksum": "sha256:c9fefd1b2bf0121d62db05387704b7db443f49da762476e05dda885cb4697163",
         "size": 1493
       }
+    },
+    {
+      "id": "com.oxideterm.mqtt",
+      "name": "MQTT Workbench",
+      "description": "Subscribe, inspect and publish MQTT messages beside your terminals.",
+      "author": "AnalyseDeCircuit",
+      "license": "MIT",
+      "tags": [
+        "remote-connections"
+      ],
+      "updatedAt": "2026-10-19T14:47:04Z",
+      "listedAt": "2026-10-19T14:48:37.817Z",
+      "latestReleaseAt": "2026-10-19T14:47:04Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.4"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.mqtt/9768515692e8e761667a8872ea49445a3b833b0acf961e7e1ae89064ccffd8cc.json",
+        "checksum": "sha256:9768515692e8e761667a8872ea49445a3b833b0acf961e7e1ae89064ccffd8cc",
+        "size": 4575
+      }
     }
   ]
 }

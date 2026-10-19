@@ -1,0 +1,47 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">2.2.4"
+    },
+    "packages": [
+      {
+        "target": "aarch64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mqtt-v0.1.0/mqtt-0.1.0-aarch64-apple-darwin.zip",
+        "checksum": "sha256:d6c536f391d3efdebd2908e914daeb188dcf59a300eee8c93677f389b72bed87",
+        "size": 2223911
+      },
+      {
+        "target": "aarch64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mqtt-v0.1.0/mqtt-0.1.0-aarch64-pc-windows-msvc.zip",
+        "checksum": "sha256:413fad546724cbb75943e88240846cb3a8b732c628ba9aef80694dc0bcae997c",
+        "size": 1796938
+      },
+      {
+        "target": "aarch64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mqtt-v0.1.0/mqtt-0.1.0-aarch64-unknown-linux-gnu.zip",
+        "checksum": "sha256:b01f480a50959904fed2046c358aacfa791eb3e1fa2b4154edfcd09187507992",
+        "size": 2266413
+      },
+      {
+        "target": "x86_64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mqtt-v0.1.0/mqtt-0.1.0-x86_64-apple-darwin.zip",
+        "checksum": "sha256:b2eccd1eeac75dbb9a8a89a9b5f36544a5bc6bc1ccd87a3d1d76f01c83ab132f",
+        "size": 2422414
+      },
+      {
+        "target": "x86_64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mqtt-v0.1.0/mqtt-0.1.0-x86_64-pc-windows-msvc.zip",
+        "checksum": "sha256:4759d5e352f9373414159162f60a088e9c662dec0a61bc9cf223e1e5fc4082d1",
+        "size": 1993316
+      },
+      {
+        "target": "x86_64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/mqtt-v0.1.0/mqtt-0.1.0-x86_64-unknown-linux-gnu.zip",
+        "checksum": "sha256:c733c329e45fc0c513c3c5c2ba321d6dd9ad620b415a25a015280d8836c5ecb7",
+        "size": 2431603
+      }
+    ]
+  },
+  "publishedAt": "2026-10-19T14:47:04Z"
+}
