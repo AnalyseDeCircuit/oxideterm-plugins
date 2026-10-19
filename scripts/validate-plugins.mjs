@@ -98,7 +98,7 @@ for (const source of pluginDirectories) {
     const rustWasmSource = runtime.kind === "wasm" && normalizedEntry === "plugin.wasm"
       && fs.existsSync(path.join(pluginDirectory, "Cargo.toml"))
       && fs.existsSync(path.join(pluginDirectory, "src/lib.rs"));
-    const rustProcessSource = ["acp", "remote-desktop", "terminal-transport", "helper"].includes(runtime.kind)
+    const rustProcessSource = ["process", "acp", "remote-desktop", "terminal-transport", "helper"].includes(runtime.kind)
       && fs.existsSync(path.join(pluginDirectory, "Cargo.toml"))
       && fs.existsSync(path.join(pluginDirectory, "src/main.rs"));
     const generatedEntry = generatedLanguage || rustWasmSource || rustProcessSource;
