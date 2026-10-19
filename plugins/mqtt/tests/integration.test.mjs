@@ -198,14 +198,20 @@ test('TLS verifies certificates and accepts an explicitly configured test CA', {
   const dir = path.join(root, 'target/test-tls');
   fs.mkdirSync(dir, { recursive: true });
   const key = path.join(dir, 'key.pem'), cert = path.join(dir, 'cert.pem');
-  execFileSync('openssl', ['req','-x509','-newkey','rsa:2048','-nodes','-keyout',key,'-out',cert,'-days','1','-subj','/CN=localhost','-addext','subjectAltName=DNS:localhost','-addext','basicConstraints=critical,CA:FALSE'], { stdio: 'ignore' });
-  const ca = fs.readFileSync(cert, 'utf8');
-  const server = await broker(t, { key: fs.readFileSync(key), cert: ca });
+  const caKey = path.join(dir, 'ca-key.pem'), caCert = path.join(dir, 'ca.pem');
+  const request = path.join(dir, 'server.csr'), config = path.join(dir, 'openssl.cnf');
+  // Pin certificate extensions instead of inheriting each runner's OpenSSL configuration.
+  fs.writeFileSync(config, '[req]\ndistinguished_name=dn\n[dn]\n[server]\nsubjectAltName=DNS:localhost\nbasicConstraints=critical,CA:FALSE\nkeyUsage=critical,digitalSignature,keyEncipherment\nextendedKeyUsage=serverAuth\n');
+  execFileSync('openssl', ['req','-config',config,'-x509','-sha256','-newkey','rsa:2048','-nodes','-keyout',caKey,'-out',caCert,'-days','1','-subj','/CN=MQTT Test CA','-addext','basicConstraints=critical,CA:TRUE','-addext','keyUsage=critical,keyCertSign,cRLSign'], { stdio: 'ignore' });
+  execFileSync('openssl', ['req','-config',config,'-new','-sha256','-newkey','rsa:2048','-nodes','-keyout',key,'-out',request,'-subj','/CN=localhost'], { stdio: 'ignore' });
+  execFileSync('openssl', ['x509','-req','-sha256','-in',request,'-CA',caCert,'-CAkey',caKey,'-set_serial','1','-out',cert,'-days','1','-extfile',config,'-extensions','server'], { stdio: 'ignore' });
+  const ca = fs.readFileSync(caCert, 'utf8');
+  const server = await broker(t, { key: fs.readFileSync(key), cert: fs.readFileSync(cert) });
   server.broker.on('error', error => t.diagnostic(`Test broker: ${error.message}`));
   const host = new Host(t);
   t.after(() => {
     if (t.passed) return;
-    const certificate = new X509Certificate(ca);
+    const certificate = new X509Certificate(fs.readFileSync(cert));
     t.diagnostic(JSON.stringify({
       openssl: execFileSync('openssl', ['version'], { encoding: 'utf8' }).trim(),
       subject: certificate.subject, issuer: certificate.issuer,
