@@ -1,0 +1,227 @@
+{
+  "id": "com.oxideterm.mqtt",
+  "name": "MQTT Workbench",
+  "version": "0.1.0",
+  "description": "Subscribe, inspect and publish MQTT messages beside your terminals.",
+  "author": "AnalyseDeCircuit",
+  "license": "MIT",
+  "tags": [
+    "remote-connections"
+  ],
+  "runtime": {
+    "kind": "process",
+    "entry": "bin/oxideterm-mqtt"
+  },
+  "permissions": {
+    "capabilities": [
+      "ui.write",
+      "credentials.raw.read"
+    ]
+  },
+  "engines": {
+    "oxideterm": ">2.2.4"
+  },
+  "contributes": {
+    "connections": [
+      {
+        "id": "mqtt",
+        "title": "MQTT",
+        "icon": "radio",
+        "form": {
+          "componentVersion": 1,
+          "kind": "form",
+          "description": "@mqtt.connection_hint",
+          "translations": {
+            "en": {
+              "mqtt.host": "Host",
+              "mqtt.port": "Port",
+              "mqtt.tls": "TLS encryption",
+              "mqtt.username": "Username",
+              "mqtt.password": "Password",
+              "mqtt.client_id": "Client ID",
+              "mqtt.keep_alive": "Keep alive (seconds)",
+              "mqtt.clean_session": "Start a clean session",
+              "mqtt.connection_hint": "Leave the client ID empty to generate one per connection. Persistent sessions require a fixed ID. Use a different ID for each simultaneous client.",
+              "mqtt.ca_pem": "Custom CA certificate (PEM, optional)"
+            },
+            "zh-CN": {
+              "mqtt.host": "主机",
+              "mqtt.port": "端口",
+              "mqtt.tls": "TLS 加密",
+              "mqtt.username": "用户名",
+              "mqtt.password": "密码",
+              "mqtt.client_id": "客户端 ID",
+              "mqtt.keep_alive": "保活间隔（秒）",
+              "mqtt.clean_session": "使用全新会话",
+              "mqtt.connection_hint": "客户端 ID 留空时每次连接自动生成。持久会话需要固定 ID；同时运行的客户端应使用不同 ID。",
+              "mqtt.ca_pem": "自定义 CA 证书（PEM，可选）"
+            },
+            "zh-TW": {
+              "mqtt.host": "主機",
+              "mqtt.port": "連接埠",
+              "mqtt.tls": "TLS 加密",
+              "mqtt.username": "使用者名稱",
+              "mqtt.password": "密碼",
+              "mqtt.client_id": "用戶端 ID",
+              "mqtt.keep_alive": "保活間隔（秒）",
+              "mqtt.clean_session": "使用全新工作階段",
+              "mqtt.connection_hint": "用戶端 ID 留空時每次連線自動產生。持續工作階段需要固定 ID；同時執行的用戶端應使用不同 ID。",
+              "mqtt.ca_pem": "自訂 CA 憑證（PEM，選填）"
+            },
+            "de": {
+              "mqtt.host": "Host",
+              "mqtt.port": "Port",
+              "mqtt.tls": "TLS-Verschlüsselung",
+              "mqtt.username": "Benutzername",
+              "mqtt.password": "Passwort",
+              "mqtt.client_id": "Client-ID",
+              "mqtt.keep_alive": "Keep-alive (Sekunden)",
+              "mqtt.clean_session": "Neue Sitzung starten",
+              "mqtt.connection_hint": "Ohne Client-ID wird je Verbindung eine erzeugt. Dauerhafte Sitzungen benötigen eine feste ID. Gleichzeitige Clients benötigen unterschiedliche IDs.",
+              "mqtt.ca_pem": "Eigenes CA-Zertifikat (PEM, optional)"
+            },
+            "es-ES": {
+              "mqtt.host": "Servidor",
+              "mqtt.port": "Puerto",
+              "mqtt.tls": "Cifrado TLS",
+              "mqtt.username": "Usuario",
+              "mqtt.password": "Contraseña",
+              "mqtt.client_id": "ID de cliente",
+              "mqtt.keep_alive": "Intervalo de mantenimiento (segundos)",
+              "mqtt.clean_session": "Iniciar sesión limpia",
+              "mqtt.connection_hint": "Deje el ID vacío para generar uno por conexión. Las sesiones persistentes necesitan un ID fijo. Use distintos ID para clientes simultáneos.",
+              "mqtt.ca_pem": "Certificado CA personalizado (PEM, opcional)"
+            },
+            "fr-FR": {
+              "mqtt.host": "Hôte",
+              "mqtt.port": "Port",
+              "mqtt.tls": "Chiffrement TLS",
+              "mqtt.username": "Nom d’utilisateur",
+              "mqtt.password": "Mot de passe",
+              "mqtt.client_id": "ID client",
+              "mqtt.keep_alive": "Maintien de connexion (secondes)",
+              "mqtt.clean_session": "Ouvrir une nouvelle session",
+              "mqtt.connection_hint": "Laissez l’ID vide pour en générer un par connexion. Les sessions persistantes nécessitent un ID fixe. Utilisez des ID différents pour les clients simultanés.",
+              "mqtt.ca_pem": "Certificat d’autorité personnalisé (PEM, facultatif)"
+            },
+            "it": {
+              "mqtt.host": "Host",
+              "mqtt.port": "Porta",
+              "mqtt.tls": "Crittografia TLS",
+              "mqtt.username": "Nome utente",
+              "mqtt.password": "Password",
+              "mqtt.client_id": "ID client",
+              "mqtt.keep_alive": "Keep-alive (secondi)",
+              "mqtt.clean_session": "Avvia una nuova sessione",
+              "mqtt.connection_hint": "Lascia vuoto l’ID per generarne uno per connessione. Le sessioni persistenti richiedono un ID fisso. Usa ID diversi per client simultanei.",
+              "mqtt.ca_pem": "Certificato CA personalizzato (PEM, facoltativo)"
+            },
+            "ja": {
+              "mqtt.host": "ホスト",
+              "mqtt.port": "ポート",
+              "mqtt.tls": "TLS 暗号化",
+              "mqtt.username": "ユーザー名",
+              "mqtt.password": "パスワード",
+              "mqtt.client_id": "クライアント ID",
+              "mqtt.keep_alive": "キープアライブ（秒）",
+              "mqtt.clean_session": "新しいセッションを開始",
+              "mqtt.connection_hint": "ID を空欄にすると接続ごとに生成します。永続セッションには固定 ID が必要です。同時接続では異なる ID を使ってください。",
+              "mqtt.ca_pem": "カスタム CA 証明書（PEM、省略可）"
+            },
+            "ko": {
+              "mqtt.host": "호스트",
+              "mqtt.port": "포트",
+              "mqtt.tls": "TLS 암호화",
+              "mqtt.username": "사용자 이름",
+              "mqtt.password": "비밀번호",
+              "mqtt.client_id": "클라이언트 ID",
+              "mqtt.keep_alive": "연결 유지 간격(초)",
+              "mqtt.clean_session": "새 세션 시작",
+              "mqtt.connection_hint": "ID를 비워 두면 연결마다 생성합니다. 영구 세션에는 고정 ID가 필요합니다. 동시 연결에는 서로 다른 ID를 사용하세요.",
+              "mqtt.ca_pem": "사용자 지정 CA 인증서(PEM, 선택 사항)"
+            },
+            "pt-BR": {
+              "mqtt.host": "Servidor",
+              "mqtt.port": "Porta",
+              "mqtt.tls": "Criptografia TLS",
+              "mqtt.username": "Usuário",
+              "mqtt.password": "Senha",
+              "mqtt.client_id": "ID do cliente",
+              "mqtt.keep_alive": "Intervalo de manutenção (segundos)",
+              "mqtt.clean_session": "Iniciar sessão limpa",
+              "mqtt.connection_hint": "Deixe o ID vazio para gerar um por conexão. Sessões persistentes exigem um ID fixo. Use IDs diferentes para clientes simultâneos.",
+              "mqtt.ca_pem": "Certificado de CA personalizado (PEM, opcional)"
+            },
+            "vi": {
+              "mqtt.host": "Máy chủ",
+              "mqtt.port": "Cổng",
+              "mqtt.tls": "Mã hóa TLS",
+              "mqtt.username": "Tên người dùng",
+              "mqtt.password": "Mật khẩu",
+              "mqtt.client_id": "ID máy khách",
+              "mqtt.keep_alive": "Chu kỳ duy trì kết nối (giây)",
+              "mqtt.clean_session": "Bắt đầu phiên mới",
+              "mqtt.connection_hint": "Để trống ID để tạo cho mỗi kết nối. Phiên lâu dài cần ID cố định. Dùng ID khác nhau cho các máy khách đồng thời.",
+              "mqtt.ca_pem": "Chứng chỉ CA tùy chỉnh (PEM, không bắt buộc)"
+            }
+          },
+          "controls": [
+            {
+              "kind": "text",
+              "id": "host",
+              "label": "@mqtt.host",
+              "value": "localhost"
+            },
+            {
+              "kind": "number",
+              "id": "port",
+              "label": "@mqtt.port",
+              "min": 1,
+              "max": 65535
+            },
+            {
+              "kind": "checkbox",
+              "id": "tls",
+              "label": "@mqtt.tls",
+              "value": false
+            },
+            {
+              "kind": "textarea",
+              "id": "ca_pem",
+              "label": "@mqtt.ca_pem"
+            },
+            {
+              "kind": "text",
+              "id": "username",
+              "label": "@mqtt.username"
+            },
+            {
+              "kind": "password",
+              "id": "password",
+              "label": "@mqtt.password"
+            },
+            {
+              "kind": "text",
+              "id": "client_id",
+              "label": "@mqtt.client_id"
+            },
+            {
+              "kind": "number",
+              "id": "keep_alive",
+              "label": "@mqtt.keep_alive",
+              "value": 30,
+              "min": 5,
+              "max": 65535
+            },
+            {
+              "kind": "checkbox",
+              "id": "clean_session",
+              "label": "@mqtt.clean_session",
+              "value": true
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
