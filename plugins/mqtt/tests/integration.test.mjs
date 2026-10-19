@@ -25,7 +25,7 @@ class Host {
     this.exited = once(this.child, 'exit');
     this.child.on('exit', () => this.events.emit('change'));
     t.after(() => { if (this.child.exitCode === null) this.child.kill(); });
-    this.child.stderr.on('data', chunk => { this.error += chunk.toString(); });
+    this.child.stderr.on('data', chunk => { this.error += chunk.toString(); this.events.emit('change'); });
     createInterface({ input: this.child.stdout }).on('line', line => {
       assert(!line.includes(secret), 'credentials must never appear in protocol output');
       const frame = JSON.parse(line);
@@ -45,6 +45,7 @@ class Host {
     const timeout = new Error('Timed out waiting for the MQTT process');
     while (!predicate()) {
       assert(!this.error.includes(secret), 'credentials must never appear in stderr');
+      assert.equal(this.error, '', 'MQTT process wrote to stderr while waiting');
       assert.equal(this.child.exitCode, null, this.error || 'MQTT process exited before replying');
       try {
         await once(this.events, 'change', { signal });
