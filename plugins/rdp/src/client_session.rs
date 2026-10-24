@@ -639,7 +639,7 @@ fn encode_pending_microphone_packets(
 pub(super) async fn run_native_rdp_active_session(
     framed: UpgradedRdpFramed,
     connection_result: ConnectionResult,
-    graphics_epoch: u64,
+    latest_graphics_epoch: &mut u64,
     input_rx: &mut tokio_mpsc::UnboundedReceiver<RdpInputEvent>,
     output_tx: &ClientRdpOutputSender,
     egfx_bridge: &EgfxSessionBridge,
@@ -665,7 +665,7 @@ pub(super) async fn run_native_rdp_active_session(
     .build();
     let mut clipboard_cleanup = tokio::time::interval(RDP_CLIPBOARD_TIMEOUT_POLL_INTERVAL);
     let mut frame_state = ClientRdpFrameState {
-        graphics_epoch,
+        graphics_epoch: *latest_graphics_epoch,
         ..ClientRdpFrameState::default()
     };
     let mut last_reported_resize_capability = None;
@@ -721,7 +721,8 @@ pub(super) async fn run_native_rdp_active_session(
                             )
                         {
                             let response_frame = response_frame?;
-                            begin_rdp_frame_transition(output_tx, &mut frame_state, egfx_bridge)?;
+                            // A request may be ignored or answered by EGFX without deactivation.
+                            // Keep publishing the current desktop until the server changes it.
                             vec![ActiveStageOutput::ResponseFrame(response_frame)]
                         } else {
                             // Some servers, notably xrdp/GNOME setups, do not
@@ -773,7 +774,6 @@ pub(super) async fn run_native_rdp_active_session(
                             encode_display_control_layout(&mut active_stage, &layout)
                         {
                             let response_frame = response_frame?;
-                            begin_rdp_frame_transition(output_tx, &mut frame_state, egfx_bridge)?;
                             vec![ActiveStageOutput::ResponseFrame(response_frame)]
                         } else {
                             Vec::new()
@@ -862,6 +862,7 @@ pub(super) async fn run_native_rdp_active_session(
                 ActiveStageOutput::DeactivateAll => {
                     let graphics_epoch =
                         begin_rdp_frame_transition(output_tx, &mut frame_state, egfx_bridge)?;
+                    *latest_graphics_epoch = graphics_epoch;
                     handle_deactivate_all(
                         &mut reader,
                         &mut writer,

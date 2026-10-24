@@ -58,7 +58,11 @@ pub(super) fn run_rdp_worker(
             read_only,
         )?;
         let _ = client.input_tx.send(RdpInputEvent::Close);
-        let _ = client.join_handle.join();
+        let graphics_epoch = client
+            .join_handle
+            .join()
+            .map_err(|_| "RDP client thread failed.".to_string())?;
+        config.graphics_epoch = config.graphics_epoch.max(graphics_epoch);
 
         match exit {
             ClientRdpSessionExit::Closed => {
@@ -70,6 +74,15 @@ pub(super) fn run_rdp_worker(
                 );
             }
             ClientRdpSessionExit::ReconnectRequested => {
+                config.graphics_epoch = config.graphics_epoch.saturating_add(1).max(1);
+                // Retire the old client first: dynamic resizes may have advanced its epoch.
+                // Publish the barrier before the replacement connection can produce pixels.
+                send_event(
+                    &writer,
+                    RemoteDesktopHelperEvent::FrameStreamReset {
+                        graphics_epoch: config.graphics_epoch,
+                    },
+                )?;
                 reconnecting = true;
             }
             ClientRdpSessionExit::RemoteEnded(reason) => {
@@ -121,7 +134,7 @@ pub(super) fn run_client_rdp_thread(
     mut input_rx: tokio_mpsc::UnboundedReceiver<RdpInputEvent>,
     input_tx: tokio_mpsc::UnboundedSender<RdpInputEvent>,
     client_output_tx: ClientRdpOutputSender,
-) {
+) -> u64 {
     let runtime = tokio::runtime::Builder::new_multi_thread()
         .enable_all()
         .build();
@@ -132,10 +145,11 @@ pub(super) fn run_client_rdp_thread(
                 category: Some(RemoteDesktopErrorCategory::Dependency),
             },
         ));
-        return;
+        return config.graphics_epoch;
     };
 
     runtime.block_on(async move {
+        let mut graphics_epoch = config.graphics_epoch;
         'connection: {
             let (connection_result, framed, egfx_bridge) = match connect_native_rdp(
                 &config,
@@ -155,7 +169,7 @@ pub(super) fn run_client_rdp_thread(
             match run_native_rdp_active_session(
                 framed,
                 connection_result,
-                config.graphics_epoch,
+                &mut graphics_epoch,
                 &mut input_rx,
                 &client_output_tx,
                 &egfx_bridge,
@@ -182,5 +196,6 @@ pub(super) fn run_client_rdp_thread(
             }
         }
         let _ = client_output_tx.send_control(ClientRdpOutput::OutputEnded);
-    });
+        graphics_epoch
+    })
 }

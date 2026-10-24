@@ -33,17 +33,6 @@ pub(super) fn run_client_rdp_loop(
                 Ok(RemoteDesktopHelperRequest::Reconnect) => reconnect_requested = true,
                 Ok(request) => {
                     handled_requests = true;
-                    if matches!(
-                        request,
-                        RemoteDesktopHelperRequest::Resize { .. }
-                            | RemoteDesktopHelperRequest::UpdateDisplayLayout { .. }
-                    ) {
-                        // The pinned IronRDP session cannot safely preserve all
-                        // decoder state across DisplayControl reactivation.
-                        remember_rdp_reconnect_state(&request, config);
-                        reconnect_requested = true;
-                        continue;
-                    }
                     request_coalescer.push(request, &mut coalesced_requests);
                 }
                 Err(mpsc::TryRecvError::Empty) => break,
@@ -52,9 +41,9 @@ pub(super) fn run_client_rdp_loop(
         }
         request_coalescer.flush(&mut coalesced_requests);
         if reconnect_requested {
-            // Coalesce every queued display request into one replacement
-            // connection so a fit action cannot cause consecutive reconnects.
-            begin_rdp_reconnect(writer, config)?;
+            for request in &coalesced_requests {
+                remember_rdp_reconnect_state(request, config);
+            }
             return Ok(ClientRdpSessionExit::ReconnectRequested);
         }
         for request in coalesced_requests {
@@ -175,21 +164,6 @@ pub(super) fn remember_rdp_reconnect_state(
         // reconnect must rebuild the connector with the latest local layout.
         config.monitor_layout = layout.clone();
     }
-}
-
-fn begin_rdp_reconnect(
-    writer: &SharedEventWriter,
-    config: &mut RdpWorkerConfig,
-) -> Result<(), String> {
-    config.graphics_epoch = config.graphics_epoch.saturating_add(1).max(1);
-    // The barrier reaches the UI before the replacement client can publish a
-    // base frame, so queued pixels from the retired connection are discarded.
-    send_event(
-        writer,
-        RemoteDesktopHelperEvent::FrameStreamReset {
-            graphics_epoch: config.graphics_epoch,
-        },
-    )
 }
 
 pub(super) fn normalized_rdp_desktop_size(size: RemoteDesktopSize) -> RemoteDesktopSize {

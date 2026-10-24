@@ -655,38 +655,91 @@ fn client_config_withholds_credentials_until_certificate_acceptance() {
 }
 
 #[test]
-fn resize_request_enters_client_loop_with_normalized_rdp_size() {
+fn client_loop_forwards_display_changes_without_reconnecting() {
     for (requested, expected) in [
+        (
+            RemoteDesktopSize {
+                width: 3152,
+                height: 1941,
+            },
+            (3152, 1941),
+        ),
         (
             RemoteDesktopSize {
                 width: 201,
                 height: 121,
             },
-            200,
+            (200, 200),
         ),
         (
             RemoteDesktopSize {
                 width: 9001,
                 height: 9001,
             },
-            8192,
+            (8192, 8192),
         ),
     ] {
+        let writer = SharedEventWriter::inert_for_tests();
+        let (request_tx, request_rx) = mpsc::channel();
         let (input_tx, mut input_rx) = tokio_mpsc::unbounded_channel();
-        let mut input_database = RdpInputDatabase::new();
-        let mut keyboard_mapper = RdpKeyboardInputMapper::default();
-
-        forward_client_rdp_request(
-            &input_tx,
-            &mut input_database,
-            &mut keyboard_mapper,
-            RemoteDesktopHelperRequest::Resize {
+        let (output_tx, output_rx) = client_rdp_output_channel(RDP_CLIENT_OUTPUT_QUEUE_CAPACITY);
+        let layout = RemoteDesktopMonitorLayout {
+            monitors: vec![oxideterm_remote_desktop::RemoteDesktopMonitor {
+                stable_id: "primary".into(),
+                left: 0,
+                top: 0,
+                width: 3840,
+                height: 2160,
+                primary: true,
+                desktop_scale_factor: 100,
+                device_scale_factor: 100,
+                physical_width_mm: None,
+                physical_height_mm: None,
+                orientation: oxideterm_remote_desktop::RemoteDesktopMonitorOrientation::Landscape,
+            }],
+        };
+        let mut config = RdpWorkerConfig {
+            endpoint: RemoteDesktopEndpoint::new("example.test", 3389),
+            transport_endpoint: None,
+            socks_proxy: None,
+            size: RemoteDesktopSize {
+                width: 3840,
+                height: 2160,
+            },
+            scale_factor: 100,
+            graphics_epoch: 0,
+            read_only: false,
+            session_options: RemoteDesktopSessionOptions::default(),
+            monitor_layout: RemoteDesktopMonitorLayout::default(),
+        };
+        request_tx
+            .send(RemoteDesktopHelperRequest::Resize {
                 size: requested,
                 scale_factor: Some(125),
-            },
+            })
+            .unwrap();
+        request_tx
+            .send(RemoteDesktopHelperRequest::UpdateDisplayLayout {
+                layout: layout.clone(),
+            })
+            .unwrap();
+        // A normal session completion ends the loop after queued requests are forwarded.
+        output_tx
+            .send_control(ClientRdpOutput::Terminated("test session ended".into()))
+            .unwrap();
+        let exit = run_client_rdp_loop(
+            &writer,
+            &request_rx,
+            &input_tx,
+            output_rx,
+            &mut config,
             false,
         )
         .unwrap();
+        assert!(
+            matches!(exit, ClientRdpSessionExit::RemoteEnded(Some(reason)) if reason == "test session ended"),
+            "display change replaced the live connection for {requested:?}"
+        );
 
         match input_rx.try_recv().unwrap() {
             RdpInputEvent::Resize {
@@ -695,12 +748,19 @@ fn resize_request_enters_client_loop_with_normalized_rdp_size() {
                 scale_factor,
                 ..
             } => {
-                assert_eq!(width, expected);
-                assert_eq!(height, expected);
+                assert_eq!((width, height), expected);
                 assert_eq!(scale_factor, 125);
             }
             event => panic!("expected resize event, got {event:?}"),
         }
+        match input_rx.try_recv().unwrap() {
+            RdpInputEvent::UpdateDisplayLayout(actual) => assert_eq!(actual, layout),
+            event => panic!("expected monitor layout event, got {event:?}"),
+        }
+        assert!(matches!(
+            input_rx.try_recv(),
+            Err(tokio_mpsc::error::TryRecvError::Empty)
+        ));
     }
 }
 

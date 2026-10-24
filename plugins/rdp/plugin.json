@@ -1,7 +1,7 @@
 {
   "id": "com.oxideterm.remote-desktop.rdp",
   "name": "RDP",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "RDP connections using OxideTerm's native viewer, clipboard, audio and SSH gateways.",
   "author": "OxideTerm",
   "license": "GPL-3.0-only",

@@ -4,6 +4,12 @@
 
 要求 OxideTerm >2.2.1。每个版本提供 macOS、Linux、Windows 的 x64 和 ARM64 独立包。
 
+## 0.1.1
+
+- 调整分辨率和显示器布局时使用现有连接上的动态调整流程，不再强制断开重连，针对 xrdp 会话重连后桌面右侧和底栏被截断的问题。
+- 画面在服务端确认变化后更新；服务端未接受调整时继续显示原有完整画面。
+- 动态调整后手动重连会延续最新画面编号，避免新画面被丢弃。
+
 从仓库根目录使用 Rust 1.97.0 运行 node scripts/build-remote-desktop.mjs rdp，然后运行 node scripts/verify-remote-desktop.mjs rdp。
 
 共享通信模型固定到主仓库提交 570c541393ad7c7f01e85ba3441c9dab29ac3556。现有通信格式不变，清单声明协议版本 1；修改共享模型时需重新验证宿主兼容范围。

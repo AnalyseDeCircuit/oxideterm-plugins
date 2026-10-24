@@ -278,7 +278,7 @@ enum ClientRdpSessionExit {
 struct ClientRdpSession {
     input_tx: tokio_mpsc::UnboundedSender<RdpInputEvent>,
     output_rx: ClientRdpOutputReceiver,
-    join_handle: thread::JoinHandle<()>,
+    join_handle: thread::JoinHandle<u64>,
 }
 
 #[derive(Clone)]
