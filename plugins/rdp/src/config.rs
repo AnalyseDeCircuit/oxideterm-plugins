@@ -3,6 +3,10 @@
 
 use super::*;
 
+// This is a protocol compatibility build, not the plugin's semantic version.
+// xrdp 0.9.x treats builds <= 419 as legacy clients and skips reactivation.
+const RDP_CLIENT_BUILD: u32 = 10_000;
+
 pub(super) fn build_client_rdp_config(config: &RdpWorkerConfig) -> Result<ClientRdpConfig, String> {
     let requested_size = normalized_rdp_desktop_size(config.size);
     let width = u16::try_from(requested_size.width).unwrap_or(u16::MAX);
@@ -38,7 +42,7 @@ pub(super) fn build_client_rdp_config(config: &RdpWorkerConfig) -> Result<Client
             codecs,
         }),
         dig_product_id: String::new(),
-        client_build: client_build_number()?,
+        client_build: RDP_CLIENT_BUILD,
         client_name: RDP_CLIENT_NAME.to_string(),
         client_dir: "C:\\Windows\\System32\\mstscax.dll".to_string(),
         alternate_shell: String::new(),
@@ -169,17 +173,6 @@ pub(super) fn rdp_bitmap_codec_labels(codecs: &BitmapCodecs) -> String {
         .map(|codec| rdp_bitmap_codec_label(codec.id))
         .collect::<Vec<_>>()
         .join(",")
-}
-
-pub(super) fn client_build_number() -> Result<u32, String> {
-    let version = semver::Version::parse(env!("CARGO_PKG_VERSION"))
-        .map_err(|error| format!("RDP client version parse failed: {error}"))?;
-    let build = version
-        .major
-        .saturating_mul(100)
-        .saturating_add(version.minor.saturating_mul(10))
-        .saturating_add(version.patch);
-    u32::try_from(build).map_err(|error| format!("RDP client build number overflowed: {error}"))
 }
 
 pub(super) fn format_graceful_disconnect(reason: GracefulDisconnectReason) -> String {

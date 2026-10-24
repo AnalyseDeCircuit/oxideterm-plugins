@@ -574,7 +574,7 @@ fn lock_key_sync_request_emits_fastpath_sync_event() {
 }
 
 #[test]
-fn client_config_withholds_credentials_until_certificate_acceptance() {
+fn client_config_advertises_modern_capabilities_without_credentials() {
     let mut config = RdpWorkerConfig {
         endpoint: RemoteDesktopEndpoint::new("example.test", 3389),
         transport_endpoint: Some(RemoteDesktopEndpoint::new("127.0.0.1", 43891)),
@@ -602,6 +602,12 @@ fn client_config_withholds_credentials_until_certificate_acceptance() {
     assert!(client_config.connector.enable_server_pointer);
     assert!(!client_config.connector.pointer_software_rendering);
     assert!(client_config.connector.support_dyn_vc_gfx_protocol);
+    // xrdp 0.9.x disables desktop reactivation for legacy client builds.
+    assert!(
+        client_config.connector.client_build > 419,
+        "xrdp would disable desktop resizing for client build {}",
+        client_config.connector.client_build
+    );
     assert_eq!(client_config.connector.desktop_size.width, 1280);
     assert_eq!(client_config.connector.desktop_size.height, 720);
     assert_eq!(
