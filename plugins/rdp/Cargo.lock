@@ -2860,7 +2860,7 @@ dependencies = [
 
 [[package]]
 name = "oxideterm-rdp-helper"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "cpal",
  "ironrdp",

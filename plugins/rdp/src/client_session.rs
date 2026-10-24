@@ -385,10 +385,20 @@ pub(super) fn attach_client_virtual_channels(
     monitor_layout: RemoteDesktopMonitorLayout,
 ) -> EgfxSessionBridge {
     let initial_layout = if session_options.display.use_all_monitors {
-        build_display_control_layout(&monitor_layout).ok()
+        build_display_control_layout(&monitor_layout)
     } else {
-        None
-    };
+        // Synchronize the target desktop when the channel opens, even if the
+        // local viewport has not changed since reconnecting to an existing session.
+        DisplayControlMonitorLayout::new_single_primary_monitor(
+            u32::from(connector.config.desktop_size.width),
+            u32::from(connector.config.desktop_size.height),
+            Some(rdp_displaycontrol_scale_factor(Some(
+                connector.config.desktop_scale_factor,
+            ))),
+            None,
+        )
+    }
+    .ok();
     let mut dynamic_channels =
         DrdynvcClient::new().with_dynamic_channel(DisplayControlClient::new(move |capabilities| {
             let Some(layout) = initial_layout.as_ref() else {
@@ -494,6 +504,77 @@ fn build_display_control_layout(
 mod monitor_layout_tests {
     use super::*;
     use oxideterm_remote_desktop::{RemoteDesktopMonitor, RemoteDesktopMonitorOrientation};
+
+    #[test]
+    fn single_monitor_sends_initial_size_after_display_capabilities() {
+        use ironrdp::displaycontrol::pdu::DisplayControlCapabilities;
+        use ironrdp::dvc::pdu::{CreateRequestPdu, DrdynvcServerPdu};
+        use ironrdp::{dvc::DvcProcessor as _, svc::SvcProcessor as _};
+
+        let worker = RdpWorkerConfig {
+            endpoint: RemoteDesktopEndpoint::new("example.test", 3389),
+            transport_endpoint: None,
+            socks_proxy: None,
+            size: RemoteDesktopSize {
+                width: 3152,
+                height: 1941,
+            },
+            scale_factor: 0,
+            graphics_epoch: 0,
+            read_only: false,
+            session_options: RemoteDesktopSessionOptions::default(),
+            monitor_layout: RemoteDesktopMonitorLayout::default(),
+        };
+        let config = build_client_rdp_config(&worker).unwrap();
+        let mut connector = connector::ClientConnector::new(
+            config.connector.clone(),
+            "127.0.0.1:1234".parse().unwrap(),
+        );
+        let (input_tx, _) = tokio_mpsc::unbounded_channel();
+        let (output_tx, _) = client_rdp_output_channel(4);
+        attach_client_virtual_channels(
+            &mut connector,
+            input_tx,
+            output_tx,
+            config.graphics_epoch,
+            config.session_options,
+            config.monitor_layout.clone(),
+        );
+        let channel = connector
+            .static_channels
+            .get_by_type_mut::<DrdynvcClient>()
+            .unwrap()
+            .channel_processor_downcast_mut::<DrdynvcClient>()
+            .unwrap();
+        let create = ironrdp_core::encode_vec(&DrdynvcServerPdu::Create(CreateRequestPdu::new(
+            7,
+            ironrdp::displaycontrol::CHANNEL_NAME.into(),
+        )))
+        .unwrap();
+        channel.process(&create).unwrap();
+        let caps = DisplayControlPdu::Caps(DisplayControlCapabilities::new(1, 8192, 8192).unwrap());
+        let caps_bytes = ironrdp_core::encode_vec(&caps).unwrap();
+        let messages = channel
+            .get_dvc_by_channel_id_mut::<DisplayControlClient>(7)
+            .unwrap()
+            .processor_mut()
+            .process(7, &caps_bytes)
+            .unwrap();
+        assert_eq!(
+            messages.len(),
+            1,
+            "initial desktop size was never sent over DisplayControl"
+        );
+        let encoded = ironrdp_core::encode_vec(messages[0].as_ref()).unwrap();
+        let DisplayControlPdu::MonitorLayout(layout) = ironrdp_core::decode(&encoded).unwrap()
+        else {
+            panic!("expected the initial monitor layout");
+        };
+        assert_eq!(layout.monitors().len(), 1);
+        assert!(layout.monitors()[0].is_primary());
+        assert_eq!(layout.monitors()[0].dimensions(), (3152, 1941));
+        assert_eq!(layout.monitors()[0].desktop_scale_factor(), Some(100));
+    }
 
     #[test]
     fn display_control_layout_preserves_primary_relative_topology() {

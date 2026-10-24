@@ -4,8 +4,9 @@ An independently updated remote desktop engine. Install and enable it, then use 
 
 Requires OxideTerm >2.2.1. Native x64 and ARM64 packages for macOS, Linux and Windows.
 
-## 0.1.1
+## 0.1.2
 
+- Synchronize the initial single-monitor desktop size when DisplayControl becomes ready, without waiting for another window resize.
 - Resize the desktop and update monitor layouts over the existing connection instead of forcing a reconnect, addressing cropped desktop edges and missing panels after xrdp session reconnection.
 - Keep the current desktop visible until the server confirms a change, including when a resize is ignored.
 - Preserve graphics epoch ordering when manually reconnecting after dynamic display changes.
