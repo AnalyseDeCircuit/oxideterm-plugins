@@ -20,11 +20,15 @@ if (rustHost !== target || (process.env.REMOTE_DESKTOP_TARGET && process.env.REM
 }
 execFileSync('cargo', [toolchain, 'test', '--locked'], { cwd: root, stdio: 'inherit' });
 execFileSync('cargo', [toolchain, 'build', '--release', '--locked'], { cwd: root, stdio: 'inherit' });
+const metadata = JSON.parse(execFileSync('cargo', [toolchain, 'metadata', '--locked', '--format-version', '1', '--filter-platform', target], {
+  cwd: root, encoding: 'utf8', maxBuffer: 10 * 1024 * 1024,
+}));
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'plugin.json'), 'utf8'));
 const binary = `oxideterm-${plugin}-helper${process.platform === 'win32' ? '.exe' : ''}`;
 manifest.runtime.entry = `bin/${binary}`;
 const files = { 'plugin.json': strToU8(JSON.stringify(manifest, null, 2) + '\n') };
-files[manifest.runtime.entry] = [fs.readFileSync(path.join(root, 'target/release', binary)), {
+// Cargo may use a shared target directory for local native builds.
+files[manifest.runtime.entry] = [fs.readFileSync(path.join(metadata.target_directory, 'release', binary)), {
   os: 3, attrs: (0o100755 << 16) >>> 0,
 }];
 for (const name of ['LICENSE', 'README.md', 'README.en.md']) files[name] = strToU8(fs.readFileSync(path.join(root, name), 'utf8'));
@@ -32,9 +36,6 @@ for (const name of fs.readdirSync(root).filter(name => /^(NOTICE|LICENSE[._-])/.
   const file = path.join(root, name);
   if (fs.statSync(file).isFile()) files[name] = strToU8(fs.readFileSync(file, 'utf8'));
 }
-const metadata = JSON.parse(execFileSync('cargo', [toolchain, 'metadata', '--locked', '--format-version', '1', '--filter-platform', target], {
-  cwd: root, encoding: 'utf8', maxBuffer: 10 * 1024 * 1024,
-}));
 let notices = '';
 const includedNotices = new Set();
 for (const pkg of metadata.packages) {

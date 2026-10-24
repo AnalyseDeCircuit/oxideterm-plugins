@@ -8,7 +8,15 @@ use super::*;
 const RDP_CLIENT_BUILD: u32 = 10_000;
 
 pub(super) fn build_client_rdp_config(config: &RdpWorkerConfig) -> Result<ClientRdpConfig, String> {
-    let requested_size = normalized_rdp_desktop_size(config.size);
+    let requested_size = if config.session_options.display.use_all_monitors
+        && config.monitor_layout.monitors.len() > 1
+    {
+        build_display_control_layout(&config.monitor_layout)
+            .and_then(|_| monitor_desktop_size(&config.monitor_layout))
+            .map_err(|_| "Invalid RDP monitor layout.".to_string())?
+    } else {
+        normalized_rdp_desktop_size(config.size)
+    };
     let width = u16::try_from(requested_size.width).unwrap_or(u16::MAX);
     let height = u16::try_from(requested_size.height).unwrap_or(u16::MAX);
     let codecs = client_codecs_capabilities(RDP_CLIENT_BITMAP_CODECS)

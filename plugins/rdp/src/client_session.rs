@@ -163,7 +163,12 @@ pub(super) async fn connect_native_rdp(
     input_rx: &mut tokio_mpsc::UnboundedReceiver<RdpInputEvent>,
     input_tx: tokio_mpsc::UnboundedSender<RdpInputEvent>,
     output_tx: ClientRdpOutputSender,
-) -> connector::ConnectorResult<(ConnectionResult, UpgradedRdpFramed, EgfxSessionBridge)> {
+) -> connector::ConnectorResult<(
+    ConnectionResult,
+    UpgradedRdpFramed,
+    EgfxSessionBridge,
+    Arc<Mutex<RdpDisplayState>>,
+)> {
     let mut deferred_inputs = VecDeque::new();
     let socket = {
         let connect = connect_rdp_transport(config);
@@ -187,14 +192,14 @@ pub(super) async fn connect_native_rdp(
         .map_err(|error| connector::custom_err!("get socket local address", error))?;
     let mut framed = ironrdp_tokio::TokioFramed::new(socket);
     let mut connector = connector::ClientConnector::new(config.connector.clone(), client_addr);
-    let egfx_bridge = attach_client_virtual_channels(
+    let (egfx_bridge, display) = attach_client_virtual_channels(
         &mut connector,
         input_tx.clone(),
         output_tx.clone(),
         config.graphics_epoch,
         config.session_options,
         config.monitor_layout.clone(),
-    );
+    )?;
     let should_upgrade = {
         let connect_begin = ironrdp_tokio::connect_begin(&mut framed, &mut connector);
         tokio::pin!(connect_begin);
@@ -266,7 +271,7 @@ pub(super) async fn connect_native_rdp(
     }
     log_rdp_negotiated_graphics(&config.connector, &connection_result);
 
-    Ok((connection_result, upgraded_framed, egfx_bridge))
+    Ok((connection_result, upgraded_framed, egfx_bridge, display))
 }
 
 fn defer_or_cancel_preconnection_input(
@@ -383,39 +388,26 @@ pub(super) fn attach_client_virtual_channels(
     graphics_epoch: u64,
     session_options: RemoteDesktopSessionOptions,
     monitor_layout: RemoteDesktopMonitorLayout,
-) -> EgfxSessionBridge {
-    let initial_layout = if session_options.display.use_all_monitors {
-        build_display_control_layout(&monitor_layout)
-    } else {
-        // Synchronize the target desktop when the channel opens, even if the
-        // local viewport has not changed since reconnecting to an existing session.
-        DisplayControlMonitorLayout::new_single_primary_monitor(
-            u32::from(connector.config.desktop_size.width),
-            u32::from(connector.config.desktop_size.height),
-            Some(rdp_displaycontrol_scale_factor(Some(
-                connector.config.desktop_scale_factor,
-            ))),
-            None,
+) -> connector::ConnectorResult<(EgfxSessionBridge, Arc<Mutex<RdpDisplayState>>)> {
+    let display = Arc::new(Mutex::new(
+        RdpDisplayState::new(
+            RemoteDesktopSize {
+                width: u32::from(connector.config.desktop_size.width),
+                height: u32::from(connector.config.desktop_size.height),
+            },
+            connector.config.desktop_scale_factor,
+            session_options.display.use_all_monitors,
+            &monitor_layout,
         )
-    }
-    .ok();
+        .map_err(|error| connector::custom_err!("DisplayControl layout", error))?,
+    ));
+    let callback_state = display.clone();
     let mut dynamic_channels =
-        DrdynvcClient::new().with_dynamic_channel(DisplayControlClient::new(move |capabilities| {
-            let Some(layout) = initial_layout.as_ref() else {
-                return Ok(Vec::new());
-            };
-            let requested_area = layout
-                .monitors()
-                .iter()
-                .map(|monitor| {
-                    let (width, height) = monitor.dimensions();
-                    u64::from(width) * u64::from(height)
-                })
-                .sum::<u64>();
-            if requested_area > capabilities.max_monitor_area() {
-                return Ok(Vec::new());
-            }
-            Ok(vec![Box::new(DisplayControlPdu::from(layout.clone()))])
+        DrdynvcClient::new().with_dynamic_channel(DisplayControlClient::new(move |caps| {
+            callback_state
+                .lock()
+                .map_err(|_| ironrdp::pdu::pdu_other_err!("DisplayControl", "state unavailable"))?
+                .capabilities(caps)
         }));
     let egfx_bridge = if session_options.rdp.disable_graphics_pipeline {
         // DisplayControl remains attached while EGFX is omitted for bitmap fallback.
@@ -451,53 +443,7 @@ pub(super) fn attach_client_virtual_channels(
     }
 
     // The bridge is session-owned and is dropped after the active RDP loop exits.
-    egfx_bridge
-}
-
-fn build_display_control_layout(
-    layout: &RemoteDesktopMonitorLayout,
-) -> ironrdp_core::EncodeResult<DisplayControlMonitorLayout> {
-    let monitors = layout
-        .monitors
-        .iter()
-        .map(|monitor| {
-            let mut entry = if monitor.primary {
-                MonitorLayoutEntry::new_primary(monitor.width, monitor.height)?
-            } else {
-                MonitorLayoutEntry::new_secondary(monitor.width, monitor.height)?
-                    .with_position(monitor.left, monitor.top)?
-            };
-            entry = entry
-                .with_orientation(match monitor.orientation {
-                    oxideterm_remote_desktop::RemoteDesktopMonitorOrientation::Landscape => {
-                        MonitorOrientation::Landscape
-                    }
-                    oxideterm_remote_desktop::RemoteDesktopMonitorOrientation::Portrait => {
-                        MonitorOrientation::Portrait
-                    }
-                    oxideterm_remote_desktop::RemoteDesktopMonitorOrientation::LandscapeFlipped => {
-                        MonitorOrientation::LandscapeFlipped
-                    }
-                    oxideterm_remote_desktop::RemoteDesktopMonitorOrientation::PortraitFlipped => {
-                        MonitorOrientation::PortraitFlipped
-                    }
-                })
-                .with_desktop_scale_factor(monitor.desktop_scale_factor)?
-                .with_device_scale_factor(match monitor.device_scale_factor {
-                    100 => DeviceScaleFactor::Scale100Percent,
-                    140 => DeviceScaleFactor::Scale140Percent,
-                    180 => DeviceScaleFactor::Scale180Percent,
-                    _ => DeviceScaleFactor::Scale100Percent,
-                });
-            if let (Some(width), Some(height)) =
-                (monitor.physical_width_mm, monitor.physical_height_mm)
-            {
-                entry = entry.with_physical_dimensions(width, height)?;
-            }
-            Ok(entry)
-        })
-        .collect::<ironrdp_core::EncodeResult<Vec<_>>>()?;
-    DisplayControlMonitorLayout::new(&monitors)
+    Ok((egfx_bridge, display))
 }
 
 #[cfg(test)]
@@ -506,74 +452,97 @@ mod monitor_layout_tests {
     use oxideterm_remote_desktop::{RemoteDesktopMonitor, RemoteDesktopMonitorOrientation};
 
     #[test]
-    fn single_monitor_sends_initial_size_after_display_capabilities() {
+    fn single_active_monitor_syncs_viewport_even_when_all_monitors_requested() {
         use ironrdp::displaycontrol::pdu::DisplayControlCapabilities;
         use ironrdp::dvc::pdu::{CreateRequestPdu, DrdynvcServerPdu};
         use ironrdp::{dvc::DvcProcessor as _, svc::SvcProcessor as _};
 
-        let worker = RdpWorkerConfig {
-            endpoint: RemoteDesktopEndpoint::new("example.test", 3389),
-            transport_endpoint: None,
-            socks_proxy: None,
-            size: RemoteDesktopSize {
-                width: 3152,
-                height: 1941,
-            },
-            scale_factor: 0,
-            graphics_epoch: 0,
-            read_only: false,
-            session_options: RemoteDesktopSessionOptions::default(),
-            monitor_layout: RemoteDesktopMonitorLayout::default(),
-        };
-        let config = build_client_rdp_config(&worker).unwrap();
-        let mut connector = connector::ClientConnector::new(
-            config.connector.clone(),
-            "127.0.0.1:1234".parse().unwrap(),
-        );
-        let (input_tx, _) = tokio_mpsc::unbounded_channel();
-        let (output_tx, _) = client_rdp_output_channel(4);
-        attach_client_virtual_channels(
-            &mut connector,
-            input_tx,
-            output_tx,
-            config.graphics_epoch,
-            config.session_options,
-            config.monitor_layout.clone(),
-        );
-        let channel = connector
-            .static_channels
-            .get_by_type_mut::<DrdynvcClient>()
-            .unwrap()
-            .channel_processor_downcast_mut::<DrdynvcClient>()
+        for use_all_monitors in [false, true] {
+            let mut worker = RdpWorkerConfig {
+                endpoint: RemoteDesktopEndpoint::new("example.test", 3389),
+                transport_endpoint: None,
+                socks_proxy: None,
+                size: RemoteDesktopSize {
+                    width: 3152,
+                    height: 1941,
+                },
+                scale_factor: 0,
+                graphics_epoch: 0,
+                read_only: false,
+                session_options: RemoteDesktopSessionOptions::default(),
+                monitor_layout: RemoteDesktopMonitorLayout::default(),
+            };
+            worker.session_options.display.use_all_monitors = use_all_monitors;
+            if use_all_monitors {
+                worker.monitor_layout.monitors.push(RemoteDesktopMonitor {
+                    stable_id: "external".into(),
+                    left: 0,
+                    top: 0,
+                    width: 3840,
+                    height: 2160,
+                    primary: true,
+                    desktop_scale_factor: 150,
+                    device_scale_factor: 140,
+                    physical_width_mm: None,
+                    physical_height_mm: None,
+                    orientation: RemoteDesktopMonitorOrientation::Landscape,
+                });
+            }
+            let config = build_client_rdp_config(&worker).unwrap();
+            let mut connector = connector::ClientConnector::new(
+                config.connector.clone(),
+                "127.0.0.1:1234".parse().unwrap(),
+            );
+            let (input_tx, _) = tokio_mpsc::unbounded_channel();
+            let (output_tx, _) = client_rdp_output_channel(4);
+            attach_client_virtual_channels(
+                &mut connector,
+                input_tx,
+                output_tx,
+                config.graphics_epoch,
+                config.session_options,
+                config.monitor_layout.clone(),
+            )
             .unwrap();
-        let create = ironrdp_core::encode_vec(&DrdynvcServerPdu::Create(CreateRequestPdu::new(
-            7,
-            ironrdp::displaycontrol::CHANNEL_NAME.into(),
-        )))
-        .unwrap();
-        channel.process(&create).unwrap();
-        let caps = DisplayControlPdu::Caps(DisplayControlCapabilities::new(1, 8192, 8192).unwrap());
-        let caps_bytes = ironrdp_core::encode_vec(&caps).unwrap();
-        let messages = channel
-            .get_dvc_by_channel_id_mut::<DisplayControlClient>(7)
-            .unwrap()
-            .processor_mut()
-            .process(7, &caps_bytes)
+            let channel = connector
+                .static_channels
+                .get_by_type_mut::<DrdynvcClient>()
+                .unwrap()
+                .channel_processor_downcast_mut::<DrdynvcClient>()
+                .unwrap();
+            let create = ironrdp_core::encode_vec(&DrdynvcServerPdu::Create(
+                CreateRequestPdu::new(7, ironrdp::displaycontrol::CHANNEL_NAME.into()),
+            ))
             .unwrap();
-        assert_eq!(
-            messages.len(),
-            1,
-            "initial desktop size was never sent over DisplayControl"
-        );
-        let encoded = ironrdp_core::encode_vec(messages[0].as_ref()).unwrap();
-        let DisplayControlPdu::MonitorLayout(layout) = ironrdp_core::decode(&encoded).unwrap()
-        else {
-            panic!("expected the initial monitor layout");
-        };
-        assert_eq!(layout.monitors().len(), 1);
-        assert!(layout.monitors()[0].is_primary());
-        assert_eq!(layout.monitors()[0].dimensions(), (3152, 1941));
-        assert_eq!(layout.monitors()[0].desktop_scale_factor(), Some(100));
+            channel.process(&create).unwrap();
+            let caps =
+                DisplayControlPdu::Caps(DisplayControlCapabilities::new(1, 8192, 8192).unwrap());
+            let caps_bytes = ironrdp_core::encode_vec(&caps).unwrap();
+            let messages = channel
+                .get_dvc_by_channel_id_mut::<DisplayControlClient>(7)
+                .unwrap()
+                .processor_mut()
+                .process(7, &caps_bytes)
+                .unwrap();
+            assert_eq!(
+                messages.len(),
+                1,
+                "initial desktop size was never sent over DisplayControl"
+            );
+            let encoded = ironrdp_core::encode_vec(messages[0].as_ref()).unwrap();
+            let DisplayControlPdu::MonitorLayout(layout) = ironrdp_core::decode(&encoded).unwrap()
+            else {
+                panic!("expected the initial monitor layout");
+            };
+            assert_eq!(layout.monitors().len(), 1);
+            assert!(layout.monitors()[0].is_primary());
+            assert_eq!(
+                layout.monitors()[0].dimensions(),
+                (3152, 1941),
+                "one active display must preserve the viewport; all monitors: {use_all_monitors}"
+            );
+            assert_eq!(layout.monitors()[0].desktop_scale_factor(), Some(100));
+        }
     }
 
     #[test]
@@ -617,31 +586,6 @@ mod monitor_layout_tests {
         assert_eq!(encoded.monitors()[1].position(), Some((-1280, 0)));
         assert_eq!(encoded.monitors()[1].dimensions(), (1280, 1024));
     }
-}
-
-fn encode_display_control_layout(
-    active_stage: &mut ActiveStage,
-    layout: &RemoteDesktopMonitorLayout,
-) -> Option<SessionResult<Vec<u8>>> {
-    let display_control_channel = active_stage.get_dvc::<DisplayControlClient>()?;
-    let channel_id = display_control_channel.channel_id();
-    let display_control = display_control_channel.processor();
-    if !display_control.ready() {
-        return None;
-    }
-    let layout = match build_display_control_layout(layout) {
-        Ok(layout) => DisplayControlPdu::from(layout),
-        Err(error) => return Some(Err(session::SessionError::encode(error))),
-    };
-    let messages =
-        match encode_dvc_messages(channel_id, vec![Box::new(layout)], ChannelFlags::empty()) {
-            Ok(messages) => messages,
-            Err(error) => return Some(Err(session::SessionError::encode(error))),
-        };
-    Some(
-        active_stage
-            .process_svc_processor_messages(SvcProcessorMessages::<DrdynvcClient>::new(messages)),
-    )
 }
 
 fn display_control_resize_available(active_stage: &mut ActiveStage) -> bool {
@@ -724,6 +668,7 @@ pub(super) async fn run_native_rdp_active_session(
     input_rx: &mut tokio_mpsc::UnboundedReceiver<RdpInputEvent>,
     output_tx: &ClientRdpOutputSender,
     egfx_bridge: &EgfxSessionBridge,
+    display: &Arc<Mutex<RdpDisplayState>>,
 ) -> SessionResult<ClientRdpControlFlow> {
     let (mut reader, mut writer) = split_tokio_framed(framed);
     let mut image = DecodedImage::new(
@@ -750,6 +695,9 @@ pub(super) async fn run_native_rdp_active_session(
         ..ClientRdpFrameState::default()
     };
     let mut last_reported_resize_capability = None;
+    let mut has_reactivated = false;
+    let mut reactivation: Option<RdpReactivation> = None;
+    let mut deferred_inputs = VecDeque::new();
 
     let disconnect_reason = 'session: loop {
         flush_pending_rdp_base_frame(output_tx, &image, &mut frame_state)?;
@@ -763,7 +711,7 @@ pub(super) async fn run_native_rdp_active_session(
         }
         let graphics_flush_delay = frame_state.graphics_accumulator.next_flush_delay();
 
-        let outputs = tokio::select! {
+        let mut outputs = tokio::select! {
             _ = wait_for_graphics_accumulator_flush(graphics_flush_delay) => {
                 flush_pending_rdp_graphics_updates(output_tx, &image, &mut frame_state)?;
                 Vec::new()
@@ -782,40 +730,60 @@ pub(super) async fn run_native_rdp_active_session(
                             session::custom_err!("read RDP frame", error)
                         }
                     })?;
-                active_stage.process(&mut image, action, &payload)?
+                let result = if let Some(activation) = reactivation.as_mut() {
+                    let was_negotiated = activation.negotiated;
+                    let outputs = activation.process(&mut active_stage, &mut image, action, &payload)
+                        .map_err(|mut error| {
+                            if error.context() == "decode error" {
+                                error.set_context("display reactivation frame");
+                            }
+                            error
+                        })?;
+                    if !was_negotiated && activation.negotiated {
+                        // Reset EGFX before any packets belonging to the new activation arrive.
+                        egfx_bridge.prepare_for_reactivation(frame_state.graphics_epoch)
+                            .map_err(|error| session::custom_err!("reset EGFX state after reactivation", error))?;
+                    }
+                    Ok(outputs)
+                } else {
+                    process_server_frame(&mut active_stage, &mut image, action, &payload, connection_result.io_channel_id)
+                };
+                result.map_err(|mut error| {
+                    error.set_context(match (action, has_reactivated) {
+                        (ironrdp::pdu::Action::FastPath, false) => "Fast-Path frame",
+                        (ironrdp::pdu::Action::FastPath, true) => "Fast-Path frame after display reactivation",
+                        (ironrdp::pdu::Action::X224, false) => "X224 frame",
+                        (ironrdp::pdu::Action::X224, true) => "X224 frame after display reactivation",
+                    });
+                    error
+                })?
             }
-            input = input_rx.recv() => {
+            input = async {
+                if reactivation.is_none() && let Some(input) = deferred_inputs.pop_front() {
+                    return Some(input);
+                }
+                input_rx.recv().await
+            } => {
                 let input = input.ok_or_else(|| session::general_err!("RDP input channel closed"))?;
-                match input {
+                if reactivation.is_some() && matches!(input, RdpInputEvent::Close) {
+                    break 'session GracefulDisconnectReason::UserInitiated;
+                }
+                if reactivation.is_some() && matches!(input, RdpInputEvent::FastPath(_) | RdpInputEvent::PasteClipboard(_)) {
+                    // Preserve input order until the graphics/input handlers are active again.
+                    // Close remains actionable even if the server stalls during negotiation.
+                    deferred_inputs.push_back(input);
+                    Vec::new()
+                } else { match input {
                     RdpInputEvent::Resize {
                         width,
                         height,
                         scale_factor,
                         physical_size,
                     } => {
-                        if let Some(response_frame) =
-                            active_stage.encode_resize(
-                                u32::from(width),
-                                u32::from(height),
-                                Some(scale_factor),
-                                physical_size,
-                            )
-                        {
-                            let response_frame = response_frame?;
-                            // A request may be ignored or answered by EGFX without deactivation.
-                            // Keep publishing the current desktop until the server changes it.
-                            vec![ActiveStageOutput::ResponseFrame(response_frame)]
-                        } else {
-                            // Some servers, notably xrdp/GNOME setups, do not
-                            // expose DisplayControl after activation. Keep the
-                            // live framebuffer and let the UI scale it locally
-                            // instead of tearing down a usable session.
-                            send_client_rdp_event(
-                                output_tx,
-                                unsupported_resize_connected_event(&image),
-                            )?;
-                            Vec::new()
-                        }
+                        display.lock().map_err(|_| session::general_err!("DisplayControl state unavailable"))?
+                            .resize(u32::from(width), u32::from(height), scale_factor, physical_size)
+                            .map_err(session::SessionError::encode)?;
+                        if reactivation.is_none() { encode_pending_display_layout(&mut active_stage, display)? } else { Vec::new() }
                     }
                     RdpInputEvent::FastPath(events) => {
                         active_stage.process_fastpath_input(&mut image, &events)?
@@ -851,14 +819,9 @@ pub(super) async fn run_native_rdp_active_session(
                         Vec::new()
                     }
                     RdpInputEvent::UpdateDisplayLayout(layout) => {
-                        if let Some(response_frame) =
-                            encode_display_control_layout(&mut active_stage, &layout)
-                        {
-                            let response_frame = response_frame?;
-                            vec![ActiveStageOutput::ResponseFrame(response_frame)]
-                        } else {
-                            Vec::new()
-                        }
+                        display.lock().map_err(|_| session::general_err!("DisplayControl state unavailable"))?
+                            .update_monitors(&layout).map_err(session::SessionError::encode)?;
+                        if reactivation.is_none() { encode_pending_display_layout(&mut active_stage, display)? } else { Vec::new() }
                     }
                     RdpInputEvent::MicrophoneReady => {
                         if let Some(response_frame) =
@@ -890,12 +853,19 @@ pub(super) async fn run_native_rdp_active_session(
                         Vec::new()
                     }
                     RdpInputEvent::Close => active_stage.graceful_shutdown()?,
-                }
+                } }
             }
             _ = clipboard_cleanup.tick() => {
                 drive_clipboard_timeouts(&mut active_stage)?
             }
         };
+
+        if reactivation.as_ref().is_some_and(RdpReactivation::finished) {
+            reactivation = None;
+            frame_state.finish_reactivation();
+            has_reactivated = true;
+            outputs.extend(encode_pending_display_layout(&mut active_stage, display)?);
+        }
 
         for output in outputs {
             match output {
@@ -941,23 +911,22 @@ pub(super) async fn run_native_rdp_active_session(
                     )?;
                 }
                 ActiveStageOutput::DeactivateAll => {
+                    if reactivation
+                        .as_ref()
+                        .is_some_and(|activation| activation.negotiated)
+                    {
+                        // A new resize interrupted finalization after accepting a new canvas.
+                        // Retire that generation too, including any early EGFX output.
+                        frame_state.finish_reactivation();
+                    }
                     let graphics_epoch =
                         begin_rdp_frame_transition(output_tx, &mut frame_state, egfx_bridge)?;
                     *latest_graphics_epoch = graphics_epoch;
-                    handle_deactivate_all(
-                        &mut reader,
-                        &mut writer,
-                        &mut active_stage,
-                        &mut image,
+                    reactivation = Some(RdpReactivation::new(
                         activation_factory.create(),
-                    )
-                    .await?;
-                    frame_state.finish_reactivation();
-                    egfx_bridge
-                        .prepare_for_reactivation(graphics_epoch)
-                        .map_err(|error| {
-                            session::custom_err!("reset EGFX state after reactivation", error)
-                        })?;
+                        connection_result.enable_server_pointer,
+                        connection_result.pointer_software_rendering,
+                    ));
                 }
                 ActiveStageOutput::Terminate(reason) => break 'session reason,
                 ActiveStageOutput::MultitransportRequest(_)

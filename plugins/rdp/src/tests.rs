@@ -790,21 +790,6 @@ fn established_transport_closure_is_classified_as_network_failure() {
 }
 
 #[test]
-fn unsupported_resize_reports_existing_framebuffer_size() {
-    let image = DecodedImage::new(PixelFormat::RgbA32, 4, 3);
-
-    assert!(matches!(
-        unsupported_resize_connected_event(&image),
-        RemoteDesktopHelperEvent::Connected {
-            size: RemoteDesktopSize {
-                width: 4,
-                height: 3
-            }
-        }
-    ));
-}
-
-#[test]
 fn first_desktop_base_frame_publishes_connected_once() {
     for (pixel_format, frame_format) in [
         (PixelFormat::RgbA32, RemoteDesktopFrameFormat::Rgba8),

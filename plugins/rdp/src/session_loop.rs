@@ -163,6 +163,14 @@ pub(super) fn remember_rdp_reconnect_state(
         // Multi-monitor topology is part of initial activation, so a controlled
         // reconnect must rebuild the connector with the latest local layout.
         config.monitor_layout = layout.clone();
+        if let [monitor] = layout.monitors.as_slice() {
+            // Returning to one screen carries the current viewport, also for a later reconnect.
+            config.size = normalized_rdp_desktop_size(RemoteDesktopSize {
+                width: monitor.width,
+                height: monitor.height,
+            });
+            config.scale_factor = rdp_connector_scale_factor(Some(monitor.desktop_scale_factor));
+        }
     }
 }
 
@@ -211,56 +219,5 @@ pub(super) fn rdp_frame_read_error_context(error: &impl fmt::Display) -> &'stati
         "server closed established RDP session while reading frames"
     } else {
         "read RDP frame"
-    }
-}
-
-pub(super) async fn handle_deactivate_all<ReadStream, WriteStream>(
-    reader: &mut ironrdp_tokio::TokioFramed<ReadStream>,
-    writer: &mut ironrdp_tokio::TokioFramed<WriteStream>,
-    active_stage: &mut ActiveStage,
-    image: &mut DecodedImage,
-    mut connection_activation: ironrdp::connector::connection_activation::ConnectionActivationSequence,
-) -> SessionResult<()>
-where
-    ReadStream: AsyncRead + Send + Sync + Unpin,
-    WriteStream: AsyncWrite + Send + Sync + Unpin,
-{
-    let mut buffer = WriteBuf::new();
-    loop {
-        let written = single_sequence_step_read(reader, &mut connection_activation, &mut buffer)
-            .await
-            .map_err(|error| {
-                session::custom_err!("read deactivation-reactivation sequence step", error)
-            })?;
-        if written.size().is_some() {
-            writer.write_all(buffer.filled()).await.map_err(|error| {
-                session::custom_err!("write deactivation-reactivation sequence step", error)
-            })?;
-        }
-
-        if let ConnectionActivationState::Finalized {
-            desktop_size,
-            share_id,
-            enable_server_pointer,
-            pointer_software_rendering,
-            ..
-        } = connection_activation.connection_activation_state()
-        {
-            // Rebuild the decoded image and processors before accepting pixels while preserving
-            // the negotiated bulk decompression history owned by ActiveStage.
-            *image = DecodedImage::new(
-                RDP_DECODED_FRAME_PIXEL_FORMAT,
-                desktop_size.width,
-                desktop_size.height,
-            );
-            active_stage.reactivate(
-                connection_activation.io_channel_id(),
-                connection_activation.user_channel_id(),
-                share_id,
-                enable_server_pointer,
-                pointer_software_rendering,
-            );
-            return Ok(());
-        }
     }
 }

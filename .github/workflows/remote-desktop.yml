@@ -56,7 +56,7 @@ jobs:
         with:
           workspaces: plugins/${{ matrix.plugin }}
       - run: npm ci --ignore-scripts
-      - run: node scripts/release-plugin.mjs prepare plugins/${{ matrix.plugin }} --host-range '${{ matrix.plugin == 'mosh' && '>=2.2.2' || '>2.2.1' }}'
+      - run: node scripts/release-plugin.mjs prepare plugins/${{ matrix.plugin }}
       - run: node scripts/build-remote-desktop.mjs ${{ matrix.plugin }}
       - name: Verify native package
         shell: bash

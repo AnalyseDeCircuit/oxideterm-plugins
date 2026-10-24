@@ -151,7 +151,7 @@ pub(super) fn run_client_rdp_thread(
     runtime.block_on(async move {
         let mut graphics_epoch = config.graphics_epoch;
         'connection: {
-            let (connection_result, framed, egfx_bridge) = match connect_native_rdp(
+            let (connection_result, framed, egfx_bridge, display) = match connect_native_rdp(
                 &config,
                 &mut input_rx,
                 input_tx.clone(),
@@ -173,6 +173,7 @@ pub(super) fn run_client_rdp_thread(
                 &mut input_rx,
                 &client_output_tx,
                 &egfx_bridge,
+                &display,
             )
             .await
             {
@@ -183,10 +184,7 @@ pub(super) fn run_client_rdp_thread(
                     break 'connection;
                 }
                 Err(error) => {
-                    let diagnostic = format!("RDP session ended: {error}");
-                    let category = remote_desktop_error_category_from_message(&diagnostic);
-                    let message = sanitize_rdp_disconnect_reason(Some(&error.to_string()))
-                        .unwrap_or_else(|| "RDP session ended.".to_string());
+                    let (message, category) = diagnostics::session_failure(&error);
                     // Active-session failures stay typed so the UI can retry
                     // network loss without retrying protocol or auth failures.
                     let _ = client_output_tx

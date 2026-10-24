@@ -61,7 +61,7 @@ use ironrdp::{
 use ironrdp_cliprdr_format::bitmap::{dib_to_png, dibv5_to_png, png_to_cf_dib, png_to_cf_dibv5};
 use ironrdp_core::{IntoOwned as _, WriteBuf, impl_as_any};
 use ironrdp_displaycontrol::pdu::MonitorLayoutEntry;
-use ironrdp_tokio::{FramedWrite, single_sequence_step_read, split_tokio_framed};
+use ironrdp_tokio::{FramedWrite, split_tokio_framed};
 use oxideterm_remote_desktop::{
     NegotiatedCapabilities, NegotiatedCapabilityStatus, RemoteDesktopClipboardData,
     RemoteDesktopClipboardFormat, RemoteDesktopCursorShape, RemoteDesktopEndpoint,
@@ -87,10 +87,13 @@ mod client_session;
 mod clipboard;
 mod config;
 mod control;
+mod diagnostics;
+mod display;
 mod egfx;
 mod event_writer;
 mod frame;
 mod input;
+mod reactivation;
 mod runtime;
 mod session_loop;
 
@@ -100,7 +103,9 @@ use client_session::*;
 use clipboard::*;
 use config::*;
 use control::*;
+use display::*;
 use egfx::*;
+use reactivation::*;
 use runtime::*;
 use session_loop::*;
 
@@ -402,15 +407,6 @@ fn native_rdp_desktop_ready_events(size: RemoteDesktopSize) -> [RemoteDesktopHel
             message: Some("RDP desktop frame received.".to_string()),
         },
     ]
-}
-
-fn unsupported_resize_connected_event(image: &DecodedImage) -> RemoteDesktopHelperEvent {
-    RemoteDesktopHelperEvent::Connected {
-        size: RemoteDesktopSize {
-            width: u32::from(image.width()),
-            height: u32::from(image.height()),
-        },
-    }
 }
 
 #[derive(Default)]
