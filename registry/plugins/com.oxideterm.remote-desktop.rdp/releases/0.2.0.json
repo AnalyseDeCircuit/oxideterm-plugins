@@ -1,0 +1,47 @@
+{
+  "release": {
+    "version": "0.2.0",
+    "engines": {
+      "oxideterm": ">=2.2.5"
+    },
+    "packages": [
+      {
+        "target": "aarch64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.2.0/rdp-0.2.0-aarch64-apple-darwin.zip",
+        "checksum": "sha256:176ea9647ce9b6ea377d06a560a8675443ce69c207fba332b7d0d8aea9b39df5",
+        "size": 5709144
+      },
+      {
+        "target": "x86_64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.2.0/rdp-0.2.0-x86_64-apple-darwin.zip",
+        "checksum": "sha256:9ad47ad42aeabf34df839dd812e12e37a42404d3cb3602f8cd9d5fdb09c4f998",
+        "size": 6145763
+      },
+      {
+        "target": "x86_64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.2.0/rdp-0.2.0-x86_64-unknown-linux-gnu.zip",
+        "checksum": "sha256:2dd6125e8debe514f8c2fd204e6b4d6bdbad16f79a7e074d8802c335a64b9ef6",
+        "size": 8469900
+      },
+      {
+        "target": "aarch64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.2.0/rdp-0.2.0-aarch64-unknown-linux-gnu.zip",
+        "checksum": "sha256:0e99427b31bbf6beeb536c3d31c3356a843e42d2cd47a3c7dc4f5cbe0c49ebe7",
+        "size": 8680680
+      },
+      {
+        "target": "x86_64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.2.0/rdp-0.2.0-x86_64-pc-windows-msvc.zip",
+        "checksum": "sha256:3b9904a4d69fc9d66ac097000343538d62bd080fe5d0114b15de06a9fd51a95b",
+        "size": 6666043
+      },
+      {
+        "target": "aarch64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.2.0/rdp-0.2.0-aarch64-pc-windows-msvc.zip",
+        "checksum": "sha256:e8cd86bca347774330eef05e11c27d4d37022047c27fd72ab03a4b53b628f135",
+        "size": 6258201
+      }
+    ]
+  },
+  "publishedAt": "2026-10-24T13:35:04Z"
+}

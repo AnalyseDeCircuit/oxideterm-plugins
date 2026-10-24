@@ -1,0 +1,236 @@
+{
+  "id": "com.oxideterm.remote-desktop.rdp",
+  "listedAt": "2026-10-05T16:07:35.000Z",
+  "latestReleaseAt": "2026-10-24T13:35:04Z",
+  "name": "RDP",
+  "description": "RDP connections using OxideTerm's native viewer, clipboard, audio and SSH gateways.",
+  "author": "OxideTerm",
+  "license": "GPL-3.0-only",
+  "licenseUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/blob/main/plugins/rdp/LICENSE",
+  "homepage": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/tree/main/plugins/rdp",
+  "tags": [
+    "remote-connections"
+  ],
+  "updatedAt": "2026-10-24T13:35:04Z",
+  "version": "0.1.0",
+  "engines": {
+    "oxideterm": ">2.2.1"
+  },
+  "minOxidetermVersion": "2.2.2",
+  "packages": [
+    {
+      "target": "aarch64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-aarch64-apple-darwin.zip",
+      "checksum": "sha256:6daf0d6c0dcfef024c20b7593829ea4b149edb67ebcde53336269fee60753058",
+      "size": 5711097
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-x86_64-apple-darwin.zip",
+      "checksum": "sha256:364889fcc37f861d7d7ec527f1737443ca095ce9a6bcad5de2c2d7b9a8699ebd",
+      "size": 6151128
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-x86_64-unknown-linux-gnu.zip",
+      "checksum": "sha256:de93b9286ba8365dd83267bcfdcb4959b4182bfdbc97e862d72cd40047d80483",
+      "size": 8474935
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-aarch64-unknown-linux-gnu.zip",
+      "checksum": "sha256:4512dcf275158833d42085172ae47dc84315b10ce4166d2c599240dfc28fc948",
+      "size": 8685272
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-x86_64-pc-windows-msvc.zip",
+      "checksum": "sha256:e9afa33970273ab518df18f0b8372012a2c85716010c662edae63e303ac78bce",
+      "size": 6665627
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-aarch64-pc-windows-msvc.zip",
+      "checksum": "sha256:7af4de761782423d52bc38348d1b19e3a5d892d767c336bdbe56bd5876c7102a",
+      "size": 6260764
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">2.2.1"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:6daf0d6c0dcfef024c20b7593829ea4b149edb67ebcde53336269fee60753058",
+          "size": 5711097
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:364889fcc37f861d7d7ec527f1737443ca095ce9a6bcad5de2c2d7b9a8699ebd",
+          "size": 6151128
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:de93b9286ba8365dd83267bcfdcb4959b4182bfdbc97e862d72cd40047d80483",
+          "size": 8474935
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:4512dcf275158833d42085172ae47dc84315b10ce4166d2c599240dfc28fc948",
+          "size": 8685272
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:e9afa33970273ab518df18f0b8372012a2c85716010c662edae63e303ac78bce",
+          "size": 6665627
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.0/rdp-0.1.0-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:7af4de761782423d52bc38348d1b19e3a5d892d767c336bdbe56bd5876c7102a",
+          "size": 6260764
+        }
+      ]
+    },
+    {
+      "version": "0.1.2",
+      "engines": {
+        "oxideterm": ">2.2.1"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.2/rdp-0.1.2-aarch64-apple-darwin.zip",
+          "checksum": "sha256:3e0145aba3da75a8ecaff01a7bb14d2322333621898dbab100dde0c1f066a120",
+          "size": 5711483
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.2/rdp-0.1.2-x86_64-apple-darwin.zip",
+          "checksum": "sha256:7d78784070b70794afb1a0acaef655fee7620cf3fe3b8feeaa0e9b0bfdeb4789",
+          "size": 6149957
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.2/rdp-0.1.2-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:b61841029e940f64cc66fd5633f950b6fff22f665d874f7f86ea26206a40d697",
+          "size": 8468779
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.2/rdp-0.1.2-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:eddf1bc23c19c9e3d3a05e59a0dd4ccfa8a03294db6ec0ff166c2fe5450d1b4c",
+          "size": 8683375
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.2/rdp-0.1.2-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:3679edbf5440ee823505766a5cd850cd1d14b994b07875db4852624cc2752522",
+          "size": 6668168
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.2/rdp-0.1.2-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:0119e15429eaf7ba2d01f179bdd847fc109d85d5d6a2a78877f1f9f3726b1044",
+          "size": 6260459
+        }
+      ]
+    },
+    {
+      "version": "0.1.3",
+      "engines": {
+        "oxideterm": ">2.2.1"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.3/rdp-0.1.3-aarch64-apple-darwin.zip",
+          "checksum": "sha256:24378626b164d89af5551283670a41ea7353dc390b52f67123144f7c9099a591",
+          "size": 5708617
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.3/rdp-0.1.3-x86_64-apple-darwin.zip",
+          "checksum": "sha256:02f334b23720471aeed552da83c0d4a69daf68df829a865b34e4e2eac4a47a29",
+          "size": 6144786
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.3/rdp-0.1.3-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:0c7fce3e1d9846a7495e0a2b782883b2ea03b1f5d8633f879aa7bf7aec0f30d3",
+          "size": 8464838
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.3/rdp-0.1.3-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:1b9d14f5b5f3e29a16b2d79f8273dd15155bdb4d89846fa8fce26badc8f07f48",
+          "size": 8685066
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.3/rdp-0.1.3-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:2c2e63512e80b449f9bfbdfbc7ca07cb8bdf34ff53d5315b5ae29bafa9dd1ef4",
+          "size": 6666064
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.1.3/rdp-0.1.3-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:1892706917c5905b38561702f92f95433eee09da230145d8e7acc9357f27a4a0",
+          "size": 6257191
+        }
+      ]
+    },
+    {
+      "version": "0.2.0",
+      "engines": {
+        "oxideterm": ">=2.2.5"
+      },
+      "packages": [
+        {
+          "target": "aarch64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.2.0/rdp-0.2.0-aarch64-apple-darwin.zip",
+          "checksum": "sha256:176ea9647ce9b6ea377d06a560a8675443ce69c207fba332b7d0d8aea9b39df5",
+          "size": 5709144
+        },
+        {
+          "target": "x86_64-apple-darwin",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.2.0/rdp-0.2.0-x86_64-apple-darwin.zip",
+          "checksum": "sha256:9ad47ad42aeabf34df839dd812e12e37a42404d3cb3602f8cd9d5fdb09c4f998",
+          "size": 6145763
+        },
+        {
+          "target": "x86_64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.2.0/rdp-0.2.0-x86_64-unknown-linux-gnu.zip",
+          "checksum": "sha256:2dd6125e8debe514f8c2fd204e6b4d6bdbad16f79a7e074d8802c335a64b9ef6",
+          "size": 8469900
+        },
+        {
+          "target": "aarch64-unknown-linux-gnu",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.2.0/rdp-0.2.0-aarch64-unknown-linux-gnu.zip",
+          "checksum": "sha256:0e99427b31bbf6beeb536c3d31c3356a843e42d2cd47a3c7dc4f5cbe0c49ebe7",
+          "size": 8680680
+        },
+        {
+          "target": "x86_64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.2.0/rdp-0.2.0-x86_64-pc-windows-msvc.zip",
+          "checksum": "sha256:3b9904a4d69fc9d66ac097000343538d62bd080fe5d0114b15de06a9fd51a95b",
+          "size": 6666043
+        },
+        {
+          "target": "aarch64-pc-windows-msvc",
+          "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/rdp-v0.2.0/rdp-0.2.0-aarch64-pc-windows-msvc.zip",
+          "checksum": "sha256:e8cd86bca347774330eef05e11c27d4d37022047c27fd72ab03a4b53b628f135",
+          "size": 6258201
+        }
+      ]
+    }
+  ]
+}
