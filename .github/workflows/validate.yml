@@ -4,10 +4,19 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'README*.md'
+      - 'docs/**'
+      - 'AGENTS.md'
+      - '.agents/**'
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: validate-registry-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   registry:

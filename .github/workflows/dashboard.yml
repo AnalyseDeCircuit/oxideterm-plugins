@@ -108,3 +108,10 @@ jobs:
             --target "$GITHUB_SHA" --title "Workspace Dashboard $PLUGIN_VERSION" \
             --notes-file dist/dashboard/release-notes.md --draft --latest=false
           gh release edit "$RELEASE_TAG" --draft=false --latest=false
+
+  catalog:
+    needs: release
+    if: inputs.publish && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    uses: ./.github/workflows/catalog.yml

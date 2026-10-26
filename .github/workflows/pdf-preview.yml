@@ -142,3 +142,9 @@ jobs:
             --target "$GITHUB_SHA" --title "PDF Preview $version" \
             --notes-file dist/pdf-preview/release-notes.md --draft --latest=false
           gh release edit "$tag" --draft=false --latest=false
+
+  catalog:
+    needs: publish
+    permissions:
+      contents: write
+    uses: ./.github/workflows/catalog.yml

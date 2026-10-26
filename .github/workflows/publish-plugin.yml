@@ -59,3 +59,7 @@ jobs:
         run: |
           gh release create "$RELEASE_TAG" dist/plugin-release/*.zip dist/plugin-release/catalog-entry.json --verify-tag --title "$RELEASE_TAG" --generate-notes --notes-file docs/catalog-upgrade-notice.md --draft --latest=false
           gh release edit "$RELEASE_TAG" --draft=false --latest=false
+
+  catalog:
+    needs: release
+    uses: ./.github/workflows/catalog.yml

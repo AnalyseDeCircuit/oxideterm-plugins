@@ -72,3 +72,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: gh release create "$RELEASE_TAG" "dist/languages/$PLUGIN_ID-$PLUGIN_VERSION.zip" dist/languages/catalog-entry.json --target "$GITHUB_SHA" --title "$LANGUAGE language support $PLUGIN_VERSION" --generate-notes --notes-file docs/catalog-upgrade-notice.md --latest=false
+
+  catalog:
+    needs: languages
+    if: inputs.publish
+    permissions:
+      contents: write
+    uses: ./.github/workflows/catalog.yml

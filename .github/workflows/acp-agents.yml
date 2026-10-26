@@ -91,3 +91,9 @@ jobs:
         run: |
           gh release create "$RELEASE_TAG" dist/acp/*.zip dist/acp/catalog-entry.json --verify-tag --title "$RELEASE_TAG" --notes-file dist/acp/release-notes.md --draft --latest=false
           gh release edit "$RELEASE_TAG" --draft=false --latest=false
+
+  catalog:
+    needs: release
+    permissions:
+      contents: write
+    uses: ./.github/workflows/catalog.yml

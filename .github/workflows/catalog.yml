@@ -6,9 +6,7 @@ on:
     paths: ['registry/plugins/**', 'registry/categories.json', 'scripts/catalog*.mjs', 'scripts/sync-catalog.mjs', '.github/workflows/catalog.yml']
   release:
     types: [published]
-  workflow_run:
-    workflows: ['Build ACP agent plugins', 'Build background material pack', 'Release Workspace Dashboard', 'Validate host source plugins', 'Build FIDO security-key plugin', 'Build inspection preview plugins', 'Build language plugin', 'Build MQTT workbench plugin', 'Build PDF preview plugin', 'Build remote connection plugins', 'Build SQLite preview plugin', 'Build Toolbox']
-    types: [completed]
+  workflow_call:
   workflow_dispatch:
 
 permissions:
@@ -20,7 +18,6 @@ concurrency:
 
 jobs:
   publish:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

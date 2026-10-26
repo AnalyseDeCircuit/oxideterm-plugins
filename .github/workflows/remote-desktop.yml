@@ -8,8 +8,9 @@ on:
       plugin:
         description: Plugin to build
         type: choice
-        default: all
-        options: [all, rdp, vnc, mosh]
+        required: true
+        default: rdp
+        options: [rdp, vnc, mosh, all]
 
 permissions:
   contents: read
@@ -118,3 +119,9 @@ jobs:
         run: |
           gh release create "$RELEASE_TAG" dist/remote-desktop/*.zip dist/remote-desktop/catalog-entry.json --verify-tag --title "$RELEASE_TAG" --notes-file dist/remote-desktop/release-notes.md --draft --latest=false
           gh release edit "$RELEASE_TAG" --draft=false --latest=false
+
+  catalog:
+    needs: release
+    permissions:
+      contents: write
+    uses: ./.github/workflows/catalog.yml
