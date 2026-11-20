@@ -1,7 +1,7 @@
 {
   "id": "com.oxideterm.remote-desktop.vnc",
   "name": "VNC",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "VNC connections using OxideTerm's native viewer, clipboard, audio and SSH gateways.",
   "author": "OxideTerm",
   "license": "GPL-3.0-only",
@@ -19,7 +19,7 @@
     ]
   },
   "engines": {
-    "oxideterm": ">2.2.1"
+    "oxideterm": ">2.4.0"
   },
   "contributes": {
     "remoteDesktop": {

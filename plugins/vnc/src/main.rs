@@ -651,8 +651,7 @@ fn wait_for_vnc_authentication(
                         "VNC server requires username authentication.",
                     ));
                 }
-                if password_required && password.as_ref().is_none_or(RemoteDesktopSecret::is_empty)
-                {
+                if password_required && password.is_none() {
                     return Err(VncError::authentication(
                         "VNC server requires password authentication.",
                     ));

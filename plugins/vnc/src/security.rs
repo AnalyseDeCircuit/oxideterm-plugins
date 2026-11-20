@@ -115,11 +115,9 @@ impl VncSecurityPreflight {
             .take()
             .ok_or_else(|| VncError::protocol("VNC preflight transport is unavailable."))?;
         if let Some(mut challenge) = self.password_challenge.take() {
-            let password = password
-                .filter(|secret| !secret.is_empty())
-                .ok_or_else(|| {
-                    VncError::authentication("VNC server requires password authentication.")
-                })?;
+            let password = password.ok_or_else(|| {
+                VncError::authentication("VNC server requires password authentication.")
+            })?;
             let key = vnc_auth_key(password);
             encrypt_vnc_challenge(&key, &mut challenge).map_err(VncError::authentication)?;
             transport
@@ -132,11 +130,9 @@ impl VncSecurityPreflight {
                 .ok_or_else(|| {
                     VncError::authentication("VNC server requires username authentication.")
                 })?;
-            let password = password
-                .filter(|secret| !secret.is_empty())
-                .ok_or_else(|| {
-                    VncError::authentication("VNC server requires password authentication.")
-                })?;
+            let password = password.ok_or_else(|| {
+                VncError::authentication("VNC server requires password authentication.")
+            })?;
             authenticate_vnc_sasl(&mut transport, username, password, self.protocol_version)?;
         } else if self.security.requires_username() {
             let username = username
@@ -144,11 +140,9 @@ impl VncSecurityPreflight {
                 .ok_or_else(|| {
                     VncError::authentication("VNC server requires username authentication.")
                 })?;
-            let password = password
-                .filter(|secret| !secret.is_empty())
-                .ok_or_else(|| {
-                    VncError::authentication("VNC server requires password authentication.")
-                })?;
+            let password = password.ok_or_else(|| {
+                VncError::authentication("VNC server requires password authentication.")
+            })?;
             write_plain_credentials(&mut transport, username, password)?;
             read_security_result(&mut transport, self.protocol_version)?;
         }

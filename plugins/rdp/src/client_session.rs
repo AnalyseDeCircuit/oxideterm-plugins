@@ -323,7 +323,7 @@ async fn wait_for_rdp_authentication(
                     }
                     return Err(connector::general_err!("RDP credentials are incomplete"));
                 };
-                if username.trim().is_empty() || password.is_empty() {
+                if username.trim().is_empty() {
                     username.zeroize();
                     if let Some(domain) = domain.as_mut() {
                         domain.zeroize();
