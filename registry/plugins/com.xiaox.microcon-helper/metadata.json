@@ -1,0 +1,23 @@
+{
+  "id": "com.xiaox.microcon-helper",
+  "name": "MicroCon Helper",
+  "description": "Configure MicroCon UART bridge and monitor status.",
+  "author": "xiaox",
+  "license": "MIT",
+  "tags": [
+    "utilities"
+  ],
+  "updatedAt": "2026-11-21T06:48:27Z",
+  "homepage": "https://github.com/allegrox/microcon-helper",
+  "licenseUrl": "https://github.com/allegrox/microcon-helper/blob/v0.3.6/LICENSE",
+  "listedAt": "2026-11-21T07:42:59.472Z",
+  "latestReleaseAt": "2026-11-21T06:48:27Z",
+  "order": 68,
+  "legacy": {
+    "version": "0.3.6",
+    "engines": {
+      "oxideterm": ">=2.4.0"
+    },
+    "minOxidetermVersion": "2.4.0"
+  }
+}

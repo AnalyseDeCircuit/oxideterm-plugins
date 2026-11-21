@@ -1,0 +1,47 @@
+{
+  "release": {
+    "version": "0.3.6",
+    "engines": {
+      "oxideterm": ">=2.4.0"
+    },
+    "packages": [
+      {
+        "target": "aarch64-apple-darwin",
+        "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.6/com.xiaox.microcon-helper-0.3.6-aarch64-apple-darwin.zip",
+        "checksum": "sha256:f6dd143913f8c3c5d18b28e0c028fe34b9a49be7f49036c34d7d09ace265788f",
+        "size": 379257
+      },
+      {
+        "target": "aarch64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.6/com.xiaox.microcon-helper-0.3.6-aarch64-pc-windows-msvc.zip",
+        "checksum": "sha256:3d610ace8cb37b30894b8abab5470f68492159cc84fcdde58fbee4ad6c0cf457",
+        "size": 272613
+      },
+      {
+        "target": "aarch64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.6/com.xiaox.microcon-helper-0.3.6-aarch64-unknown-linux-gnu.zip",
+        "checksum": "sha256:a08981e290d58f3e171223ebb5b6d4417bf174c4ee3c6779412658f2e7b635f4",
+        "size": 405004
+      },
+      {
+        "target": "x86_64-apple-darwin",
+        "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.6/com.xiaox.microcon-helper-0.3.6-x86_64-apple-darwin.zip",
+        "checksum": "sha256:e708724ca45d1c1eecedb1f9c5a2abbac4b9f1281fcb2ae99cb19ae8ab48077f",
+        "size": 401404
+      },
+      {
+        "target": "x86_64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.6/com.xiaox.microcon-helper-0.3.6-x86_64-pc-windows-msvc.zip",
+        "checksum": "sha256:4ba0d3031f194708fa239a2b33603918acad5ef1b401505f65061354a6facb58",
+        "size": 286367
+      },
+      {
+        "target": "x86_64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/allegrox/microcon-helper/releases/download/v0.3.6/com.xiaox.microcon-helper-0.3.6-x86_64-unknown-linux-gnu.zip",
+        "checksum": "sha256:422d99bab07e80678ed217fdd09018775ca33ff957745e966b1fbab75ad2a146",
+        "size": 421547
+      }
+    ]
+  },
+  "publishedAt": "2026-11-21T06:48:27Z"
+}
