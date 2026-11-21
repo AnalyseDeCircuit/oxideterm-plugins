@@ -1,134 +1,191 @@
-# OxideTerm Plugins
+<div align="center">
 
-**简体中文** | [English](README.en.md)
+# ⚡ OxideTerm Plugins
+
+**Official plugin marketplace, developer templates, and first-party extensions for [OxideTerm](https://github.com/AnalyseDeCircuit/oxideterm).**
+
+AI Agents (ACP) · RDP / VNC / Mosh · FIDO2 · File Previews · 43 Languages · 4K Backgrounds
 
 [![Validate plugin registry](https://github.com/AnalyseDeCircuit/oxideterm-plugins/actions/workflows/validate.yml/badge.svg)](https://github.com/AnalyseDeCircuit/oxideterm-plugins/actions/workflows/validate.yml)
-[![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE)
+[![Marketplace](https://img.shields.io/badge/marketplace-69%20plugins-blue)](#whats-in-the-marketplace)
+[![License](https://img.shields.io/badge/license-GPL--3.0-blue)](LICENSE)
 
-为 OxideTerm 构建、发布和发现原生插件。
+[**Browse plugins**](#whats-in-the-marketplace) ·
+[**Install**](#install-plugins) ·
+[**Create a plugin**](#create-a-plugin-in-5-minutes) ·
+[**Submit a plugin**](#publish-to-the-marketplace) ·
+[**Developer guide**](https://github.com/AnalyseDeCircuit/oxideterm/blob/main/docs/user-guide/en/plugin-development.md)
 
-插件可以添加由 OxideTerm 原生渲染的标签页和侧边栏，读取经过授权的会话状态，扩展终端、SFTP、Host Tools、IDE、AI 与同步工作流。宿主负责主题、焦点、权限和敏感数据边界；插件通过清单和类型化协议声明能力。
+**English** | [简体中文](README.zh-CN.md)
 
-[开始开发](#五分钟创建插件) · [浏览市场目录](registry/v2/index.json) · [插件开发文档](https://github.com/AnalyseDeCircuit/oxideterm/blob/main/docs/user-guide/zh-Hans/plugin-development.md) · [申请收录](https://github.com/AnalyseDeCircuit/oxideterm-plugins/issues/new?template=plugin-submission.yml)
+<br>
 
-插件市场 v1 已冻结，原地址、索引内容及其中引用的安装包持续保留。后续插件、新版本和兼容纠错只发布到 v2。旧客户端仍可使用冻结目录中的插件，但不会看到新的插件和更新；请升级到支持 v2 目录的主程序版本。
+<img src="https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm/main/docs/screenshots/plugin-manager.png" alt="OxideTerm Plugin Manager" width="900">
 
-## 你可以构建什么
+</div>
 
-| 方向 | 示例 |
-| --- | --- |
-| 原生界面 | 标签页、侧边栏、活动栏操作、设置和状态面板 |
-| 连接工作流 | 读取连接与会话摘要，通过宿主控制连接生命周期 |
-| 终端与文件 | 经过授权的终端交互、SFTP、传输和 IDE 操作 |
-| 主机运维 | 类型化 Host Tools 数据、受控操作和自定义监控 |
-| 产品扩展 | 快速命令、通知、主题、AI、同步与插件私有存储 |
+---
 
-OxideTerm 为三种原生插件形态分别提供可打包和发布的模板：
+## Install plugins
 
-| 形态 | 适用场景 | 模板 |
+Open **Plugin Manager → Marketplace** inside OxideTerm.
+
+OxideTerm automatically picks the package for your OS, architecture, and host version, verifies the SHA-256 checksum and plugin identity, and displays every requested permission before enabling the plugin.
+
+> [!NOTE]
+> Marketplace listing is not a full security audit. Process plugins run as your OS user—review the publisher and requested permissions before enabling third-party plugins.
+
+---
+
+## What's in the marketplace
+
+### AI coding agents (ACP)
+
+Bring your existing CLI coding agents straight into OxideTerm's native ACP chat workspace, reusing your local login and CLI setup:
+
+| Plugin | Description | Source |
 | --- | --- | --- |
-| Manifest-only | 设置、工具元数据或其他不运行代码的静态贡献 | [`templates/manifest-plugin`](templates/manifest-plugin) |
-| Process | 通过 JSON Lines 完成宿主调用、动态界面和完整工作流 | [`templates/process-plugin`](templates/process-plugin) |
-| WASM | 在宿主管理的 WASI 运行时中执行可移植逻辑 | [`templates/wasm-plugin`](templates/wasm-plugin) |
+| **Claude Code** | Connect the local Claude Code CLI through ACP | [`plugins/claude-code-acp`](plugins/claude-code-acp) |
+| **Codex** | Connect the local Codex CLI through ACP | [`plugins/codex-acp`](plugins/codex-acp) |
+| **Cursor** | Launch the local Cursor Agent CLI through ACP | [`plugins/cursor-acp`](plugins/cursor-acp) |
+| **GitHub Copilot CLI** | Launch the official GitHub Copilot CLI through ACP | [`plugins/copilot-acp`](plugins/copilot-acp) |
+| **OpenCode** | Launch the installed OpenCode CLI through ACP | [`plugins/opencode-acp`](plugins/opencode-acp) |
+| **Antigravity** | Launch the Antigravity ACP agent inside OxideTerm | [`plugins/antigravity-acp`](plugins/antigravity-acp) |
+| **Grok Build** | Connect Grok Build through ACP | [`plugins/grok-acp`](plugins/grok-acp) |
+| **Qwen Code** | Launch the official Qwen Code CLI through ACP | [`plugins/qwen-code-acp`](plugins/qwen-code-acp) |
+| **Kimi CLI** | Launch Kimi CLI through ACP using existing auth | [`plugins/kimi-acp`](plugins/kimi-acp) |
 
-## 五分钟创建插件
+### Protocols & hardware security
 
-需要 Git 和 Node.js 22 或更新版本。
+| Plugin | Description | Source |
+| --- | --- | --- |
+| **RDP** | Remote Desktop connections with OxideTerm's native viewer, audio, and clipboard | [`plugins/rdp`](plugins/rdp) |
+| **VNC** | VNC remote desktop connections with native viewer and clipboard support | [`plugins/vnc`](plugins/vnc) |
+| **Mosh** | Roaming Mosh terminal connections that survive network changes | [`plugins/mosh`](plugins/mosh) |
+| **FIDO Security Key** | SSH authentication with `ed25519-sk` and `ecdsa-sk` hardware security keys | [`plugins/fido2`](plugins/fido2) |
+| **MQTT Workbench** | Subscribe, inspect, and publish MQTT messages beside your terminals | [`plugins/mqtt`](plugins/mqtt) |
+
+### File & data previews
+
+| Plugin | Description | Source |
+| --- | --- | --- |
+| **PDF Preview** | Native PDF viewer with page navigation and zoom for local files and SFTP | [`plugins/pdf-preview`](plugins/pdf-preview) |
+| **SQLite Preview** | Read-only SQLite table browser and paginated data inspection | [`plugins/sqlite-preview`](plugins/sqlite-preview) |
+| **Certificate Viewer** | Inspect PEM/DER certificate chains, validity dates, SANs, usage, and fingerprints | [`plugins/certificate-preview`](plugins/certificate-preview) |
+| **Binary Inspector** | Inspect ELF, Mach-O, and PE headers, sections, SHA-256, and hex preview | [`plugins/binary-preview`](plugins/binary-preview) |
+
+### Ops & productivity
+
+| Plugin | Description | Source |
+| --- | --- | --- |
+| **Workspace Dashboard** | Recent work, active tasks, pending items, and pinned shortcuts | [`plugins/host-tools-dashboard`](plugins/host-tools-dashboard) |
+| **Tailscale Hosts** | Discover Tailscale devices and prefill OxideTerm's native connection form | [`plugins/tailscale-hosts`](plugins/tailscale-hosts) |
+| **Ansible Inventory** | Import SSH targets from local Ansible inventories | [`plugins/ansible-inventory`](plugins/ansible-inventory) |
+| **Toolbox** | Local encoding, JSON formatting, timestamps, text utilities, hashes, and generators | [`plugins/toolbox`](plugins/toolbox) |
+
+### Animated 4K backgrounds
+
+Original looping 4K backgrounds built for OxideTerm's native window surface:
+
+- [**Dawn Mist**](plugins/background-dawn-mist) — warm white and teal tones
+- [**Desert Gold**](plugins/background-desert-gold) — layered sand and gold
+- [**Night Flow**](plugins/background-night-flow) — deep blue and violet
+
+### Language support (43 languages)
+
+Install Tree-sitter syntax highlighting and code folding on demand for OxideTerm's built-in editor. See [language plugins guide](docs/language-plugins.en.md) for build recipes.
+
+<details>
+<summary><b>Browse all 43 language plugins</b></summary>
+
+<br>
+
+[AWK](plugins/language-awk) · [C](plugins/language-c) · [C#](plugins/language-c-sharp) · [C++](plugins/language-cpp) · [Clojure / ClojureScript](plugins/language-clojure) · [Common Lisp](plugins/language-commonlisp) · [CSS](plugins/language-css) · [Dart](plugins/language-dart) · [DTD](plugins/language-dtd) · [Elixir](plugins/language-elixir) · [Erlang](plugins/language-erlang) · [Go](plugins/language-go) · [Groovy](plugins/language-groovy) · [HTML](plugins/language-html) · [INI](plugins/language-ini) · [Java](plugins/language-java) · [JavaScript](plugins/language-javascript) · [jq](plugins/language-jq) · [Julia](plugins/language-julia) · [Justfile](plugins/language-just) · [Kotlin](plugins/language-kotlin) · [Nginx](plugins/language-nginx) · [Nix](plugins/language-nix) · [Objective-C](plugins/language-objc) · [OCaml](plugins/language-ocaml) · [OCaml Interface](plugins/language-ocaml-interface) · [Perl](plugins/language-perl) · [PHP](plugins/language-php) · [Protobuf](plugins/language-proto) · [R](plugins/language-r) · [Ruby](plugins/language-ruby) · [Rust](plugins/language-rust) · [Scala](plugins/language-scala) · [Slint](plugins/language-slint) · [Svelte](plugins/language-svelte) · [Swift](plugins/language-swift) · [Terraform / HCL](plugins/language-hcl) · [TSX](plugins/language-tsx) · [TypeScript](plugins/language-typescript) · [Typst](plugins/language-typst) · [Vue](plugins/language-vue) · [XML](plugins/language-xml) · [Zig](plugins/language-zig)
+
+</details>
+
+### Community plugins
+
+| Plugin | Author | Description |
+| --- | --- | --- |
+| [**MicroCon Helper**](https://github.com/allegrox/microcon-helper) | `xiaox` | Configure MicroCon UART bridge and monitor status |
+
+---
+
+## Build your own plugin
+
+OxideTerm plugins render natively inside OxideTerm—the host owns themes, focus, permissions, and secret boundaries, while plugins declare capabilities via a manifest and typed protocol.
+
+| Kind | Best for | Template |
+| --- | --- | --- |
+| **Manifest-only** | Static contributions (settings, themes, grammars, metadata) with no code execution | [`templates/manifest-plugin`](templates/manifest-plugin) |
+| **Process** | Interactive native tabs/sidebars, external CLI bridges, full workflows via JSON Lines | [`templates/process-plugin`](templates/process-plugin) |
+| **WASM** | Portable, sandboxed logic executed inside OxideTerm's WASI runtime | [`templates/wasm-plugin`](templates/wasm-plugin) |
+
+### Create a plugin in 5 minutes
+
+Requires Git and Node.js 22+. (WASM plugins also need Rust with the `wasm32-wasip1` target.)
 
 ```bash
 git clone https://github.com/AnalyseDeCircuit/oxideterm-plugins.git
 cd oxideterm-plugins
 npm ci --ignore-scripts
+
 node scripts/create-plugin.mjs ../my-oxideterm-plugin \
   --type process \
   --id com.example.my-plugin \
   --name "My Plugin" \
   --author "Your Name"
+
 cd ../my-oxideterm-plugin
 npm run check
 ```
 
-生成的 Process 插件会注册一个可交互的原生标签页。打开 [`plugin.json`](templates/process-plugin/plugin.json) 修改能力和贡献，在 [`bin/plugin.js`](templates/process-plugin/bin/plugin.js) 中实现行为。
+Switch `--type process` to `manifest` or `wasm` for the other templates. Edit [`plugin.json`](templates/process-plugin/plugin.json) to declare permissions and UI contributions, and implement behavior in [`bin/plugin.js`](templates/process-plugin/bin/plugin.js).
 
-创建时自动以最新正式版确定最低宿主版本；使用 `--host-repo /path/to/OxideTerm` 可改为读取本地源码版本。发布流水线自动继承兼容范围、核对安装包，并生成带校验值的市场记录。兼容范围变更和纠错命令见[发布指南](docs/PUBLISHING.md#自动准备发布)。
-
-将 `--type process` 改成 `manifest` 或 `wasm` 即可生成另外两种模板。WASM 模板还需要 Rust 和 `wasm32-wasip1` target。
-
-开发时运行：
+Package for local testing or release:
 
 ```bash
-npm run check
-npm run package:unix
+# macOS / Linux
+npm run check && npm run package:unix
+
+# Windows (PowerShell)
+npm run check; npm run package:windows
 ```
 
-Windows 使用：
+Every template ships with bilingual docs, standalone validation, packaging scripts, an MIT license, and a tag-triggered GitHub Release workflow. Read the full [Plugin Development Guide](https://github.com/AnalyseDeCircuit/oxideterm/blob/main/docs/user-guide/en/plugin-development.md) for host APIs and UI components.
 
-```powershell
-npm run check
-npm run package:windows
-```
+---
 
-三套模板都包含双语说明、独立校验、安装包脚本、MIT 许可证和基于版本标签的 GitHub Release 工作流。Process 模板额外提供双平台启动器；WASM 模板提供完整 Guest ABI v1 Rust 实现；Manifest-only 模板会生成可作为 `any` target 发布的纯清单包。
+## Publish to the marketplace
 
-也可以直接复制任一模板目录。每个模板的 README 都包含对应的本地安装、调试和发布步骤。
+Plugin source code and release assets stay in your own repository. This repository publishes listings through issue review rather than direct pull requests:
 
-## 安装市场插件
+1. Bump the version in `plugin.json` and push a `v<version>` git tag.
+2. Wait for the template workflow to publish immutable GitHub Release archives.
+3. Install and verify the release package on each target platform you declare.
+4. Submit a [**Plugin listing request**](https://github.com/AnalyseDeCircuit/oxideterm-plugins/issues/new?template=plugin-submission.yml) with version, platforms, SHA-256 digests, permissions, and release notes.
 
-在 OxideTerm 中打开 **插件管理器 → 插件市场**。应用会根据当前平台和 OxideTerm 版本选择安装包，校验 SHA-256 与插件身份，然后展示插件申请的权限。
+To update display metadata (name, description, homepage, or tags) without cutting a new plugin version, choose **Metadata update only** in the issue form. Full rules and automation commands live in the [Publishing Guide](docs/PUBLISHING.en.md).
 
-市场条目不是对插件的全面安全审计。进程插件会以当前用户身份运行，启用前应确认发布者和权限声明可信。
+---
 
-## 发布到插件市场
-
-插件源码和 Release 资产保留在作者自己的仓库。本仓库不接受 Pull Request；维护者根据 Issue 审核并直接更新正式目录。
-
-发布流程：
-
-1. 为 `plugin.json` 提升版本并创建 `v<version>` 标签；
-2. 等待模板工作流生成不可变的 GitHub Release 安装包；
-3. 实际安装并验证要声明支持的平台；
-4. 提交 [Plugin listing request](https://github.com/AnalyseDeCircuit/oxideterm-plugins/issues/new?template=plugin-submission.yml)，附上版本、平台、摘要、权限和更新说明；
-5. 后续版本重复同一流程，旧 Release 资产不得覆盖。
-
-名称、描述、主页或标签变化不需要虚构插件版本，可以选择“仅更新展示信息”。完整规则见 [插件发布与更新指南](docs/PUBLISHING.md)。
-
-## 示例插件
-
-| 插件 | 展示内容 | 源码 |
-| --- | --- | --- |
-| Workspace Dashboard | 最近工作、活动任务、待处理问题和固定入口 | [`plugins/host-tools-dashboard`](plugins/host-tools-dashboard) |
-| PDF Preview | 本地文件和 SFTP 的原生 PDF 预览、翻页与缩放 | [`plugins/pdf-preview`](plugins/pdf-preview) |
-| Certificate Viewer | 多证书浏览、有效期、域名、用途和指纹 | [`plugins/certificate-preview`](plugins/certificate-preview) |
-| Binary Inspector | ELF、Mach-O、PE 信息、节区定位和十六进制预览 | [`plugins/binary-preview`](plugins/binary-preview) |
-| SQLite Preview | 只读数据库表与分页数据预览 | [`plugins/sqlite-preview`](plugins/sqlite-preview) |
-| 小工具箱 | 编码、JSON、时间、文本整理、摘要与随机生成 | [`plugins/toolbox`](plugins/toolbox) |
-| Tailscale Hosts | 发现设备并填入原生连接表单 | [`plugins/tailscale-hosts`](plugins/tailscale-hosts) |
-| Ansible Inventory | 从主机清单发现 SSH 连接目标 | [`plugins/ansible-inventory`](plugins/ansible-inventory) |
-| GitHub Copilot CLI | 启动已安装的官方 Copilot CLI，接入 ACP 聊天 | [`plugins/copilot-acp`](plugins/copilot-acp) |
-| Qwen Code | 启动已安装的 Qwen Code，接入 ACP 聊天 | [`plugins/qwen-code-acp`](plugins/qwen-code-acp) |
-| Kimi CLI | 启动已安装的 Kimi CLI，复用已有登录状态 | [`plugins/kimi-acp`](plugins/kimi-acp) |
-| 24 个语言插件 | 按需安装 Tree-sitter 语法、高亮与折叠支持 | [`plugins/language-*`](plugins)，[构建与发布](docs/language-plugins.md) |
-
-示例用于展示真实的宿主能力和协议边界。第一方插件也必须先生成不可变发布包并完成平台验证，才能加入正式市场目录。
-
-## 仓库结构
+<details>
+<summary><b>Repository layout & maintainer checks</b></summary>
 
 ```text
-registry/plugins/<id>/      分插件维护的展示信息、版本和兼容纠错
-registry/categories.json    市场分类标识
-registry/v1/index.json      冻结的旧客户端目录
-registry/v1/index.sha256    冻结内容的校验值
-registry/v2/                自动生成的摘要目录和独立版本历史
-schema/                      市场目录格式
-plugins/                     OxideTerm 维护的一方插件
-templates/process-plugin/    可独立使用的进程插件模板
-templates/manifest-plugin/   不运行代码的清单插件模板
-templates/wasm-plugin/       Rust WASM 插件模板
-scripts/                     创建、校验和发布辅助脚本
-docs/                        插件发布与目录维护说明
+plugins/                   First-party plugins maintained by OxideTerm
+templates/                 Starter templates (process, manifest, wasm)
+registry/plugins/<id>/     Per-plugin metadata, releases, and compatibility records
+registry/categories.json   Marketplace category definitions
+registry/v2/               Generated v2 index and per-plugin version history
+registry/v1/               Frozen legacy v1 catalog (read-only)
+schema/                    JSON schemas for catalog validation
+scripts/                   Scaffolding, validation, and release helpers
+docs/                      Publishing and language-plugin guides
 ```
 
-维护者在修改目录或一方插件时运行：
+Validate registry or first-party plugin changes locally:
 
 ```bash
 npm ci --ignore-scripts
@@ -136,6 +193,20 @@ npm test
 npm run check
 ```
 
-## 许可证
+</details>
 
-`plugins/language-*/` 中的语言插件自身采用各目录附带的 Apache-2.0 许可证，上游语法的许可证和版权声明单独保留。其他一方插件源码使用 [GNU GPL v3](LICENSE)；`templates/` 中的三套模板使用各自附带的 MIT 许可证。第三方插件使用作者仓库声明的许可证。
+<details>
+<summary><b>Catalog v1 compatibility note</b></summary>
+
+The legacy `registry/v1/index.json` catalog is frozen and remains available at its original URL so older OxideTerm versions continue working. All new plugins, updates, and compatibility fixes are published exclusively to `registry/v2/`. Upgrade OxideTerm to a v2-capable release to receive new plugins and updates.
+
+</details>
+
+---
+
+## License
+
+- Language plugins under `plugins/language-*/` are licensed under **Apache-2.0** (upstream Tree-sitter grammar licenses and notices are preserved in each directory).
+- Other first-party plugin sources in `plugins/` are licensed under [**GNU GPL v3**](LICENSE).
+- Starter templates in `templates/` are licensed under **MIT**.
+- Third-party community plugins use the licenses declared in their own repositories.
