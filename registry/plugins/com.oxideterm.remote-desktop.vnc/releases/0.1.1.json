@@ -1,0 +1,47 @@
+{
+  "release": {
+    "version": "0.1.1",
+    "engines": {
+      "oxideterm": ">2.4.0"
+    },
+    "packages": [
+      {
+        "target": "aarch64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.1/vnc-0.1.1-aarch64-apple-darwin.zip",
+        "checksum": "sha256:8537ba003ece9ecd660b3af36ee2d5a6acb256393c13b7d0177d59b83225f157",
+        "size": 1776600
+      },
+      {
+        "target": "x86_64-apple-darwin",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.1/vnc-0.1.1-x86_64-apple-darwin.zip",
+        "checksum": "sha256:d41eeffb0ead93fda706397eca33d5b8d46ede76e0666c432509bd3f8de53a49",
+        "size": 1855714
+      },
+      {
+        "target": "x86_64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.1/vnc-0.1.1-x86_64-unknown-linux-gnu.zip",
+        "checksum": "sha256:84619c748fb0dc4234d3f77d9416e223c4c0bdbf0c07477dbf16d39aea8a9828",
+        "size": 4238687
+      },
+      {
+        "target": "aarch64-unknown-linux-gnu",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.1/vnc-0.1.1-aarch64-unknown-linux-gnu.zip",
+        "checksum": "sha256:e885a79a4d958851e7c20808c96a4578c50d21680533e0db5a5b9509b1f181b0",
+        "size": 4619429
+      },
+      {
+        "target": "x86_64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.1/vnc-0.1.1-x86_64-pc-windows-msvc.zip",
+        "checksum": "sha256:0eb7a8b04ed0d1bf297700eab32b62c5072dab6194a775045ccb646c91821b25",
+        "size": 1663662
+      },
+      {
+        "target": "aarch64-pc-windows-msvc",
+        "downloadUrl": "https://github.com/AnalyseDeCircuit/oxideterm-plugins/releases/download/vnc-v0.1.1/vnc-0.1.1-aarch64-pc-windows-msvc.zip",
+        "checksum": "sha256:9f96ba4d240a8f8001d089a17f62f44cfd528592999341caccc9ccc0ec0781d5",
+        "size": 1554544
+      }
+    ]
+  },
+  "publishedAt": "2026-11-24T15:54:28Z"
+}

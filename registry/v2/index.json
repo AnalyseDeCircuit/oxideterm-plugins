@@ -826,7 +826,7 @@
     {
       "id": "com.oxideterm.remote-desktop.vnc",
       "listedAt": "2026-10-05T15:46:16.000Z",
-      "latestReleaseAt": "2026-10-05T15:41:16Z",
+      "latestReleaseAt": "2026-11-24T15:54:28Z",
       "name": "VNC",
       "description": "VNC connections using OxideTerm's native viewer, clipboard, audio and SSH gateways.",
       "author": "OxideTerm",
@@ -836,15 +836,15 @@
       "tags": [
         "remote-connections"
       ],
-      "updatedAt": "2026-10-05T15:45:21.510Z",
-      "version": "0.1.0",
+      "updatedAt": "2026-11-24T15:54:28Z",
+      "version": "0.1.1",
       "engines": {
-        "oxideterm": ">2.2.1"
+        "oxideterm": ">2.4.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.remote-desktop.vnc/cecd7ed1172ed378774e17065920d46ce1de03634a58e480d0c93074b65b5bc1.json",
-        "checksum": "sha256:cecd7ed1172ed378774e17065920d46ce1de03634a58e480d0c93074b65b5bc1",
-        "size": 4772
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.remote-desktop.vnc/c0bab2472252e5101ec1cdeb1f0608de5ca388d3e5857c3d091e5ac59060a402.json",
+        "checksum": "sha256:c0bab2472252e5101ec1cdeb1f0608de5ca388d3e5857c3d091e5ac59060a402",
+        "size": 6922
       }
     },
     {
