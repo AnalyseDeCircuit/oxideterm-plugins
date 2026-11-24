@@ -850,7 +850,7 @@
     {
       "id": "com.oxideterm.remote-desktop.rdp",
       "listedAt": "2026-10-05T16:07:35.000Z",
-      "latestReleaseAt": "2026-10-24T13:35:04Z",
+      "latestReleaseAt": "2026-11-24T16:04:39Z",
       "name": "RDP",
       "description": "RDP connections using OxideTerm's native viewer, clipboard, audio and SSH gateways.",
       "author": "OxideTerm",
@@ -860,15 +860,15 @@
       "tags": [
         "remote-connections"
       ],
-      "updatedAt": "2026-10-24T13:35:04Z",
-      "version": "0.2.0",
+      "updatedAt": "2026-11-24T16:04:39Z",
+      "version": "0.2.1",
       "engines": {
-        "oxideterm": ">=2.2.5"
+        "oxideterm": ">2.4.0"
       },
       "history": {
-        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.remote-desktop.rdp/21225fc81235eed81baf002a630d2203c0f1dd6c90a1a2aa4f2d81829088da54.json",
-        "checksum": "sha256:21225fc81235eed81baf002a630d2203c0f1dd6c90a1a2aa4f2d81829088da54",
-        "size": 11231
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.oxideterm.remote-desktop.rdp/46b6321b2f10e9208c2056c54ed37bc15506989d71d5b7ac61fe9380515637f3.json",
+        "checksum": "sha256:46b6321b2f10e9208c2056c54ed37bc15506989d71d5b7ac61fe9380515637f3",
+        "size": 13385
       }
     },
     {
