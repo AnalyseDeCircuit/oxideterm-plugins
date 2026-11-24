@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { os: macos-14, arch: arm64, target: aarch64-apple-darwin }
+          - { os: macos-15, arch: arm64, target: aarch64-apple-darwin }
           - { os: macos-15-intel, arch: x64, target: x86_64-apple-darwin }
           - { os: ubuntu-22.04, arch: x64, target: x86_64-unknown-linux-gnu }
           - { os: ubuntu-22.04-arm, arch: arm64, target: aarch64-unknown-linux-gnu }
