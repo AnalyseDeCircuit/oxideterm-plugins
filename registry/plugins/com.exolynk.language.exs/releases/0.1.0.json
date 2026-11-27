@@ -1,0 +1,17 @@
+{
+  "release": {
+    "version": "0.1.0",
+    "engines": {
+      "oxideterm": ">=2.2.2"
+    },
+    "packages": [
+      {
+        "target": "any",
+        "downloadUrl": "https://github.com/Exolynk/oxideterm-exs/releases/download/v0.1.0/com.exolynk.language.exs-0.1.0.zip",
+        "checksum": "sha256:81006a898556960f7893cb011b485a4a6fd598d7bc028ce37c58d6f824775822",
+        "size": 11690
+      }
+    ]
+  },
+  "publishedAt": "2026-11-27T06:21:20.082Z"
+}

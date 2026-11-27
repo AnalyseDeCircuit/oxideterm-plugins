@@ -1824,6 +1824,38 @@
         "checksum": "sha256:0848cfe1d5f8a4bbab82b38d59f70711f804cd1dad29c43066dea97a72636304",
         "size": 4752
       }
+    },
+    {
+      "id": "com.exolynk.language.exs",
+      "name": "ExS Language Support",
+      "description": "Syntax highlighting for ExS (Exolynk Xtension Script). Enabling this plugin overrides Elixir highlighting for .exs files, including mix.exs. Elixir .ex files are unaffected.",
+      "author": "Exolynk",
+      "homepage": "https://github.com/Exolynk/oxideterm-exs",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/Exolynk/oxideterm-exs/blob/v0.1.0/LICENSE",
+      "tags": [
+        "language"
+      ],
+      "language": {
+        "id": "exs",
+        "displayName": "ExS",
+        "grammarName": "exs",
+        "extensions": [
+          "exs"
+        ]
+      },
+      "updatedAt": "2026-11-27T06:21:20.082Z",
+      "listedAt": "2026-11-27T06:21:20.091Z",
+      "latestReleaseAt": "2026-11-27T06:21:20.082Z",
+      "version": "0.1.0",
+      "engines": {
+        "oxideterm": ">=2.2.2"
+      },
+      "history": {
+        "downloadUrl": "https://raw.githubusercontent.com/AnalyseDeCircuit/oxideterm-plugins/main/registry/v2/plugins/com.exolynk.language.exs/2550ca75263c28e07ec4ab7ac1a481829c8ff100b130303ece880f8a45c05fac.json",
+        "checksum": "sha256:2550ca75263c28e07ec4ab7ac1a481829c8ff100b130303ece880f8a45c05fac",
+        "size": 1582
+      }
     }
   ]
 }
